@@ -1,28 +1,24 @@
 schemaVersion: 1
 governance:
-  repo: PoweredUpLabs/subterra-governance
+  repo: SubTerraCo/subterra-governance
   ciOpsVersion: "26.8.3"
   addressScheme: "APP.PP.PR.AA.SSS.FFF"
 
-  # `PoweredUpLabs` is a personal USER account, not an organization
-  # (verified: gh api users/PoweredUpLabs -> "type": "User").
-  # Org-only features (org secrets, teams, rulesets) are unavailable until
-  # migration. Organizations cannot be created via API — see GV-0001 §3.
-  owner: PoweredUpLabs
-  ownerType: user
+  owner: SubTerraCo
+  ownerType: organization
   productionBranch: master
   orgMigration:
-    status: pending-user-action
-    targetOrg: SubTerra-OS  # locked GV-0001; cannot be `PoweredUpLabs` (user account)
-    reason: "POST /orgs returns 404 on github.com — org must be created in the web UI"
-    blocks:
-      - "transfer all repos into SubTerra-OS"
-      - "branch protection + org secrets conventions"
-      - "tag governance v1 and wire product repos to reusable workflows"
+    status: complete
+    completedOn: "2026-08-04"
     note: >-
-      Repos are created under the `PoweredUpLabs` user account in the interim so
-      work is backed up (GV-0001 D-interim). `repo:` fields below reflect where
-      each repo ACTUALLY lives today; rewrite them to SubTerra-OS after transfer.
+      All five SubTerra repos were transferred from the `PoweredUpLabs` personal
+      user account into the SubTerraCo org. GitHub keeps redirects from the old
+      paths, but every ref here and in workflows points at SubTerraCo directly.
+    planConstraint: >-
+      SubTerraCo is on the GitHub Free plan. Branch protection/rulesets on private
+      repos and org secrets for private repos require Team, so conventions are
+      enforced via CI and review until an upgrade.
+    legacyOwner: PoweredUpLabs  # still holds unrelated repos; nothing SubTerra should live there
 
 # Canonical catalog for SubTerra Shell dual marketplaces (Apps + Integrations).
 # Same schema for both roles — Apps ↔ Integrations parity.
@@ -30,14 +26,14 @@ items:
   - id: shell
     appCode: ST
     name: SubTerra Shell
-    repo: PoweredUpLabs/subterra-shell
+    repo: SubTerraCo/subterra-shell
     localPath: shell
     platforms: [DT, WB, AD]
     role: shell
     marketplace: null
     defaultOpen: false
     sdk: null
-    status: linked  # PoweredUpLabs/subterra-shell — first consumer of reusable ci-node
+    status: linked  # first consumer of the reusable ci-node workflow
     provides:
       # Twin SDKs scaffolded and parity-verified (GV-0001 D10).
       - "@subterra/sdk-contract"   # internal single source of truth
@@ -47,7 +43,7 @@ items:
   - id: blocks
     appCode: BK
     name: Blocks
-    repo: PoweredUpLabs/Blocks
+    repo: SubTerraCo/Blocks
     localPath: apps/blocks
     platforms: [DT, WB, AD, IO]
     role: app
@@ -60,21 +56,22 @@ items:
   - id: mailbot
     appCode: MB
     name: Mailbot
-    repo: PoweredUpLabs/mailbot
+    repo: SubTerraCo/mailbot
     localPath: apps/mailbot
     platforms: [WB, DT]
     role: app
     marketplace: apps
     defaultOpen: false
     sdk: "@subterra/app-sdk"
-    # Local HEAD matches PoweredUpLabs/mailbot exactly (dd1ddaa) — the old
-    # `poweredupbass` owner handle no longer resolves. Remote repointed.
+    # Remote repointed off the dead `poweredupbass` handle; local and remote
+    # HEAD verified identical (dd1ddaa) before the org transfer.
     status: linked
+    defaultBranch: main  # pending rename to `master` per §4.1
 
   - id: billbot
     appCode: BB
     name: Billbot
-    repo: PoweredUpLabs/billbot
+    repo: SubTerraCo/billbot
     localPath: apps/billbot
     platforms: [WB, DT]
     role: app
@@ -86,7 +83,7 @@ items:
   - id: anytype
     appCode: AT
     name: Anytype
-    repo: PoweredUpLabs/subterra-anytype
+    repo: SubTerraCo/subterra-anytype
     localPath: integrations/anytype
     platforms: [SH, MC]
     role: integration
@@ -95,7 +92,7 @@ items:
     sdk: "@subterra/integration-sdk"
     # GV-0001 D2/D8: our own repo, seeded by pushing local history as-is.
     # The vendor SDK stays a separate `upstream` remote — never `origin`.
-    status: linked  # PoweredUpLabs/subterra-anytype; origin is ours, vendor is `upstream`
+    status: linked  # origin is ours, vendor SDK stays on the `upstream` remote
     upstream: anyproto/anytype-api
     legacyRepo: PoweredUpLabs/anytype-google-contact-integration  # stale, kept for reference
     defaultBranch: main  # pending rename to `master` per §4.1

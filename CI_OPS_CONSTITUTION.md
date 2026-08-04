@@ -1,6 +1,6 @@
 # SubTerra CI Ops Constitution
 
-> Source of truth for all PoweredUpLabs SubTerra polyrepos.  
+> Source of truth for all SubTerraCo SubTerra polyrepos.  
 > Product repos **consume** this document; they do not fork conflicting rules.
 
 **ciOpsVersion:** aligns with `governance/package.json` version (`YY.M.D`).
@@ -11,8 +11,8 @@
 
 | Path (meta workspace) | Repo | Role |
 |-----------------------|------|------|
-| `governance/` | `PoweredUpLabs/subterra-governance` | This constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
-| `shell/` | `PoweredUpLabs/subterra-shell` | SubTerra Shell + `@subterra/*` packages |
+| `governance/` | `SubTerraCo/subterra-governance` | This constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
+| `shell/` | `SubTerraCo/subterra-shell` | SubTerra Shell + `@subterra/*` packages |
 | `apps/<name>/` | per product | Apps marketplace |
 | `integrations/<name>/` | per integration | Integrations marketplace |
 
@@ -112,7 +112,7 @@ Product repos should call:
 ```yaml
 jobs:
   ci:
-    uses: PoweredUpLabs/subterra-governance/.github/workflows/ci-node.yml@v1
+    uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
 ```
 
 Local scripts: consume `@subterra/ci-ops` from this repo (`packages/ci-ops`) via path/link or published package when available.
@@ -147,7 +147,7 @@ The Governance agent is the **one-stop shop** for cross-polyrepo standards. Prod
 | **Rulesets & Dewey** | Constitution, APP/PP/PR codes, manifest, CI Ops gates |
 | **Design language parity** | Shared tokens / UX contracts across Shell + Apps + Integrations |
 | **Feature parity** | Apps ↔ Integrations twins; SDK API identity |
-| **GitHub repo management** | Create/configure PoweredUpLabs polyrepos for new shell/apps/integrations; branch protections; default labels; secrets/vars conventions |
+| **GitHub repo management** | Create/configure SubTerraCo polyrepos for new shell/apps/integrations; branch protections; default labels; secrets/vars conventions |
 | **Deployment pipelines** | Reusable Actions (`ci-node`, deploy, release) consumed by all product repos |
 | **Product templates** | `templates/product-repo/` (+ role variants for `shell` / `app` / `integration`) |
 | **Workspace QA (Playwright)** | Cross-package e2e suite at the governance layer that exercises Shell ↔ Apps ↔ Integrations contracts in the meta workspace |
@@ -172,9 +172,13 @@ Design record: [GV-0001](Docs/DESIGN_RECORDS/GV-0001-github-pipelines-qa.md).
 
 ### Ownership model
 
-SubTerra repos live under a **GitHub Organization**. The legacy `PoweredUpLabs` handle is a **personal user account**, not an org — org secrets, teams, and rulesets are unavailable there, and private-repo branch protection requires a paid plan.
+All SubTerra repos live under the **`SubTerraCo`** GitHub organization. Create new repos there directly — never under a personal account.
 
-> **Organizations cannot be created via the API.** `POST /orgs` returns 404 on github.com; use `https://github.com/organizations/new`. Repo creation and transfers wait on the org name because it appears in every `uses:` ref, `repo:` field, and git remote.
+The legacy `PoweredUpLabs` handle is a **personal user account** (it was the original home and still owns unrelated repos). Anything SubTerra found there is misplaced and should be transferred.
+
+> **Organizations cannot be created via the API** — `POST /orgs` returns 404 on github.com. This matters only if a second org is ever needed; `SubTerraCo` already exists.
+
+**Plan constraint:** `SubTerraCo` is on the GitHub **Free** plan. Branch protection and rulesets on *private* repos, and org secrets for private repos, require Team. Until an upgrade, enforce conventions through CI and review rather than platform rules.
 
 ### New repo checklist
 
@@ -212,7 +216,7 @@ Governance owns six reusable workflows in `.github/workflows/`. Product repos ca
 ```yaml
 jobs:
   ci:
-    uses: SubTerra-OS/subterra-governance/.github/workflows/ci-node.yml@v1
+    uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
     secrets: inherit
 ```
 

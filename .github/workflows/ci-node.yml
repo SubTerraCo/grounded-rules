@@ -2,7 +2,7 @@
 # Consumers:
 #   jobs:
 #     ci:
-#       uses: SubTerra-OS/subterra-governance/.github/workflows/ci-node.yml@v1
+#       uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
 name: CI Node (reusable)
 
 on:

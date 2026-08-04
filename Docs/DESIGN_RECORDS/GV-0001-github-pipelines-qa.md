@@ -132,6 +132,34 @@ Consumers currently reference `PoweredUpLabs/subterra-governance/...@v1`. Docs a
 
 ---
 
-## 6. Design note — why parity is structural
+## 6. Org migration — resolved
+
+**Superseded:** §3 assumed a new org had to be created and named. It did not. `SubTerraCo` already existed and the PM is an active **admin** of it, so D6 resolved to "use the existing org" and the locked `SubTerra-OS` name was dropped before anything referenced it in anger.
+
+All five repos were transferred out of the `PoweredUpLabs` personal account on 2026-08-04:
+
+| Repo | New home |
+|------|----------|
+| `subterra-governance` | `SubTerraCo/subterra-governance` |
+| `subterra-shell` | `SubTerraCo/subterra-shell` |
+| `subterra-anytype` | `SubTerraCo/subterra-anytype` |
+| `Blocks` | `SubTerraCo/Blocks` |
+| `mailbot` | `SubTerraCo/mailbot` |
+
+Local remotes, manifest `repo:` fields, `APP_REGISTRY`, workflow `uses:` comments, both READMEs, and Shell's live CI ref were all rewritten to `SubTerraCo`. GitHub keeps redirects from the old paths, but nothing depends on them.
+
+### Plan constraint (new)
+
+`SubTerraCo` is on the GitHub **Free** plan. Branch protection and rulesets on *private* repos, and org secrets usable by private repos, require **Team**. This replaces the original "paid plan" caveat that applied to the user account — the shape of the limit is the same. Until an upgrade, conventions are enforced through CI and review rather than platform rules.
+
+### Pre-existing org repos to audit
+
+`SubTerraCo` already contained `validation` (described as "the NFC validation app"), `tag-writer`, and `subtoken`, all from 2022. These plausibly belong to the reserved **`TK` (Ticketing / NFC)** APP code. They are noted in `APP_REGISTRY.yaml` but not yet claimed — audit before assigning a `localPath` or marketplace role.
+
+The `PoweredUpLabs` account still holds `gemini-quantbot` and `anytype-google-contact-integration` (the stale Anytype predecessor). Neither was transferred; decide separately whether they belong in the org.
+
+---
+
+## 7. Design note — why parity is structural
 
 Constitution §2 requires the twin SDKs to have "identical APIs". Enforcing that by hand across two packages guarantees eventual drift, so the contract lives in one internal package (`@subterra/sdk-contract`) that both twins re-export. `SDK_SURFACE` is the declared list of symbol names, which makes the parity invariant a one-line runtime assertion instead of a review checklist.

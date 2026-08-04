@@ -1,44 +1,48 @@
 # Dewey APP segment — every app and integration reserves its own code.
 # Schema: APP.PP.PR.AA.SSS.FFF
+# All repos live under the SubTerraCo GitHub organization.
 schemaVersion: 1
 apps:
   - code: ST
     name: SubTerra Shell
     role: shell
     localPath: shell
-    repo: PoweredUpLabs/subterra-shell
+    repo: SubTerraCo/subterra-shell
   - code: BK
     name: Blocks
     role: app
     localPath: apps/blocks
-    repo: PoweredUpLabs/Blocks
+    repo: SubTerraCo/Blocks
   - code: MB
     name: Mailbot
     role: app
     localPath: apps/mailbot
-    repo: PoweredUpLabs/mailbot
+    repo: SubTerraCo/mailbot
   - code: BB
     name: Billbot
     role: app
     localPath: apps/billbot
-    repo: PoweredUpLabs/billbot
+    repo: SubTerraCo/billbot
     status: reserved
   - code: GV
     name: Governance
     role: governance
     localPath: governance
-    repo: PoweredUpLabs/subterra-governance
+    repo: SubTerraCo/subterra-governance
   - code: AT
     name: Anytype
     role: integration
     localPath: integrations/anytype
-    repo: PoweredUpLabs/subterra-anytype
-    status: linked  # GV-0001 D2 — created; vendor kept as `upstream` remote
+    repo: SubTerraCo/subterra-anytype
+    status: linked  # GV-0001 D2 — vendor kept as `upstream` remote
     upstream: anyproto/anytype-api
   - code: TK
     name: Ticketing / NFC
     role: app
     status: reserved
+    # Pre-existing org repos that likely belong to this code — audit before
+    # reserving a localPath: SubTerraCo/validation (NFC validation app),
+    # SubTerraCo/tag-writer, SubTerraCo/subtoken.
   - code: WL
     name: White-label OS
     role: app

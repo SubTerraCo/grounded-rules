@@ -51,5 +51,5 @@ Copy [`templates/product-repo/`](./templates/product-repo/) when creating a new 
 ```yaml
 jobs:
   ci:
-    uses: PoweredUpLabs/subterra-governance/.github/workflows/ci-node.yml@v1
+    uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
 ```
