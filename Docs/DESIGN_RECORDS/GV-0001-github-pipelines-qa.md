@@ -1,0 +1,122 @@
+# GV-0001 — GitHub management, deployment pipelines, workspace QA
+
+| | |
+|--|--|
+| **Address** | `GV.CX.DV.01.010.010` |
+| **Release** | `v26.08.03` |
+| **Status** | Design locked (Round 1 + Round 2) — implementation partially blocked |
+| **Owner** | Governance agent (GV) |
+
+Expands the GV mandate (constitution §9) to cover GitHub polyrepo management, reusable deployment pipelines, and a workspace-level Playwright QA suite.
+
+---
+
+## 1. Conflict audit findings
+
+### Round 1
+
+| # | Conflict | Evidence |
+|---|----------|----------|
+| C1 | `subterra-governance` and `subterra-shell` do not exist on GitHub; both local repos have no remote | Owner has only `Blocks`, `mailbot`, `gemini-quantbot`, `anytype-google-contact-integration` |
+| C2 | Mailbot remote points at `poweredupbass/mailbot`, an owner handle that no longer resolves | `PoweredUpLabs/mailbot` exists and its HEAD matches local `dd1ddaa` exactly — safe URL repoint |
+| C3 | Anytype identity ambiguous: local remote is the vendor SDK `anyproto/anytype-api` | Manifest claims `PoweredUpLabs/subterra-anytype` (provisional) |
+| C4 | Twin SDKs do not exist as code — `shell/packages/` is README-only | Constitution §2 parity claim is aspirational; SDK-contract e2e has nothing to assert against |
+
+### Round 2
+
+| # | Conflict | Evidence |
+|---|----------|----------|
+| R2-1 | `PoweredUpLabs` is a **User** account, not an Organization — and is the authenticated account itself (renamed from `poweredupbass`) | `gh api users/PoweredUpLabs` → `"type": "User"` |
+| R2-2 | Blocks `deploy-web.yml` deploys on push to `main`, which does not exist (default branch is `master`) | Remote branches: `master`, `dev`, `v26.06.19`…`v26.07.17` — the Vercel deploy has never fired |
+| R2-3 | Local Anytype work sits on top of the vendor's upstream git history | `git log` shows `anyproto` commits beneath `Add SubTerra Anytype Integration Service` |
+| R2-4 | Four of the six chosen pipelines have zero or one consumer | `publish-npm` needs `@subterra/*` (absent); `build-android` and `release-desktop` are Blocks-only |
+| R2-5 | Deferring the QA suite makes Shell + the twin SDKs the critical path | `shell/packages/` is README-only |
+
+---
+
+## 2. Locked decisions
+
+| Ref | Decision |
+|-----|----------|
+| **D1** | Full GitHub fix: create `subterra-governance` + `subterra-shell`, repoint Mailbot, resolve Anytype |
+| **D2** | Anytype gets its own repo `subterra-anytype`; `anyproto/anytype-api` is retained as a separate `upstream` remote |
+| **D3** | Six reusable pipelines are governance-owned: `ci-node`, `deploy-web`, `release-desktop`, `publish-npm`, `build-android`, `nightly-dev-push` |
+| **D4** | Workspace QA lives in `governance/tests/` as its own Playwright project, run from the meta workspace |
+| **D5** | QA coverage is **deferred** until Shell and the twin SDKs are real code — scaffold and location only for now |
+| **D6** | Migrate to a **real GitHub Organization**; org-only features (org secrets, teams, rulesets) become available after migration |
+| **D7** | Production branch is **`master`** (the existing default). Reusable deploy workflows target `master`; constitution §4 documents the flow |
+| **D8** | Anytype repo is seeded by pushing local history as-is, preserving our commits and vendor traceability |
+| **D9** | All six workflows are authored now; the four without consumers are marked `R0 stub` with a consumer note. Only `ci-node` and `deploy-web` are wired live |
+| **D10** | Governance scaffolds `@subterra/app-sdk` + `@subterra/integration-sdk` skeletons as **parity contracts**; the Shell application itself stays ST-owned |
+
+---
+
+## 3. Blocked on user action
+
+**GitHub organizations cannot be created through the API.** Verified: `POST /orgs` returns `404 Not Found` on github.com — org creation is web-UI only (`https://github.com/organizations/new`). The Enterprise `POST /admin/organizations` endpoint is GitHub Enterprise Server only.
+
+Consequences for D6:
+
+1. The organization must be created manually in a browser.
+2. The org **cannot** be named `PoweredUpLabs` — that handle is already the personal user account. A distinct name is required.
+3. The org name is load-bearing: it appears in every `uses:` workflow reference, every `repo:` field in `subterra.manifest.yaml` and `codes/APP_REGISTRY.yaml`, and every git remote.
+
+Until the org exists and is named, repo creation and transfers are deferred so we don't create repos under the user account and immediately migrate them.
+
+### Sequencing
+
+| Step | Blocked? |
+|------|----------|
+| Design record, constitution updates | No — done |
+| Author six reusable workflows | No — done, YAML-validated (owner in `uses:` refs pending org name) |
+| Scaffold twin SDK skeletons | No — done, compiled and parity-verified |
+| Scaffold `governance/tests/` | No — done, 13 specs discoverable |
+| Fix Blocks `deploy-web.yml` branch trigger | No — done |
+| Repoint Mailbot remote to a working URL | No — done, fetch verified |
+| Create org | **Yes** — user must create in browser |
+| Create `subterra-governance` / `subterra-shell` / `subterra-anytype` | **Yes** — awaiting org name |
+| Transfer `Blocks` / `mailbot` into org | **Yes** — awaiting org |
+| Branch protection + org secrets conventions | **Yes** — awaiting org |
+
+---
+
+## 4. Follow-ups after org exists
+
+1. Create the three missing repos in the org and push local `governance`, `shell`, `anytype`.
+2. Transfer `Blocks` and `mailbot` into the org.
+3. Rewrite `uses:` refs from the placeholder owner to the real org, and tag governance `v1`.
+4. Replace Blocks' inline `deploy-web.yml` with a thin caller of the reusable workflow (constitution §9 invariant 3).
+5. Apply branch protection on `master` and define the org secrets convention (`VERCEL_*`, `EXPO_TOKEN`, `NPM_TOKEN`).
+6. Rename Mailbot's default branch `main` → `master` to satisfy D7 (found during implementation — Mailbot's remote default is `main`, unlike Blocks' `master`).
+7. Revisit D5 for the `marketplace` project once Shell has a running host.
+
+---
+
+## 5. Verified this batch
+
+Everything below was executed and checked, not just authored.
+
+| Item | Result |
+|------|--------|
+| Seven workflow YAML files parse | Pass — `ci-node`, `deploy-web`, `release-desktop`, `publish-npm`, `build-android`, `nightly-dev-push`, `governance-ci` |
+| Twin SDKs compile via TS project references | Pass — `pnpm -r build` across `sdk-contract`, `app-sdk`, `integration-sdk` |
+| **Twin API parity holds at runtime** | Pass — both twins export exactly `SDK_CONTRACT_VERSION, SDK_ROLE, SDK_SURFACE, defineItem, marketplaceForRole`, equal to `SDK_SURFACE`; only `SDK_ROLE` differs |
+| Role/marketplace guard rejects mismatches | Pass — `defineItem` throws when an app declares `marketplace: integrations` |
+| Workspace QA suite is discoverable | Pass — 13 specs across `contract` (9) and `marketplace` (4) |
+| Governance `type-check` | Pass |
+| `validate:manifest` after catalog edits | Pass |
+| Frozen-lockfile install (what `ci-node` runs) | Pass |
+| Mailbot remote repoint | Pass — `git ls-remote` resolves; remote HEAD `dd1ddaa` matches local |
+| Blocks `deploy-web.yml` trigger | Fixed — `master`, parse-verified |
+
+### Defects found and fixed during verification
+
+1. **Twin SDKs could not resolve the shared contract.** `type-check` used `--noEmit`, so no declarations existed for the twins to import. Fixed with TypeScript project references (`composite: true` + `references`) and `tsc -b`.
+2. **Playwright discovered zero tests.** `test.fixme(title)` without a body is parsed as a *modifier*, not a test declaration. Fixed by giving each entry a body.
+3. **`tsconfig` referenced `@types/node` that was not installed.** Added the dependency.
+
+---
+
+## 6. Design note — why parity is structural
+
+Constitution §2 requires the twin SDKs to have "identical APIs". Enforcing that by hand across two packages guarantees eventual drift, so the contract lives in one internal package (`@subterra/sdk-contract`) that both twins re-export. `SDK_SURFACE` is the declared list of symbol names, which makes the parity invariant a one-line runtime assertion instead of a review checklist.

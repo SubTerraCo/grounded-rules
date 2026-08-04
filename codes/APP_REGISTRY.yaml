@@ -1,0 +1,45 @@
+# Dewey APP segment — every app and integration reserves its own code.
+# Schema: APP.PP.PR.AA.SSS.FFF
+schemaVersion: 1
+apps:
+  - code: ST
+    name: SubTerra Shell
+    role: shell
+    localPath: shell
+    repo: PoweredUpLabs/subterra-shell
+  - code: BK
+    name: Blocks
+    role: app
+    localPath: apps/blocks
+    repo: PoweredUpLabs/Blocks
+  - code: MB
+    name: Mailbot
+    role: app
+    localPath: apps/mailbot
+    repo: PoweredUpLabs/mailbot
+  - code: BB
+    name: Billbot
+    role: app
+    localPath: apps/billbot
+    repo: PoweredUpLabs/billbot
+    status: reserved
+  - code: GV
+    name: Governance
+    role: governance
+    localPath: governance
+    repo: PoweredUpLabs/subterra-governance
+  - code: AT
+    name: Anytype
+    role: integration
+    localPath: integrations/anytype
+    repo: PoweredUpLabs/subterra-anytype
+    status: repo-pending  # GV-0001 D2 — name locked, creation blocked on org
+    upstream: anyproto/anytype-api
+  - code: TK
+    name: Ticketing / NFC
+    role: app
+    status: reserved
+  - code: WL
+    name: White-label OS
+    role: app
+    status: reserved

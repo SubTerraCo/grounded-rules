@@ -1,0 +1,22 @@
+# Dewey PP — platform segment (Blocks-compatible)
+schemaVersion: 1
+platforms:
+  - code: DT
+    name: Desktop
+  - code: WB
+    name: Web / PWA
+  - code: AD
+    name: Android
+  - code: AP
+    name: macOS
+  - code: IO
+    name: iOS
+  - code: SH
+    name: Shared UI
+  - code: SB
+    name: Shared backend
+  - code: MC
+    name: MCP (platform surface)
+    note: "PP.MC = MCP as a delivery surface. PR.MC = MCP feature area. Prefer APP.DT.MC… for MCP tools on desktop, or APP.MC.UI… only when the MCP server itself is the platform."
+  - code: CX
+    name: CI / build

@@ -1,0 +1,75 @@
+# R0 STUB — authored but not yet wired to a consumer.
+# BLOCKED: requires real @subterra/* package code (see GV-0001 conflict C4).
+# Intended consumer: ST (subterra-shell) publishing @subterra/app-sdk,
+# @subterra/integration-sdk, @subterra/ui.
+#
+# Wire it once the SDK packages have a build + publishable surface:
+#   jobs:
+#     publish:
+#       uses: SubTerra-OS/subterra-governance/.github/workflows/publish-npm.yml@v1
+#       with:
+#         package-filter: "@subterra/app-sdk"
+#       secrets: inherit
+name: Publish npm (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      package-filter:
+        description: pnpm workspace filter for the package to publish
+        type: string
+        required: true
+      access:
+        description: npm access level (public | restricted)
+        type: string
+        default: public
+      dry-run:
+        description: Pack and validate without publishing
+        type: boolean
+        default: true
+      node-version:
+        type: string
+        default: "20"
+      pnpm-version:
+        type: string
+        default: "11"
+    secrets:
+      NPM_TOKEN:
+        required: true
+
+env:
+  CI: "true"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ inputs.pnpm-version }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build package
+        run: pnpm --filter ${{ inputs.package-filter }} build
+
+      - name: Publish
+        run: |
+          if [ "${{ inputs.dry-run }}" = "true" ]; then
+            pnpm --filter ${{ inputs.package-filter }} publish \
+              --access ${{ inputs.access }} --no-git-checks --dry-run
+          else
+            pnpm --filter ${{ inputs.package-filter }} publish \
+              --access ${{ inputs.access }} --no-git-checks
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

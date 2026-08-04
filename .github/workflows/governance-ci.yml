@@ -1,0 +1,14 @@
+name: Governance CI
+
+# `master` is production (CI_OPS_CONSTITUTION §4.1) — `main` is not used.
+on:
+  push:
+    branches: [dev, master, "v**"]
+  pull_request:
+
+jobs:
+  validate:
+    uses: ./.github/workflows/ci-node.yml
+    with:
+      working-directory: "."
+      run-lint: false

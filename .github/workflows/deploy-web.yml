@@ -1,0 +1,89 @@
+# Reusable Vercel web deploy for SubTerra product repos.
+# Production branch is `master` (CI_OPS_CONSTITUTION §4.1) — never `main`.
+#
+# Consumers:
+#   on:
+#     push:
+#       branches: [master]
+#       paths: ["apps/web/**", "packages/**", "pnpm-lock.yaml"]
+#   jobs:
+#     deploy:
+#       uses: SubTerra-OS/subterra-governance/.github/workflows/deploy-web.yml@v1
+#       secrets: inherit
+name: Deploy Web (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        type: string
+        default: "."
+      node-version:
+        type: string
+        default: "20"
+      pnpm-version:
+        type: string
+        default: "11"
+      environment:
+        description: Vercel environment (production | preview)
+        type: string
+        default: production
+    secrets:
+      VERCEL_TOKEN:
+        required: true
+      VERCEL_ORG_ID:
+        required: true
+      VERCEL_PROJECT_ID:
+        required: true
+
+env:
+  CI: "true"
+
+concurrency:
+  group: deploy-web-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ inputs.pnpm-version }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: pnpm
+          cache-dependency-path: ${{ inputs.working-directory }}/pnpm-lock.yaml
+
+      - name: Install Vercel CLI
+        run: pnpm add -g vercel@latest
+
+      - name: Pull Vercel environment
+        run: vercel pull --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build
+        run: |
+          if [ "${{ inputs.environment }}" = "production" ]; then
+            vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          else
+            vercel build --token=${{ secrets.VERCEL_TOKEN }}
+          fi
+
+      - name: Deploy
+        run: |
+          if [ "${{ inputs.environment }}" = "production" ]; then
+            vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+          else
+            vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+          fi

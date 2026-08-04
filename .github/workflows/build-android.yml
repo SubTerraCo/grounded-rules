@@ -1,0 +1,118 @@
+# R0 STUB — authored but not yet wired to a consumer.
+# Intended consumer: BK (Blocks apps/mobile via Expo EAS).
+# Generalized from Blocks .github/workflows/build-android.yml.
+#
+# Wire it by replacing the product repo's inline EAS job with:
+#   jobs:
+#     android:
+#       uses: SubTerra-OS/subterra-governance/.github/workflows/build-android.yml@v1
+#       with:
+#         mobile-directory: apps/mobile
+#         profile: preview
+#       secrets: inherit
+name: Build Android (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      mobile-directory:
+        description: Path to the Expo app
+        type: string
+        default: apps/mobile
+      profile:
+        description: EAS build profile (development | preview | production)
+        type: string
+        default: preview
+      artifact-name:
+        type: string
+        default: android-apk
+      node-version:
+        type: string
+        default: "20"
+      pnpm-version:
+        type: string
+        default: "11"
+      retention-days:
+        type: number
+        default: 90
+    secrets:
+      EXPO_TOKEN:
+        required: true
+      EAS_PROJECT_ID:
+        required: false
+
+env:
+  CI: "true"
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ inputs.pnpm-version }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup Expo & EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Resolve app version
+        id: version
+        working-directory: ${{ inputs.mobile-directory }}
+        run: echo "version=$(node -p "require('./app.json').expo.version")" >> $GITHUB_OUTPUT
+
+      - name: Verify EAS project is configured
+        working-directory: ${{ inputs.mobile-directory }}
+        env:
+          EAS_PROJECT_ID: ${{ secrets.EAS_PROJECT_ID }}
+        run: |
+          if grep -q "projectId" app.json 2>/dev/null; then
+            echo "EAS project already configured in app.json"
+          elif [ -n "$EAS_PROJECT_ID" ]; then
+            node -e "
+              const fs = require('fs');
+              const c = JSON.parse(fs.readFileSync('app.json','utf8'));
+              c.expo.extra = c.expo.extra || {};
+              c.expo.extra.eas = c.expo.extra.eas || {};
+              c.expo.extra.eas.projectId = process.env.EAS_PROJECT_ID;
+              fs.writeFileSync('app.json', JSON.stringify(c, null, 2) + '\n');
+            "
+            echo "Injected projectId from EAS_PROJECT_ID secret"
+          else
+            echo "::error::EAS project not configured. Run 'eas init' and commit, or set the EAS_PROJECT_ID secret."
+            exit 1
+          fi
+
+      - name: Build APK (EAS cloud)
+        id: eas-build
+        working-directory: ${{ inputs.mobile-directory }}
+        run: |
+          BUILD_OUTPUT=$(eas build --platform android --profile ${{ inputs.profile }} --non-interactive --json)
+          BUILD_URL=$(echo "$BUILD_OUTPUT" | jq -r '.[0].artifacts.buildUrl // empty')
+          if [ -n "$BUILD_URL" ]; then
+            curl -L -o "android-${{ inputs.profile }}.apk" "$BUILD_URL"
+            echo "apk_downloaded=true" >> $GITHUB_OUTPUT
+          else
+            echo "::warning::EAS build finished but no artifact URL was returned"
+            echo "apk_downloaded=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload APK
+        if: steps.eas-build.outputs.apk_downloaded == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name }}-${{ inputs.profile }}-v${{ steps.version.outputs.version }}
+          path: ${{ inputs.mobile-directory }}/*.apk
+          retention-days: ${{ inputs.retention-days }}

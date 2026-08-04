@@ -1,0 +1,24 @@
+# Dewey PR — area segment
+schemaVersion: 1
+areas:
+  - code: UI
+    name: UI / chrome / pages
+  - code: EN
+    name: Engine / domain logic
+  - code: SY
+    name: Sync / local-first / CRDT
+  - code: AU
+    name: Auth / device identity
+  - code: MK
+    name: Marketplace (Apps and Integrations grids)
+  - code: DV
+    name: DevOps / CI / release
+  - code: MC
+    name: MCP / agent tools (feature area)
+    note: "Distinct from PP.MC platform code — see PLATFORM_CODES.yaml"
+  - code: NF
+    name: NFC / crypto tags
+  - code: IN
+    name: Invoicing / billing
+  - code: CM
+    name: CRM / Anytype object mapping

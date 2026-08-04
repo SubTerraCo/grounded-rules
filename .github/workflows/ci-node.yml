@@ -1,0 +1,101 @@
+# Reusable Node CI for SubTerra product repos.
+# Consumers:
+#   jobs:
+#     ci:
+#       uses: SubTerra-OS/subterra-governance/.github/workflows/ci-node.yml@v1
+name: CI Node (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: Repo subdirectory if needed
+        type: string
+        default: "."
+      node-version:
+        type: string
+        default: "20"
+      pnpm-version:
+        type: string
+        default: "11"
+      run-lint:
+        description: Run the lint script when present
+        type: boolean
+        default: true
+      run-tests:
+        description: Run the test:build script when present
+        type: boolean
+        default: false
+
+# CI=true keeps pnpm non-interactive (no modules-purge prompt on runners).
+env:
+  CI: "true"
+
+jobs:
+  lint-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ inputs.pnpm-version }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: pnpm
+          cache-dependency-path: ${{ inputs.working-directory }}/pnpm-lock.yaml
+
+      - name: Install
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            pnpm install --frozen-lockfile
+          else
+            pnpm install --no-frozen-lockfile
+          fi
+
+      - name: Type check
+        run: |
+          if node -e "const p=require('./package.json');process.exit(p.scripts?.['type-check']?0:1)"; then
+            pnpm type-check
+          else
+            echo "::notice::no type-check script — skipped"
+          fi
+
+      - name: Lint
+        if: inputs.run-lint
+        run: |
+          if node -e "const p=require('./package.json');process.exit(p.scripts?.lint?0:1)"; then
+            pnpm lint
+          else
+            echo "::notice::no lint script — skipped"
+          fi
+
+      - name: Build
+        run: |
+          if node -e "const p=require('./package.json');process.exit(p.scripts?.build?0:1)"; then
+            pnpm build
+          else
+            echo "::notice::no build script — skipped"
+          fi
+
+      - name: Validate manifest
+        run: |
+          if node -e "const p=require('./package.json');process.exit(p.scripts?.['validate:manifest']?0:1)"; then
+            pnpm validate:manifest
+          else
+            echo "::notice::no validate:manifest script — skipped"
+          fi
+
+      - name: Build tests
+        if: inputs.run-tests
+        run: |
+          if node -e "const p=require('./package.json');process.exit(p.scripts?.['test:build']?0:1)"; then
+            pnpm test:build
+          else
+            echo "::notice::no test:build script — skipped"
+          fi

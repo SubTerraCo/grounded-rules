@@ -1,0 +1,85 @@
+# R0 STUB — authored but not yet wired to a consumer.
+# Intended consumers: BK (Blocks desktop), later ST (Shell desktop).
+# Generalized from Blocks .github/workflows/build-release.yml build-windows job.
+#
+# Wire it by replacing the product repo's inline installer job with:
+#   jobs:
+#     desktop:
+#       uses: SubTerra-OS/subterra-governance/.github/workflows/release-desktop.yml@v1
+#       with:
+#         desktop-filter: blocks-desktop
+#         shared-filters: "--filter @blocks/core --filter @blocks/ui"
+#         artifact-glob: apps/desktop/release/Blocks-Setup-*.exe
+#         artifact-name: blocks-desktop-win
+name: Release Desktop (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      desktop-filter:
+        description: pnpm workspace filter for the desktop app
+        type: string
+        required: true
+      shared-filters:
+        description: Extra pnpm --filter args for shared packages built first
+        type: string
+        default: ""
+      build-script:
+        description: Script name on the desktop package
+        type: string
+        default: build:win
+      artifact-glob:
+        description: Newline-separated globs for installer artifacts
+        type: string
+        required: true
+      artifact-name:
+        type: string
+        default: desktop-installer
+      runs-on:
+        type: string
+        default: windows-latest
+      node-version:
+        type: string
+        default: "20"
+      pnpm-version:
+        type: string
+        default: "11"
+      retention-days:
+        type: number
+        default: 30
+
+env:
+  CI: "true"
+
+jobs:
+  build-desktop:
+    runs-on: ${{ inputs.runs-on }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ inputs.pnpm-version }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build shared packages
+        if: inputs.shared-filters != ''
+        run: pnpm build ${{ inputs.shared-filters }}
+
+      - name: Build desktop installer
+        run: pnpm --filter ${{ inputs.desktop-filter }} run ${{ inputs.build-script }}
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: ${{ inputs.artifact-glob }}
+          retention-days: ${{ inputs.retention-days }}
+          if-no-files-found: error

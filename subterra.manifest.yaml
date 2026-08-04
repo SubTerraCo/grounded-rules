@@ -1,0 +1,99 @@
+schemaVersion: 1
+governance:
+  repo: PoweredUpLabs/subterra-governance
+  ciOpsVersion: "26.8.3"
+  addressScheme: "APP.PP.PR.AA.SSS.FFF"
+
+  # `PoweredUpLabs` is a personal USER account, not an organization
+  # (verified: gh api users/PoweredUpLabs -> "type": "User").
+  # Org-only features (org secrets, teams, rulesets) are unavailable until
+  # migration. Organizations cannot be created via API — see GV-0001 §3.
+  owner: PoweredUpLabs
+  ownerType: user
+  productionBranch: master
+  orgMigration:
+    status: pending-user-action
+    targetOrg: SubTerra-OS  # locked GV-0001; cannot be `PoweredUpLabs` (user account)
+    reason: "POST /orgs returns 404 on github.com — org must be created in the web UI"
+    blocks:
+      - "transfer all repos into SubTerra-OS"
+      - "branch protection + org secrets conventions"
+      - "tag governance v1 and wire product repos to reusable workflows"
+    note: >-
+      Repos are created under the `PoweredUpLabs` user account in the interim so
+      work is backed up (GV-0001 D-interim). `repo:` fields below reflect where
+      each repo ACTUALLY lives today; rewrite them to SubTerra-OS after transfer.
+
+# Canonical catalog for SubTerra Shell dual marketplaces (Apps + Integrations).
+# Same schema for both roles — Apps ↔ Integrations parity.
+items:
+  - id: shell
+    appCode: ST
+    name: SubTerra Shell
+    repo: PoweredUpLabs/subterra-shell
+    localPath: shell
+    platforms: [DT, WB, AD]
+    role: shell
+    marketplace: null
+    defaultOpen: false
+    sdk: null
+    status: local-only  # no GitHub remote yet — blocked on org migration
+    provides:
+      # Twin SDKs scaffolded and parity-verified (GV-0001 D10).
+      - "@subterra/sdk-contract"   # internal single source of truth
+      - "@subterra/app-sdk"
+      - "@subterra/integration-sdk"
+
+  - id: blocks
+    appCode: BK
+    name: Blocks
+    repo: PoweredUpLabs/Blocks
+    localPath: apps/blocks
+    platforms: [DT, WB, AD, IO]
+    role: app
+    marketplace: apps
+    defaultOpen: true
+    sdk: "@subterra/app-sdk"
+    mcp: "@blocks/mcp-server"
+    status: linked
+
+  - id: mailbot
+    appCode: MB
+    name: Mailbot
+    repo: PoweredUpLabs/mailbot
+    localPath: apps/mailbot
+    platforms: [WB, DT]
+    role: app
+    marketplace: apps
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    # Local HEAD matches PoweredUpLabs/mailbot exactly (dd1ddaa) — the old
+    # `poweredupbass` owner handle no longer resolves. Remote repointed.
+    status: linked
+
+  - id: billbot
+    appCode: BB
+    name: Billbot
+    repo: PoweredUpLabs/billbot
+    localPath: apps/billbot
+    platforms: [WB, DT]
+    role: app
+    marketplace: apps
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+
+  - id: anytype
+    appCode: AT
+    name: Anytype
+    repo: PoweredUpLabs/subterra-anytype
+    localPath: integrations/anytype
+    platforms: [SH, MC]
+    role: integration
+    marketplace: integrations
+    defaultOpen: false
+    sdk: "@subterra/integration-sdk"
+    # GV-0001 D2/D8: our own repo, seeded by pushing local history as-is.
+    # The vendor SDK stays a separate `upstream` remote — never `origin`.
+    status: repo-pending  # blocked on org migration
+    upstream: anyproto/anytype-api

@@ -1,0 +1,11 @@
+{
+  "name": "@subterra/ci-ops",
+  "version": "26.8.3",
+  "private": true,
+  "type": "module",
+  "description": "Shared SubTerra CI Ops helpers (rollover, stamp, manifest validate)",
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "files": ["src"]
+}
