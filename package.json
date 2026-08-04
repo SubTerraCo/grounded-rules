@@ -10,6 +10,8 @@
   },
   "scripts": {
     "validate:manifest": "node packages/ci-ops/src/validate-manifest.mjs",
+    "versions:fleet": "node packages/ci-ops/src/collect-versions.mjs",
+    "versions:fleet:check": "node packages/ci-ops/src/collect-versions.mjs --check",
     "ci-ops:version": "node -e \"console.log(require('./package.json').version)\"",
     "type-check": "tsc -p tsconfig.json --noEmit",
     "test:workspace": "playwright test --config=tests/playwright.config.ts",
@@ -24,6 +26,8 @@
     "CI_OPS_CONSTITUTION.md",
     "codes",
     "subterra.manifest.yaml",
+    "versions",
+    "Docs/VERSIONS.md",
     "packages/ci-ops",
     "templates",
     ".github/workflows"

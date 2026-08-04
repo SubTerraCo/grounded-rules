@@ -1,11 +1,14 @@
 {
   "name": "@subterra/ci-ops",
-  "version": "26.8.3",
+  "version": "26.8.4",
   "private": true,
   "type": "module",
-  "description": "Shared SubTerra CI Ops helpers (rollover, stamp, manifest validate)",
+  "description": "Shared SubTerra CI Ops helpers (rollover, stamp, manifest validate, fleet versions)",
   "exports": {
     ".": "./src/index.mjs"
+  },
+  "bin": {
+    "subterra-versions-fleet": "./src/collect-versions.mjs"
   },
   "files": ["src"]
 }

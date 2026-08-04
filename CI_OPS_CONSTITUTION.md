@@ -101,6 +101,23 @@ Rules (from Blocks CI Ops):
 - Run `pnpm release:rollover` (or equivalent) at session start
 - Do not rebuild the same `vYY.MM.DDbX` without force override
 
+### 4.2 Fleet version dashboard
+
+Cross-repo versions are aggregated in governance (not in Shell UI):
+
+| Artifact | Path |
+|----------|------|
+| Machine-readable | [`versions/fleet.json`](versions/fleet.json) |
+| Human dashboard | [`Docs/VERSIONS.md`](Docs/VERSIONS.md) |
+
+Refresh from the meta workspace:
+
+```bash
+cd governance && pnpm versions:fleet
+```
+
+Collection is **local checkouts only** (manifest `localPath` + Package junctions). Each APP row shows Display (`vYY.MM.DDbX`), npm, branch, and catalog status. CI runs `pnpm versions:fleet:check` against the committed JSON (does not regenerate from missing siblings on the runner).
+
 ---
 
 ## 5. Design gates

@@ -168,3 +168,11 @@ export function runRollover(repoRoot, flags = {}) {
 export function governanceRootFromCiOps() {
   return join(here, "../../..");
 }
+
+export {
+  buildFleet,
+  collectRow,
+  parseManifestItems,
+  renderVersionsMarkdown,
+  resolveLocalCheckout,
+} from "./collect-versions.mjs";

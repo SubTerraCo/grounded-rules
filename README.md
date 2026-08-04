@@ -27,10 +27,14 @@
 
 ```bash
 pnpm validate:manifest           # catalog checks
+pnpm versions:fleet              # regenerate Docs/VERSIONS.md + versions/fleet.json
+pnpm versions:fleet:check        # validate committed fleet.json (CI)
 pnpm type-check                  # workspace QA sources
 pnpm test:workspace:contract     # cross-repo contract tests (no browser)
 pnpm test:workspace              # all QA projects
 ```
+
+**Fleet versions:** [Docs/VERSIONS.md](./Docs/VERSIONS.md) — one-glance APP versions (GV, ST, BK, …).
 
 ## Reusable pipelines
 
