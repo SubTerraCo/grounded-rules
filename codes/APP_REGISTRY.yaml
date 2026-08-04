@@ -33,7 +33,7 @@ apps:
     role: integration
     localPath: integrations/anytype
     repo: PoweredUpLabs/subterra-anytype
-    status: repo-pending  # GV-0001 D2 — name locked, creation blocked on org
+    status: linked  # GV-0001 D2 — created; vendor kept as `upstream` remote
     upstream: anyproto/anytype-api
   - code: TK
     name: Ticketing / NFC

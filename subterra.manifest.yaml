@@ -37,7 +37,7 @@ items:
     marketplace: null
     defaultOpen: false
     sdk: null
-    status: local-only  # no GitHub remote yet — blocked on org migration
+    status: linked  # PoweredUpLabs/subterra-shell — first consumer of reusable ci-node
     provides:
       # Twin SDKs scaffolded and parity-verified (GV-0001 D10).
       - "@subterra/sdk-contract"   # internal single source of truth
@@ -95,5 +95,7 @@ items:
     sdk: "@subterra/integration-sdk"
     # GV-0001 D2/D8: our own repo, seeded by pushing local history as-is.
     # The vendor SDK stays a separate `upstream` remote — never `origin`.
-    status: repo-pending  # blocked on org migration
+    status: linked  # PoweredUpLabs/subterra-anytype; origin is ours, vendor is `upstream`
     upstream: anyproto/anytype-api
+    legacyRepo: PoweredUpLabs/anytype-google-contact-integration  # stale, kept for reference
+    defaultBranch: main  # pending rename to `master` per §4.1

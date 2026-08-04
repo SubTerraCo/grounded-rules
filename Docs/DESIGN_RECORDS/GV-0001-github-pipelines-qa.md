@@ -73,9 +73,11 @@ Until the org exists and is named, repo creation and transfers are deferred so w
 | Scaffold `governance/tests/` | No — done, 13 specs discoverable |
 | Fix Blocks `deploy-web.yml` branch trigger | No — done |
 | Repoint Mailbot remote to a working URL | No — done, fetch verified |
-| Create org | **Yes** — user must create in browser |
-| Create `subterra-governance` / `subterra-shell` / `subterra-anytype` | **Yes** — awaiting org name |
-| Transfer `Blocks` / `mailbot` into org | **Yes** — awaiting org |
+| Create `subterra-governance` / `subterra-shell` / `subterra-anytype` | No — done under the user account as interim hosting |
+| Tag governance `v1` + open Actions access | No — done |
+| Wire Shell to reusable `ci-node@v1` | No — done, CI green |
+| **Create the `SubTerra-OS` org** | **Yes** — user must create at `https://github.com/organizations/new` |
+| Transfer all five repos into the org | **Yes** — awaiting org |
 | Branch protection + org secrets conventions | **Yes** — awaiting org |
 
 ---
@@ -99,6 +101,9 @@ Everything below was executed and checked, not just authored.
 | Item | Result |
 |------|--------|
 | Seven workflow YAML files parse | Pass — `ci-node`, `deploy-web`, `release-desktop`, `publish-npm`, `build-android`, `nightly-dev-push`, `governance-ci` |
+| **Governance CI green on GitHub** | Pass — run `30940664815` |
+| **Shell CI green *through* the reusable workflow** | Pass — run `30940778396`; a clean runner type-checked and built all three SDK packages. First real consumer of `ci-node@v1` |
+| Three repos created and pushed | Pass — `subterra-governance`, `subterra-shell` (both `master`), `subterra-anytype` (`main`) |
 | Twin SDKs compile via TS project references | Pass — `pnpm -r build` across `sdk-contract`, `app-sdk`, `integration-sdk` |
 | **Twin API parity holds at runtime** | Pass — both twins export exactly `SDK_CONTRACT_VERSION, SDK_ROLE, SDK_SURFACE, defineItem, marketplaceForRole`, equal to `SDK_SURFACE`; only `SDK_ROLE` differs |
 | Role/marketplace guard rejects mismatches | Pass — `defineItem` throws when an app declares `marketplace: integrations` |
@@ -114,6 +119,16 @@ Everything below was executed and checked, not just authored.
 1. **Twin SDKs could not resolve the shared contract.** `type-check` used `--noEmit`, so no declarations existed for the twins to import. Fixed with TypeScript project references (`composite: true` + `references`) and `tsc -b`.
 2. **Playwright discovered zero tests.** `test.fixme(title)` without a body is parsed as a *modifier*, not a test declaration. Fixed by giving each entry a body.
 3. **`tsconfig` referenced `@types/node` that was not installed.** Added the dependency.
+4. **`pnpm/action-setup` version conflict.** Passing its `version` input while `package.json` declares `packageManager` is a hard error. Every SubTerra repo declares `packageManager`, so the first CI run died before installing. The `pnpm-version` input now defaults to empty and `packageManager` wins.
+5. **Node floor was incompatible with the pinned pnpm.** pnpm 11.14 requires Node ≥ 22.13, but the workflows defaulted to Node 20 and `engines.node` said `>=20`. CI failed with `ERR_UNKNOWN_BUILTIN_MODULE: node:sqlite`. Raised the default to Node 22 across all six workflows and corrected `engines` in governance and Shell.
+
+> **Open risk (BK):** Blocks' own workflows pin `node-version: 20` with `pnpm/action-setup version: 11.8.0`, while its `package.json` declares `packageManager: pnpm@11.14.0`. That is the same latent mismatch as defect 5. Blocks CI has not been migrated to the reusable workflow yet, so this is untouched — address it when BK adopts `ci-node@v1`.
+
+### Interim hosting
+
+Repos were created under the `PoweredUpLabs` **user** account so the work is backed up immediately, and will be transferred into `SubTerra-OS` once that org exists. Actions access on `subterra-governance` is set to `user` so sibling private repos can call its reusable workflows, and the repo is tagged `v1`.
+
+Consumers currently reference `PoweredUpLabs/subterra-governance/...@v1`. Docs and comments name the final `SubTerra-OS/...` path; both need updating at transfer time.
 
 ---
 
