@@ -19,8 +19,9 @@ on:
         type: string
         default: "."
       node-version:
+        # pnpm 11.14 requires Node >= 22.13 — see ci-node.yml.
         type: string
-        default: "20"
+        default: "22"
       pnpm-version:
         # Empty so `packageManager` in package.json wins — see ci-node.yml.
         type: string

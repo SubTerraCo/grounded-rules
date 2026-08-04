@@ -6,7 +6,7 @@
   "type": "module",
   "packageManager": "pnpm@11.14.0",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.13.0"
   },
   "scripts": {
     "validate:manifest": "node packages/ci-ops/src/validate-manifest.mjs",

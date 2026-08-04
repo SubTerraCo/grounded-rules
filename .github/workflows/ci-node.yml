@@ -13,8 +13,10 @@ on:
         type: string
         default: "."
       node-version:
+        # pnpm 11.14 (the pinned packageManager across SubTerra repos) requires
+        # Node >= 22.13. Do not lower this below 22.
         type: string
-        default: "20"
+        default: "22"
       pnpm-version:
         # Leave empty so pnpm/action-setup reads `packageManager` from
         # package.json. Setting both is a hard error (ERR_PNPM_BAD_PM_VERSION).
