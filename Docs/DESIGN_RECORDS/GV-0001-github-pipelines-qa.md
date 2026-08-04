@@ -152,6 +152,16 @@ Local remotes, manifest `repo:` fields, `APP_REGISTRY`, workflow `uses:` comment
 
 `SubTerraCo` is on the GitHub **Free** plan. Branch protection and rulesets on *private* repos, and org secrets usable by private repos, require **Team**. This replaces the original "paid plan" caveat that applied to the user account — the shape of the limit is the same. Until an upgrade, conventions are enforced through CI and review rather than platform rules.
 
+### Open blocker — Actions does not start under the org
+
+Both CI runs after the transfer failed **instantly with zero jobs and zero check-runs**, in `subterra-governance` and `subterra-shell` alike. This is not a workflow defect: `governance-ci.yml` is byte-identical to the revision that passed immediately before the transfer, and the only workflow change in the migration commit was a `uses:` comment line. Repo-level Actions reports `enabled: true, allowed_actions: all`.
+
+That signature — no jobs, no annotations, no log — means the run is refused before scheduling, which is decided at the **org** level: either the org's Actions policy is disabled, or Actions on private repos is gated on billing / spending limit for the new Free org.
+
+Diagnosis is blocked on token scope: `GET /orgs/SubTerraCo/actions/permissions` returns 403 (`admin:org` required), as does the billing endpoint. Resolve by granting `admin:org` (`gh auth refresh -h github.com -s admin:org`) or by checking **Settings → Actions → General** and **Settings → Billing** on the org.
+
+Until Actions runs, the reusable-pipeline layer is unverified under the org even though it was green under the personal account.
+
 ### Pre-existing org repos to audit
 
 `SubTerraCo` already contained `validation` (described as "the NFC validation app"), `tag-writer`, and `subtoken`, all from 2022. These plausibly belong to the reserved **`TK` (Ticketing / NFC)** APP code. They are noted in `APP_REGISTRY.yaml` but not yet claimed — audit before assigning a `localPath` or marketplace role.
