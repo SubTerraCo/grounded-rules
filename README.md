@@ -13,7 +13,8 @@
 
 ## Quick links
 
-- [CI_OPS_CONSTITUTION.md](./CI_OPS_CONSTITUTION.md) — §9 GV mandate · §10 GitHub · §11 pipelines · §12 workspace QA
+- [CI_OPS_CONSTITUTION.md](./CI_OPS_CONSTITUTION.md) — §1.1 dual shell · §9 GV mandate · §10 GitHub · §11 pipelines · §12 workspace QA · §13 audiences + NFC auth
+- [Docs/DESIGN_RECORDS/GV-0002-nexus-dual-shell.md](./Docs/DESIGN_RECORDS/GV-0002-nexus-dual-shell.md) — Nexus + audience gate (locked)
 - [subterra.manifest.yaml](./subterra.manifest.yaml)
 - [codes/APP_REGISTRY.yaml](./codes/APP_REGISTRY.yaml)
 - [codes/PLATFORM_CODES.yaml](./codes/PLATFORM_CODES.yaml)

@@ -1,6 +1,6 @@
 {
   "name": "subterra-governance",
-  "version": "26.8.3",
+  "version": "26.8.4",
   "private": true,
   "description": "SubTerra OS governance — CI Ops constitution, Dewey codes, manifest, reusable workflows",
   "type": "module",

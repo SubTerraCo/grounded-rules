@@ -18,6 +18,12 @@ areas:
     note: "Distinct from PP.MC platform code — see PLATFORM_CODES.yaml"
   - code: NF
     name: NFC / crypto tags
+  - code: SO
+    name: Social / feed
+    note: "Nexus customer shell social surface (GV-0002 D7)"
+  - code: EV
+    name: Events / ticketing
+    note: "Nexus events + Subtoken admin ticketing (GV-0002 D7)"
   - code: IN
     name: Invoicing / billing
   - code: CM

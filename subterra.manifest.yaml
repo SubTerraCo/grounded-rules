@@ -1,7 +1,7 @@
 schemaVersion: 1
 governance:
   repo: SubTerraCo/subterra-governance
-  ciOpsVersion: "26.8.3"
+  ciOpsVersion: "26.8.4"
   addressScheme: "APP.PP.PR.AA.SSS.FFF"
 
   owner: SubTerraCo
@@ -26,6 +26,10 @@ governance:
 
 # Canonical catalog for SubTerra Shell dual marketplaces (Apps + Integrations).
 # Same schema for both roles — Apps ↔ Integrations parity.
+#
+# audience (GV-0002 D4): list of shell audiences that may mount the item.
+# Values: admin | member. Default when omitted: [admin] (fail-closed).
+# Never reuse the word `role` for this — role is app vs integration.
 items:
   - id: shell
     appCode: ST
@@ -35,14 +39,30 @@ items:
     platforms: [DT, WB, AD]
     role: shell
     marketplace: null
+    audience: [admin]
     defaultOpen: false
     sdk: null
     status: linked  # first consumer of the reusable ci-node workflow
+    note: "Admin shell target — apps/admin over packages/shell-core (GV-0002 D1)"
     provides:
       # Twin SDKs scaffolded and parity-verified (GV-0001 D10).
       - "@subterra/sdk-contract"   # internal single source of truth
       - "@subterra/app-sdk"
       - "@subterra/integration-sdk"
+
+  - id: nexus
+    appCode: NX
+    name: Nexus
+    repo: SubTerraCo/subterra-shell
+    localPath: shell
+    platforms: [DT, WB, AD]
+    role: shell
+    marketplace: null
+    audience: [member]
+    defaultOpen: false
+    sdk: null
+    status: reserved  # shell code deferred (GV-0002 D8)
+    note: "Customer shell — social, events, tickets; apps/nexus over shell-core (GV-0002 D2)"
 
   - id: blocks
     appCode: BK
@@ -52,6 +72,7 @@ items:
     platforms: [DT, WB, AD, IO]
     role: app
     marketplace: apps
+    audience: [admin]
     defaultOpen: true
     sdk: "@subterra/app-sdk"
     mcp: "@blocks/mcp-server"
@@ -65,12 +86,13 @@ items:
     platforms: [WB, DT]
     role: app
     marketplace: apps
+    audience: [admin]
     defaultOpen: false
     sdk: "@subterra/app-sdk"
     # Remote repointed off the dead `poweredupbass` handle; local and remote
     # HEAD verified identical (dd1ddaa) before the org transfer.
     status: linked
-    defaultBranch: main  # pending rename to `master` per §4.1
+    defaultBranch: master
 
   - id: billbot
     appCode: BB
@@ -80,9 +102,26 @@ items:
     platforms: [WB, DT]
     role: app
     marketplace: apps
+    audience: [admin]
     defaultOpen: false
     sdk: "@subterra/app-sdk"
     status: reserved
+
+  - id: subtoken
+    appCode: TK
+    name: Subtoken
+    repo: SubTerraCo/subtoken
+    localPath: apps/subtoken
+    platforms: [DT, WB, AD, IO]
+    role: app
+    marketplace: apps
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved  # revival deferred (GV-0002 D6 / D8)
+    note: >-
+      Admin NFC / ticketing. Absorbs SubTerraCo/subtoken, tag-writer, and
+      validation. Challenge-response auth crypto becomes shared (§13).
 
   - id: anytype
     appCode: AT
@@ -92,6 +131,7 @@ items:
     platforms: [SH, MC]
     role: integration
     marketplace: integrations
+    audience: [admin]
     defaultOpen: false
     sdk: "@subterra/integration-sdk"
     # GV-0001 D2/D8: our own repo, seeded by pushing local history as-is.
@@ -99,4 +139,4 @@ items:
     status: linked  # origin is ours, vendor SDK stays on the `upstream` remote
     upstream: anyproto/anytype-api
     legacyRepo: SubTerraCo/anytype-google-contact-integration  # superseded predecessor, kept for reference
-    defaultBranch: main  # pending rename to `master` per §4.1
+    defaultBranch: master

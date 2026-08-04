@@ -12,9 +12,21 @@
 | Path (meta workspace) | Repo | Role |
 |-----------------------|------|------|
 | `governance/` | `SubTerraCo/subterra-governance` | This constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
-| `shell/` | `SubTerraCo/subterra-shell` | SubTerra Shell + `@subterra/*` packages |
+| `shell/` | `SubTerraCo/subterra-shell` | Dual shell targets + `@subterra/*` + `packages/shell-core` (GV-0002) |
 | `apps/<name>/` | per product | Apps marketplace |
 | `integrations/<name>/` | per integration | Integrations marketplace |
+
+### 1.1 Dual shell targets (locked GV-0002 D1–D2)
+
+One git repo hosts **two thin shell apps** over a **shared core**. Marketplace grids, item host, and auth session must never be forked per shell.
+
+| APP | Shell target | Path (inside `shell/`) | Audience |
+|-----|--------------|------------------------|----------|
+| **ST** | Admin SubTerra OS | `apps/admin` | `admin` |
+| **NX** | Nexus (customer social / events / tickets) | `apps/nexus` | `member` |
+| — | Shared core | `packages/shell-core` | — |
+
+Nexus is a **shell target**, not a marketplace app. Admin-only products (e.g. Subtoken / TK) stay off the Nexus grid via the manifest `audience` field (§6, §13).
 
 Meta folder `SubTerra OS/` has **no root git**. Open `SubTerra-OS.code-workspace`.
 
@@ -101,7 +113,19 @@ Rules (from Blocks CI Ops):
 
 Canonical catalog: [`subterra.manifest.yaml`](subterra.manifest.yaml).
 
-Shell vendors or generates JSON at build time for **Apps** and **Integrations** marketplaces from `role` + `marketplace` fields.
+Shell vendors or generates JSON at build time for **Apps** and **Integrations** marketplaces from `role` + `marketplace` fields, then **filters by `audience`** for the active shell session (§13).
+
+### 6.1 Item fields (audience — GV-0002 D4)
+
+| Field | Meaning |
+|-------|---------|
+| `role` | `app` \| `integration` \| `shell` \| `governance` — **which marketplace / topology**, not who is logged in |
+| `marketplace` | `apps` \| `integrations` \| `null` (shell/governance) |
+| `audience` | List of shell audiences that may mount the item: `admin` and/or `member` |
+
+**Default when `audience` is omitted: `["admin"]` (fail-closed).** An item is never customer-visible on Nexus unless it explicitly includes `member`.
+
+Do **not** overload `role` for permissions — `SubterraRole` in `@subterra/sdk-contract` already means app vs integration.
 
 ---
 
@@ -281,3 +305,47 @@ Home: **`governance/tests/`** — its own Playwright project, run from the meta 
 Coverage is **deferred** (GV-0001 D5). Shell has no running host and the twin SDKs have no real surface area, so cross-repo browser journeys have nothing to assert against. The suite's config, docs, and location are locked; tests land once Shell and the SDKs are real.
 
 Workspace QA is a release gate for marketplace + SDK parity. It never substitutes for a product's own `/testrelease`.
+
+---
+
+## 13. Shell audiences and NFC auth (locked GV-0002)
+
+Design record: [GV-0002](Docs/DESIGN_RECORDS/GV-0002-nexus-dual-shell.md).
+
+### 13.1 Audiences
+
+| Audience | Typical shell | Sees |
+|----------|---------------|------|
+| `admin` | ST (`apps/admin`) | Items with `audience` containing `admin` (default) |
+| `member` | NX Nexus (`apps/nexus`) | Only items that explicitly list `member` |
+
+Session identity is separate from marketplace `role`. Host context must expose audience without reusing the `role` field name.
+
+### 13.2 NFC authentication invariant
+
+NFC **UIDs are not secrets** — any phone can read them and they are cloneable. Therefore:
+
+1. **UID-only login is forbidden.**
+2. Login MUST be a **signed challenge-response** proving the tag holds the private key (ECDSA or equivalent).
+3. The UID may identify which credential to look up; it must not authenticate by itself.
+4. Tag programming (Subtoken / tag-writer) that locks keys after write is the provisioning path; validation crypto is **shared auth code**, not mobile-only code.
+
+Product implementations that shortcut this invariant are constitution violations.
+
+### 13.3 Subtoken (TK)
+
+| | |
+|--|--|
+| APP | `TK` — **Subtoken** |
+| Audience | `[admin]` |
+| Absorbs | `SubTerraCo/subtoken`, `tag-writer`, `validation` |
+| Status | Reserved — consolidation and revival deferred (GV-0002 D6 / D8) |
+
+### 13.4 Dewey areas added for Nexus
+
+| Code | Area |
+|------|------|
+| `SO` | Social / feed |
+| `EV` | Events / ticketing |
+
+Existing `AU` (Auth / device identity) and `NF` (NFC / crypto tags) cover challenge-response and tag crypto.

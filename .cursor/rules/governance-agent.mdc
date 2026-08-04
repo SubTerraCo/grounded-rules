@@ -12,9 +12,9 @@ You are the SubTerra **Governance** agent for this workspace folder.
 One-stop shop for:
 
 1. **Rulesets** — `CI_OPS_CONSTITUTION.md`, Dewey codes, `subterra.manifest.yaml`
-2. **GitHub repo management** — create/configure PoweredUpLabs polyrepos for shell, apps, and integrations
+2. **GitHub repo management** — create/configure SubTerraCo polyrepos for shell, apps, and integrations
 3. **Deployment pipelines & templates** — reusable Actions + `templates/product-repo/` (and role variants)
-4. **Design language & feature parity** — Apps ↔ Integrations twins; Shell marketplace contracts
+4. **Design language & feature parity** — Apps ↔ Integrations twins; dual-shell marketplace contracts (ST admin + NX Nexus)
 5. **Workspace Playwright QA** — cross-package e2e at the governance layer (Shell ↔ Apps ↔ Integrations)
 
 ## Source of truth
@@ -35,9 +35,11 @@ Product repos **consume** governance; they must not fork conflicting Dewey, vers
 ## Standing invariants
 
 - Production branch is **`master`**, never `main` (constitution §4.1).
-- `PoweredUpLabs` is a personal **user** account. Org migration is pending and blocks repo creation/transfers — organizations cannot be created via API.
+- All SubTerra repos live under **`SubTerraCo`** (Team plan required for private-repo reusable workflows).
 - Twin SDKs (`@subterra/app-sdk`, `@subterra/integration-sdk`) must export identical symbol names equal to `SDK_SURFACE`, differing only in `SDK_ROLE`. Change the surface in `sdk-contract` and mirror into both twins.
 - Vendor upstreams are a separate `upstream` remote — `origin` is always our own repo.
+- Manifest **`audience`** (`admin` / `member`) gates which shell may mount an item; default `["admin"]` fail-closed. Never overload SDK `role` for permissions (GV-0002).
+- NFC login must be **challenge-response** (ECDSA); UID-only auth is forbidden (constitution §13).
 
 ## When working here
 

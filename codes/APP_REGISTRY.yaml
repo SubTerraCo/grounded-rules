@@ -4,10 +4,18 @@
 schemaVersion: 1
 apps:
   - code: ST
-    name: SubTerra Shell
+    name: SubTerra Shell (admin)
     role: shell
     localPath: shell
     repo: SubTerraCo/subterra-shell
+    note: "Admin shell target — thin apps/admin over packages/shell-core (GV-0002 D1)"
+  - code: NX
+    name: Nexus
+    role: shell
+    localPath: shell
+    repo: SubTerraCo/subterra-shell
+    status: reserved
+    note: "Customer shell target — thin apps/nexus over the same shell-core (GV-0002 D2)"
   - code: BK
     name: Blocks
     role: app
@@ -37,12 +45,16 @@ apps:
     status: linked  # GV-0001 D2 — vendor kept as `upstream` remote
     upstream: anyproto/anytype-api
   - code: TK
-    name: Ticketing / NFC
+    name: Subtoken
     role: app
+    localPath: apps/subtoken
+    repo: SubTerraCo/subtoken  # target monorepo; revival deferred (GV-0002 D6)
     status: reserved
-    # Pre-existing org repos that likely belong to this code — audit before
-    # reserving a localPath: SubTerraCo/validation (NFC validation app),
-    # SubTerraCo/tag-writer, SubTerraCo/subtoken.
+    audience: [admin]
+    note: >-
+      Admin NFC / ticketing product. Absorbs SubTerraCo/subtoken (web resolver),
+      SubTerraCo/tag-writer (desktop programmer), and SubTerraCo/validation
+      (mobile ECDSA validator). Consolidation + revival are follow-on work.
   - code: WL
     name: White-label OS
     role: app
