@@ -148,19 +148,43 @@ All five repos were transferred out of the `PoweredUpLabs` personal account on 2
 
 Local remotes, manifest `repo:` fields, `APP_REGISTRY`, workflow `uses:` comments, both READMEs, and Shell's live CI ref were all rewritten to `SubTerraCo`. GitHub keeps redirects from the old paths, but nothing depends on them.
 
-### Plan constraint (new)
+### Plan — upgraded to Team (resolved)
 
-`SubTerraCo` is on the GitHub **Free** plan. Branch protection and rulesets on *private* repos, and org secrets usable by private repos, require **Team**. This replaces the original "paid plan" caveat that applied to the user account — the shape of the limit is the same. Until an upgrade, conventions are enforced through CI and review rather than platform rules.
+The org was on **Free** at transfer time and was upgraded to **Team** on 2026-08-04. Team turned out to be a hard dependency rather than a nice-to-have; see the CI investigation below.
 
-### Open blocker — Actions does not start under the org
+Now enabled:
 
-Both CI runs after the transfer failed **instantly with zero jobs and zero check-runs**, in `subterra-governance` and `subterra-shell` alike. This is not a workflow defect: `governance-ci.yml` is byte-identical to the revision that passed immediately before the transfer, and the only workflow change in the migration commit was a `uses:` comment line. Repo-level Actions reports `enabled: true, allowed_actions: all`.
+- `master protection` rulesets on all five product repos — `deletion`, `non_fast_forward`, and `required_status_checks`, with org admins as bypass actors so solo pushes still work. Requiring PRs was deliberately left off.
+- Organization secrets scoped to selected private repos, consumed via `secrets: inherit`.
 
-That signature — no jobs, no annotations, no log — means the run is refused before scheduling, which is decided at the **org** level: either the org's Actions policy is disabled, or Actions on private repos is gated on billing / spending limit for the new Free org.
+### Root cause — reusable workflows require a paid plan
 
-Diagnosis is blocked on token scope: `GET /orgs/SubTerraCo/actions/permissions` returns 403 (`admin:org` required), as does the billing endpoint. Resolve by granting `admin:org` (`gh auth refresh -h github.com -s admin:org`) or by checking **Settings → Actions → General** and **Settings → Billing** on the org.
+Every CI run failed immediately after the transfer with **zero jobs, zero check-runs, and no downloadable log**. Three hypotheses were tested and falsified before the real one:
 
-Until Actions runs, the reusable-pipeline layer is unverified under the org even though it was green under the personal account.
+| Hypothesis | Test | Result |
+|---|---|---|
+| The migration commit broke a workflow | Diff `.github/` across the good/bad boundary | Only six comment lines changed |
+| Line endings or a BOM from Windows edits | `od -c` on the raw bytes; CR counts | No BOM; CRLF predated the breakage |
+| Actions access policy | A/B toggled `none` ↔ `organization` and re-ran | Failed identically both ways |
+| Billing or org policy | Re-ran a plain workflow in `subterra-anytype` | Ran a real job successfully |
+
+The decisive test was re-running an **older commit that had already passed**. It now failed, proving the cause was environmental rather than any change made during the migration. A three-file probe then separated the variables: a plain workflow succeeded while a brand-new **three-line** reusable workflow failed in the same repo, same commit.
+
+**Reusable workflows in private repositories do not run on the GitHub Free plan.** They fail as `startup_failure` with no diagnostic surfaced through the API — the only visible tell is that the run's `name` is reported as the *file path* rather than the workflow's declared `name`. Upgrading to Team fixed it immediately, with no code change.
+
+Because `subterra-shell` consumes `ci-node.yml` cross-repo, **the whole §11 pipeline layer depends on the Team plan.** Downgrading would break CI everywhere. This is recorded in §10 so it is not mistaken for an optional cost.
+
+Two secondary findings:
+
+- **Transfer silently reset Actions access to `none`** on `subterra-governance`, which would independently have broken cross-repo reuse. Re-apply `organization` after any transfer.
+- After the upgrade, `subterra-shell` alone kept failing while `mailbot` succeeded with a byte-identical caller, and `workflow_dispatch` on it returned **HTTP 500** — stale per-repo Actions state. Toggling Actions off and on, plus a subsequent push, cleared it.
+
+### Verified green under the org
+
+| Repo | Check |
+|------|-------|
+| `subterra-governance` | `Governance CI` — local reusable call |
+| `subterra-shell` | `Shell CI` — cross-repo `ci-node.yml@v1` |
 
 ### Pre-existing org repos to audit
 

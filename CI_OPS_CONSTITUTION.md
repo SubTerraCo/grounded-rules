@@ -178,7 +178,31 @@ The legacy `PoweredUpLabs` handle is a **personal user account** (it was the ori
 
 > **Organizations cannot be created via the API** — `POST /orgs` returns 404 on github.com. This matters only if a second org is ever needed; `SubTerraCo` already exists.
 
-**Plan constraint:** `SubTerraCo` is on the GitHub **Free** plan. Branch protection and rulesets on *private* repos, and org secrets for private repos, require Team. Until an upgrade, enforce conventions through CI and review rather than platform rules.
+**Plan:** `SubTerraCo` is on **GitHub Team** (upgraded 2026-08-04). This is a hard requirement, not a convenience — **reusable workflows in private repos do not run on the Free plan**, so the entire §11 pipeline layer depends on it. Downgrading to Free would break CI across every repo. See GV-0001 §6.
+
+### Repo protection
+
+Every product repo carries a `master protection` **ruleset** (private-repo rulesets are a Team feature):
+
+| Rule | Effect |
+|------|--------|
+| `deletion` | The default branch cannot be deleted |
+| `non_fast_forward` | No force-pushes onto the default branch |
+| `required_status_checks` | CI must pass — `validate / lint-build` (governance), `ci / lint-build` (consumers) |
+
+Org admins are **bypass actors**, so solo direct-to-`master` pushes still work. Requiring pull requests is deliberately *not* enabled; revisit when more than one person commits.
+
+### Secrets convention
+
+Shared credentials live as **organization secrets** scoped to selected private repos (a Team capability), never as per-repo copies:
+
+| Secret | Consumers |
+|--------|-----------|
+| `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | `deploy-web.yml` |
+| `NPM_TOKEN` | `publish-npm.yml` |
+| `EXPO_TOKEN` | `build-android.yml` |
+
+Callers pass them with `secrets: inherit`. Reusable workflows must never hardcode a secret name a caller cannot override.
 
 ### New repo checklist
 
@@ -188,7 +212,8 @@ The legacy `PoweredUpLabs` handle is a **personal user account** (it was the ori
 4. Create the repo in the org (private by default).
 5. Set default branch to `master` (§4.1).
 6. Wire CI to the reusable workflows (§11).
-7. Add required secrets per the deploy target.
+7. Apply the `master protection` ruleset.
+8. Grant the repo access to any org secrets it needs.
 
 ### Vendor upstreams
 
@@ -220,7 +245,23 @@ jobs:
     secrets: inherit
 ```
 
-Changes land here first, then product repos bump the ref (§9 invariant 3).
+Changes land here first, then product repos bump the ref (§9 invariant 3). `v1` is a moving tag on the governance default branch; force-move it after every change consumers should pick up.
+
+### Two prerequisites for cross-repo calls
+
+Both are easy to break and both fail the same way — an instant run with **no jobs and no logs** (`startup_failure`), which reports nothing useful:
+
+1. **Team plan.** Private-repo reusable workflows do not run on Free.
+2. **Access policy.** `subterra-governance` must keep Actions access set to `organization`:
+
+```bash
+gh api repos/SubTerraCo/subterra-governance/actions/permissions/access
+# expected: {"access_level":"organization"}
+```
+
+**Transferring a repo silently resets this to `none`** — re-apply it after any transfer.
+
+When diagnosing a `startup_failure`, note that a run whose `name` shows the *file path* instead of the workflow's declared `name` never resolved its workflow at all. Compare against a plain (non-reusable) workflow in the same repo to separate a repo-wide Actions problem from a reusable-workflow one.
 
 ---
 

@@ -14,10 +14,14 @@ governance:
       All five SubTerra repos were transferred from the `PoweredUpLabs` personal
       user account into the SubTerraCo org. GitHub keeps redirects from the old
       paths, but every ref here and in workflows points at SubTerraCo directly.
-    planConstraint: >-
-      SubTerraCo is on the GitHub Free plan. Branch protection/rulesets on private
-      repos and org secrets for private repos require Team, so conventions are
-      enforced via CI and review until an upgrade.
+    plan: team  # upgraded 2026-08-04
+    planIsRequired: >-
+      Team is a hard dependency, not a convenience: reusable workflows in PRIVATE
+      repos do not run on Free (they fail as startup_failure with no log). The
+      whole reusable-pipeline layer breaks on downgrade. See GV-0001 §6.
+    protection: >-
+      All five product repos carry a `master protection` ruleset (deletion,
+      non_fast_forward, required_status_checks) with org admins as bypass actors.
     legacyOwner: PoweredUpLabs  # still holds unrelated repos; nothing SubTerra should live there
 
 # Canonical catalog for SubTerra Shell dual marketplaces (Apps + Integrations).
