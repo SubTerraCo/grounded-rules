@@ -166,7 +166,7 @@ Until Actions runs, the reusable-pipeline layer is unverified under the org even
 
 `SubTerraCo` already contained `validation` (described as "the NFC validation app"), `tag-writer`, and `subtoken`, all from 2022. These plausibly belong to the reserved **`TK` (Ticketing / NFC)** APP code. They are noted in `APP_REGISTRY.yaml` but not yet claimed — audit before assigning a `localPath` or marketplace role.
 
-The `PoweredUpLabs` account still holds `gemini-quantbot` and `anytype-google-contact-integration` (the stale Anytype predecessor). Neither was transferred; decide separately whether they belong in the org.
+`anytype-google-contact-integration` (the superseded Anytype predecessor) was also moved into the org so all Anytype history lives in one place; it stays flagged as `legacyRepo` in the manifest and is not part of the active AT product. `gemini-quantbot` is unrelated to SubTerra and deliberately stays on the personal account.
 
 ---
 

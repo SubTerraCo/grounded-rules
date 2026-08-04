@@ -94,5 +94,5 @@ items:
     # The vendor SDK stays a separate `upstream` remote — never `origin`.
     status: linked  # origin is ours, vendor SDK stays on the `upstream` remote
     upstream: anyproto/anytype-api
-    legacyRepo: PoweredUpLabs/anytype-google-contact-integration  # stale, kept for reference
+    legacyRepo: SubTerraCo/anytype-google-contact-integration  # superseded predecessor, kept for reference
     defaultBranch: main  # pending rename to `master` per §4.1
