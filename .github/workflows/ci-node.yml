@@ -16,8 +16,11 @@ on:
         type: string
         default: "20"
       pnpm-version:
+        # Leave empty so pnpm/action-setup reads `packageManager` from
+        # package.json. Setting both is a hard error (ERR_PNPM_BAD_PM_VERSION).
+        # Only set this for repos with no `packageManager` field.
         type: string
-        default: "11"
+        default: ""
       run-lint:
         description: Run the lint script when present
         type: boolean

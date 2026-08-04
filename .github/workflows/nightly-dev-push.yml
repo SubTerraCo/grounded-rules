@@ -32,8 +32,9 @@ on:
         type: string
         default: "20"
       pnpm-version:
+        # Empty so `packageManager` in package.json wins — see ci-node.yml.
         type: string
-        default: "11"
+        default: ""
 
 env:
   CI: "true"

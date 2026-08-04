@@ -30,8 +30,9 @@ on:
         type: string
         default: "20"
       pnpm-version:
+        # Empty so `packageManager` in package.json wins — see ci-node.yml.
         type: string
-        default: "11"
+        default: ""
       retention-days:
         type: number
         default: 90
