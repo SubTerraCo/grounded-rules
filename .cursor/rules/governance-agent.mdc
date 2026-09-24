@@ -34,7 +34,8 @@ Product repos **consume** governance; they must not fork conflicting Dewey, vers
 
 ## Standing invariants
 
-- Production branch is **`master`**, never `main` (constitution §4.1).
+- Every SubTerraCo repo uses **`master`** as its default branch (constitution §4.1). Do not invent another production-branch name.
+- New application code is **TypeScript**. Python is allowed only when the work needs Python. Config and tooling files that the tool itself requires to be JavaScript may stay JavaScript (constitution §14).
 - All SubTerra repos live under **`SubTerraCo`** (Team plan required for private-repo reusable workflows).
 - Twin SDKs (`@subterra/app-sdk`, `@subterra/integration-sdk`) must export identical symbol names equal to `SDK_SURFACE`, differing only in `SDK_ROLE`. Change the surface in `sdk-contract` and mirror into both twins.
 - Vendor upstreams are a separate `upstream` remote — `origin` is always our own repo.
