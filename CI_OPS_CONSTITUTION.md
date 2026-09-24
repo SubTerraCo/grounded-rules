@@ -86,13 +86,17 @@ Shared **format** across all repos; each repo stamps **independently**.
 
 ### 4.1 Branch model (locked GV-0001 D7)
 
+**Default branch name.** Every SubTerraCo repository uses the same default branch name: **`master`**. That covers governance, the shell, apps, integrations, and tool repos. Do not invent a different production-branch name.
+
 | Branch | Role |
 |--------|------|
 | `vYY.MM.DD` | Active release/batch working branch |
 | `dev` | Nightly integration target |
-| `master` | **Production.** Default branch; deploy workflows trigger here |
+| `master` | **Production.** The default branch of every SubTerraCo repo; deploy workflows trigger here |
 
-`master` is production across all SubTerra repos — **not `main`**. Reusable deploy workflows target `master`; do not author workflows against `main`.
+`master` is the production branch across all SubTerra repos. Reusable deploy workflows target `master`. Author workflows against `master`. New repositories are created with `master` as the default (§10 checklist).
+
+When a repository's default branch is still `main`, retarget it to `master` by renaming that branch so history stays intact. If a `master` branch already exists and its tip is a different commit from `main`, stop. Do not force-push over that `master`. Report both tips and reconcile them before changing the default.
 
 Rules (from Blocks CI Ops):
 
@@ -366,3 +370,19 @@ Product implementations that shortcut this invariant are constitution violations
 | `EV` | Events / ticketing |
 
 Existing `AU` (Auth / device identity) and `NF` (NFC / crypto tags) cover challenge-response and tag crypto.
+
+---
+
+## 14. Implementation language
+
+**New application code is TypeScript.** This rule applies to every SubTerraCo repository.
+
+| Allowed | When |
+|---------|------|
+| TypeScript (`.ts`, `.tsx`) | All new app, shell, integration, library, and service code |
+| Python | Only when the work needs Python: an existing Python service, script, or tool, or a job that Python is required to perform |
+| JavaScript (`.js`, `.cjs`, `.mjs`) | Only for config and tooling files that the tool itself requires to be JavaScript |
+
+Do not add new JavaScript, JSX (`.jsx`), Rust, or any other language for application code. `.tsx` is TypeScript; use it when a file needs JSX syntax.
+
+This rule does not require converting existing code. New code follows it. An existing Python service stays Python, and new modules of that service may be Python. A new app or library starts in TypeScript.
