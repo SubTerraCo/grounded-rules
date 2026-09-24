@@ -2,14 +2,19 @@
  * @subterra/ci-ops — shared versioning helpers for SubTerra product repos.
  * R0: rollover stamp + manifest validate. Expand as apps adopt governance.
  */
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 
-/** @returns {{ year: number, month: number, day: number }} */
-export function todayLocalDate(now = new Date()) {
+export interface LocalDate {
+  year: number;
+  month: number;
+  day: number;
+}
+
+export function todayLocalDate(now: Date = new Date()): LocalDate {
   return {
     year: now.getFullYear(),
     month: now.getMonth() + 1,
@@ -17,8 +22,8 @@ export function todayLocalDate(now = new Date()) {
   };
 }
 
-/** @returns {string} e.g. v26.08.03 */
-export function todayReleaseTag(now = new Date()) {
+/** e.g. v26.08.03 */
+export function todayReleaseTag(now: Date = new Date()): string {
   const d = todayLocalDate(now);
   const yy = String(d.year).slice(-2);
   const mm = String(d.month).padStart(2, "0");
@@ -26,47 +31,44 @@ export function todayReleaseTag(now = new Date()) {
   return `v${yy}.${mm}.${dd}`;
 }
 
-/** @returns {string} e.g. 26.8.3 */
-export function todayNpmVersion(now = new Date()) {
+/** e.g. 26.8.3 */
+export function todayNpmVersion(now: Date = new Date()): string {
   const d = todayLocalDate(now);
   return `${d.year % 100}.${d.month}.${d.day}`;
 }
 
+export interface BatchRow {
+  batch: string;
+}
+
 /**
  * Parse batch rows from ROADMAP markdown (`| v26.08.03b1 |` style).
- * @param {string} roadmap
- * @returns {{ batch: string }[]}
  */
-export function parseBatchLogRows(roadmap) {
-  const rows = [];
+export function parseBatchLogRows(roadmap: string): BatchRow[] {
+  const rows: BatchRow[] = [];
   const re = /\|\s*(v\d+\.\d+\.\d+b\d+)\s*\|/g;
-  let m;
+  let m: RegExpExecArray | null;
   while ((m = re.exec(roadmap)) !== null) {
-    rows.push({ batch: m[1] });
+    rows.push({ batch: m[1]! });
   }
   return rows;
 }
 
-/**
- * @param {string} releaseTag e.g. v26.08.03
- * @param {{ batch: string }[]} rows
- */
-export function maxBatchIndexForRelease(releaseTag, rows) {
+export function maxBatchIndexForRelease(
+  releaseTag: string,
+  rows: BatchRow[],
+): number {
   const prefix = releaseTag.replace(/^v/, "");
   let max = 0;
   for (const row of rows) {
     const match = row.batch.match(/^v([\d.]+)b(\d+)$/);
     if (!match || match[1] !== prefix) continue;
-    max = Math.max(max, parseInt(match[2], 10));
+    max = Math.max(max, parseInt(match[2]!, 10));
   }
   return max;
 }
 
-/**
- * @param {string} releaseTag
- * @param {{ batch: string }[]} rows
- */
-export function nextBatchId(releaseTag, rows) {
+export function nextBatchId(releaseTag: string, rows: BatchRow[]): string {
   const next = maxBatchIndexForRelease(releaseTag, rows) + 1;
   const prefix = releaseTag.replace(/^v/, "");
   return `v${prefix}b${next}`;
@@ -74,10 +76,8 @@ export function nextBatchId(releaseTag, rows) {
 
 /**
  * Sync **Release:** line and optional Active sprint paren tag.
- * @param {string} roadmap
- * @param {string} releaseTag
  */
-export function syncRoadmapRelease(roadmap, releaseTag) {
+export function syncRoadmapRelease(roadmap: string, releaseTag: string): string {
   let updated = roadmap.replace(
     /(\*\*Release:\*\*\s+)v[\d.]+/,
     `$1${releaseTag}`,
@@ -99,11 +99,12 @@ export function syncRoadmapRelease(roadmap, releaseTag) {
 
 /**
  * Insert a batch log row after the Batch log table header (best-effort).
- * @param {string} roadmap
- * @param {string} batchId
- * @param {string} note
  */
-export function ensureBatchLogRow(roadmap, batchId, note = "R0 scaffold") {
+export function ensureBatchLogRow(
+  roadmap: string,
+  batchId: string,
+  note = "R0 scaffold",
+): string {
   if (roadmap.includes(batchId)) return roadmap;
   const row = `| ${batchId} | 🧪 QA | ${note} |\n`;
   // Match header + full markdown separator row (multi-column)
@@ -116,28 +117,48 @@ export function ensureBatchLogRow(roadmap, batchId, note = "R0 scaffold") {
   return `${roadmap.trimEnd()}\n\n## Batch log\n\n| Batch | Status | Notes |\n|-------|--------|-------|\n${row}`;
 }
 
+export interface StampPackageJsonOpts {
+  shellVersionKey?: string;
+}
+
 /**
  * Stamp package.json version fields for a product repo root.
- * @param {string} repoRoot
- * @param {string} npmVersion e.g. 26.8.3
- * @param {string} batchId e.g. v26.08.03b1
- * @param {{ shellVersionKey?: string }} [opts]
  */
-export function stampPackageJson(repoRoot, npmVersion, batchId, opts = {}) {
+export function stampPackageJson(
+  repoRoot: string,
+  npmVersion: string,
+  batchId: string,
+  opts: StampPackageJsonOpts = {},
+): void {
   const pkgPath = join(repoRoot, "package.json");
-  const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
+  const pkg = JSON.parse(readFileSync(pkgPath, "utf8")) as Record<
+    string,
+    unknown
+  >;
   pkg.version = npmVersion;
   const key = opts.shellVersionKey ?? "subterraShellVersion";
   pkg[key] = batchId;
   writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`, "utf8");
 }
 
+export interface RolloverFlags {
+  stamp?: boolean;
+  nextBatch?: boolean;
+}
+
+export interface RolloverResult {
+  releaseTag: string;
+  batchId: string;
+  roadmapPath: string;
+}
+
 /**
  * Full rollover for a product repo that has ROADMAP + package.json.
- * @param {string} repoRoot
- * @param {{ stamp?: boolean, nextBatch?: boolean }} flags
  */
-export function runRollover(repoRoot, flags = {}) {
+export function runRollover(
+  repoRoot: string,
+  flags: RolloverFlags = {},
+): RolloverResult {
   const roadmapPath = join(
     repoRoot,
     "Docs/Working Docs-Features-Incidents/ROADMAP.md",
@@ -165,9 +186,15 @@ export function runRollover(repoRoot, flags = {}) {
   return { releaseTag, batchId, roadmapPath };
 }
 
-export function governanceRootFromCiOps() {
+export function governanceRootFromCiOps(): string {
   return join(here, "../../..");
 }
+
+export type {
+  FleetApp,
+  FleetSnapshot,
+  ManifestItem,
+} from "./collect-versions.ts";
 
 export {
   buildFleet,
@@ -175,4 +202,4 @@ export {
   parseManifestItems,
   renderVersionsMarkdown,
   resolveLocalCheckout,
-} from "./collect-versions.mjs";
+} from "./collect-versions.ts";
