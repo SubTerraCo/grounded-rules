@@ -17,7 +17,7 @@ The enterprise blueprint wins wherever it disagrees with GV-0001, GV-0002, or GV
 | # | Old ruling | Blueprint | Resolution |
 |---|------------|-----------|------------|
 | C1 | Polyrepo, one repo per app (§1) | One pnpm + Turborepo monorepo | Monorepo is the product. `subterra-governance` stays this rules repo. `tooling/design-governance` enforces tokens; it does not fork the constitution |
-| C2 | Shells are `apps/admin` and `apps/nexus` over `shell-core` (GV-0002) | Exactly two runtimes: Tauri v2 and a PWA | Build `apps/poweredup-os` (Tauri) and `apps/web-shell` (PWA). Five entry points share them. Do not create `apps/admin` or `apps/nexus` |
+| C2 | Shells are `apps/admin` and `apps/nexus` over `shell-core` (GV-0002) | Exactly two runtimes: Tauri v2 and a PWA | Build `apps/luna-os` (Tauri, including Arch Linux / Omarchy) and `apps/web-shell` (PWA). Do not create `apps/admin` or `apps/nexus` |
 | C3 | Electron + Next shell | Vite, React 19, Tauri v2 | Tauri + Vite. `subterra-shell` stays until Phase 1 copies what is still useful |
 | C4 | Every repo defaults to `master` (§4.1) | CI on `main` and `staging` | Existing repos stay `master`. The new monorepo uses `main`, with `staging` as integration |
 | C5 | pnpm 11.14, reusable `ci-node.yml@v1` | pnpm 9, Node 22, Turbo pipeline in-repo | Monorepo CI is the blueprint pipeline (pnpm 9, Node 22). This governance repo keeps its own workflow |
@@ -41,10 +41,10 @@ One product, one code, one folder. The folder is the name people say. Technical 
 
 | Code | Name | Path | What it is |
 |------|------|------|------------|
-| PU | PoweredUp OS | `apps/poweredup-os` | Tauri command center. Replaces ST |
+| LO | Luna OS | `apps/luna-os` | Tauri command center, including Arch / Omarchy. Replaces ST |
 | SC | SubTerra Central | `apps/subterra-central` | Ticketing and fan portal PWA. Replaces NX |
 | TS | Time Shift | `apps/time-shift` | Freelance marketplace |
-| AX | Axiom | `apps/axiom` | Knowledge reader, isolated store |
+| AX | Axiom | `apps/axiom` | Optional isolated knowledge reader. Skip unless Anytype is not the knowledge store |
 | CH | Community | `apps/community` | Voting and discussion UI |
 | FN | Budget | `packages/budget` | Budgeting. `@actual-app/api`. Not Billbot |
 | BB | Billbot | `packages/billbot` | Invoicing and 1099 exports. Not Budget |
@@ -52,7 +52,7 @@ One product, one code, one folder. The folder is the name people say. Technical 
 | MB | Mailbot | `packages/mailbot` | Gmail and IMAP labels and archive |
 | TK | Subtoken | `packages/subtoken` | NFC. NTAG424 challenge-response and Solana tickets. Absorbs tag-writer and validation |
 | AT | Anytype | `packages/anytype` | Local-first graph via any-sync |
-| PO | Poe | `packages/poe` | Local or cloud agent router |
+| LU | Luna | `packages/luna` | Agent router. Local Ollama on the Omarchy host, or cloud |
 | BS | Banking | `packages/banking` | SimpleFIN and GoCardless |
 | FM | Forum | `packages/forum` | Flarum logic used by CH |
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
@@ -68,13 +68,13 @@ One product, one code, one folder. The folder is the name people say. Technical 
 
 | Layer | License |
 |-------|---------|
-| New original packages (`anytype` glue, `ui`, `budget` wrapper, shells, Poe, Billbot) | BSL 1.1. Additional grant: under 5 seats and under $100,000 gross, plus solos, artists, contributors, nonprofits. Each commit becomes Apache 2.0 after 36 months. Commercial keys are Ed25519 signatures from PoweredUpLabs |
+| New original packages (`anytype` glue, `ui`, `budget` wrapper, shells, Luna, Billbot) | BSL 1.1. Additional grant: under 5 seats and under $100,000 gross, plus solos, artists, contributors, nonprofits. Each commit becomes Apache 2.0 after 36 months. Commercial keys are Ed25519 signatures from PoweredUpLabs |
 | MIT upstream (Actual, Super Productivity, ephios, Flarum) | Stays MIT, notices included |
 | Already published SubTerraCo `LICENSE` files | Stay MIT |
 | InvoiceShelf | AGPL-3.0. Not vendored into a BSL package and not part of the multi-tenant host |
 | any-sync | Any Source Available License |
 
-PoweredUp OS personal data and SubTerra Central data have no shared read or write path. Axiom Wiki is a third isolated store. The contract test in the blueprint is the enforcement.
+Luna OS personal data and SubTerra Central data have no shared read or write path. Axiom is an optional third store and is not required while Anytype holds the knowledge graph. The contract test in the blueprint is the enforcement.
 
 ---
 

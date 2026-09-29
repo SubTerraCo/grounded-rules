@@ -20,12 +20,12 @@
 
 ### 1.1 Shell targets (GV-0004; supersedes GV-0002 D1–D2)
 
-Exactly two executable shells. Five product entry points share them. Personal PoweredUpLabs data and SubTerra Collective data do not share a read or write path.
+Exactly two executable shells. Product entry points share them. Luna OS personal data and SubTerra Collective data do not share a read or write path.
 
 | Shell | Path | Runtime | Hosts |
 |-------|------|---------|-------|
-| Desktop and mobile | `apps/poweredup-os` | Tauri v2 + React 19 + Vite | PoweredUp OS command center |
-| Web | `apps/web-shell` | Offline-first PWA | SubTerra Central, Time Shift Portal, Axiom Wiki, Community Hub |
+| Desktop and mobile | `apps/luna-os` | Tauri v2 + React 19 + Vite | Luna OS on Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
+| Web | `apps/web-shell` | Offline-first PWA | SubTerra Central, Time Shift, Axiom, Community |
 
 Shared UI is `packages/ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
 

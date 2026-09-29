@@ -142,11 +142,11 @@ items:
     defaultBranch: master
 
   # GV-0004 monorepo entry points. Repo is not created yet. Old items above stay as aliases.
-  - id: poweredup-os
-    appCode: PU
-    name: PoweredUp OS
+  - id: luna-os
+    appCode: LO
+    name: Luna OS
     repo: null
-    localPath: apps/poweredup-os
+    localPath: apps/luna-os
     platforms: [DT, AD, IO, AP]
     role: shell
     marketplace: null
@@ -154,7 +154,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "GV-0004. Tauri command center. Replaces ST. Personal data is isolated from SC."
+    note: "GV-0004. Tauri command center, including Arch Linux for Omarchy. Replaces ST. Personal data is isolated from SC."
 
   - id: subterra-central
     appCode: SC

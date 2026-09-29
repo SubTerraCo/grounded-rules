@@ -7,7 +7,8 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 ## Stack
 
 - TypeScript strict mode for UI, domain logic, and shared types. React 19. Vite.
-- Two shells only: `apps/poweredup-os` (Tauri v2 for Windows, macOS, Android, iOS) and `apps/web-shell` (offline-first PWA).
+- Two shells only: `apps/luna-os` (Tauri v2 for Windows, macOS, Android, iOS, and Arch Linux) and `apps/web-shell` (offline-first PWA).
+- Arch builds install on Omarchy. That machine is the dedicated local AI host: Ollama runs there, and `packages/luna` calls it on localhost. Ship an AppImage and a PKGBUILD.
 - Rust only inside Tauri bindings: filesystem, local IPC, NFC hardware, DaVinci socket.
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
 - Finance store: Actual's own SQLite CRDT inside `packages/budget` (`FN`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/billbot` (`BB`).
@@ -18,12 +19,12 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 
 ```
 apps/
-  poweredup-os/          # PU — Tauri command center
+  luna-os/               # LO — Tauri command center, including Arch / Omarchy
   web-shell/             # PWA runtime
   subterra-central/      # SC — ticketing, NFC, fan portal
   time-shift/            # TS — freelance marketplace
-  axiom/                 # AX — isolated knowledge reader
-  community/             # CH — voting and discussion UI
+  axiom/                 # AX — optional. Not required if Anytype holds the knowledge
+  community/             # CH — voting and discussion UI. Calls FM Forum
 packages/
   budget/                # FN — @actual-app/api budgeting. Not Billbot
   billbot/               # BB — invoicing and 1099 exports. Not Budget
@@ -31,10 +32,10 @@ packages/
   mailbot/               # MB — Gmail and IMAP labels and archive
   subtoken/              # TK — NTAG424 challenge-response and Solana tickets
   anytype/               # AT — any-sync boundary
-  poe/                   # PO — local Ollama (Hermes 3) or cloud providers
+  luna/                  # LU — local Ollama (Hermes 3) or cloud providers
   banking/               # BS — SimpleFIN and GoCardless; Teller and Plaid optional
   forum/                 # FM — Flarum
-  media/                 # MA — DaVinci, OBS, Loupedeck
+  media/                 # MA — DaVinci Resolve, OBS, Loupedeck show control
   ui/                    # Material 3 primitives, tokens, domain widgets
 tooling/
   config-eslint/
@@ -43,7 +44,7 @@ tooling/
   design-governance/     # token check used by CI
 ```
 
-Poe's provider list is `local-ollama`, `local-vllm`, `cloud-anthropic`, `cloud-openai`, `cloud-gemini`. Tool definitions and prompt shape do not change when the provider changes. API keys are supplied by the user at runtime and are never committed.
+Luna's provider list is `local-ollama`, `local-vllm`, `cloud-anthropic`, `cloud-openai`, `cloud-gemini`. On Omarchy, local-ollama is the default and the base URL is that machine. Tool definitions and prompt shape do not change when the provider changes. API keys are supplied by the user at runtime and are never committed.
 
 ## CI
 
@@ -59,15 +60,15 @@ MIT upstream stays MIT. Already published SubTerra MIT files stay MIT. AGPL code
 
 ## Data isolation
 
-PoweredUp OS, SubTerra Central, and Axiom Wiki do not have a shared database path. An extension reads another area only through a hub grant the user turned on.
+Luna OS and SubTerra Central do not have a shared database path. An extension reads another area only through a hub grant the user turned on. Axiom is a third isolated reader and is not required for the first build. Anytype already holds the knowledge graph.
 
 ## Phases
 
 1. Workspace skeleton matching this layout, strict TypeScript, ESLint 9 flat config, pnpm workspace, Turborepo.
 2. `budget` around `@actual-app/api`. `anytype` schema on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs for hub documents. `billbot` stays a separate invoicing package.
-3. `poe` with the provider interface and a tool registry for budget, blocks, and media.
+3. `luna` with the provider interface and a tool registry for budget, blocks, and media. Default the local provider at the Omarchy host.
 4. `packages/ui` Material 3 tokens and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
-5. Bundle `poweredup-os` in Tauri and `subterra-central` as the PWA. Confirm the PU bundle cannot read SC data and the reverse.
+5. Bundle `luna-os` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm the LO bundle cannot read SC data and the reverse.
 6. Playwright suites listed under CI.
 
 ## Kept from governance

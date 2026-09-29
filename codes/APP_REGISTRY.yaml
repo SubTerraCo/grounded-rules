@@ -8,7 +8,7 @@ apps:
     role: shell
     localPath: shell
     repo: SubTerraCo/subterra-shell
-    note: "Legacy shell. GV-0004 replaces this with PU / apps/poweredup-os (Tauri). Keep ST as the address alias."
+    note: "Legacy shell. GV-0004 replaces this with LO / apps/luna-os (Tauri). Keep ST as the address alias."
   - code: NX
     name: Nexus
     role: shell
@@ -62,21 +62,22 @@ apps:
     name: White-label OS
     role: app
     status: reserved
-    note: "GV-0004: not a separate app. Commercial gate and hosting live with PoweredUpLabs on PU."
+    note: "GV-0004: not a separate app. Commercial gate and hosting live with PoweredUpLabs on LO Luna OS."
   # GV-0004 enterprise monorepo. Old codes above remain valid addresses.
-  - code: PU
-    name: PoweredUp OS
+  - code: LO
+    name: Luna OS
     role: shell
-    localPath: apps/poweredup-os
+    localPath: apps/luna-os
     status: reserved
-    note: "Tauri v2 command center. Replaces ST as the admin shell target."
+    platforms: [DT, AD, IO, AP]
+    note: "Tauri v2 command center for Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST. The Omarchy machine is the local AI host."
   - code: SC
     name: SubTerra Central
     role: shell
     localPath: apps/subterra-central
     status: reserved
     audience: [member]
-    note: "PWA for ticketing, NFC, and the fan portal. Replaces NX. No read path to PU personal data."
+    note: "PWA for ticketing, NFC, and the fan portal. Replaces NX. No read path to LO personal data."
   - code: TS
     name: Time Shift
     role: app
@@ -88,7 +89,7 @@ apps:
     role: app
     localPath: apps/axiom
     status: reserved
-    note: "Open-knowledge reader. Isolated from PU and SC data stores."
+    note: "Optional isolated reader. Not required while Anytype holds the knowledge graph. No read path to LO or SC data."
   - code: CH
     name: Community
     role: app
@@ -101,12 +102,12 @@ apps:
     localPath: packages/budget
     status: reserved
     note: "Budgeting only. Headless wrapper around @actual-app/api. Separate from BB Billbot. Actual's UI stays upstream."
-  - code: PO
-    name: Poe
+  - code: LU
+    name: Luna
     role: app
-    localPath: packages/poe
+    localPath: packages/luna
     status: reserved
-    note: "Provider-agnostic agent router. Local Ollama (Hermes 3) or cloud. API keys are per-user, never committed."
+    note: "Agent router inside Luna OS. Local Ollama on the Omarchy host (Hermes 3) or cloud. API keys are per-user, never committed."
   - code: BS
     name: Banking
     role: integration
@@ -124,4 +125,4 @@ apps:
     role: app
     localPath: packages/media
     status: reserved
-    note: "DaVinci Resolve CLI, OBS WebSocket, Loupedeck. Rust only at the Tauri socket boundary."
+    note: "Show production. Talks to DaVinci Resolve, OBS, and Loupedeck. Rust only at the Tauri socket boundary."
