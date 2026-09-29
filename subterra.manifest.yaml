@@ -182,6 +182,7 @@ items:
     defaultOpen: false
     sdk: "@subterra/app-sdk"
     status: reserved
+    note: "Free for a solo freelancer. Fee for a crew manager of 5 or more."
 
   - id: axiom-wiki
     appCode: AX
