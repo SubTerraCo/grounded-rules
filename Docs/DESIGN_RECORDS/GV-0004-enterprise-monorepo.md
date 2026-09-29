@@ -52,7 +52,7 @@ One product, one code, one folder. The folder is the name people say. Technical 
 | MB | Mailbot | `packages/mailbot` | Gmail and IMAP labels and archive |
 | TK | Subtoken | `packages/subtoken` | NFC. NTAG424 challenge-response and Solana tickets. Absorbs tag-writer and validation |
 | AT | Anytype | `packages/anytype` | Local-first graph via any-sync |
-| LU | Luna | `packages/luna` | Agent router. Local Ollama on the Omarchy host, or cloud |
+| LU | Luna | `packages/luna` | Agent router. Ollama runs Gemma 4 12B on the 16GB Omarchy GPU. Cloud Gemini remains a provider |
 | BS | Banking | `packages/banking` | SimpleFIN and GoCardless |
 | FM | Forum | `packages/forum` | Flarum logic used by CH |
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
@@ -61,7 +61,7 @@ One product, one code, one folder. The folder is the name people say. Technical 
 | WL | White-label | — | Commercial gate on PU. Not a package |
 | — | UI | `packages/ui` | Material 3 tokens. No app code (`UI` is already an area code) |
 
-`ST`, `NX`, `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity and ephios stay upstream forks when those cores are adopted. They are not renamed into Blocks.
+`ST`, `NX`, `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity, InvoiceShelf, and gmailctl are not adopted. Blocks, Billbot, and Mailbot are built here.
 
 ---
 

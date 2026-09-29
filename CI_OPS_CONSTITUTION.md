@@ -432,7 +432,7 @@ This constitution cannot relicense other people's code:
 | Code | License that stays |
 |------|--------------------|
 | Already published SubTerraCo MIT files | MIT. Those grants are irrevocable |
-| Actual, Super Productivity, ephios, Flarum, and other MIT upstream | MIT. Notices stay in the bundle |
+| Actual, Flarum, and other MIT upstream we choose to ship | MIT. Notices stay in the bundle |
 | InvoiceShelf, if used | AGPL-3.0. It is not wrapped into the BSL packages or the paid multi-tenant host |
 | Anytype any-sync | Any Source Available License. Commercial use stays limited to Allowed Networks |
 

@@ -107,7 +107,7 @@ apps:
     role: app
     localPath: packages/luna
     status: reserved
-    note: "Agent router inside Luna OS. Local Ollama on the Omarchy host (Hermes 3) or cloud. API keys are per-user, never committed."
+    note: "Agent router inside Luna OS. Ollama on the Omarchy host runs Gemma 4 12B by default on a 16GB GPU. Cloud Gemini stays available. API keys are per-user, never committed."
   - code: BS
     name: Banking
     role: integration

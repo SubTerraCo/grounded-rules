@@ -32,7 +32,7 @@ packages/
   mailbot/               # MB — Gmail and IMAP labels and archive
   subtoken/              # TK — NTAG424 challenge-response and Solana tickets
   anytype/               # AT — any-sync boundary
-  luna/                  # LU — local Ollama (Hermes 3) or cloud providers
+  luna/                  # LU — Ollama on Omarchy, Gemma 4 12B default
   banking/               # BS — SimpleFIN and GoCardless; Teller and Plaid optional
   forum/                 # FM — Flarum
   media/                 # MA — DaVinci Resolve, OBS, Loupedeck show control
@@ -60,14 +60,14 @@ Use these projects for the engine and the patches. Write the Material 3 screen a
 | Package | Use | Leave out |
 |---------|-----|-----------|
 | Budget `FN` | `@actual-app/api` (MIT). Actual already syncs SimpleFIN and GoCardless | A second ledger |
-| Blocks `BK` | Super Productivity (MIT) for tasks, timeline, and timeboxing. Festy Blocks for the crew draft screens | Rewriting a kanban |
-| Billbot `BB` | InvoiceShelf (AGPL) as a local server beside the shell, same pattern as Home Assistant | Vendoring AGPL into this repo |
-| Mailbot `MB` | gmailctl (MIT) for filter files. Our label-and-archive UI stays | A full mail client |
+| Blocks `BK` | The existing Blocks app, plus Festy crew screens | Super Productivity. It has no Quick Blocks, and forking it would throw away the kanban that already works |
+| Billbot `BB` | Our invoicing package | InvoiceShelf. We will outbuild it. Do not vendor the AGPL app |
+| Mailbot `MB` | Our label-and-archive package | gmailctl and hosted inbox products. We will outbuild them |
 | Subtoken `TK` | NXP's public SDM spec for NTAG424. Our ticket record and event page | pretix and Hi.Events. Both are AGPL with extra terms that block a white-label ticket platform |
 | Community `CH` / Forum `FM` | Flarum (MIT) | Discourse (GPL) |
 | Home Assistant `HA` | `home-assistant-js-websocket` against a local Home Assistant server (Apache 2.0) | Forking Home Assistant |
 | Media `MA` | `obs-websocket-js` (MIT). DaVinci's scripting API ships with Resolve | A video editor |
-| Luna `LU` | The Ollama API on Omarchy. The Vercel AI SDK for the provider switch | A model runtime |
+| Luna `LU` | Ollama as the local runtime. Gemma 4 12B as the default weights on a 16GB GPU. Cloud Gemini stays available | Hermes as the default model. Gemma 4 31B and the 26B MoE at Q4_K_M as the daily default |
 | Hub | Yjs and SQLCipher | A CRDT written here |
 | UI | `@material/material-color-utilities` | A second design system |
 | Booking `BO` | No maintained open marketplace matches a profile, a rate, and a date request | Team@Once and Mercur. They are staffing or product commerce, not this listing |
