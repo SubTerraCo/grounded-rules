@@ -142,11 +142,11 @@ items:
     defaultBranch: master
 
   # GV-0004 monorepo entry points. Repo is not created yet. Old items above stay as aliases.
-  - id: open-luna
-    appCode: OL
-    name: Open Luna
+  - id: luna-os
+    appCode: LO
+    name: Luna OS
     repo: null
-    localPath: apps/open-luna
+    localPath: apps/luna-os
     platforms: [DT, AD, IO, AP]
     role: shell
     marketplace: null
@@ -156,11 +156,11 @@ items:
     status: reserved
     note: "GV-0004. Tauri command center, including Arch Linux for Omarchy. Replaces ST. Personal data is isolated from SC."
 
-  - id: open-central
-    appCode: OC
-    name: Open Central
+  - id: subterra-central
+    appCode: SC
+    name: SubTerra Central
     repo: null
-    localPath: apps/open-central
+    localPath: apps/subterra-central
     platforms: [WB]
     role: shell
     marketplace: null
@@ -210,11 +210,11 @@ items:
     sdk: "@subterra/app-sdk"
     status: reserved
 
-  - id: open-budget
-    appCode: BG
-    name: Open Budget
+  - id: budget
+    appCode: FN
+    name: Budget
     repo: null
-    localPath: packages/open-budget
+    localPath: packages/budget
     platforms: [SB]
     role: app
     marketplace: apps

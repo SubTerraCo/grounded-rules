@@ -41,26 +41,27 @@ One product, one code, one folder. The folder is the name people say. Technical 
 
 Open-source names use the word Open. The folder matches that name. Older codes remain address aliases.
 
+Open stays on names that would collide with a published app. The others use the plain product name.
+
 | Code | Name | Path | What it is |
 |------|------|------|------------|
-| OL | Open Luna | `apps/open-luna` | Tauri command center, including Arch / Omarchy. Replaces LO and ST |
-| OA | Open Agent | `packages/open-agent` | Agent router. Gemma 4 12B through Ollama. Replaces LU |
-| OC | Open Central | `apps/open-central` | Gigs and events. Replaces SC and NX |
+| LO | Luna OS | `apps/luna-os` | Tauri command center, including Arch / Omarchy. Replaces ST |
+| LU | Luna | `packages/luna` | Agent router. Gemma 4 12B through Ollama |
+| SC | SubTerra Central | `apps/subterra-central` | Gigs and events. Replaces NX |
 | OD | Open Day | `packages/open-day` | Tasks, timeline, Quick Blocks, Festy crew tools. Replaces BK |
-| OS | Open Sort | `packages/open-sort` | Mail labels and archive. Replaces MB. Code OS means Open Sort |
-| BG | Open Budget | `packages/open-budget` | Budgeting via `@actual-app/api`. Replaces FN |
+| OS | Open Sort | `packages/open-sort` | Mail labels and archive. Replaces MB |
+| FN | Budget | `packages/budget` | Budgeting via `@actual-app/api`. Not named Open Budget |
 | BI | Open Bill | `packages/open-bill` | Invoicing. Replaces BB |
-| OT | Open Token | `packages/open-token` | NFC and tickets. Replaces TK |
-| OB | Open Booking | `apps/open-booking` | Profile, listing, rate, date request. Replaces BO |
-| CY | Open Community | `apps/open-community` | Discussion UI. Replaces CH |
-| OF | Open Forum | `packages/open-forum` | Flarum. Replaces FM |
-| OH | Open Home | `packages/open-home` | Home Assistant client. Replaces HA |
-| OM | Open Media | `packages/open-media` | DaVinci, OBS, Loupedeck. Replaces MA |
-| UB | Open Bank | `packages/open-bank` | SimpleFIN and GoCardless. Replaces BS |
-| ON | Open Notes | `packages/open-notes` | Optional any-sync mirror. Replaces AT |
-| OX | Open Axiom | `apps/open-axiom` | Optional. Replaces AX |
-| GV | Open Governance | `SubTerraCo/subterra-governance` | This rules repo. The GitHub repo name stays |
-| WL | White-label | — | Commercial gate on Open Luna. Not a package |
+| TK | Subtoken | `packages/subtoken` | NFC and tickets |
+| OB | Open Booking | `apps/open-booking` | Profile, listing, rate, date request |
+| CH | Community | `apps/community` | Discussion UI |
+| FM | Forum | `packages/forum` | Flarum |
+| HA | Home Assistant | `packages/home-assistant` | Home automation client |
+| MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
+| BS | Banking | `packages/banking` | SimpleFIN and GoCardless |
+| AT | Anytype | — | Dedicated workspace. Not a package. Open Axiom is cut |
+| GV | Governance | `SubTerraCo/subterra-governance` | This rules repo |
+| WL | White-label | — | Commercial gate on Luna OS. Not a package |
 | — | Open UI | `packages/open-ui` | Material 3 tokens. No app code |
 
 `ST`, `NX`, `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity, InvoiceShelf, and gmailctl are not adopted. Blocks, Billbot, and Mailbot are built here.

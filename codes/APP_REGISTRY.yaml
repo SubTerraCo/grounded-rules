@@ -8,7 +8,7 @@ apps:
     role: shell
     localPath: shell
     repo: SubTerraCo/subterra-shell
-    note: "Legacy shell. The shell to build is OL Open Luna at apps/open-luna. Keep ST as an address alias."
+    note: "Legacy shell. The shell to build is LO Luna OS at apps/luna-os. Keep ST as an address alias."
   - code: NX
     name: Nexus
     role: shell
@@ -46,7 +46,7 @@ apps:
     repo: SubTerraCo/subterra-anytype
     status: linked  # GV-0001 D2 — vendor kept as `upstream` remote
     upstream: anyproto/anytype-api
-    note: "Optional personal hub mirror for Luna OS. Packages do not require it. The shell SQLite hub is the store when Anytype is absent. any-sync ASAL limits still apply."
+    note: "Not a monorepo package. PKM lives in a dedicated Anytype workspace. any-sync ASAL limits still apply. Open Axiom is cut."
   - code: TK
     name: Subtoken
     role: app
@@ -55,33 +55,36 @@ apps:
     status: reserved
     audience: [admin]
     note: >-
-      Address alias for OT Open Token at packages/open-token. UID-only auth is forbidden.
+      NFC package packages/subtoken. NTAG424 challenge-response and ticket records.
+      UID-only auth is forbidden. Absorbs tag-writer and validation.
+      PKM stays in a dedicated Anytype workspace, not in this repo.
   - code: WL
     name: White-label OS
     role: app
     status: reserved
-    note: "GV-0004: not a separate app. Commercial gate and hosting live with PoweredUpLabs on OL Open Luna."
-  # Open-source product names. Older codes in this file stay valid as address aliases.
-  - code: OL
-    name: Open Luna
+    note: "GV-0004: not a separate app. Commercial gate and hosting live with PoweredUpLabs on Luna OS."
+  # Open names stay only where the bare name collides with a published app.
+  # Luna, Central, Budget, Token, Community, Forum, Home, Media, and Bank are rewound.
+  - code: LO
+    name: Luna OS
     role: shell
-    localPath: apps/open-luna
+    localPath: apps/luna-os
     status: reserved
     platforms: [DT, AD, IO, AP]
-    note: "Tauri command center for Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST and LO. The Omarchy machine is the local AI host."
-  - code: OA
-    name: Open Agent
+    note: "Tauri command center for Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST. The Omarchy machine is the local AI host."
+  - code: LU
+    name: Luna
     role: app
-    localPath: packages/open-agent
+    localPath: packages/luna
     status: reserved
-    note: "Agent router inside Open Luna. Ollama runs Gemma 4 12B on the 16GB GPU. Cloud Gemini stays available. Replaces LU. API keys are per-user, never committed."
-  - code: OC
-    name: Open Central
+    note: "Agent router inside Luna OS. Ollama runs Gemma 4 12B on the 16GB GPU. Cloud Gemini stays available. API keys are per-user, never committed."
+  - code: SC
+    name: SubTerra Central
     role: shell
-    localPath: apps/open-central
+    localPath: apps/subterra-central
     status: reserved
     audience: [member]
-    note: "Gig and event hub. Replaces SC and NX. Anonymous NFC event page. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. A granted Open Day schedule is public here. Wishlists and the draft stay in Open Day."
+    note: "Gig and event hub. Replaces NX. Anonymous NFC event page. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. A granted Open Day schedule is public here. Wishlists and the draft stay in Open Day."
   - code: OD
     name: Open Day
     role: app
@@ -93,71 +96,53 @@ apps:
     role: app
     localPath: packages/open-sort
     status: reserved
-    note: "Gmail and IMAP labels and archive. Replaces MB as the package to build. Code OS means Open Sort."
-  - code: BG
-    name: Open Budget
+    note: "Gmail and IMAP labels and archive. Replaces MB as the package to build. A small file organizer is also named OpenSort. Code OS means this mail package."
+  - code: FN
+    name: Budget
     role: app
-    localPath: packages/open-budget
+    localPath: packages/budget
     status: reserved
-    note: "Budgeting only. @actual-app/api. Replaces FN. Separate from Open Bill."
+    note: "Budgeting only. @actual-app/api. Separate from Open Bill. The name Open Budget is already used, so this package is Budget."
   - code: BI
     name: Open Bill
     role: app
     localPath: packages/open-bill
     status: reserved
-    note: "Invoicing and 1099 exports. Replaces BB as the package to build. Not Open Budget."
-  - code: OT
-    name: Open Token
-    role: app
-    localPath: packages/open-token
-    status: reserved
-    note: "NFC. NTAG424 challenge-response and ticket records. Replaces TK as the package to build. Absorbs tag-writer and validation. UID-only auth is forbidden."
+    note: "Invoicing and 1099 exports. Replaces BB as the package to build. Not Budget."
   - code: OB
     name: Open Booking
     role: app
     localPath: apps/open-booking
     status: reserved
-    note: "Profile, listing, rate, and a date request. Replaces BO. Free for a solo freelancer. A crew manager of 5 or more pays."
-  - code: CY
-    name: Open Community
+    note: "Profile, listing, rate, and a date request. Free for a solo freelancer. A crew manager of 5 or more pays."
+  - code: CH
+    name: Community
     role: app
-    localPath: apps/open-community
+    localPath: apps/community
     status: reserved
-    note: "Voting and discussion UI over Open Forum. Replaces CH."
-  - code: OF
-    name: Open Forum
+    note: "Voting and discussion UI over Forum. Flarum, not Discourse."
+  - code: FM
+    name: Forum
     role: app
-    localPath: packages/open-forum
+    localPath: packages/forum
     status: reserved
-    note: "Flarum (MIT) for Open Community. Replaces FM. Discourse is not the default."
-  - code: OH
-    name: Open Home
+    note: "Flarum (MIT) for Community. Discourse is not the default."
+  - code: HA
+    name: Home Assistant
     role: app
-    localPath: packages/open-home
+    localPath: packages/home-assistant
     status: reserved
     audience: [admin]
-    note: "Home automation client. Replaces HA. The Home Assistant server stays upstream (Apache 2.0)."
-  - code: OM
-    name: Open Media
+    note: "Home automation client. The Home Assistant server stays upstream (Apache 2.0)."
+  - code: MA
+    name: Media
     role: app
-    localPath: packages/open-media
+    localPath: packages/media
     status: reserved
-    note: "DaVinci Resolve, OBS, and Loupedeck. Replaces MA. Rust only at the Tauri socket boundary."
-  - code: UB
-    name: Open Bank
+    note: "DaVinci Resolve, OBS, and Loupedeck. Rust only at the Tauri socket boundary."
+  - code: BS
+    name: Banking
     role: integration
-    localPath: packages/open-bank
+    localPath: packages/banking
     status: reserved
-    note: "SimpleFIN and GoCardless. Replaces BS. Teller and Plaid are optional adapters."
-  - code: ON
-    name: Open Notes
-    role: integration
-    localPath: packages/open-notes
-    status: reserved
-    note: "Optional any-sync mirror. Replaces AT as the package to build. Not required. ASAL limits still apply to any-sync."
-  - code: OX
-    name: Open Axiom
-    role: app
-    localPath: apps/open-axiom
-    status: reserved
-    note: "Optional isolated reader. Replaces AX. Skip unless Open Notes is not the knowledge store."
+    note: "SimpleFIN and GoCardless. Teller and Plaid are optional adapters."

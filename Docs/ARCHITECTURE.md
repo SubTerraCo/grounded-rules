@@ -7,36 +7,34 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 ## Stack
 
 - TypeScript strict mode for UI, domain logic, and shared types. React 19. Vite.
-- Two shells only: `apps/open-luna` (Tauri v2 for Windows, macOS, Android, iOS, and Arch Linux) and `apps/web-shell` (offline-first PWA).
+- Two shells only: `apps/luna-os` (Tauri v2 for Windows, macOS, Android, iOS, and Arch Linux) and `apps/web-shell` (offline-first PWA).
 - Arch builds install on Omarchy. That machine is the dedicated local AI host: Ollama runs there, and `packages/luna` calls it on localhost. Ship an AppImage and a PKGBUILD.
 - Rust only inside Tauri bindings: filesystem, local IPC, NFC hardware, DaVinci socket.
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
-- Finance store: Actual's own SQLite CRDT inside `packages/open-budget` (`BG`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
-- PKM boundary: any-sync to a local Anytype node. Hub documents are not stored in Anytype's database.
+- Finance store: Actual's own SQLite CRDT inside `packages/budget` (`FN`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
+- PKM lives in a dedicated Anytype workspace. It is not a package in this monorepo. The shell hub does not require it.
 - Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. Seed color `#e8a54b`. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx`.
 
 ## Apps and packages
 
 ```
 apps/
-  open-luna/             # OL — Tauri command center, including Arch / Omarchy
+  luna-os/               # LO — Tauri command center, including Arch / Omarchy
   web-shell/             # PWA runtime
-  open-central/          # OC — gigs, events, NFC event page
+  subterra-central/      # SC — gigs, events, NFC event page
   open-booking/          # OB — profile, listing, rate, date request
-  open-community/        # CY — voting and discussion UI
-  open-axiom/            # OX — optional isolated reader
+  open-community/        # CH — voting and discussion UI
 packages/
   open-day/              # OD — tasks, timeline, Quick Blocks, Festy crew tools
   open-sort/             # OS — Gmail and IMAP labels and archive
-  open-budget/           # BG — @actual-app/api budgeting
+  budget/                # FN — @actual-app/api budgeting
   open-bill/             # BI — invoicing and 1099 exports
-  open-token/            # OT — NTAG424 challenge-response and tickets
-  open-agent/            # OA — Ollama, Gemma 4 12B default
-  open-bank/             # UB — SimpleFIN and GoCardless
-  open-forum/            # OF — Flarum
-  open-home/             # OH — Home Assistant client
-  open-media/            # OM — DaVinci, OBS, Loupedeck
-  open-notes/            # ON — optional any-sync mirror
+  subtoken/              # TK — NTAG424 challenge-response and tickets
+  luna/                  # LU — Ollama, Gemma 4 12B default
+  banking/               # BS — SimpleFIN and GoCardless
+  forum/                 # FM — Flarum
+  home-assistant/        # HA — Home Assistant client
+  media/                 # MA — DaVinci, OBS, Loupedeck
   open-ui/               # Material 3 tokens. No app code
 tooling/
   config-eslint/
@@ -87,11 +85,11 @@ Every installable package stands alone. It may not import another package. The s
 
 Optional facts another package might have written are read from the hub only after the user grants that read. If the other package is not installed, those fields stay empty and the installed package still runs.
 
-Open Notes is an optional hub upgrade for a personal Open Luna install. When it is installed, it mirrors the shell hub through any-sync. When it is not installed, the shell hub is the store. Other people are not required to run it.
+PKM stays in a dedicated Anytype workspace. It is not a package here, and Open Axiom is cut. The shell hub is the store for installed packages. Other people are not required to run Anytype.
 
-The same package can be installed in Open Luna, in the Open Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other.
+The same package can be installed in Luna OS, in the SubTerra Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other.
 
-A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only Open Budget, Open Bill, and Open Day records that the person marks. Mail, banking, home automation, and the Open Notes mirror stay on Open Luna. Central's public pages never receive the unbridged Luna hub.
+A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only Budget, Open Bill, and Open Day records that the person marks. Mail, banking, and home automation stay on Luna OS. Central's public pages never receive the unbridged Luna hub.
 
 ## SubTerra Central access
 
@@ -103,26 +101,24 @@ A one-time charge upgrades that profile to Artist, Venue, or Vendor. The charge 
 
 Booking listings are free for a single freelancer. A crew manager with 5 or more members pays the booking fee. The fee is for managing that crew, not for looking for work alone.
 
-| Package | Open Luna (personal and white-label) | Open Central (public events) | Sells as |
+| Package | Luna OS (personal and white-label) | SubTerra Central (public events) | Sells as |
 |---------|--------------------------------------|----------------------------------|----------|
-| Open Budget `BG` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
+| Budget `FN` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
 | Open Bill `BI` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
-| Open Day `OD` | Yes. Personal tasks, plus Festy crew drafting | Public schedule only, when granted | Seat. Drafting stays on Open Luna |
+| Open Day `OD` | Yes. Personal tasks, plus Festy crew drafting | Public schedule only, when granted | Seat. Drafting stays on Luna OS |
 | Open Sort `OS` | Yes | No | Back-office seat |
-| Open Bank `UB` | Yes | No | Back-office seat |
-| Open Home `OH` | Yes | No | Back-office seat |
-| Open Media `OM` | Yes | No | Show-control seat |
-| Open Agent `OA` | Yes | No | Seat. Tools exist only for packages that are installed |
-| Open Notes `ON` | Optional personal hub | No | Not required to sell or to run |
-| Open Token `OT` | Organizer tools | Event page, tickets, show log, digital goods | Ticket price. Anonymous tag access. One-time profile upgrade is separate |
+| Banking `BS` | Yes | No | Back-office seat |
+| Home Assistant `HA` | Yes | No | Back-office seat |
+| Media `MA` | Yes | No | Show-control seat |
+| Luna `LU` | Yes | No | Seat. Tools exist only for packages that are installed |
+| Subtoken `TK` | Organizer tools | Event page, tickets, show log, digital goods | Ticket price. Anonymous tag access. One-time profile upgrade is separate |
 | Open Booking `OB` | Yes | Yes | Free for a solo freelancer. Fee for a crew manager of 5 or more |
-| Open Community `CY` | Crew discussion | Public discussion | Free under the BSL grant. Commercial key past 5 seats |
-| Open Forum `OF` | Optional richer discussion | Optional richer discussion | Same grant. Community still runs without it |
-| Open Axiom `OX` | No | Optional public reader | Skip until a sealed public knowledge site is needed |
+| Community `CH` | Crew discussion | Public discussion | Free under the BSL grant. Commercial key past 5 seats |
+| Forum `FM` | Optional richer discussion | Optional richer discussion | Same grant. Community still runs without it |
 
 UI is not a marketplace item. It ships inside both shells.
 
-Monetization is the BSL seat key and PoweredUpLabs hosting for Open Luna, ticket prices on Open Central, a one-time Artist, Venue, or Vendor profile upgrade, and the Open Booking fee for crew managers of 5 or more. A solo freelancer does not pay that fee. A package that is not installed is not billed and is not loaded.
+Monetization is the BSL seat key and PoweredUpLabs hosting for Luna OS, ticket prices on SubTerra Central, a one-time Artist, Venue, or Vendor profile upgrade, and the Open Booking fee for crew managers of 5 or more. A solo freelancer does not pay that fee. A package that is not installed is not billed and is not loaded.
 
 ## Phases
 
@@ -130,7 +126,7 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for Open Luna, ticket
 2. Shell hub on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs. `budget` around `@actual-app/api`. `billbot` stays a separate invoicing package. `anytype` is an optional mirror of the hub, not the store packages require.
 3. `luna` with the provider interface and a tool registry for budget, blocks, and media. Default the local provider at the Omarchy host.
 4. `packages/open-ui` Material 3 tokens and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
-5. Bundle `open-luna` in Tauri, including the Arch Linux / Omarchy target, and `open-central` as the PWA. Confirm an unlinked Open Luna hub cannot read Open Central data. Confirm a linked bridge copies only Open Budget, Open Bill, and Open Day records the owner marked.
+5. Bundle `luna-os` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked Luna OS hub cannot read SubTerra Central data. Confirm a linked bridge copies only Budget, Open Bill, and Open Day records the owner marked.
 6. Playwright suites listed under CI.
 
 ## Festy Blocks
@@ -139,8 +135,8 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for Open Luna, ticket
 
 | Screen | Home |
 |--------|------|
-| Team setup, lobby, shift wishlist, conflict resolver, draft board, coverage, time clock | Open Day (`OD`), inside Open Luna |
-| The finished schedule | Open Central, read-only, and only when the owner grants it |
+| Team setup, lobby, shift wishlist, conflict resolver, draft board, coverage, time clock | Open Day (`OD`), inside Luna OS |
+| The finished schedule | SubTerra Central, read-only, and only when the owner grants it |
 
 Wishlists and the draft are crew-private. They do not appear on the public event page. Booking (`BO`) is still a hire for a date, not this draft.
 
