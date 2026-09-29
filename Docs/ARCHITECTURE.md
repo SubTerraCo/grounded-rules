@@ -111,6 +111,20 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for Luna OS, ticket p
 5. Bundle `luna-os` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked LO hub cannot read SC data. Confirm a linked bridge copies only Budget, Billbot, and Blocks records the owner marked.
 6. Playwright suites listed under CI.
 
+## Prior plans
+
+These files were searched before building. Vendor roadmaps inside `actual/` stay upstream and are not edited.
+
+| Plan | Still used | Dropped |
+|------|------------|---------|
+| `subterra-shell` roadmap, August 2026 | Marketplace of optional packages | Electron and Next shells, `apps/nexus`, separate Apps and Integrations tabs, code `ST` as the thing to build |
+| `blocks` roadmap | Kanban, timeline, quick-add, and task fields are the Blocks (`BK`) screen spec | Windows-desktop-first order. Luna OS Tauri is the shell for every platform |
+| `blocks/Docs/Integrations/HERMES_ECOSYSTEM_ARCHITECTURE.md` | A local agent with tools for Blocks, Billbot, Mailbot, and Anytype | Separate repos and MCP as the architecture. The agent is `packages/luna`. Packages do not import each other |
+| `mailbot/cursor_gmail_api_auto_sorting_bot_strat.md` | A later Mailbot slice can pull a bill PDF and hand line items to Billbot if both are installed | Google Sheets as the system of record. The chat export is not a spec |
+| GV-0001, GV-0002 | Dewey codes, audience, NFC challenge-response, vendor `upstream` remotes | Admin/Nexus folder layout, Electron shell, polyrepo as the product shape |
+
+Do not start a build from those files. Start from this blueprint.
+
 ## Kept from governance
 
 Dewey addresses, manifest registration, fail-closed audience, vendor `upstream` remotes, NFC challenge-response, and the rule that product e2e stays beside the product while cross-repo contracts stay in governance `tests/` until the monorepo `tests/contract` replaces them.
