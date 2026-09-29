@@ -41,7 +41,7 @@ Product repos **consume** governance; they must not fork conflicting Dewey, vers
 - Vendor upstreams are a separate `upstream` remote — `origin` is always our own repo.
 - Manifest **`audience`** (`admin` / `member`) gates which shell may mount an item; default `["admin"]` fail-closed. Never overload SDK `role` for permissions (GV-0002).
 - NFC login must be **challenge-response** (ECDSA); UID-only auth is forbidden (constitution §13).
-- SubTerra-owned UI uses **Material Design 3** tokens from `packages/ui` (seed `#e8a54b`). Tailwind carries those tokens. Do not add a second component library (constitution §15, GV-0004).
+- SubTerra-owned UI uses **Material Design 3** tokens from `packages/open-ui` (seed `#e8a54b`). Tailwind carries those tokens. Do not add a second component library (constitution §15, GV-0004).
 - The enterprise monorepo uses `master`, the same as every other SubTerraCo repo. New original monorepo code is BSL 1.1. MIT upstream and already published MIT grants stay MIT (constitution §16).
 
 ## When working here

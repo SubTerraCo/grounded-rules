@@ -7,8 +7,8 @@ alwaysApply: true
 
 SubTerra-owned UI uses Material Design 3. Constitution §15 and `Docs/DESIGN_RECORDS/GV-0003-material-3.md`.
 
-- Web, desktop, and mobile: Material 3 tokens in `packages/ui` via Tailwind and `@material/material-color-utilities` (GV-0004). No arbitrary Tailwind values, no hardcoded hex/RGB in `.tsx`.
-- Theme: import `packages/ui`. Seed color is amber `#e8a54b`. `@subterra/shell-ui` is legacy until the monorepo lands.
+- Web, desktop, and mobile: Material 3 tokens in `packages/open-ui` via Tailwind and `@material/material-color-utilities` (GV-0004). No arbitrary Tailwind values, no hardcoded hex/RGB in `.tsx`.
+- Theme: import `packages/open-ui`. Seed color is amber `#e8a54b`. `@subterra/shell-ui` is legacy until the monorepo lands.
 - Do not add MUI, shadcn, or a new hand-rolled button/nav kit.
 - New screens use Material 3 components. Change an existing screen over to Material 3 when you edit it.
 - Exempt: vendor-fork UI that still tracks upstream (Actual / `FN`), and tools with no UI (`tag-writer`). New SubTerra screens inside an exempt repo still follow this rule.

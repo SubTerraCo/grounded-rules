@@ -39,27 +39,29 @@ External licenses are not overruled: InvoiceShelf stays AGPL and out of the paid
 
 One product, one code, one folder. The folder is the name people say. Technical aliases (`ledger-finance`, `mail-triage`, `time-engine`, `solana-nfc`, `core-pkm`) are withdrawn.
 
+Open-source names use the word Open. The folder matches that name. Older codes remain address aliases.
+
 | Code | Name | Path | What it is |
 |------|------|------|------------|
-| LO | Luna OS | `apps/luna-os` | Tauri command center, including Arch / Omarchy. Replaces ST |
-| SC | SubTerra Central | `apps/subterra-central` | Ticketing and fan portal PWA. Replaces NX |
-| BO | Booking | `apps/booking` | Profile, listing, rate, and a date request. Replaces the Time Shift name. Not Blocks |
-| AX | Axiom | `apps/axiom` | Optional isolated knowledge reader. Skip unless Anytype is not the knowledge store |
-| CH | Community | `apps/community` | Voting and discussion UI |
-| FN | Budget | `packages/budget` | Budgeting. `@actual-app/api`. Not Billbot |
-| BB | Billbot | `packages/billbot` | Invoicing and 1099 exports. Not Budget |
-| BK | Blocks | `packages/blocks` | Tasks, timeline, and Festy crew tools (wishlist, conflict draft, coverage, time clock). Public schedule is a SubTerra Central grant |
-| MB | Mailbot | `packages/mailbot` | Gmail and IMAP labels and archive |
-| TK | Subtoken | `packages/subtoken` | NFC. NTAG424 challenge-response and Solana tickets. Absorbs tag-writer and validation |
-| AT | Anytype | `packages/anytype` | Local-first graph via any-sync |
-| LU | Luna | `packages/luna` | Agent router. Ollama runs Gemma 4 12B on the 16GB Omarchy GPU. Cloud Gemini remains a provider |
-| BS | Banking | `packages/banking` | SimpleFIN and GoCardless |
-| FM | Forum | `packages/forum` | Flarum logic used by CH |
-| MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
-| HA | Home Assistant | `packages/home-assistant` | Home automation client. Upstream server stays Apache 2.0 |
-| GV | Governance | `SubTerraCo/subterra-governance` | This rules repo |
-| WL | White-label | — | Commercial gate on PU. Not a package |
-| — | UI | `packages/ui` | Material 3 tokens. No app code (`UI` is already an area code) |
+| OL | Open Luna | `apps/open-luna` | Tauri command center, including Arch / Omarchy. Replaces LO and ST |
+| OA | Open Agent | `packages/open-agent` | Agent router. Gemma 4 12B through Ollama. Replaces LU |
+| OC | Open Central | `apps/open-central` | Gigs and events. Replaces SC and NX |
+| OD | Open Day | `packages/open-day` | Tasks, timeline, Quick Blocks, Festy crew tools. Replaces BK |
+| OS | Open Sort | `packages/open-sort` | Mail labels and archive. Replaces MB. Code OS means Open Sort |
+| BG | Open Budget | `packages/open-budget` | Budgeting via `@actual-app/api`. Replaces FN |
+| BI | Open Bill | `packages/open-bill` | Invoicing. Replaces BB |
+| OT | Open Token | `packages/open-token` | NFC and tickets. Replaces TK |
+| OB | Open Booking | `apps/open-booking` | Profile, listing, rate, date request. Replaces BO |
+| CY | Open Community | `apps/open-community` | Discussion UI. Replaces CH |
+| OF | Open Forum | `packages/open-forum` | Flarum. Replaces FM |
+| OH | Open Home | `packages/open-home` | Home Assistant client. Replaces HA |
+| OM | Open Media | `packages/open-media` | DaVinci, OBS, Loupedeck. Replaces MA |
+| UB | Open Bank | `packages/open-bank` | SimpleFIN and GoCardless. Replaces BS |
+| ON | Open Notes | `packages/open-notes` | Optional any-sync mirror. Replaces AT |
+| OX | Open Axiom | `apps/open-axiom` | Optional. Replaces AX |
+| GV | Open Governance | `SubTerraCo/subterra-governance` | This rules repo. The GitHub repo name stays |
+| WL | White-label | — | Commercial gate on Open Luna. Not a package |
+| — | Open UI | `packages/open-ui` | Material 3 tokens. No app code |
 
 `ST`, `NX`, `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity, InvoiceShelf, and gmailctl are not adopted. Blocks, Billbot, and Mailbot are built here.
 

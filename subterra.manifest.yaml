@@ -142,11 +142,11 @@ items:
     defaultBranch: master
 
   # GV-0004 monorepo entry points. Repo is not created yet. Old items above stay as aliases.
-  - id: luna-os
-    appCode: LO
-    name: Luna OS
+  - id: open-luna
+    appCode: OL
+    name: Open Luna
     repo: null
-    localPath: apps/luna-os
+    localPath: apps/open-luna
     platforms: [DT, AD, IO, AP]
     role: shell
     marketplace: null
@@ -156,11 +156,11 @@ items:
     status: reserved
     note: "GV-0004. Tauri command center, including Arch Linux for Omarchy. Replaces ST. Personal data is isolated from SC."
 
-  - id: subterra-central
-    appCode: SC
-    name: SubTerra Central
+  - id: open-central
+    appCode: OC
+    name: Open Central
     repo: null
-    localPath: apps/subterra-central
+    localPath: apps/open-central
     platforms: [WB]
     role: shell
     marketplace: null
@@ -170,11 +170,11 @@ items:
     status: reserved
     note: "Gig and event hub. Anonymous NFC event page. One-time Artist, Venue, or Vendor upgrade. Friend visibility off by default."
 
-  - id: booking
-    appCode: BO
-    name: Booking
+  - id: open-booking
+    appCode: OB
+    name: Open Booking
     repo: null
-    localPath: apps/booking
+    localPath: apps/open-booking
     platforms: [WB]
     role: app
     marketplace: apps
@@ -210,11 +210,11 @@ items:
     sdk: "@subterra/app-sdk"
     status: reserved
 
-  - id: budget
-    appCode: FN
-    name: Budget
+  - id: open-budget
+    appCode: BG
+    name: Open Budget
     repo: null
-    localPath: packages/budget
+    localPath: packages/open-budget
     platforms: [SB]
     role: app
     marketplace: apps

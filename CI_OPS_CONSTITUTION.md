@@ -20,14 +20,14 @@
 
 ### 1.1 Shell targets (GV-0004; supersedes GV-0002 D1–D2)
 
-Exactly two executable shells. Product entry points share them. Luna OS personal data and SubTerra Collective data do not share a read or write path.
+Exactly two executable shells. Product entry points share them. Open Luna personal data and SubTerra Collective data do not share a read or write path.
 
 | Shell | Path | Runtime | Hosts |
 |-------|------|---------|-------|
-| Desktop and mobile | `apps/luna-os` | Tauri v2 + React 19 + Vite | Luna OS on Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
-| Web | `apps/web-shell` | Offline-first PWA | SubTerra Central, Booking, Axiom, Community |
+| Desktop and mobile | `apps/open-luna` | Tauri v2 + React 19 + Vite | Open Luna on Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
+| Web | `apps/web-shell` | Offline-first PWA | Open Central, Open Booking, Open Axiom, Open Community |
 
-Shared UI is `packages/ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
+Shared UI is `packages/open-ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
 
 `apps/admin`, `apps/nexus`, and `packages/shell-core` from GV-0002 are not the paths to build. `subterra-shell` remains until the monorepo exists.
 
@@ -193,7 +193,7 @@ The Governance agent is the **one-stop shop** for cross-polyrepo standards. Prod
 | Domain | Scope |
 |--------|--------|
 | **Rulesets & Dewey** | Constitution, APP/PP/PR codes, manifest, CI Ops gates |
-| **Design language parity** | Material Design 3 (§15, GV-0003, GV-0004). One theme in `packages/ui` |
+| **Design language parity** | Material Design 3 (§15, GV-0003, GV-0004). One theme in `packages/open-ui` |
 | **Feature parity** | Apps ↔ Integrations twins; SDK API identity |
 | **GitHub repo management** | Create/configure SubTerraCo polyrepos for new shell/apps/integrations; branch protections; default labels; secrets/vars conventions |
 | **Deployment pipelines** | Reusable Actions (`ci-node`, deploy, release) consumed by all product repos |
@@ -404,8 +404,8 @@ Design record: [GV-0003](Docs/DESIGN_RECORDS/GV-0003-material-3.md).
 | Rule | Requirement |
 |------|-------------|
 | System | [Material Design 3](https://m3.material.io/) only. Do not add a second UI kit (MUI, shadcn, or a hand-rolled button/nav set) for new UI |
-| Web, desktop, and mobile | Tailwind CSS preset plus `@material/material-color-utilities` in `packages/ui` (GV-0004). Arbitrary Tailwind values and hardcoded hex/RGB in `.tsx` fail CI |
-| Theme | One theme, owned by `packages/ui`. `@subterra/shell-ui` is the legacy package until the monorepo lands |
+| Web, desktop, and mobile | Tailwind CSS preset plus `@material/material-color-utilities` in `packages/open-ui` (GV-0004). Arbitrary Tailwind values and hardcoded hex/RGB in `.tsx` fail CI |
+| Theme | One theme, owned by `packages/open-ui`. `@subterra/shell-ui` is the legacy package until the monorepo lands |
 | Seed color | Amber `#e8a54b` (current shell accent). Not Blocks magenta, and not Material's default purple |
 | New UI | Material 3 components: app bars, navigation, buttons, text fields, lists, sheets |
 | Existing UI | Migrates when that screen is edited. This rule does not require a rewrite in place |
@@ -419,7 +419,7 @@ Design record: [GV-0003](Docs/DESIGN_RECORDS/GV-0003-material-3.md).
 
 A repo that claims an exemption says so in its `.cursor/rules/` and in the manifest when the vendor-fork flag exists. The exemption covers that repo's upstream UI only. New SubTerra screens inside an exempt repo still use Material 3.
 
-Headless use of `@actual-app/api` inside `packages/budget` (`FN`) is the intended integration. That wrapper is ours and uses Material 3. Actual's own UI stays upstream. Billbot (`BB`, `packages/billbot`) is invoicing and is a separate package.
+Headless use of `@actual-app/api` inside `packages/open-budget` (`BG`) is the intended integration. That wrapper is ours and uses Material 3. Actual's own UI stays upstream. Open Bill (`BI`, `packages/open-bill`) is invoicing and is a separate package.
 
 ---
 
@@ -436,4 +436,4 @@ This constitution cannot relicense other people's code:
 | InvoiceShelf, if used | AGPL-3.0. It is not wrapped into the BSL packages or the paid multi-tenant host |
 | Anytype any-sync | Any Source Available License. Commercial use stays limited to Allowed Networks |
 
-`packages/budget`, `packages/anytype`, and `packages/ui` are BSL only for code we write. Imported upstream code keeps its own license.
+`packages/open-budget`, `packages/open-notes`, and `packages/open-ui` are BSL only for code we write. Imported upstream code keeps its own license.

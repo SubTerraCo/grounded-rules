@@ -8,7 +8,7 @@ apps:
     role: shell
     localPath: shell
     repo: SubTerraCo/subterra-shell
-    note: "Legacy shell. GV-0004 replaces this with LO / apps/luna-os (Tauri). Keep ST as the address alias."
+    note: "Legacy shell. The shell to build is OL Open Luna at apps/open-luna. Keep ST as an address alias."
   - code: NX
     name: Nexus
     role: shell
@@ -21,19 +21,19 @@ apps:
     role: app
     localPath: apps/blocks
     repo: SubTerraCo/Blocks
-    note: "Monorepo package packages/blocks. Personal kanban and timeline, plus the Festy crew tools: team setup, lobby, shift wishlist, conflict resolver, draft board, coverage, and time clock."
+    note: "Address alias for OD Open Day at packages/open-day."
   - code: MB
     name: Mailbot
     role: app
     localPath: apps/mailbot
     repo: SubTerraCo/mailbot
-    note: "Monorepo package packages/mailbot. Code stays MB."
+    note: "Address alias for OS Open Sort at packages/open-sort."
   - code: BB
     name: Billbot
     role: app
     localPath: packages/billbot
     status: reserved
-    note: "GV-0004 keeps this name and code. Package path is packages/billbot. Do not absorb InvoiceShelf (AGPL) into this package."
+    note: "Address alias for BI Open Bill at packages/open-bill."
   - code: GV
     name: Governance
     role: governance
@@ -55,81 +55,109 @@ apps:
     status: reserved
     audience: [admin]
     note: >-
-      Monorepo package packages/subtoken. Code stays TK. NTAG424 challenge-response
-      and Solana ticket signatures live here. UID-only auth is forbidden.
-      Absorbs tag-writer and validation.
+      Address alias for OT Open Token at packages/open-token. UID-only auth is forbidden.
   - code: WL
     name: White-label OS
     role: app
     status: reserved
-    note: "GV-0004: not a separate app. Commercial gate and hosting live with PoweredUpLabs on LO Luna OS."
-  # GV-0004 enterprise monorepo. Old codes above remain valid addresses.
-  - code: LO
-    name: Luna OS
+    note: "GV-0004: not a separate app. Commercial gate and hosting live with PoweredUpLabs on OL Open Luna."
+  # Open-source product names. Older codes in this file stay valid as address aliases.
+  - code: OL
+    name: Open Luna
     role: shell
-    localPath: apps/luna-os
+    localPath: apps/open-luna
     status: reserved
     platforms: [DT, AD, IO, AP]
-    note: "Tauri v2 command center for Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST. The Omarchy machine is the local AI host."
-  - code: SC
-    name: SubTerra Central
+    note: "Tauri command center for Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST and LO. The Omarchy machine is the local AI host."
+  - code: OA
+    name: Open Agent
+    role: app
+    localPath: packages/open-agent
+    status: reserved
+    note: "Agent router inside Open Luna. Ollama runs Gemma 4 12B on the 16GB GPU. Cloud Gemini stays available. Replaces LU. API keys are per-user, never committed."
+  - code: OC
+    name: Open Central
     role: shell
-    localPath: apps/subterra-central
+    localPath: apps/open-central
     status: reserved
     audience: [member]
-    note: "Gig and event hub. Anonymous NFC event page, tickets, show log, and follows. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. A granted Blocks schedule is public here. Wishlists, the draft, and the time clock stay in Blocks. Finance and time cross the Luna OS bridge only when that owner links them."
-  - code: BO
-    name: Booking
+    note: "Gig and event hub. Replaces SC and NX. Anonymous NFC event page. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. A granted Open Day schedule is public here. Wishlists and the draft stay in Open Day."
+  - code: OD
+    name: Open Day
     role: app
-    localPath: apps/booking
+    localPath: packages/open-day
     status: reserved
-    note: "Profile, listing, rate, and a date request. Free for a solo freelancer. A crew manager of 5 or more pays. Not the day planner (BK) and not invoicing (BB)."
-  - code: AX
-    name: Axiom
+    note: "Tasks, timeline, Quick Blocks, and Festy crew tools. Replaces BK as the package to build. The existing Blocks repo remains the screen spec."
+  - code: OS
+    name: Open Sort
     role: app
-    localPath: apps/axiom
+    localPath: packages/open-sort
     status: reserved
-    note: "Optional isolated reader. Not required while Anytype holds the knowledge graph. No read path to LO or SC data."
-  - code: CH
-    name: Community
+    note: "Gmail and IMAP labels and archive. Replaces MB as the package to build. Code OS means Open Sort."
+  - code: BG
+    name: Open Budget
     role: app
-    localPath: apps/community
+    localPath: packages/open-budget
     status: reserved
-    note: "Voting and discussion UI over FM. Flarum, not Discourse."
-  - code: FN
-    name: Budget
+    note: "Budgeting only. @actual-app/api. Replaces FN. Separate from Open Bill."
+  - code: BI
+    name: Open Bill
     role: app
-    localPath: packages/budget
+    localPath: packages/open-bill
     status: reserved
-    note: "Budgeting only. Headless wrapper around @actual-app/api. Separate from BB Billbot. Actual's UI stays upstream."
-  - code: LU
-    name: Luna
+    note: "Invoicing and 1099 exports. Replaces BB as the package to build. Not Open Budget."
+  - code: OT
+    name: Open Token
     role: app
-    localPath: packages/luna
+    localPath: packages/open-token
     status: reserved
-    note: "Agent router inside Luna OS. Ollama on the Omarchy host runs Gemma 4 12B by default on a 16GB GPU. Cloud Gemini stays available. API keys are per-user, never committed."
-  - code: BS
-    name: Banking
-    role: integration
-    localPath: packages/banking
-    status: reserved
-    note: "SimpleFIN and GoCardless first. Teller and Plaid are optional adapters behind the same interface."
-  - code: FM
-    name: Forum
+    note: "NFC. NTAG424 challenge-response and ticket records. Replaces TK as the package to build. Absorbs tag-writer and validation. UID-only auth is forbidden."
+  - code: OB
+    name: Open Booking
     role: app
-    localPath: packages/forum
+    localPath: apps/open-booking
     status: reserved
-    note: "Topic voting and discussion logic for CH. Flarum (MIT). Discourse is not the default."
-  - code: MA
-    name: Media
+    note: "Profile, listing, rate, and a date request. Replaces BO. Free for a solo freelancer. A crew manager of 5 or more pays."
+  - code: CY
+    name: Open Community
     role: app
-    localPath: packages/media
+    localPath: apps/open-community
     status: reserved
-    note: "Show production. Talks to DaVinci Resolve, OBS, and Loupedeck. Rust only at the Tauri socket boundary."
-  - code: HA
-    name: Home Assistant
+    note: "Voting and discussion UI over Open Forum. Replaces CH."
+  - code: OF
+    name: Open Forum
     role: app
-    localPath: packages/home-assistant
+    localPath: packages/open-forum
+    status: reserved
+    note: "Flarum (MIT) for Open Community. Replaces FM. Discourse is not the default."
+  - code: OH
+    name: Open Home
+    role: app
+    localPath: packages/open-home
     status: reserved
     audience: [admin]
-    note: "Home automation client. The Home Assistant server stays upstream (Apache 2.0) and can run on the Omarchy host. This package talks to it. It is not vendored into BSL."
+    note: "Home automation client. Replaces HA. The Home Assistant server stays upstream (Apache 2.0)."
+  - code: OM
+    name: Open Media
+    role: app
+    localPath: packages/open-media
+    status: reserved
+    note: "DaVinci Resolve, OBS, and Loupedeck. Replaces MA. Rust only at the Tauri socket boundary."
+  - code: UB
+    name: Open Bank
+    role: integration
+    localPath: packages/open-bank
+    status: reserved
+    note: "SimpleFIN and GoCardless. Replaces BS. Teller and Plaid are optional adapters."
+  - code: ON
+    name: Open Notes
+    role: integration
+    localPath: packages/open-notes
+    status: reserved
+    note: "Optional any-sync mirror. Replaces AT as the package to build. Not required. ASAL limits still apply to any-sync."
+  - code: OX
+    name: Open Axiom
+    role: app
+    localPath: apps/open-axiom
+    status: reserved
+    note: "Optional isolated reader. Replaces AX. Skip unless Open Notes is not the knowledge store."
