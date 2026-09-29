@@ -22,7 +22,7 @@ apps/
   luna-os/               # LO — Tauri command center, including Arch / Omarchy
   web-shell/             # PWA runtime
   subterra-central/      # SC — ticketing, NFC, fan portal
-  time-shift/            # TS — freelance marketplace
+  booking/               # BO — profile, listing, rate, date request
   axiom/                 # AX — optional. Not required if Anytype holds the knowledge
   community/             # CH — voting and discussion UI. Calls FM Forum
 packages/
@@ -81,7 +81,7 @@ The same package can be installed in Luna OS, in the SubTerra Central PWA, or in
 | Luna `LU` | Yes | No | Seat. Tools exist only for packages that are installed |
 | Anytype `AT` | Optional personal hub | No | Not required to sell or to run |
 | Subtoken `TK` | Organizer tools | Fan ticket view | Ticket fees on Central. Organizer tools on Luna OS |
-| Time Shift `TS` | Yes | Yes | Marketplace listing. Each shell has its own data |
+| Booking `BO` | Yes | Yes | Listing fee or a cut of a booked date. Each shell has its own data |
 | Community `CH` | Crew discussion | Public discussion | Free under the BSL grant. Commercial key past 5 seats |
 | Forum `FM` | Optional richer discussion | Optional richer discussion | Same grant. Community still runs without it |
 | Axiom `AX` | No | Optional public reader | Skip until a sealed public knowledge site is needed |

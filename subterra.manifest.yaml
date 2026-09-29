@@ -170,11 +170,11 @@ items:
     status: reserved
     note: "GV-0004. Ticketing, NFC, fan portal PWA. Replaces NX."
 
-  - id: time-shift-portal
-    appCode: TS
-    name: Time Shift
+  - id: booking
+    appCode: BO
+    name: Booking
     repo: null
-    localPath: apps/time-shift
+    localPath: apps/booking
     platforms: [WB]
     role: app
     marketplace: apps

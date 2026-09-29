@@ -25,7 +25,7 @@ Exactly two executable shells. Product entry points share them. Luna OS personal
 | Shell | Path | Runtime | Hosts |
 |-------|------|---------|-------|
 | Desktop and mobile | `apps/luna-os` | Tauri v2 + React 19 + Vite | Luna OS on Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
-| Web | `apps/web-shell` | Offline-first PWA | SubTerra Central, Time Shift, Axiom, Community |
+| Web | `apps/web-shell` | Offline-first PWA | SubTerra Central, Booking, Axiom, Community |
 
 Shared UI is `packages/ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
 

@@ -43,7 +43,7 @@ One product, one code, one folder. The folder is the name people say. Technical 
 |------|------|------|------------|
 | LO | Luna OS | `apps/luna-os` | Tauri command center, including Arch / Omarchy. Replaces ST |
 | SC | SubTerra Central | `apps/subterra-central` | Ticketing and fan portal PWA. Replaces NX |
-| TS | Time Shift | `apps/time-shift` | Freelance marketplace |
+| BO | Booking | `apps/booking` | Profile, listing, rate, and a date request. Replaces the Time Shift name. Not Blocks |
 | AX | Axiom | `apps/axiom` | Optional isolated knowledge reader. Skip unless Anytype is not the knowledge store |
 | CH | Community | `apps/community` | Voting and discussion UI |
 | FN | Budget | `packages/budget` | Budgeting. `@actual-app/api`. Not Billbot |

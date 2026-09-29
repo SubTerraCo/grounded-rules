@@ -78,12 +78,12 @@ apps:
     status: reserved
     audience: [member]
     note: "PWA for ticketing, NFC, and the fan portal. Replaces NX. No read path to LO personal data."
-  - code: TS
-    name: Time Shift
+  - code: BO
+    name: Booking
     role: app
-    localPath: apps/time-shift
+    localPath: apps/booking
     status: reserved
-    note: "Freelance marketplace. Web and tablet."
+    note: "Standalone marketplace. A profile, a listing, a rate, and a request for a date. Not the day planner (BK) and not invoicing (BB). An event or a payment link is an optional hub grant."
   - code: AX
     name: Axiom
     role: app
