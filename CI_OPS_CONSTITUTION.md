@@ -3,7 +3,7 @@
 > Source of truth for all SubTerraCo SubTerra polyrepos.  
 > Product repos **consume** this document; they do not fork conflicting rules.
 >
-> **GV-0004 supersedes this constitution wherever they disagree.** The enterprise monorepo (two shells, package layout, `main`, BSL for new original code, Tailwind Material 3 tokens, Rust only inside Tauri) is the current ruling. Rules below still apply when GV-0004 is silent.
+> **GV-0004 supersedes this constitution wherever they disagree.** The enterprise monorepo (two shells, package layout, BSL for new original code, Tailwind Material 3 tokens, Rust only inside Tauri) is the current ruling. Its default branch is `master`, the same as every other SubTerraCo repo. Rules below still apply when GV-0004 is silent.
 
 **ciOpsVersion:** aligns with `governance/package.json` version (`YY.M.D`).
 
@@ -87,7 +87,7 @@ Shared **format** across all repos; each repo stamps **independently**.
 
 ### 4.1 Branch model (locked GV-0001 D7)
 
-**Default branch name.** Existing SubTerraCo repositories use **`master`**. The enterprise monorepo uses **`main`** (GV-0004). Do not invent a third production-branch name.
+**Default branch name.** Every SubTerraCo repository, including the enterprise monorepo, uses **`master`**. Do not invent another production-branch name.
 
 | Branch | Role |
 |--------|------|
@@ -97,9 +97,9 @@ Shared **format** across all repos; each repo stamps **independently**.
 
 `master` is the production branch for existing SubTerraCo repos. Reusable deploy workflows for those repos target `master`.
 
-The enterprise monorepo is the exception (GV-0004): its default branch is **`main`**, with `staging` as the integration branch, matching its CI pipeline. Do not rename existing `master` branches as part of that exception.
+The enterprise monorepo uses `master` for production and `dev` for integration. Do not create it with `main` or `staging`.
 
-When an existing repository's default branch is still `main`, retarget it to `master` by renaming that branch so history stays intact. The enterprise monorepo is not retargeted. If a `master` branch already exists and its tip is a different commit from `main`, stop. Do not force-push over that `master`. Report both tips and reconcile them before changing the default.
+When an existing repository's default branch is still `main`, retarget it to `master` by renaming that branch so history stays intact. If a `master` branch already exists and its tip is a different commit from `main`, stop. Do not force-push over that `master`. Report both tips and reconcile them before changing the default.
 
 Rules (from Blocks CI Ops):
 

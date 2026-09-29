@@ -19,7 +19,7 @@ The enterprise blueprint wins wherever it disagrees with GV-0001, GV-0002, or GV
 | C1 | Polyrepo, one repo per app (§1) | One pnpm + Turborepo monorepo | Monorepo is the product. `subterra-governance` stays this rules repo. `tooling/design-governance` enforces tokens; it does not fork the constitution |
 | C2 | Shells are `apps/admin` and `apps/nexus` over `shell-core` (GV-0002) | Exactly two runtimes: Tauri v2 and a PWA | Build `apps/luna-os` (Tauri, including Arch Linux / Omarchy) and `apps/web-shell` (PWA). Do not create `apps/admin` or `apps/nexus` |
 | C3 | Electron + Next shell | Vite, React 19, Tauri v2 | Tauri + Vite. `subterra-shell` stays until Phase 1 copies what is still useful |
-| C4 | Every repo defaults to `master` (§4.1) | CI on `main` and `staging` | Existing repos stay `master`. The new monorepo uses `main`, with `staging` as integration |
+| C4 | Every repo defaults to `master` (§4.1) | The first blueprint draft used `main` and `staging` | Withdrawn. The monorepo uses `master` and `dev`, same as every other SubTerraCo repo |
 | C5 | pnpm 11.14, reusable `ci-node.yml@v1` | pnpm 9, Node 22, Turbo pipeline in-repo | Monorepo CI is the blueprint pipeline (pnpm 9, Node 22). This governance repo keeps its own workflow |
 | C6 | Material Web and `@subterra/shell-ui` (GV-0003 D2–D3) | Tailwind + `@material/material-color-utilities`, `packages/ui` | Material 3 stays. Tokens move to `packages/ui`. Arbitrary Tailwind values and hardcoded colors fail CI. Seed stays amber `#e8a54b` |
 | C7 | New Rust is forbidden (§14) | Rust for Tauri bindings only | Rust is allowed only in those bindings. App logic stays TypeScript |

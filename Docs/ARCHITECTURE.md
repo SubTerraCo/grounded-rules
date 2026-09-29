@@ -49,7 +49,29 @@ Luna's provider list is `local-ollama`, `local-vllm`, `cloud-anthropic`, `cloud-
 
 ## CI
 
-The monorepo pipeline runs on `main` and `staging`, and on pull requests into `main`. Node 22. pnpm 9. Fail the job on lint, typecheck, token check, unit tests, then build. Playwright covers visual regression, offline Yjs convergence, the finance path (receipt to ledger to Billbot to a simulated bank match), tenant isolation, and mocked NFC plus a local Solana validator.
+The monorepo pipeline runs on `master` and `dev`, and on pull requests into `master`. Node 22. pnpm 9. Fail the job on lint, typecheck, token check, unit tests, then build. Playwright covers visual regression, offline Yjs convergence, the finance path (receipt to ledger to Billbot to a simulated bank match), tenant isolation, and mocked NFC plus a local Solana validator.
+
+Create `SubTerraCo/luna` with `master` as the default branch. Do not use `main`.
+
+## Upstream cores
+
+Use these projects for the engine and the patches. Write the Material 3 screen and the shell grant in our package. Do not copy an AGPL server into the monorepo.
+
+| Package | Use | Leave out |
+|---------|-----|-----------|
+| Budget `FN` | `@actual-app/api` (MIT). Actual already syncs SimpleFIN and GoCardless | A second ledger |
+| Blocks `BK` | Super Productivity (MIT) for tasks, timeline, and timeboxing. Festy Blocks for the crew draft screens | Rewriting a kanban |
+| Billbot `BB` | InvoiceShelf (AGPL) as a local server beside the shell, same pattern as Home Assistant | Vendoring AGPL into this repo |
+| Mailbot `MB` | gmailctl (MIT) for filter files. Our label-and-archive UI stays | A full mail client |
+| Subtoken `TK` | NXP's public SDM spec for NTAG424. Our ticket record and event page | pretix and Hi.Events. Both are AGPL with extra terms that block a white-label ticket platform |
+| Community `CH` / Forum `FM` | Flarum (MIT) | Discourse (GPL) |
+| Home Assistant `HA` | `home-assistant-js-websocket` against a local Home Assistant server (Apache 2.0) | Forking Home Assistant |
+| Media `MA` | `obs-websocket-js` (MIT). DaVinci's scripting API ships with Resolve | A video editor |
+| Luna `LU` | The Ollama API on Omarchy. The Vercel AI SDK for the provider switch | A model runtime |
+| Hub | Yjs and SQLCipher | A CRDT written here |
+| UI | `@material/material-color-utilities` | A second design system |
+| Booking `BO` | No maintained open marketplace matches a profile, a rate, and a date request | Team@Once and Mercur. They are staffing or product commerce, not this listing |
+| Anytype `AT` | any-sync, optional | Making it required |
 
 Existing SubTerraCo repos stay on `master` and keep calling governance workflows until they are folded in.
 
