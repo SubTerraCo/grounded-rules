@@ -77,13 +77,13 @@ apps:
     localPath: apps/subterra-central
     status: reserved
     audience: [member]
-    note: "PWA for ticketing, NFC, and the fan portal. Replaces NX. No read path to LO personal data."
+    note: "Gig and event hub. Anonymous NFC event page, tickets, show log, and follows. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. Finance and time cross the Luna OS bridge only when that owner links them."
   - code: BO
     name: Booking
     role: app
     localPath: apps/booking
     status: reserved
-    note: "Standalone marketplace. A profile, a listing, a rate, and a request for a date. Not the day planner (BK) and not invoicing (BB). An event or a payment link is an optional hub grant."
+    note: "Profile, listing, rate, and a date request. Free for a solo freelancer. A crew manager of 5 or more pays. Not the day planner (BK) and not invoicing (BB)."
   - code: AX
     name: Axiom
     role: app

@@ -75,7 +75,7 @@ One product, one code, one folder. The folder is the name people say. Technical 
 | InvoiceShelf | AGPL-3.0. Not vendored into a BSL package and not part of the multi-tenant host |
 | any-sync | Any Source Available License |
 
-Luna OS personal data and SubTerra Central data have no shared read or write path.
+Luna OS and SubTerra Central keep separate hubs. The same owner may link a bridge that copies only Budget, Billbot, and Blocks records they mark. The bridge is off by default. Central anonymous access is an NFC challenge-response to an event page, with a one-time upgrade for Artist, Venue, or Vendor profile tools. Friend-show visibility is off by default. Booking is free for a solo freelancer and billed for a crew manager of 5 or more.
 
 Packages do not import each other. Each shell ships a SQLite hub, and every package runs against an empty hub. Anytype is an optional mirror for a personal Luna OS install, not a dependency. Forum is an optional richer backend for Community. The deployment matrix is in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md).
 

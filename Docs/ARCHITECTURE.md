@@ -69,26 +69,38 @@ Anytype is an optional hub upgrade for a personal Luna OS install. When it is in
 
 The same package can be installed in Luna OS, in the SubTerra Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other.
 
+A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only Budget, Billbot, and Blocks records that the person marks. Mail, banking, home automation, and the Anytype mirror stay on Luna OS. Central's public pages never receive the unbridged Luna hub.
+
+## SubTerra Central access
+
+A tag opens an event page after NTAG424 challenge-response. A UID alone does not sign anyone in.
+
+The tag holder is an anonymous member. They can buy tickets, keep a log of shows, hold digital goods, and follow artists on a limited profile. They may set an alias. Seeing which shows friends attend is off until they turn that permission on, and each person controls their own visibility.
+
+A one-time charge upgrades that profile to Artist, Venue, or Vendor. The charge unlocks the profile tools for that type. Ticket buying, show history, digital goods, and follows stay available without the upgrade.
+
+Booking listings are free for a single freelancer. A crew manager with 5 or more members pays the booking fee. The fee is for managing that crew, not for looking for work alone.
+
 | Package | Luna OS (personal and white-label) | SubTerra Central (public events) | Sells as |
 |---------|--------------------------------------|----------------------------------|----------|
-| Budget `FN` | Yes | No | Back-office seat |
-| Billbot `BB` | Yes | No | Back-office seat |
-| Blocks `BK` | Yes | Public schedule only, if granted | Seat, or a public schedule view |
+| Budget `FN` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
+| Billbot `BB` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
+| Blocks `BK` | Yes | Public schedule, and the owner's time records through the bridge | Seat, or a public schedule view |
 | Mailbot `MB` | Yes | No | Back-office seat |
 | Banking `BS` | Yes | No | Back-office seat |
 | Home Assistant `HA` | Yes | No | Back-office seat |
 | Media `MA` | Yes | No | Show-control seat |
 | Luna `LU` | Yes | No | Seat. Tools exist only for packages that are installed |
 | Anytype `AT` | Optional personal hub | No | Not required to sell or to run |
-| Subtoken `TK` | Organizer tools | Fan ticket view | Ticket fees on Central. Organizer tools on Luna OS |
-| Booking `BO` | Yes | Yes | Listing fee or a cut of a booked date. Each shell has its own data |
+| Subtoken `TK` | Organizer tools | Event page, tickets, show log, digital goods | Ticket price. Anonymous tag access. One-time profile upgrade is separate |
+| Booking `BO` | Yes | Yes | Free for a solo freelancer. Fee for a crew manager of 5 or more |
 | Community `CH` | Crew discussion | Public discussion | Free under the BSL grant. Commercial key past 5 seats |
 | Forum `FM` | Optional richer discussion | Optional richer discussion | Same grant. Community still runs without it |
 | Axiom `AX` | No | Optional public reader | Skip until a sealed public knowledge site is needed |
 
 UI is not a marketplace item. It ships inside both shells.
 
-Monetization is the BSL seat key and PoweredUpLabs hosting for Luna OS, and ticket fees for Subtoken on SubTerra Central. A package that is not installed is not billed and is not loaded.
+Monetization is the BSL seat key and PoweredUpLabs hosting for Luna OS, ticket prices on SubTerra Central, a one-time Artist, Venue, or Vendor profile upgrade, and the Booking fee for crew managers of 5 or more. A solo freelancer does not pay that Booking fee. A package that is not installed is not billed and is not loaded.
 
 ## Phases
 
@@ -96,7 +108,7 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for Luna OS, and tick
 2. Shell hub on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs. `budget` around `@actual-app/api`. `billbot` stays a separate invoicing package. `anytype` is an optional mirror of the hub, not the store packages require.
 3. `luna` with the provider interface and a tool registry for budget, blocks, and media. Default the local provider at the Omarchy host.
 4. `packages/ui` Material 3 tokens and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
-5. Bundle `luna-os` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm the LO bundle cannot read SC data and the reverse.
+5. Bundle `luna-os` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked LO hub cannot read SC data. Confirm a linked bridge copies only Budget, Billbot, and Blocks records the owner marked.
 6. Playwright suites listed under CI.
 
 ## Kept from governance

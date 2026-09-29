@@ -168,7 +168,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "GV-0004. Ticketing, NFC, fan portal PWA. Replaces NX."
+    note: "Gig and event hub. Anonymous NFC event page. One-time Artist, Venue, or Vendor upgrade. Friend visibility off by default."
 
   - id: booking
     appCode: BO
