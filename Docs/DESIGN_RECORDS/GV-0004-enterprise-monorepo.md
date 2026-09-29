@@ -75,7 +75,9 @@ One product, one code, one folder. The folder is the name people say. Technical 
 | InvoiceShelf | AGPL-3.0. Not vendored into a BSL package and not part of the multi-tenant host |
 | any-sync | Any Source Available License |
 
-Luna OS personal data and SubTerra Central data have no shared read or write path. Axiom is an optional third store and is not required while Anytype holds the knowledge graph. The contract test in the blueprint is the enforcement.
+Luna OS personal data and SubTerra Central data have no shared read or write path.
+
+Packages do not import each other. Each shell ships a SQLite hub, and every package runs against an empty hub. Anytype is an optional mirror for a personal Luna OS install, not a dependency. Forum is an optional richer backend for Community. The deployment matrix is in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md).
 
 ---
 

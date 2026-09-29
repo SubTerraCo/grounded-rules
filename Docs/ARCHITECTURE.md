@@ -59,14 +59,41 @@ New original code is BSL 1.1. Solos, artists, contributors, nonprofits, and orga
 
 MIT upstream stays MIT. Already published SubTerra MIT files stay MIT. AGPL code is not vendored. any-sync stays under its own license.
 
-## Data isolation
+## Marketplace
 
-Luna OS and SubTerra Central do not have a shared database path. An extension reads another area only through a hub grant the user turned on. Axiom is a third isolated reader and is not required for the first build. Anytype already holds the knowledge graph.
+Every installable package stands alone. It may not import another package. The shell is the only dependency: Material 3, the marketplace, and a small SQLite hub. A package opens and works when the hub is empty.
+
+Optional facts another package might have written are read from the hub only after the user grants that read. If the other package is not installed, those fields stay empty and the installed package still runs.
+
+Anytype is an optional hub upgrade for a personal Luna OS install. When it is installed, it mirrors the shell hub through any-sync. When it is not installed, the shell hub is the store. Other people are not required to run Anytype.
+
+The same package can be installed in Luna OS, in the SubTerra Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other.
+
+| Package | Luna OS (personal and white-label) | SubTerra Central (public events) | Sells as |
+|---------|--------------------------------------|----------------------------------|----------|
+| Budget `FN` | Yes | No | Back-office seat |
+| Billbot `BB` | Yes | No | Back-office seat |
+| Blocks `BK` | Yes | Public schedule only, if granted | Seat, or a public schedule view |
+| Mailbot `MB` | Yes | No | Back-office seat |
+| Banking `BS` | Yes | No | Back-office seat |
+| Home Assistant `HA` | Yes | No | Back-office seat |
+| Media `MA` | Yes | No | Show-control seat |
+| Luna `LU` | Yes | No | Seat. Tools exist only for packages that are installed |
+| Anytype `AT` | Optional personal hub | No | Not required to sell or to run |
+| Subtoken `TK` | Organizer tools | Fan ticket view | Ticket fees on Central. Organizer tools on Luna OS |
+| Time Shift `TS` | Yes | Yes | Marketplace listing. Each shell has its own data |
+| Community `CH` | Crew discussion | Public discussion | Free under the BSL grant. Commercial key past 5 seats |
+| Forum `FM` | Optional richer discussion | Optional richer discussion | Same grant. Community still runs without it |
+| Axiom `AX` | No | Optional public reader | Skip until a sealed public knowledge site is needed |
+
+UI is not a marketplace item. It ships inside both shells.
+
+Monetization is the BSL seat key and PoweredUpLabs hosting for Luna OS, and ticket fees for Subtoken on SubTerra Central. A package that is not installed is not billed and is not loaded.
 
 ## Phases
 
 1. Workspace skeleton matching this layout, strict TypeScript, ESLint 9 flat config, pnpm workspace, Turborepo.
-2. `budget` around `@actual-app/api`. `anytype` schema on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs for hub documents. `billbot` stays a separate invoicing package.
+2. Shell hub on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs. `budget` around `@actual-app/api`. `billbot` stays a separate invoicing package. `anytype` is an optional mirror of the hub, not the store packages require.
 3. `luna` with the provider interface and a tool registry for budget, blocks, and media. Default the local provider at the Omarchy host.
 4. `packages/ui` Material 3 tokens and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
 5. Bundle `luna-os` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm the LO bundle cannot read SC data and the reverse.
