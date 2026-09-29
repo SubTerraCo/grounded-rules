@@ -8,30 +8,32 @@ apps:
     role: shell
     localPath: shell
     repo: SubTerraCo/subterra-shell
-    note: "Admin shell target — thin apps/admin over packages/shell-core (GV-0002 D1)"
+    note: "Legacy shell. GV-0004 replaces this with PU / apps/poweredup-os (Tauri). Keep ST as the address alias."
   - code: NX
     name: Nexus
     role: shell
     localPath: shell
     repo: SubTerraCo/subterra-shell
     status: reserved
-    note: "Customer shell target — thin apps/nexus over the same shell-core (GV-0002 D2)"
+    note: "Legacy Nexus. GV-0004 replaces this with SC / apps/subterra-central. Keep NX as the address alias."
   - code: BK
     name: Blocks
     role: app
     localPath: apps/blocks
     repo: SubTerraCo/Blocks
+    note: "Legacy. GV-0004 moves scheduling to TE / packages/time-engine. Keep BK as the address alias."
   - code: MB
     name: Mailbot
     role: app
     localPath: apps/mailbot
     repo: SubTerraCo/mailbot
+    note: "Legacy. GV-0004 moves this to MT / packages/mail-triage. Keep MB as the address alias."
   - code: BB
     name: Billbot
     role: app
-    localPath: apps/billbot
-    repo: SubTerraCo/billbot
+    localPath: packages/billbot
     status: reserved
+    note: "GV-0004 keeps this name and code. Package path is packages/billbot. Do not absorb InvoiceShelf (AGPL) into this package."
   - code: GV
     name: Governance
     role: governance
@@ -52,10 +54,97 @@ apps:
     status: reserved
     audience: [admin]
     note: >-
-      Admin NFC / ticketing product. Absorbs SubTerraCo/subtoken (web resolver),
-      SubTerraCo/tag-writer (desktop programmer), and SubTerraCo/validation
-      (mobile ECDSA validator). Consolidation + revival are follow-on work.
+      Legacy NFC product. GV-0004 moves ticketing to SN / packages/solana-nfc
+      (NTAG424 challenge-response plus Solana). UID-only auth stays forbidden.
+      Keep TK as the address alias. Still absorbs subtoken, tag-writer, and validation.
   - code: WL
     name: White-label OS
     role: app
     status: reserved
+    note: "GV-0004: not a separate app. Commercial gate and hosting live with PoweredUpLabs on PU."
+  # GV-0004 enterprise monorepo. Old codes above remain valid addresses.
+  - code: PU
+    name: PoweredUp OS
+    role: shell
+    localPath: apps/poweredup-os
+    status: reserved
+    note: "Tauri v2 command center. Replaces ST as the admin shell target."
+  - code: SC
+    name: SubTerra Central
+    role: shell
+    localPath: apps/subterra-central
+    status: reserved
+    audience: [member]
+    note: "PWA for ticketing, NFC, and the fan portal. Replaces NX. No read path to PU personal data."
+  - code: TS
+    name: Time Shift Portal
+    role: app
+    localPath: apps/time-shift-portal
+    status: reserved
+    note: "Freelance marketplace. Web and tablet."
+  - code: AX
+    name: Axiom Wiki
+    role: app
+    localPath: apps/axiom-wiki
+    status: reserved
+    note: "Open-knowledge reader. Isolated from PU and SC data stores."
+  - code: CH
+    name: Community Hub
+    role: app
+    localPath: apps/community-hub
+    status: reserved
+    note: "Voting and discussion UI over CE. Flarum, not Discourse."
+  - code: TE
+    name: Time Engine
+    role: app
+    localPath: packages/time-engine
+    status: reserved
+    note: "Scheduler and calendar ingestion. Replaces BK. Festival shifts fold in here."
+  - code: MT
+    name: Mail Triage
+    role: app
+    localPath: packages/mail-triage
+    status: reserved
+    note: "Gmail and IMAP label daemon. Replaces MB."
+  - code: LF
+    name: Ledger Finance
+    role: app
+    localPath: packages/ledger-finance
+    status: reserved
+    note: "Headless wrapper around @actual-app/api. Actual's UI stays upstream."
+  - code: PK
+    name: Core PKM
+    role: integration
+    localPath: packages/core-pkm
+    status: reserved
+    note: "Local-first graph at the Anytype any-sync boundary. Replaces AT as the integration approach. ASAL limits still apply to any-sync."
+  - code: SN
+    name: Solana NFC
+    role: app
+    localPath: packages/solana-nfc
+    status: reserved
+    note: "NTAG424 challenge-response and Solana ticket signatures. Replaces TK. UID-only auth is forbidden."
+  - code: PO
+    name: Poe
+    role: app
+    localPath: packages/agent-poe
+    status: reserved
+    note: "Provider-agnostic agent router. Local Ollama (Hermes 3) or cloud. API keys are per-user, never committed."
+  - code: BS
+    name: Banking Sync
+    role: integration
+    localPath: packages/banking-sync
+    status: reserved
+    note: "SimpleFIN and GoCardless first. Teller and Plaid are optional adapters behind the same interface."
+  - code: CE
+    name: Community Engine
+    role: app
+    localPath: packages/community-engine
+    status: reserved
+    note: "Topic voting and discussion logic. Flarum (MIT). Discourse is not the default."
+  - code: MA
+    name: Media Automation
+    role: app
+    localPath: packages/media-automation
+    status: reserved
+    note: "DaVinci Resolve CLI, OBS WebSocket, Loupedeck. Rust only at the Tauri socket boundary."

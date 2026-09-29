@@ -140,3 +140,112 @@ items:
     upstream: anyproto/anytype-api
     legacyRepo: SubTerraCo/anytype-google-contact-integration  # superseded predecessor, kept for reference
     defaultBranch: master
+
+  # GV-0004 monorepo entry points. Repo is not created yet. Old items above stay as aliases.
+  - id: poweredup-os
+    appCode: PU
+    name: PoweredUp OS
+    repo: null
+    localPath: apps/poweredup-os
+    platforms: [DT, AD, IO, AP]
+    role: shell
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "GV-0004. Tauri command center. Replaces ST. Personal data is isolated from SC."
+
+  - id: subterra-central
+    appCode: SC
+    name: SubTerra Central
+    repo: null
+    localPath: apps/subterra-central
+    platforms: [WB]
+    role: shell
+    marketplace: null
+    audience: [member]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "GV-0004. Ticketing, NFC, fan portal PWA. Replaces NX."
+
+  - id: time-shift-portal
+    appCode: TS
+    name: Time Shift Portal
+    repo: null
+    localPath: apps/time-shift-portal
+    platforms: [WB]
+    role: app
+    marketplace: apps
+    audience: [admin, member]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+
+  - id: axiom-wiki
+    appCode: AX
+    name: Axiom Wiki
+    repo: null
+    localPath: apps/axiom-wiki
+    platforms: [WB]
+    role: app
+    marketplace: apps
+    audience: [admin, member]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+
+  - id: community-hub
+    appCode: CH
+    name: Community Hub
+    repo: null
+    localPath: apps/community-hub
+    platforms: [WB]
+    role: app
+    marketplace: apps
+    audience: [member]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+
+  - id: ledger-finance
+    appCode: LF
+    name: Ledger Finance
+    repo: null
+    localPath: packages/ledger-finance
+    platforms: [SB]
+    role: app
+    marketplace: apps
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "Wraps @actual-app/api. Upstream fork stays actual-budget-master-fork."
+
+  - id: mail-triage
+    appCode: MT
+    name: Mail Triage
+    repo: null
+    localPath: packages/mail-triage
+    platforms: [SB]
+    role: app
+    marketplace: apps
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+
+  - id: solana-nfc
+    appCode: SN
+    name: Solana NFC
+    repo: null
+    localPath: packages/solana-nfc
+    platforms: [WB, AD, IO]
+    role: app
+    marketplace: apps
+    audience: [member]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "NTAG424 challenge-response. UID-only auth forbidden."

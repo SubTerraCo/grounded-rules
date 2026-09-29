@@ -4,7 +4,7 @@
 |--|--|
 | **Address** | `GV.CX.DV.01.030.010` |
 | **Release** | `v26.09.29` |
-| **Status** | Design locked — rule encoded in governance; shell and app restyles are follow-on |
+| **Status** | Design locked. GV-0004 replaces D2 and the `@subterra/shell-ui` owner: tokens live in `packages/ui` via Tailwind and `@material/material-color-utilities`. Material 3 itself still stands |
 | **Owner** | Governance agent (GV) |
 
 Locks Material Design 3 as the only UI framework for the SubTerra shell and for SubTerra-owned apps. One theme. Vendor-fork screens and non-UI tools stay exempt.
