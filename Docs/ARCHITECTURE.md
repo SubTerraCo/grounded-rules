@@ -36,6 +36,7 @@ packages/
   banking/               # BS — SimpleFIN and GoCardless; Teller and Plaid optional
   forum/                 # FM — Flarum
   media/                 # MA — DaVinci Resolve, OBS, Loupedeck show control
+  home-assistant/        # HA — client for a local Home Assistant server
   ui/                    # Material 3 primitives, tokens, domain widgets
 tooling/
   config-eslint/

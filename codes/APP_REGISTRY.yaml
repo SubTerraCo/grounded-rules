@@ -126,3 +126,10 @@ apps:
     localPath: packages/media
     status: reserved
     note: "Show production. Talks to DaVinci Resolve, OBS, and Loupedeck. Rust only at the Tauri socket boundary."
+  - code: HA
+    name: Home Assistant
+    role: app
+    localPath: packages/home-assistant
+    status: reserved
+    audience: [admin]
+    note: "Home automation client. The Home Assistant server stays upstream (Apache 2.0) and can run on the Omarchy host. This package talks to it. It is not vendored into BSL."

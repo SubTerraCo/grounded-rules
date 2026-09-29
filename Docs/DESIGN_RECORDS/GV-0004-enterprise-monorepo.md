@@ -56,6 +56,7 @@ One product, one code, one folder. The folder is the name people say. Technical 
 | BS | Banking | `packages/banking` | SimpleFIN and GoCardless |
 | FM | Forum | `packages/forum` | Flarum logic used by CH |
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
+| HA | Home Assistant | `packages/home-assistant` | Home automation client. Upstream server stays Apache 2.0 |
 | GV | Governance | `SubTerraCo/subterra-governance` | This rules repo |
 | WL | White-label | — | Commercial gate on PU. Not a package |
 | — | UI | `packages/ui` | Material 3 tokens. No app code (`UI` is already an area code) |

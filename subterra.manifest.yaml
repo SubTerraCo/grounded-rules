@@ -222,3 +222,17 @@ items:
     sdk: "@subterra/app-sdk"
     status: reserved
     note: "Budgeting only. Wraps @actual-app/api. Separate from BB Billbot. Upstream fork stays actual-budget-master-fork."
+
+  - id: home-assistant
+    appCode: HA
+    name: Home Assistant
+    repo: null
+    localPath: packages/home-assistant
+    platforms: [DT, WB]
+    role: app
+    marketplace: apps
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "Home automation. Client only. Upstream Home Assistant server is Apache 2.0 and can run on Omarchy."
