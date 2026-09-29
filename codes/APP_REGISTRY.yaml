@@ -21,13 +21,13 @@ apps:
     role: app
     localPath: apps/blocks
     repo: SubTerraCo/Blocks
-    note: "Legacy. GV-0004 moves scheduling to TE / packages/time-engine. Keep BK as the address alias."
+    note: "Monorepo package packages/blocks. Code stays BK. Festival shifts fold into Blocks."
   - code: MB
     name: Mailbot
     role: app
     localPath: apps/mailbot
     repo: SubTerraCo/mailbot
-    note: "Legacy. GV-0004 moves this to MT / packages/mail-triage. Keep MB as the address alias."
+    note: "Monorepo package packages/mailbot. Code stays MB."
   - code: BB
     name: Billbot
     role: app
@@ -46,6 +46,7 @@ apps:
     repo: SubTerraCo/subterra-anytype
     status: linked  # GV-0001 D2 — vendor kept as `upstream` remote
     upstream: anyproto/anytype-api
+    note: "Monorepo package packages/anytype. Code stays AT. any-sync ASAL limits still apply."
   - code: TK
     name: Subtoken
     role: app
@@ -54,9 +55,9 @@ apps:
     status: reserved
     audience: [admin]
     note: >-
-      Legacy NFC product. GV-0004 moves ticketing to SN / packages/solana-nfc
-      (NTAG424 challenge-response plus Solana). UID-only auth stays forbidden.
-      Keep TK as the address alias. Still absorbs subtoken, tag-writer, and validation.
+      Monorepo package packages/subtoken. Code stays TK. NTAG424 challenge-response
+      and Solana ticket signatures live here. UID-only auth is forbidden.
+      Absorbs tag-writer and validation.
   - code: WL
     name: White-label OS
     role: app
@@ -77,74 +78,50 @@ apps:
     audience: [member]
     note: "PWA for ticketing, NFC, and the fan portal. Replaces NX. No read path to PU personal data."
   - code: TS
-    name: Time Shift Portal
+    name: Time Shift
     role: app
-    localPath: apps/time-shift-portal
+    localPath: apps/time-shift
     status: reserved
     note: "Freelance marketplace. Web and tablet."
   - code: AX
-    name: Axiom Wiki
+    name: Axiom
     role: app
-    localPath: apps/axiom-wiki
+    localPath: apps/axiom
     status: reserved
     note: "Open-knowledge reader. Isolated from PU and SC data stores."
   - code: CH
-    name: Community Hub
+    name: Community
     role: app
-    localPath: apps/community-hub
+    localPath: apps/community
     status: reserved
-    note: "Voting and discussion UI over CE. Flarum, not Discourse."
-  - code: TE
-    name: Time Engine
+    note: "Voting and discussion UI over FM. Flarum, not Discourse."
+  - code: FN
+    name: Budget
     role: app
-    localPath: packages/time-engine
+    localPath: packages/budget
     status: reserved
-    note: "Scheduler and calendar ingestion. Replaces BK. Festival shifts fold in here."
-  - code: MT
-    name: Mail Triage
-    role: app
-    localPath: packages/mail-triage
-    status: reserved
-    note: "Gmail and IMAP label daemon. Replaces MB."
-  - code: LF
-    name: Ledger Finance
-    role: app
-    localPath: packages/ledger-finance
-    status: reserved
-    note: "Headless wrapper around @actual-app/api. Actual's UI stays upstream."
-  - code: PK
-    name: Core PKM
-    role: integration
-    localPath: packages/core-pkm
-    status: reserved
-    note: "Local-first graph at the Anytype any-sync boundary. Replaces AT as the integration approach. ASAL limits still apply to any-sync."
-  - code: SN
-    name: Solana NFC
-    role: app
-    localPath: packages/solana-nfc
-    status: reserved
-    note: "NTAG424 challenge-response and Solana ticket signatures. Replaces TK. UID-only auth is forbidden."
+    note: "Budgeting only. Headless wrapper around @actual-app/api. Separate from BB Billbot. Actual's UI stays upstream."
   - code: PO
     name: Poe
     role: app
-    localPath: packages/agent-poe
+    localPath: packages/poe
     status: reserved
     note: "Provider-agnostic agent router. Local Ollama (Hermes 3) or cloud. API keys are per-user, never committed."
   - code: BS
-    name: Banking Sync
+    name: Banking
     role: integration
-    localPath: packages/banking-sync
+    localPath: packages/banking
     status: reserved
     note: "SimpleFIN and GoCardless first. Teller and Plaid are optional adapters behind the same interface."
-  - code: CE
-    name: Community Engine
+  - code: FM
+    name: Forum
     role: app
-    localPath: packages/community-engine
+    localPath: packages/forum
     status: reserved
-    note: "Topic voting and discussion logic. Flarum (MIT). Discourse is not the default."
+    note: "Topic voting and discussion logic for CH. Flarum (MIT). Discourse is not the default."
   - code: MA
-    name: Media Automation
+    name: Media
     role: app
-    localPath: packages/media-automation
+    localPath: packages/media
     status: reserved
     note: "DaVinci Resolve CLI, OBS WebSocket, Loupedeck. Rust only at the Tauri socket boundary."

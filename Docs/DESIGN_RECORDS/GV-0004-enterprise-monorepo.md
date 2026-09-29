@@ -24,8 +24,8 @@ The enterprise blueprint wins wherever it disagrees with GV-0001, GV-0002, or GV
 | C6 | Material Web and `@subterra/shell-ui` (GV-0003 D2–D3) | Tailwind + `@material/material-color-utilities`, `packages/ui` | Material 3 stays. Tokens move to `packages/ui`. Arbitrary Tailwind values and hardcoded colors fail CI. Seed stays amber `#e8a54b` |
 | C7 | New Rust is forbidden (§14) | Rust for Tauri bindings only | Rust is allowed only in those bindings. App logic stays TypeScript |
 | C8 | Public repos are MIT | BSL 1.1, Apache 2.0 after 36 months, commercial key for 5+ seats | BSL applies to new original monorepo code. See §3. MIT files already published stay MIT |
-| C9 | Actual UI is a vendor-fork exemption | Import `@actual-app/api` into `packages/ledger-finance` | Use the headless API. Do not repaint Actual's UI in the fork. Actual's SQLite CRDT stays inside the ledger. SQLCipher is the hub store |
-| C10 | Three NFC repos revive as TK | `packages/solana-nfc`, NTAG424, Solana | Ticketing moves to SN. Challenge-response stays. UID-only login stays forbidden. Existing tags were never deployed |
+| C9 | Actual UI is a vendor-fork exemption | Import `@actual-app/api` into the budgeting package | Package is `packages/budget`, code `FN`. Billbot stays `packages/billbot`, code `BB`. Use the headless API. Actual's SQLite CRDT stays inside Budget. SQLCipher is the hub store |
+| C10 | Three NFC repos revive as TK | A Solana-named package and code `SN` | Withdrawn. The package is `packages/subtoken` and the code stays `TK`. NTAG424 and Solana live inside Subtoken. UID-only login stays forbidden |
 | C11 | Yjs, Automerge, and any-sync listed together | One shared document model | Finance uses Actual's CRDT. PKM talks to Anytype through any-sync. The hub uses Yjs. Automerge is not a second hub |
 | C12 | Flarum or Discourse | Community engine | Flarum (MIT). Discourse (GPL) fights the commercial gate |
 | C13 | Teller, Plaid, SimpleFIN, GoCardless | Bank feeds without vendor lock-in | SimpleFIN and GoCardless are the default connectors. Teller and Plaid are optional adapters |
@@ -35,35 +35,32 @@ External licenses are not overruled: InvoiceShelf stays AGPL and out of the paid
 
 ---
 
-## 2. Rename map
+## 2. Names and codes
 
-Old Dewey codes stay valid so existing addresses still resolve. New work uses the new code.
+One product, one code, one folder. The folder is the name people say. Technical aliases (`ledger-finance`, `mail-triage`, `time-engine`, `solana-nfc`, `core-pkm`) are withdrawn.
 
-| Old name | Old code | New name | New code | Monorepo path |
-|----------|----------|----------|----------|---------------|
-| SubTerra Shell | ST | PoweredUp OS | PU | `apps/poweredup-os` |
-| Nexus | NX | SubTerra Central | SC | `apps/subterra-central` |
-| Blocks | BK | Time Engine | TE | `packages/time-engine` |
-| Festy Blocks | — | (folds into Time Engine, shown in SubTerra Central) | TE | `packages/time-engine` |
-| — | — | Time Shift Portal | TS | `apps/time-shift-portal` |
-| Mailbot | MB | Mail Triage | MT | `packages/mail-triage` |
-| Billbot | BB | Billbot | BB | `packages/billbot` |
-| Anytype integration | AT | Core PKM | PK | `packages/core-pkm` |
-| Subtoken / tag-writer / validation | TK | Solana NFC | SN | `packages/solana-nfc` |
-| White-label OS | WL | Commercial gate on PoweredUp OS | WL | PoweredUpLabs hosting, not an app |
-| Actual fork | — | Ledger Finance | LF | `packages/ledger-finance` |
-| — | — | Axiom Wiki | AX | `apps/axiom-wiki` |
-| — | — | Community Hub | CH | `apps/community-hub` |
-| — | — | Poe | PO | `packages/agent-poe` |
-| — | — | Banking Sync | BS | `packages/banking-sync` |
-| — | — | Community Engine | CE | `packages/community-engine` |
-| — | — | Media Automation | MA | `packages/media-automation` |
-| Governance | GV | Governance (this repo) | GV | `SubTerraCo/subterra-governance` |
-| `@subterra/shell-ui` | — | Shared UI | — | `packages/ui` |
+| Code | Name | Path | What it is |
+|------|------|------|------------|
+| PU | PoweredUp OS | `apps/poweredup-os` | Tauri command center. Replaces ST |
+| SC | SubTerra Central | `apps/subterra-central` | Ticketing and fan portal PWA. Replaces NX |
+| TS | Time Shift | `apps/time-shift` | Freelance marketplace |
+| AX | Axiom | `apps/axiom` | Knowledge reader, isolated store |
+| CH | Community | `apps/community` | Voting and discussion UI |
+| FN | Budget | `packages/budget` | Budgeting. `@actual-app/api`. Not Billbot |
+| BB | Billbot | `packages/billbot` | Invoicing and 1099 exports. Not Budget |
+| BK | Blocks | `packages/blocks` | Tasks, time blocks, festival shifts |
+| MB | Mailbot | `packages/mailbot` | Gmail and IMAP labels and archive |
+| TK | Subtoken | `packages/subtoken` | NFC. NTAG424 challenge-response and Solana tickets. Absorbs tag-writer and validation |
+| AT | Anytype | `packages/anytype` | Local-first graph via any-sync |
+| PO | Poe | `packages/poe` | Local or cloud agent router |
+| BS | Banking | `packages/banking` | SimpleFIN and GoCardless |
+| FM | Forum | `packages/forum` | Flarum logic used by CH |
+| MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
+| GV | Governance | `SubTerraCo/subterra-governance` | This rules repo |
+| WL | White-label | — | Commercial gate on PU. Not a package |
+| — | UI | `packages/ui` | Material 3 tokens. No app code (`UI` is already an area code) |
 
-`actual-budget-master-fork` stays the upstream fork. The monorepo depends on `@actual-app/api`. It is not renamed into Ledger Finance.
-
-Super Productivity and ephios stay upstream forks when those cores are adopted. They are not renamed into Time Engine. Time Engine is our scheduler package.
+`ST`, `NX`, `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity and ephios stay upstream forks when those cores are adopted. They are not renamed into Blocks.
 
 ---
 
@@ -71,7 +68,7 @@ Super Productivity and ephios stay upstream forks when those cores are adopted. 
 
 | Layer | License |
 |-------|---------|
-| New original packages (`core-pkm` glue, `ui`, `ledger-finance` wrapper, shells, Poe) | BSL 1.1. Additional grant: under 5 seats and under $100,000 gross, plus solos, artists, contributors, nonprofits. Each commit becomes Apache 2.0 after 36 months. Commercial keys are Ed25519 signatures from PoweredUpLabs |
+| New original packages (`anytype` glue, `ui`, `budget` wrapper, shells, Poe, Billbot) | BSL 1.1. Additional grant: under 5 seats and under $100,000 gross, plus solos, artists, contributors, nonprofits. Each commit becomes Apache 2.0 after 36 months. Commercial keys are Ed25519 signatures from PoweredUpLabs |
 | MIT upstream (Actual, Super Productivity, ephios, Flarum) | Stays MIT, notices included |
 | Already published SubTerraCo `LICENSE` files | Stay MIT |
 | InvoiceShelf | AGPL-3.0. Not vendored into a BSL package and not part of the multi-tenant host |

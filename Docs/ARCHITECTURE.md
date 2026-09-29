@@ -10,7 +10,7 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 - Two shells only: `apps/poweredup-os` (Tauri v2 for Windows, macOS, Android, iOS) and `apps/web-shell` (offline-first PWA).
 - Rust only inside Tauri bindings: filesystem, local IPC, NFC hardware, DaVinci socket.
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
-- Finance store: Actual's own SQLite CRDT inside `packages/ledger-finance`, via `@actual-app/api`. Do not wrap Actual's file in a second CRDT.
+- Finance store: Actual's own SQLite CRDT inside `packages/budget` (`FN`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/billbot` (`BB`).
 - PKM boundary: any-sync to a local Anytype node. Hub documents are not stored in Anytype's database.
 - Material 3 tokens in `packages/ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. Seed color `#e8a54b`. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx`.
 
@@ -21,20 +21,20 @@ apps/
   poweredup-os/          # PU — Tauri command center
   web-shell/             # PWA runtime
   subterra-central/      # SC — ticketing, NFC, fan portal
-  time-shift-portal/     # TS — freelance marketplace
-  axiom-wiki/            # AX — isolated knowledge reader
-  community-hub/         # CH — voting and discussion UI
+  time-shift/            # TS — freelance marketplace
+  axiom/                 # AX — isolated knowledge reader
+  community/             # CH — voting and discussion UI
 packages/
-  core-pkm/              # PK — any-sync boundary
-  agent-poe/             # PO — local Ollama (Hermes 3) or cloud providers
-  ledger-finance/        # LF — @actual-app/api wrapper
-  banking-sync/          # BS — SimpleFIN and GoCardless; Teller and Plaid optional
-  billbot/               # BB — invoicing we write; not an AGPL fork
-  time-engine/           # TE — scheduler; absorbs Blocks and Festy Blocks behavior
-  community-engine/      # CE — Flarum
-  mail-triage/           # MT — Gmail and IMAP labels and archive
-  solana-nfc/            # SN — NTAG424 challenge-response and Solana tickets
-  media-automation/      # MA — DaVinci, OBS, Loupedeck
+  budget/                # FN — @actual-app/api budgeting. Not Billbot
+  billbot/               # BB — invoicing and 1099 exports. Not Budget
+  blocks/                # BK — tasks, time blocks, festival shifts
+  mailbot/               # MB — Gmail and IMAP labels and archive
+  subtoken/              # TK — NTAG424 challenge-response and Solana tickets
+  anytype/               # AT — any-sync boundary
+  poe/                   # PO — local Ollama (Hermes 3) or cloud providers
+  banking/               # BS — SimpleFIN and GoCardless; Teller and Plaid optional
+  forum/                 # FM — Flarum
+  media/                 # MA — DaVinci, OBS, Loupedeck
   ui/                    # Material 3 primitives, tokens, domain widgets
 tooling/
   config-eslint/
@@ -64,8 +64,8 @@ PoweredUp OS, SubTerra Central, and Axiom Wiki do not have a shared database pat
 ## Phases
 
 1. Workspace skeleton matching this layout, strict TypeScript, ESLint 9 flat config, pnpm workspace, Turborepo.
-2. `ledger-finance` around `@actual-app/api`. `core-pkm` schema on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs for hub documents.
-3. `agent-poe` with the provider interface and a tool registry for ledger, time, and media.
+2. `budget` around `@actual-app/api`. `anytype` schema on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs for hub documents. `billbot` stays a separate invoicing package.
+3. `poe` with the provider interface and a tool registry for budget, blocks, and media.
 4. `packages/ui` Material 3 tokens and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
 5. Bundle `poweredup-os` in Tauri and `subterra-central` as the PWA. Confirm the PU bundle cannot read SC data and the reverse.
 6. Playwright suites listed under CI.

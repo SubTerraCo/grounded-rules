@@ -172,9 +172,9 @@ items:
 
   - id: time-shift-portal
     appCode: TS
-    name: Time Shift Portal
+    name: Time Shift
     repo: null
-    localPath: apps/time-shift-portal
+    localPath: apps/time-shift
     platforms: [WB]
     role: app
     marketplace: apps
@@ -185,9 +185,9 @@ items:
 
   - id: axiom-wiki
     appCode: AX
-    name: Axiom Wiki
+    name: Axiom
     repo: null
-    localPath: apps/axiom-wiki
+    localPath: apps/axiom
     platforms: [WB]
     role: app
     marketplace: apps
@@ -198,9 +198,9 @@ items:
 
   - id: community-hub
     appCode: CH
-    name: Community Hub
+    name: Community
     repo: null
-    localPath: apps/community-hub
+    localPath: apps/community
     platforms: [WB]
     role: app
     marketplace: apps
@@ -209,11 +209,11 @@ items:
     sdk: "@subterra/app-sdk"
     status: reserved
 
-  - id: ledger-finance
-    appCode: LF
-    name: Ledger Finance
+  - id: budget
+    appCode: FN
+    name: Budget
     repo: null
-    localPath: packages/ledger-finance
+    localPath: packages/budget
     platforms: [SB]
     role: app
     marketplace: apps
@@ -221,31 +221,4 @@ items:
     defaultOpen: false
     sdk: "@subterra/app-sdk"
     status: reserved
-    note: "Wraps @actual-app/api. Upstream fork stays actual-budget-master-fork."
-
-  - id: mail-triage
-    appCode: MT
-    name: Mail Triage
-    repo: null
-    localPath: packages/mail-triage
-    platforms: [SB]
-    role: app
-    marketplace: apps
-    audience: [admin]
-    defaultOpen: false
-    sdk: "@subterra/app-sdk"
-    status: reserved
-
-  - id: solana-nfc
-    appCode: SN
-    name: Solana NFC
-    repo: null
-    localPath: packages/solana-nfc
-    platforms: [WB, AD, IO]
-    role: app
-    marketplace: apps
-    audience: [member]
-    defaultOpen: false
-    sdk: "@subterra/app-sdk"
-    status: reserved
-    note: "NTAG424 challenge-response. UID-only auth forbidden."
+    note: "Budgeting only. Wraps @actual-app/api. Separate from BB Billbot. Upstream fork stays actual-budget-master-fork."

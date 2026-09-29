@@ -419,7 +419,7 @@ Design record: [GV-0003](Docs/DESIGN_RECORDS/GV-0003-material-3.md).
 
 A repo that claims an exemption says so in its `.cursor/rules/` and in the manifest when the vendor-fork flag exists. The exemption covers that repo's upstream UI only. New SubTerra screens inside an exempt repo still use Material 3.
 
-Headless use of `@actual-app/api` inside `packages/ledger-finance` is the intended integration. That wrapper is ours and uses Material 3. Actual's own UI stays upstream.
+Headless use of `@actual-app/api` inside `packages/budget` (`FN`) is the intended integration. That wrapper is ours and uses Material 3. Actual's own UI stays upstream. Billbot (`BB`, `packages/billbot`) is invoicing and is a separate package.
 
 ---
 
@@ -436,4 +436,4 @@ This constitution cannot relicense other people's code:
 | InvoiceShelf, if used | AGPL-3.0. It is not wrapped into the BSL packages or the paid multi-tenant host |
 | Anytype any-sync | Any Source Available License. Commercial use stays limited to Allowed Networks |
 
-`packages/ledger-finance`, `packages/core-pkm`, and `packages/ui` are BSL only for code we write. Imported upstream code keeps its own license.
+`packages/budget`, `packages/anytype`, and `packages/ui` are BSL only for code we write. Imported upstream code keeps its own license.
