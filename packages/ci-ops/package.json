@@ -5,10 +5,13 @@
   "type": "module",
   "description": "Shared SubTerra CI Ops helpers (rollover, stamp, manifest validate, fleet versions)",
   "exports": {
-    ".": "./src/index.mjs"
+    ".": "./src/index.ts"
   },
   "bin": {
-    "subterra-versions-fleet": "./src/collect-versions.mjs"
+    "subterra-versions-fleet": "./src/collect-versions.ts"
   },
-  "files": ["src"]
+  "files": ["src"],
+  "scripts": {
+    "typecheck": "node ../../node_modules/typescript/bin/tsc -p tsconfig.json --noEmit"
+  }
 }

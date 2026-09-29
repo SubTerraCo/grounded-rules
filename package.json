@@ -9,11 +9,11 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "validate:manifest": "node packages/ci-ops/src/validate-manifest.mjs",
-    "versions:fleet": "node packages/ci-ops/src/collect-versions.mjs",
-    "versions:fleet:check": "node packages/ci-ops/src/collect-versions.mjs --check",
+    "validate:manifest": "node --experimental-strip-types --disable-warning=ExperimentalWarning packages/ci-ops/src/validate-manifest.ts",
+    "versions:fleet": "node --experimental-strip-types --disable-warning=ExperimentalWarning packages/ci-ops/src/collect-versions.ts",
+    "versions:fleet:check": "node --experimental-strip-types --disable-warning=ExperimentalWarning packages/ci-ops/src/collect-versions.ts --check",
     "ci-ops:version": "node -e \"console.log(require('./package.json').version)\"",
-    "type-check": "tsc -p tsconfig.json --noEmit",
+    "type-check": "tsc -p tsconfig.json --noEmit && tsc -p packages/ci-ops/tsconfig.json --noEmit",
     "test:workspace": "playwright test --config=tests/playwright.config.ts",
     "test:workspace:contract": "playwright test --config=tests/playwright.config.ts --project=contract"
   },

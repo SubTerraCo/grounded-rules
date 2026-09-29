@@ -1,8 +1,8 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S node --experimental-strip-types --disable-warning=ExperimentalWarning
 /**
  * Validate subterra.manifest.yaml basics (no YAML parser dep — line checks).
  */
-import { readFileSync, existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 

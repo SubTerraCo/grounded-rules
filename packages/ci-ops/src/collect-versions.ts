@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S node --experimental-strip-types --disable-warning=ExperimentalWarning
 /**
  * Fleet version dashboard — local meta-workspace only.
  *
@@ -6,8 +6,8 @@
  * writes versions/fleet.json and Docs/VERSIONS.md.
  *
  * Usage:
- *   node packages/ci-ops/src/collect-versions.mjs           # generate
- *   node packages/ci-ops/src/collect-versions.mjs --check   # validate committed fleet.json
+ *   node --experimental-strip-types --disable-warning=ExperimentalWarning packages/ci-ops/src/collect-versions.ts
+ *   node --experimental-strip-types --disable-warning=ExperimentalWarning packages/ci-ops/src/collect-versions.ts --check
  */
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -20,19 +20,23 @@ const metaRoot = resolve(govRoot, "..");
 const fleetPath = join(govRoot, "versions/fleet.json");
 const mdPath = join(govRoot, "Docs/VERSIONS.md");
 
-/** Local copy — avoid circular import with index.mjs */
-function parseBatchLogRows(roadmap) {
-  const rows = [];
+interface BatchRow {
+  batch: string;
+}
+
+/** Local copy — avoid circular import with index.ts */
+function parseBatchLogRows(roadmap: string): BatchRow[] {
+  const rows: BatchRow[] = [];
   const re = /\|\s*(v\d+\.\d+\.\d+b\d+)\s*\|/g;
-  let m;
+  let m: RegExpExecArray | null;
   while ((m = re.exec(roadmap)) !== null) {
-    rows.push({ batch: m[1] });
+    rows.push({ batch: m[1]! });
   }
   return rows;
 }
 
 /** Junction / legacy Package folder fallbacks when manifest localPath is empty. */
-const PATH_FALLBACKS = {
+const PATH_FALLBACKS: Record<string, readonly string[]> = {
   "apps/blocks": ["apps/blocks", "Packages/Blocks"],
   "apps/mailbot": ["apps/mailbot", "Packages/Mail Bot"],
   "apps/billbot": ["apps/billbot", "Packages/Bill Bot"],
@@ -45,12 +49,52 @@ const PATH_FALLBACKS = {
   governance: ["governance", "."],
 };
 
+export interface ManifestItem {
+  id: string;
+  appCode: string | null;
+  name: string | null;
+  repo: string | null;
+  localPath: string | null;
+  role: string | null;
+  status: string;
+}
+
+export interface FleetApp {
+  appCode: string | null;
+  id: string;
+  name: string | null;
+  role: string | null;
+  repo: string | null;
+  localPath: string | null;
+  status: string;
+  display: string | null;
+  npm: string | number | boolean | null;
+  branch: string | null;
+  checkout: string | null;
+  note: string | null;
+}
+
+export interface FleetSnapshot {
+  schemaVersion: 1;
+  generatedAt: string;
+  source: "local-meta-workspace";
+  metaRoot: string;
+  apps: FleetApp[];
+}
+
+interface PackageJson {
+  version?: unknown;
+  subterraShellVersion?: unknown;
+  blocksVersion?: unknown;
+  subterraVersion?: unknown;
+  governanceVersion?: unknown;
+}
+
 /**
  * Minimal YAML item-block parser for subterra.manifest.yaml `items:`.
- * @param {string} text
  */
-export function parseManifestItems(text) {
-  const items = [];
+export function parseManifestItems(text: string): ManifestItem[] {
+  const items: ManifestItem[] = [];
   const chunk = text.split(/\nitems:\s*\n/)[1];
   if (!chunk) return items;
 
@@ -59,14 +103,14 @@ export function parseManifestItems(text) {
   const blocks = normalized.split(/\n(?=  - id:)/);
   for (const block of blocks) {
     if (!/^\s*- id:/.test(block) && !block.includes("- id:")) continue;
-    const get = (key) => {
+    const get = (key: string): string | null => {
       const pattern =
         key === "id"
           ? /^[ \t]*-[ \t]+id:[ \t]*(.+)$/m
           : new RegExp(`^[ \\t]+${key}:[ \\t]*(.+)$`, "m");
       const m = block.match(pattern);
       if (!m) return null;
-      let v = m[1].trim();
+      let v = m[1]!.trim();
       // strip inline comments
       const hash = v.indexOf(" #");
       if (hash >= 0) v = v.slice(0, hash).trim();
@@ -103,21 +147,21 @@ export function parseManifestItems(text) {
  * governance, which never matches the `apps/…` / `Packages/…` layouts, so the
  * `repo` slug is the reliable fallback there.
  *
- * @param {string} localPath manifest `localPath` (may be empty)
- * @param {string | null} [repo] manifest `repo` slug, e.g. `SubTerraCo/Blocks`
- * @returns {string | null} absolute path to a directory that exists
+ * @returns absolute path to a directory that exists, or null
  */
-export function resolveLocalCheckout(localPath, repo = null) {
+export function resolveLocalCheckout(
+  localPath: string,
+  repo: string | null = null,
+): string | null {
   if (localPath === "governance" || localPath === ".") {
     return govRoot;
   }
-  const candidates = [];
+  const candidates: string[] = [];
   if (localPath) {
     candidates.push(...(PATH_FALLBACKS[localPath] ?? [localPath]));
   }
   const repoName = repo?.split("/").pop();
   if (repoName) candidates.push(repoName);
-
   for (const rel of candidates) {
     const abs = rel === "." ? govRoot : join(metaRoot, rel);
     if (existsSync(abs)) return abs;
@@ -125,23 +169,20 @@ export function resolveLocalCheckout(localPath, repo = null) {
   return null;
 }
 
-/**
- * @param {string} repoRoot
- */
-function readPackageJson(repoRoot) {
+function readPackageJson(repoRoot: string): PackageJson | null {
   const p = join(repoRoot, "package.json");
   if (!existsSync(p)) return null;
   try {
-    return JSON.parse(readFileSync(p, "utf8"));
+    return JSON.parse(readFileSync(p, "utf8")) as PackageJson;
   } catch {
     return null;
   }
 }
 
-/**
- * @param {string} repoRoot
- */
-function readDisplayBatch(repoRoot, pkg) {
+function readDisplayBatch(
+  repoRoot: string,
+  pkg: PackageJson | null,
+): string | null {
   // Prefer ROADMAP (human source of truth) over possibly stale package fields.
   const roadmapPath = join(
     repoRoot,
@@ -153,12 +194,12 @@ function readDisplayBatch(repoRoot, pkg) {
     const rows = parseBatchLogRows(roadmap);
     if (release) {
       const prefix = release.replace(/^v/, "");
-      let best = null;
+      let best: string | null = null;
       let bestN = -1;
       for (const row of rows) {
         const m = row.batch.match(/^v([\d.]+)b(\d+)$/);
         if (!m || m[1] !== prefix) continue;
-        const n = parseInt(m[2], 10);
+        const n = parseInt(m[2]!, 10);
         if (n > bestN) {
           bestN = n;
           best = row.batch;
@@ -175,7 +216,7 @@ function readDisplayBatch(repoRoot, pkg) {
     "blocksVersion",
     "subterraVersion",
     "governanceVersion",
-  ];
+  ] as const;
   for (const key of displayKeys) {
     const v = pkg?.[key];
     if (typeof v === "string" && /^v\d+\.\d+\.\d+/.test(v)) return v;
@@ -213,10 +254,7 @@ function readDisplayBatch(repoRoot, pkg) {
   return null;
 }
 
-/**
- * @param {string} repoRoot
- */
-function readGitBranch(repoRoot) {
+function readGitBranch(repoRoot: string): string | null {
   try {
     return (
       execFileSync("git", ["-C", repoRoot, "branch", "--show-current"], {
@@ -229,10 +267,7 @@ function readGitBranch(repoRoot) {
   }
 }
 
-/**
- * @param {{ appCode: string, name: string, repo: string | null, localPath: string | null, role: string | null, status: string, id: string }} item
- */
-export function collectRow(item) {
+export function collectRow(item: ManifestItem): FleetApp {
   const checkout = resolveLocalCheckout(item.localPath ?? "", item.repo);
   if (!checkout) {
     return {
@@ -252,7 +287,7 @@ export function collectRow(item) {
   }
 
   const pkg = readPackageJson(checkout);
-  let npm = pkg?.version ?? null;
+  let npm: unknown = pkg?.version ?? null;
   if (!npm) {
     const pyproject = join(checkout, "pyproject.toml");
     if (existsSync(pyproject)) {
@@ -272,20 +307,19 @@ export function collectRow(item) {
     localPath: item.localPath,
     status: item.status,
     display: readDisplayBatch(checkout, pkg),
-    npm,
+    npm: npm as string | number | boolean | null,
     branch: readGitBranch(checkout),
     checkout,
     note: pkg || npm ? null : "no package.json / pyproject version",
   };
 }
 
-export function buildFleet() {
+export function buildFleet(): FleetSnapshot {
   const manifestPath = join(govRoot, "subterra.manifest.yaml");
   const manifestText = readFileSync(manifestPath, "utf8");
   const items = parseManifestItems(manifestText);
 
-  /** @type {Map<string, ReturnType<typeof collectRow>>} */
-  const byCode = new Map();
+  const byCode = new Map<string, FleetApp>();
 
   // Governance is not a marketplace item — always first.
   byCode.set(
@@ -319,7 +353,7 @@ export function buildFleet() {
     "AT",
     "WL",
   ];
-  const apps = [];
+  const apps: FleetApp[] = [];
   for (const code of preferredOrder) {
     const row = byCode.get(code);
     if (row) {
@@ -338,7 +372,7 @@ export function buildFleet() {
   };
 }
 
-export function renderVersionsMarkdown(fleet) {
+export function renderVersionsMarkdown(fleet: FleetSnapshot): string {
   const lines = [
     "# SubTerra fleet versions",
     "",
@@ -369,12 +403,17 @@ export function renderVersionsMarkdown(fleet) {
   return `${lines.join("\n")}`;
 }
 
-function validateFleetFile(path) {
+interface FleetFile {
+  schemaVersion?: unknown;
+  apps?: Array<Record<string, unknown>>;
+}
+
+function validateFleetFile(path: string): void {
   if (!existsSync(path)) {
     console.error(`Missing ${path} — run pnpm versions:fleet`);
     process.exit(1);
   }
-  const fleet = JSON.parse(readFileSync(path, "utf8"));
+  const fleet = JSON.parse(readFileSync(path, "utf8")) as FleetFile;
   if (fleet.schemaVersion !== 1) {
     console.error("fleet.json schemaVersion must be 1");
     process.exit(1);
@@ -383,7 +422,7 @@ function validateFleetFile(path) {
     console.error("fleet.json apps[] is empty");
     process.exit(1);
   }
-  const required = ["appCode", "name", "status"];
+  const required = ["appCode", "name", "status"] as const;
   for (const row of fleet.apps) {
     for (const key of required) {
       if (row[key] == null || row[key] === "") {
@@ -400,7 +439,7 @@ function validateFleetFile(path) {
   console.log(`versions/fleet.json OK (${fleet.apps.length} apps)`);
 }
 
-function main() {
+function main(): void {
   const check = process.argv.includes("--check");
   if (check) {
     validateFleetFile(fleetPath);
@@ -417,14 +456,15 @@ function main() {
   for (const a of fleet.apps) {
     const mark = a.display || a.npm ? "ok" : "—";
     console.log(
-      `  ${a.appCode.padEnd(3)}  ${mark.padEnd(4)}  display=${a.display ?? "—"}  npm=${a.npm ?? "—"}  branch=${a.branch ?? "—"}`,
+      `  ${a.appCode!.padEnd(3)}  ${mark.padEnd(4)}  display=${a.display ?? "—"}  npm=${a.npm ?? "—"}  branch=${a.branch ?? "—"}`,
     );
   }
 }
 
+const invokedPath = process.argv[1];
 const isMain =
-  process.argv[1] &&
-  resolve(process.argv[1]) === resolve(fileURLToPath(import.meta.url));
+  invokedPath !== undefined &&
+  resolve(invokedPath) === resolve(fileURLToPath(import.meta.url));
 
 if (isMain) {
   main();
