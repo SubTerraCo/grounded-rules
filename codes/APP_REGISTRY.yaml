@@ -97,24 +97,24 @@ apps:
     localPath: packages/open-sort
     status: reserved
     note: "Gmail and IMAP labels and archive. Replaces MB as the package to build. A small file organizer is also named OpenSort. Code OS means this mail package."
-  - code: FN
-    name: Budget
+  - code: OB
+    name: Open Books
     role: app
-    localPath: packages/budget
+    localPath: packages/open-books
     status: reserved
-    note: "Budgeting only. @actual-app/api. Separate from Open Bill. The name Open Budget is already used, so this package is Budget."
+    note: "Budgeting only. @actual-app/api. Replaces FN. Separate from Open Bill. Not named Open Budget."
   - code: BI
     name: Open Bill
     role: app
     localPath: packages/open-bill
     status: reserved
-    note: "Invoicing and 1099 exports. Replaces BB as the package to build. Not Budget."
-  - code: OB
-    name: Open Booking
+    note: "Invoicing and 1099 exports. Replaces BB as the package to build. Not Open Books."
+  - code: OG
+    name: Open Gig
     role: app
-    localPath: apps/open-booking
+    localPath: apps/open-gig
     status: reserved
-    note: "Profile, listing, rate, and a date request. Free for a solo freelancer. A crew manager of 5 or more pays."
+    note: "Profile, listing, rate, and a date request. Replaces BO. Free for a solo freelancer. A crew manager of 5 or more pays."
   - code: CH
     name: Community
     role: app

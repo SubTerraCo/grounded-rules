@@ -11,7 +11,7 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 - Arch builds install on Omarchy. That machine is the dedicated local AI host: Ollama runs there, and `packages/luna` calls it on localhost. Ship an AppImage and a PKGBUILD.
 - Rust only inside Tauri bindings: filesystem, local IPC, NFC hardware, DaVinci socket.
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
-- Finance store: Actual's own SQLite CRDT inside `packages/budget` (`FN`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
+- Finance store: Actual's own SQLite CRDT inside `packages/open-books` (`OB`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
 - PKM lives in a dedicated Anytype workspace. It is not a package in this monorepo. The shell hub does not require it.
 - Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. Seed color `#e8a54b`. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx`.
 
@@ -22,12 +22,12 @@ apps/
   luna-os/               # LO — Tauri command center, including Arch / Omarchy
   web-shell/             # PWA runtime
   subterra-central/      # SC — gigs, events, NFC event page
-  open-booking/          # OB — profile, listing, rate, date request
-  open-community/        # CH — voting and discussion UI
+  open-gig/              # OG — profile, listing, rate, date request
+  community/             # CH — voting and discussion UI
 packages/
   open-day/              # OD — tasks, timeline, Quick Blocks, Festy crew tools
   open-sort/             # OS — Gmail and IMAP labels and archive
-  budget/                # FN — @actual-app/api budgeting
+  open-books/            # OB — @actual-app/api budgeting
   open-bill/             # BI — invoicing and 1099 exports
   subtoken/              # TK — NTAG424 challenge-response and tickets
   luna/                  # LU — Ollama, Gemma 4 12B default
@@ -57,7 +57,7 @@ Use these projects for the engine and the patches. Write the Material 3 screen a
 
 | Package | Use | Leave out |
 |---------|-----|-----------|
-| Budget `FN` | `@actual-app/api` (MIT). Actual already syncs SimpleFIN and GoCardless | A second ledger |
+| Open Books `OB` | `@actual-app/api` (MIT). Actual already syncs SimpleFIN and GoCardless | A second ledger. The name Open Budget is already published |
 | Open Day `OD` | The existing Blocks app, plus Festy crew screens | Super Productivity. It has no Quick Blocks, and forking it would throw away the kanban that already works |
 | Open Bill `BI` | Our invoicing package | InvoiceShelf. We will outbuild it. Do not vendor the AGPL app |
 | Open Sort `OS` | Our label-and-archive package | gmailctl and hosted inbox products. We will outbuild them |
@@ -89,7 +89,7 @@ PKM stays in a dedicated Anytype workspace. It is not a package here, and Open A
 
 The same package can be installed in Luna OS, in the SubTerra Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other.
 
-A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only Budget, Open Bill, and Open Day records that the person marks. Mail, banking, and home automation stay on Luna OS. Central's public pages never receive the unbridged Luna hub.
+A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only Open Books, Open Bill, and Open Day records that the person marks. Mail, banking, and home automation stay on Luna OS. Central's public pages never receive the unbridged Luna hub.
 
 ## SubTerra Central access
 
@@ -103,7 +103,7 @@ Booking listings are free for a single freelancer. A crew manager with 5 or more
 
 | Package | Luna OS (personal and white-label) | SubTerra Central (public events) | Sells as |
 |---------|--------------------------------------|----------------------------------|----------|
-| Budget `FN` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
+| Open Books `OB` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
 | Open Bill `BI` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
 | Open Day `OD` | Yes. Personal tasks, plus Festy crew drafting | Public schedule only, when granted | Seat. Drafting stays on Luna OS |
 | Open Sort `OS` | Yes | No | Back-office seat |
@@ -112,13 +112,13 @@ Booking listings are free for a single freelancer. A crew manager with 5 or more
 | Media `MA` | Yes | No | Show-control seat |
 | Luna `LU` | Yes | No | Seat. Tools exist only for packages that are installed |
 | Subtoken `TK` | Organizer tools | Event page, tickets, show log, digital goods | Ticket price. Anonymous tag access. One-time profile upgrade is separate |
-| Open Booking `OB` | Yes | Yes | Free for a solo freelancer. Fee for a crew manager of 5 or more |
+| Open Gig `OG` | Yes | Yes | Free for a solo freelancer. Fee for a crew manager of 5 or more |
 | Community `CH` | Crew discussion | Public discussion | Free under the BSL grant. Commercial key past 5 seats |
 | Forum `FM` | Optional richer discussion | Optional richer discussion | Same grant. Community still runs without it |
 
 UI is not a marketplace item. It ships inside both shells.
 
-Monetization is the BSL seat key and PoweredUpLabs hosting for Luna OS, ticket prices on SubTerra Central, a one-time Artist, Venue, or Vendor profile upgrade, and the Open Booking fee for crew managers of 5 or more. A solo freelancer does not pay that fee. A package that is not installed is not billed and is not loaded.
+Monetization is the BSL seat key and PoweredUpLabs hosting for Luna OS, ticket prices on SubTerra Central, a one-time Artist, Venue, or Vendor profile upgrade, and the Open Gig fee for crew managers of 5 or more. A solo freelancer does not pay that fee. A package that is not installed is not billed and is not loaded.
 
 ## Phases
 
@@ -126,7 +126,7 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for Luna OS, ticket p
 2. Shell hub on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs. `budget` around `@actual-app/api`. `billbot` stays a separate invoicing package. `anytype` is an optional mirror of the hub, not the store packages require.
 3. `luna` with the provider interface and a tool registry for budget, blocks, and media. Default the local provider at the Omarchy host.
 4. `packages/open-ui` Material 3 tokens and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
-5. Bundle `luna-os` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked Luna OS hub cannot read SubTerra Central data. Confirm a linked bridge copies only Budget, Open Bill, and Open Day records the owner marked.
+5. Bundle `luna-os` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked Luna OS hub cannot read SubTerra Central data. Confirm a linked bridge copies only Open Books, Open Bill, and Open Day records the owner marked.
 6. Playwright suites listed under CI.
 
 ## Festy Blocks

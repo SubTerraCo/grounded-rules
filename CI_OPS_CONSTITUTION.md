@@ -25,7 +25,7 @@ Exactly two executable shells. Product entry points share them. Luna OS personal
 | Shell | Path | Runtime | Hosts |
 |-------|------|---------|-------|
 | Desktop and mobile | `apps/luna-os` | Tauri v2 + React 19 + Vite | Luna OS on Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
-| Web | `apps/web-shell` | Offline-first PWA | SubTerra Central, Open Booking, Community |
+| Web | `apps/web-shell` | Offline-first PWA | SubTerra Central, Open Gig, Community |
 
 Shared UI is `packages/open-ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
 
@@ -419,7 +419,7 @@ Design record: [GV-0003](Docs/DESIGN_RECORDS/GV-0003-material-3.md).
 
 A repo that claims an exemption says so in its `.cursor/rules/` and in the manifest when the vendor-fork flag exists. The exemption covers that repo's upstream UI only. New SubTerra screens inside an exempt repo still use Material 3.
 
-Headless use of `@actual-app/api` inside `packages/budget` (`FN`) is the intended integration. That wrapper is ours and uses Material 3. Actual's own UI stays upstream. Open Bill (`BI`, `packages/open-bill`) is invoicing and is a separate package.
+Headless use of `@actual-app/api` inside `packages/open-books` (`OB`) is the intended integration. That wrapper is ours and uses Material 3. Actual's own UI stays upstream. Open Bill (`BI`, `packages/open-bill`) is invoicing and is a separate package.
 
 ---
 
@@ -436,4 +436,4 @@ This constitution cannot relicense other people's code:
 | InvoiceShelf, if used | AGPL-3.0. It is not wrapped into the BSL packages or the paid multi-tenant host |
 | Anytype any-sync | Any Source Available License. Commercial use stays limited to Allowed Networks |
 
-`packages/budget`, `packages/open-bill`, and `packages/open-ui` are BSL only for code we write. Imported upstream code keeps its own license. PKM stays in an Anytype workspace, not in this repo.
+`packages/open-books`, `packages/open-bill`, and `packages/open-ui` are BSL only for code we write. Imported upstream code keeps its own license. PKM stays in an Anytype workspace, not in this repo.

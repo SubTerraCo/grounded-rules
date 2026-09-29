@@ -170,11 +170,11 @@ items:
     status: reserved
     note: "Gig and event hub. Anonymous NFC event page. One-time Artist, Venue, or Vendor upgrade. Friend visibility off by default."
 
-  - id: open-booking
-    appCode: OB
-    name: Open Booking
+  - id: open-gig
+    appCode: OG
+    name: Open Gig
     repo: null
-    localPath: apps/open-booking
+    localPath: apps/open-gig
     platforms: [WB]
     role: app
     marketplace: apps
@@ -210,11 +210,11 @@ items:
     sdk: "@subterra/app-sdk"
     status: reserved
 
-  - id: budget
-    appCode: FN
-    name: Budget
+  - id: open-books
+    appCode: OB
+    name: Open Books
     repo: null
-    localPath: packages/budget
+    localPath: packages/open-books
     platforms: [SB]
     role: app
     marketplace: apps

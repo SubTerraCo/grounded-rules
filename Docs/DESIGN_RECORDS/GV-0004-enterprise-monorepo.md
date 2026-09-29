@@ -24,7 +24,7 @@ The enterprise blueprint wins wherever it disagrees with GV-0001, GV-0002, or GV
 | C6 | Material Web and `@subterra/shell-ui` (GV-0003 D2–D3) | Tailwind + `@material/material-color-utilities`, `packages/ui` | Material 3 stays. Tokens move to `packages/ui`. Arbitrary Tailwind values and hardcoded colors fail CI. Seed stays amber `#e8a54b` |
 | C7 | New Rust is forbidden (§14) | Rust for Tauri bindings only | Rust is allowed only in those bindings. App logic stays TypeScript |
 | C8 | Public repos are MIT | BSL 1.1, Apache 2.0 after 36 months, commercial key for 5+ seats | BSL applies to new original monorepo code. See §3. MIT files already published stay MIT |
-| C9 | Actual UI is a vendor-fork exemption | Import `@actual-app/api` into the budgeting package | Package is `packages/budget`, code `FN`. Billbot stays `packages/billbot`, code `BB`. Use the headless API. Actual's SQLite CRDT stays inside Budget. SQLCipher is the hub store |
+| C9 | Actual UI is a vendor-fork exemption | Import `@actual-app/api` into the budgeting package | Package is `packages/open-books`, code `OB`. Open Bill stays `packages/open-bill`, code `BI`. Use the headless API. Actual's SQLite CRDT stays inside Open Books. SQLCipher is the hub store |
 | C10 | Three NFC repos revive as TK | A Solana-named package and code `SN` | Withdrawn. The package is `packages/subtoken` and the code stays `TK`. NTAG424 and Solana live inside Subtoken. UID-only login stays forbidden |
 | C11 | Yjs, Automerge, and any-sync listed together | One shared document model | Finance uses Actual's CRDT. PKM talks to Anytype through any-sync. The hub uses Yjs. Automerge is not a second hub |
 | C12 | Flarum or Discourse | Community engine | Flarum (MIT). Discourse (GPL) fights the commercial gate |
@@ -50,10 +50,10 @@ Open stays on names that would collide with a published app. The others use the 
 | SC | SubTerra Central | `apps/subterra-central` | Gigs and events. Replaces NX |
 | OD | Open Day | `packages/open-day` | Tasks, timeline, Quick Blocks, Festy crew tools. Replaces BK |
 | OS | Open Sort | `packages/open-sort` | Mail labels and archive. Replaces MB |
-| FN | Budget | `packages/budget` | Budgeting via `@actual-app/api`. Not named Open Budget |
+| OB | Open Books | `packages/open-books` | Budgeting via `@actual-app/api`. Not named Open Budget |
 | BI | Open Bill | `packages/open-bill` | Invoicing. Replaces BB |
 | TK | Subtoken | `packages/subtoken` | NFC and tickets |
-| OB | Open Booking | `apps/open-booking` | Profile, listing, rate, date request |
+| OG | Open Gig | `apps/open-gig` | Profile, listing, rate, date request |
 | CH | Community | `apps/community` | Discussion UI |
 | FM | Forum | `packages/forum` | Flarum |
 | HA | Home Assistant | `packages/home-assistant` | Home automation client |
