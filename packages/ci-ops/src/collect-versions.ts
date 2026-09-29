@@ -139,14 +139,29 @@ export function parseManifestItems(text: string): ManifestItem[] {
 }
 
 /**
+ * Resolve a manifest item to a local checkout directory.
+ *
+ * Tries, in order: the manifest `localPath`, its junction/legacy fallbacks,
+ * and the repo-name directory. Cloud multi-repo environments clone each repo
+ * under its own repo name (e.g. `Blocks`, `subterra-shell`) as a sibling of
+ * governance, which never matches the `apps/…` / `Packages/…` layouts, so the
+ * `repo` slug is the reliable fallback there.
+ *
  * @returns absolute path to a directory that exists, or null
  */
-export function resolveLocalCheckout(localPath: string): string | null {
-  if (!localPath) return null;
+export function resolveLocalCheckout(
+  localPath: string,
+  repo: string | null = null,
+): string | null {
   if (localPath === "governance" || localPath === ".") {
     return govRoot;
   }
-  const candidates = PATH_FALLBACKS[localPath] ?? [localPath];
+  const candidates: string[] = [];
+  if (localPath) {
+    candidates.push(...(PATH_FALLBACKS[localPath] ?? [localPath]));
+  }
+  const repoName = repo?.split("/").pop();
+  if (repoName) candidates.push(repoName);
   for (const rel of candidates) {
     const abs = rel === "." ? govRoot : join(metaRoot, rel);
     if (existsSync(abs)) return abs;
@@ -253,7 +268,7 @@ function readGitBranch(repoRoot: string): string | null {
 }
 
 export function collectRow(item: ManifestItem): FleetApp {
-  const checkout = resolveLocalCheckout(item.localPath ?? "");
+  const checkout = resolveLocalCheckout(item.localPath ?? "", item.repo);
   if (!checkout) {
     return {
       appCode: item.appCode,
