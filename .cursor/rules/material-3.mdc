@@ -1,0 +1,14 @@
+---
+description: SubTerra UI uses Material Design 3 and the shared shell theme
+alwaysApply: true
+---
+
+# Material Design 3
+
+SubTerra-owned UI uses Material Design 3. Constitution §15 and `Docs/DESIGN_RECORDS/GV-0003-material-3.md`.
+
+- Web and desktop: `@material/web`.
+- Theme: import `@subterra/shell-ui`. Do not copy tokens into the app. Seed color is amber `#e8a54b`.
+- Do not add MUI, shadcn, or a new hand-rolled button/nav kit.
+- New screens use Material 3 components. Change an existing screen over to Material 3 when you edit it.
+- Exempt: vendor-fork UI that still tracks upstream (Actual / `FN`), and tools with no UI (`tag-writer`). New SubTerra screens inside an exempt repo still follow this rule.

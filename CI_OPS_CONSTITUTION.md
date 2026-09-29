@@ -190,7 +190,7 @@ The Governance agent is the **one-stop shop** for cross-polyrepo standards. Prod
 | Domain | Scope |
 |--------|--------|
 | **Rulesets & Dewey** | Constitution, APP/PP/PR codes, manifest, CI Ops gates |
-| **Design language parity** | Shared tokens / UX contracts across Shell + Apps + Integrations |
+| **Design language parity** | Material Design 3 for Shell and SubTerra-owned app UI (§15, GV-0003). One theme in `@subterra/shell-ui` |
 | **Feature parity** | Apps ↔ Integrations twins; SDK API identity |
 | **GitHub repo management** | Create/configure SubTerraCo polyrepos for new shell/apps/integrations; branch protections; default labels; secrets/vars conventions |
 | **Deployment pipelines** | Reusable Actions (`ci-node`, deploy, release) consumed by all product repos |
@@ -208,6 +208,7 @@ The Governance agent is the **one-stop shop** for cross-polyrepo standards. Prod
 2. New repos start from the governance product template and wire reusable workflows from this repo.
 3. Deployment / CI changes land in governance first, then product repos bump the workflow ref (`@v1` / pin).
 4. Workspace Playwright QA is the release gate for Shell marketplace + SDK parity — not a substitute for product `/testrelease`.
+5. SubTerra-owned UI uses Material Design 3 (§15). Product repos do not add a second component library or token set.
 
 ---
 
@@ -386,3 +387,29 @@ Existing `AU` (Auth / device identity) and `NF` (NFC / crypto tags) cover challe
 Do not add new JavaScript, JSX (`.jsx`), Rust, or any other language for application code. `.tsx` is TypeScript; use it when a file needs JSX syntax.
 
 This rule does not require converting existing code. New code follows it. An existing Python service stays Python, and new modules of that service may be Python. A new app or library starts in TypeScript.
+
+---
+
+## 15. Design language (Material Design 3)
+
+Design record: [GV-0003](Docs/DESIGN_RECORDS/GV-0003-material-3.md).
+
+**Material Design 3 is the UI framework for the SubTerra shell and for every SubTerra-owned app.** Shell chrome and product screens share one component system and one theme so layout, type, shape, and color stay uniform.
+
+| Rule | Requirement |
+|------|-------------|
+| System | [Material Design 3](https://m3.material.io/) only. Do not add a second UI kit (MUI, shadcn, or a hand-rolled button/nav set) for new UI |
+| Web and desktop | [Material Web](https://github.com/material-components/material-web) (`@material/web`) |
+| Theme | One SubTerra theme, owned by `@subterra/shell-ui` in `subterra-shell`. Apps import it. They do not copy token files |
+| Seed color | Amber `#e8a54b` (current shell accent). Not Blocks magenta, and not Material's default purple |
+| New UI | Material 3 components: app bars, navigation, buttons, text fields, lists, sheets |
+| Existing UI | Migrates when that screen is edited. This rule does not require a rewrite in place |
+
+### Exemptions
+
+| Case | Why |
+|------|-----|
+| Vendor-fork UI (Actual / `FN` while it tracks upstream screens) | Restyling upstream UI makes every sync a conflict and blocks contributing back |
+| Tools with no UI (`tag-writer`) | Nothing to theme |
+
+A repo that claims an exemption says so in its `.cursor/rules/` and in the manifest when the vendor-fork flag exists. The exemption covers that repo's upstream UI only. New SubTerra screens inside an exempt repo still use Material 3.

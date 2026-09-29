@@ -21,6 +21,7 @@
 - [codes/AREA_CODES.yaml](./codes/AREA_CODES.yaml)
 - [tests/README.md](./tests/README.md) — workspace QA scope and planned coverage
 - [Docs/DESIGN_RECORDS/](./Docs/DESIGN_RECORDS/) — locked governance decisions
+- [Docs/DESIGN_RECORDS/GV-0003-material-3.md](./Docs/DESIGN_RECORDS/GV-0003-material-3.md) — Material Design 3 is the UI framework (constitution §15)
 - [.cursor/rules/governance-agent.mdc](./.cursor/rules/governance-agent.mdc)
 
 ## Local

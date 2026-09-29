@@ -14,7 +14,7 @@ One-stop shop for:
 1. **Rulesets** — `CI_OPS_CONSTITUTION.md`, Dewey codes, `subterra.manifest.yaml`
 2. **GitHub repo management** — create/configure SubTerraCo polyrepos for shell, apps, and integrations
 3. **Deployment pipelines & templates** — reusable Actions + `templates/product-repo/` (and role variants)
-4. **Design language & feature parity** — Apps ↔ Integrations twins; dual-shell marketplace contracts (ST admin + NX Nexus)
+4. **Design language & feature parity** — Material Design 3 (GV-0003, constitution §15); Apps ↔ Integrations twins; dual-shell marketplace contracts (ST admin + NX Nexus)
 5. **Workspace Playwright QA** — cross-package e2e at the governance layer (Shell ↔ Apps ↔ Integrations)
 
 ## Source of truth
@@ -41,6 +41,7 @@ Product repos **consume** governance; they must not fork conflicting Dewey, vers
 - Vendor upstreams are a separate `upstream` remote — `origin` is always our own repo.
 - Manifest **`audience`** (`admin` / `member`) gates which shell may mount an item; default `["admin"]` fail-closed. Never overload SDK `role` for permissions (GV-0002).
 - NFC login must be **challenge-response** (ECDSA); UID-only auth is forbidden (constitution §13).
+- SubTerra-owned UI uses **Material Design 3** (`@material/web` on web and desktop) and the single `@subterra/shell-ui` theme (seed `#e8a54b`). Do not add a second component library. Vendor-fork UI and non-UI tools are exempt (constitution §15).
 
 ## When working here
 
