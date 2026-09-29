@@ -48,7 +48,7 @@ One product, one code, one folder. The folder is the name people say. Technical 
 | CH | Community | `apps/community` | Voting and discussion UI |
 | FN | Budget | `packages/budget` | Budgeting. `@actual-app/api`. Not Billbot |
 | BB | Billbot | `packages/billbot` | Invoicing and 1099 exports. Not Budget |
-| BK | Blocks | `packages/blocks` | Tasks, time blocks, festival shifts |
+| BK | Blocks | `packages/blocks` | Tasks, timeline, and Festy crew tools (wishlist, conflict draft, coverage, time clock). Public schedule is a SubTerra Central grant |
 | MB | Mailbot | `packages/mailbot` | Gmail and IMAP labels and archive |
 | TK | Subtoken | `packages/subtoken` | NFC. NTAG424 challenge-response and Solana tickets. Absorbs tag-writer and validation |
 | AT | Anytype | `packages/anytype` | Local-first graph via any-sync |

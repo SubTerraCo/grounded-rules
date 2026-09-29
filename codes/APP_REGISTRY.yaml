@@ -21,7 +21,7 @@ apps:
     role: app
     localPath: apps/blocks
     repo: SubTerraCo/Blocks
-    note: "Monorepo package packages/blocks. Code stays BK. Festival shifts fold into Blocks."
+    note: "Monorepo package packages/blocks. Personal kanban and timeline, plus the Festy crew tools: team setup, lobby, shift wishlist, conflict resolver, draft board, coverage, and time clock."
   - code: MB
     name: Mailbot
     role: app
@@ -77,7 +77,7 @@ apps:
     localPath: apps/subterra-central
     status: reserved
     audience: [member]
-    note: "Gig and event hub. Anonymous NFC event page, tickets, show log, and follows. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. Finance and time cross the Luna OS bridge only when that owner links them."
+    note: "Gig and event hub. Anonymous NFC event page, tickets, show log, and follows. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. A granted Blocks schedule is public here. Wishlists, the draft, and the time clock stay in Blocks. Finance and time cross the Luna OS bridge only when that owner links them."
   - code: BO
     name: Booking
     role: app

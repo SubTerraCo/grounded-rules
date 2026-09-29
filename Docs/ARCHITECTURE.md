@@ -28,7 +28,7 @@ apps/
 packages/
   budget/                # FN — @actual-app/api budgeting. Not Billbot
   billbot/               # BB — invoicing and 1099 exports. Not Budget
-  blocks/                # BK — tasks, time blocks, festival shifts
+  blocks/                # BK — tasks, timeline, and Festy crew drafting
   mailbot/               # MB — Gmail and IMAP labels and archive
   subtoken/              # TK — NTAG424 challenge-response and Solana tickets
   anytype/               # AT — any-sync boundary
@@ -85,7 +85,7 @@ Booking listings are free for a single freelancer. A crew manager with 5 or more
 |---------|--------------------------------------|----------------------------------|----------|
 | Budget `FN` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
 | Billbot `BB` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
-| Blocks `BK` | Yes | Public schedule, and the owner's time records through the bridge | Seat, or a public schedule view |
+| Blocks `BK` | Yes. Personal tasks, plus Festy crew drafting | Public schedule only, when granted | Seat. Drafting stays on Luna OS |
 | Mailbot `MB` | Yes | No | Back-office seat |
 | Banking `BS` | Yes | No | Back-office seat |
 | Home Assistant `HA` | Yes | No | Back-office seat |
@@ -110,6 +110,17 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for Luna OS, ticket p
 4. `packages/ui` Material 3 tokens and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
 5. Bundle `luna-os` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked LO hub cannot read SC data. Confirm a linked bridge copies only Budget, Billbot, and Blocks records the owner marked.
 6. Playwright suites listed under CI.
+
+## Festy Blocks
+
+`SubTerraCo/festy-blocks` is the working festival crew app. It does not get its own code. The Firebase app and the Vite shell are not carried forward.
+
+| Screen | Home |
+|--------|------|
+| Team setup, lobby, shift wishlist, conflict resolver, draft board, coverage, time clock | Blocks (`BK`), inside Luna OS |
+| The finished schedule | SubTerra Central, read-only, and only when the owner grants it |
+
+Wishlists and the draft are crew-private. They do not appear on the public event page. Booking (`BO`) is still a hire for a date, not this draft.
 
 ## Prior plans
 
