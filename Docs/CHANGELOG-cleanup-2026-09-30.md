@@ -6,6 +6,19 @@ Companion readable summary (not a diff list): [GOVERNANCE_OVERVIEW.md](GOVERNANC
 
 ---
 
+## Grok bot Anytype — GV-0007 (merged onto PI-019 master)
+
+Powerline 2026-09-30. **Grok bot Anytype** classification **integration** only. **Central owns** the Local API client and credentials; **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Aligns with merged PI-019 (#19) hub+social + bridge OB+BI+OT+AT + packages-under-Central. No secrets.
+
+[PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination) answered. Record: [GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md).
+
+| Path | What changed |
+|------|----------------|
+| `Docs/DESIGN_RECORDS/GV-0007-grok-bot-anytype.md` | **New.** Central-owned client topology; Cara desktop-only. |
+| Shared files vs #19 | Prefer PI-019 canonical hub/social / allowlist / C16; add GV-0007 client-ownership pointers. |
+
+---
+
 ## PI-019 — Central personal hub + Metro social + Anytype + packages-under-Central
 
 Powerline lock 2026-09-30 voice. Docs/governance only. Ready for review (not draft). No secrets. No deletes/archives. No application builds.

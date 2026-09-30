@@ -23,7 +23,7 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 - Rust only inside Tauri bindings: filesystem, local IPC, NFC hardware, DaVinci socket.
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
 - Finance store: Actual's own SQLite CRDT inside `packages/open-books` (`OB`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
-- Leftover PKM lives in a dedicated Anytype workspace. It is not required as a monorepo package, and the shell hub does not require it. Central **hosts** the Anytype integration (and may host other packages). A packages-under-Central path is sanctioned (conflict 4 rewritten, 2026-09-30). The Metro↔Central bridge may copy owner-marked Anytype (`AT`) records.
+- Leftover PKM lives in a dedicated Anytype workspace. It is not required as a monorepo package, and the shell hub does not require it. Central **hosts** the Anytype integration (and may host other packages). A packages-under-Central path is sanctioned (conflict 4 rewritten, 2026-09-30). The Metro↔Central bridge may copy owner-marked Anytype (`AT`) records. **Grok bot Anytype** ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)): Central owns the Local API client and credentials; Cara only runs Anytype desktop on `127.0.0.1:31009`.
 - Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. `packages/open-ui` owns palette, type, and spacing. Locked palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Type: interim Material 3 type scale (display, headline, title, body, label); font families are not locked. Spacing: 4dp baseline grid. The single amber seed `#e8a54b` is withdrawn. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx` (docs may cite these palette hexes; product screens use tokens). Token *code* is not in this Grounded Rules repo.
 
 ## Apps and packages
@@ -82,7 +82,7 @@ Use these projects for the engine and the patches. Write the Material 3 screen a
 | Hub | Yjs and SQLCipher | A CRDT written here |
 | UI | `@material/material-color-utilities` | A second design system |
 | Booking `BO` | No maintained open marketplace matches a profile, a rate, and a date request | Team@Once and Mercur. They are staffing or product commerce, not this listing |
-| Anytype `AT` | any-sync; Central hosts the integration. Leftover PKM workspace is not required as a monorepo package. Metro↔Central bridge allowlist includes owner-marked AT | Treating it as a plugin or extension. Forbidding a packages-under-Central path |
+| Anytype `AT` | any-sync; Central hosts the integration. Leftover PKM workspace is not required as a monorepo package. Metro↔Central bridge allowlist includes owner-marked AT. **Grok bot Anytype** ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)): Central-owned Local API client; Cara desktop-only on `:31009` | Treating it as a plugin or extension. Forbidding a packages-under-Central path |
 
 Existing SubTerraCo repos stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
@@ -98,7 +98,7 @@ Every installable package stands alone. It may not import another package. The s
 
 Optional facts another package might have written are read from the hub only after the user grants that read. If the other package is not installed, those fields stay empty and the installed package still runs.
 
-Leftover PKM stays in a dedicated Anytype workspace and is not required as a package in this monorepo. Open Axiom is cut. The shell hub is the store for installed packages. Other people are not required to run Anytype. Central hosts packages and integrations, including Anytype / Grok bot Anytype (Dewey `role: integration` only — not plugin/extension). A packages-under-Central path is sanctioned (conflict 4 rewritten, Powerline lock 2026-09-30).
+Leftover PKM stays in a dedicated Anytype workspace and is not required as a package in this monorepo. Open Axiom is cut. The shell hub is the store for installed packages. Other people are not required to run Anytype. Central hosts packages and integrations, including Anytype / Grok bot Anytype (Dewey `role: integration` only — not plugin/extension). A packages-under-Central path is sanctioned (conflict 4 rewritten, Powerline lock 2026-09-30). Client topology: [GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) (Central owns Local API client; Cara runs Anytype desktop on `127.0.0.1:31009` only).
 
 The same package can be installed in SubTerra Metro, in the SubTerra Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other. Metro as the social app consumes extensions and packages hosted in Central.
 
@@ -135,6 +135,8 @@ Column labels use the 2026-09-30 shell roles (Metro = social, consuming Central-
 | Forum `FM` | Optional richer discussion | Optional richer discussion | Same grant. Community still runs without it |
 
 UI is not a marketplace item. It ships inside both shells.
+
+**Grok bot Anytype (Central integration).** Classification **integration** only ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)). **Central owns** the Local API client, credentials, first-pull, and tag/view. **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Dewey `AT` / `integrations/anytype`. Metro (social) may access Central-hosted extensions/packages. Data-bridge allowlist is **OB + BI + OT + AT** (marked records).
 
 Monetization is the BSL seat key and PoweredUpLabs hosting for SubTerra Metro, ticket prices on SubTerra Central, a one-time Artist, Venue, or Vendor profile upgrade, and the Open Gig fee for crew managers of 5 or more. A solo freelancer does not pay that fee. A package that is not installed is not billed and is not loaded.
 

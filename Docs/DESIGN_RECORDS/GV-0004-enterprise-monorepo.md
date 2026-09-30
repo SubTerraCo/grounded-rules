@@ -82,7 +82,7 @@ Open stays on names that would collide with a published app. The others use the 
 
 SubTerra Metro and SubTerra Central keep separate hubs. The same owner may link a bridge that copies only Open Books, Open Bill, Open Time, and Anytype records they mark (Powerline lock 2026-09-30). The bridge is off by default. Central is the personal AI hub; Metro is the social media app that consumes Central-hosted packages. NFC event-page access remains a challenge-response, with a one-time upgrade for Artist, Venue, or Vendor profile tools. Friend-show visibility is off by default. Open Gig is free for a solo freelancer and billed for a crew manager of 5 or more.
 
-Packages do not import each other. Each shell ships a SQLite hub, and every package runs against an empty hub. Central hosts packages and integrations; a packages-under-Central path is sanctioned (C16). Anytype is a Central-hosted integration and not a hub dependency. Leftover PKM remains a dedicated Anytype workspace unless folded. Forum is an optional richer backend for Community. The deployment matrix is in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md).
+Packages do not import each other. Each shell ships a SQLite hub, and every package runs against an empty hub. Central hosts packages and integrations; a packages-under-Central path is sanctioned (C16). Anytype is a Central-hosted integration and not a hub dependency. Leftover PKM remains a dedicated Anytype workspace unless folded. **Grok bot Anytype** Local API client ownership is Central; Cara runs Anytype desktop only ([GV-0007](GV-0007-grok-bot-anytype.md)). Forum is an optional richer backend for Community. The deployment matrix is in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md).
 
 ---
 

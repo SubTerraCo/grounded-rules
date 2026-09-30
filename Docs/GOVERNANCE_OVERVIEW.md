@@ -17,6 +17,7 @@ There is no third audience. “Powerline” is an owner/approver of archive deci
 |-------------|------|
 | Product shape (wins on conflict) | [ARCHITECTURE.md](ARCHITECTURE.md) |
 | Conflict resolutions | [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md) |
+| Grok bot Anytype (Cara Local API, AT integration) | [DESIGN_RECORDS/GV-0007-grok-bot-anytype.md](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) (conflict three + four resolved; [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination) answered) |
 | Dewey, versioning, NFC, Material 3, license (when the blueprint is silent) | [../CI_OPS_CONSTITUTION.md](../CI_OPS_CONSTITUTION.md) |
 | File-by-file cleanup of this pass | [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) |
 | Powerline input queue | [POWERLINE_INPUT.md](POWERLINE_INPUT.md) |
@@ -86,7 +87,7 @@ One product, one code, one folder. The folder is the name people say.
 | HA | Home Assistant | `packages/home-assistant` | client only |
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
 | BS | Banking | `packages/banking` | SimpleFIN + GoCardless. Monorepo package, not a twin integration |
-| AT | Anytype | Central-hosted integration | leftover PKM workspace is not required as a monorepo package; Central hosts the integration (`role: integration`) |
+| AT | Anytype | Central-hosted integration | leftover PKM workspace is not required as a monorepo package; Central hosts the integration (`role: integration`). **Grok bot Anytype** ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)): Central-owned Local API client; Cara desktop-only on `:31009` |
 | GV | Grounded Rules | this repo | rules / CI / templates |
 | WL | White-label | — | commercial gate on SubTerra Metro, not a package (PI-001: registry-only; no catalog row) |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
