@@ -14,7 +14,7 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 - Rust only inside Tauri bindings: filesystem, local IPC, NFC hardware, DaVinci socket.
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
 - Finance store: Actual's own SQLite CRDT inside `packages/open-books` (`OB`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
-- PKM lives in a dedicated Anytype workspace. It is not a package in this monorepo. The shell hub does not require it.
+- PKM lives in a dedicated Anytype workspace. It is not a package in this monorepo. The shell hub does not require it. Optional Cara Local API bridge **Grok bot Anytype** (classification **integration**, Dewey `AT`) is recorded in [GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md). It is not a Central marketplace package; destination vs AT leftover path is [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination).
 - Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. `packages/open-ui` owns palette, type, and spacing. Locked palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Type: interim Material 3 type scale (display, headline, title, body, label); font families are not locked. Spacing: 4dp baseline grid. The single amber seed `#e8a54b` is withdrawn. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx` (docs may cite these palette hexes; product screens use tokens). Token *code* is not in this Grounded Rules repo.
 
 ## Apps and packages
@@ -71,7 +71,7 @@ Use these projects for the engine and the patches. Write the Material 3 screen a
 | Hub | Yjs and SQLCipher | A CRDT written here |
 | UI | `@material/material-color-utilities` | A second design system |
 | Booking `BO` | No maintained open marketplace matches a profile, a rate, and a date request | Team@Once and Mercur. They are staffing or product commerce, not this listing |
-| Anytype `AT` | any-sync, optional | Making it required |
+| Anytype `AT` | any-sync, optional. Cara bridge **Grok bot Anytype** is an **integration** under AT ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)) | Making it required; inventing `packages/anytype-bridge` or a Central marketplace PKM package |
 
 Existing SubTerraCo repos stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
@@ -87,7 +87,7 @@ Every installable package stands alone. It may not import another package. The s
 
 Optional facts another package might have written are read from the hub only after the user grants that read. If the other package is not installed, those fields stay empty and the installed package still runs.
 
-PKM stays in a dedicated Anytype workspace. It is not a package here, and Open Axiom is cut. The shell hub is the store for installed packages. Other people are not required to run Anytype.
+PKM stays in a dedicated Anytype workspace. It is not a package here, and Open Axiom is cut. The shell hub is the store for installed packages. Other people are not required to run Anytype. Optional Cara Local API bridge **Grok bot Anytype** is an **integration** under `AT` ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)). It is not a Central (or Metro) marketplace package; Central packaging intent vs this rule is [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination).
 
 The same package can be installed in SubTerra Metro, in the SubTerra Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other.
 
@@ -121,6 +121,8 @@ Booking listings are free for a single freelancer. A crew manager with 5 or more
 | Forum `FM` | Optional richer discussion | Optional richer discussion | Same grant. Community still runs without it |
 
 UI is not a marketplace item. It ships inside both shells.
+
+**Grok bot Anytype (Central packaging note).** Powerline intent is to add this as a Central package or third-party integration. Grounded Rules classification is **integration** only (GV-0007). A Central *marketplace package* conflicts with AT-not-a-package, the empty-hub rule, and the tip install matrix (personal/local clients are Metro-only). Compliant shape until [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination): leftover AT integration (`integrations/anytype`); Central may be a LAN *client* of the Cara bridge, not the package home.
 
 Monetization is the BSL seat key and PoweredUpLabs hosting for SubTerra Metro, ticket prices on SubTerra Central, a one-time Artist, Venue, or Vendor profile upgrade, and the Open Gig fee for crew managers of 5 or more. A solo freelancer does not pay that fee. A package that is not installed is not billed and is not loaded.
 

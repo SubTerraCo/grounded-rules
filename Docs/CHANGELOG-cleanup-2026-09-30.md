@@ -6,6 +6,23 @@ Companion readable summary (not a diff list): [GOVERNANCE_OVERVIEW.md](GOVERNANC
 
 ---
 
+## Grok bot Anytype — GV-0007 draft (integration lock)
+
+Powerline 2026-09-30: display **Grok bot Anytype**; classification **integration** only (plugin/extension considered and rejected). Cara Local API bridge topology documented. **Stay draft. Do not merge.** No runtime. No secrets.
+
+**OPEN:** destination. Central package intent vs Dewey AT / not-a-monorepo-package / Metro-vs-Central placement — [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination). Numbering: GV-0005 is PR #12; GV-0006 is PR #15; this record is GV-0007.
+
+| Path | What changed |
+|------|----------------|
+| `Docs/DESIGN_RECORDS/GV-0007-grok-bot-anytype.md` | **New.** Cara topology, dual-credential hops, Powerline first pull/write, conflict report §6, compliant AT integration shape. |
+| `Docs/ARCHITECTURE.md` | PKM bullet + Anytype upstream row + marketplace + Central packaging note → GV-0007 / PI-020. |
+| `codes/APP_REGISTRY.yaml` / `subterra.manifest.yaml` | AT notes: Grok bot Anytype is the optional Cara Local API **integration** under AT; still not `packages/*`. |
+| `Docs/GOVERNANCE_OVERVIEW.md` | Source-of-truth + AT row pointers. |
+| `Docs/POWERLINE_INPUT.md` | PI-020 open (destination). Open index 9. Classification not a PI — locked integration. |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | This section. |
+
+---
+
 ## PI-011 answered — rewrite existing BK→OT
 
 Powerline answered 2026-09-30 MT. **Option A:** rewrite **all existing** Dewey addresses on Blocks (`BK/N-####`) to **`OT/N-####`** (Open Time). Documented address examples now use OT. `BK` remains an address-alias catalog row pointing at OT / `packages/open-time`. **Unchanged:** Open Books `OB`; leftover Blocks repo / workflow consumer comments; fleet snapshot BK row.

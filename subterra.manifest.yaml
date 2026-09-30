@@ -123,7 +123,7 @@ items:
     upstream: anyproto/anytype-api
     legacyRepo: SubTerraCo/anytype-google-contact-integration  # superseded predecessor, kept for reference
     defaultBranch: master
-    note: "Not a monorepo package. PKM is a dedicated Anytype workspace. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
+    note: "Not a monorepo package. PKM is a dedicated Anytype workspace. Twin role/marketplace/sdk fields are deprecated leftover until fold-in. Grok bot Anytype is the optional Cara Local API integration under AT (not a new Luna catalog item; not a Central package)."
 
   # GV-0004 monorepo items. No twin role / marketplace: apps|integrations / twin SDK.
   - id: luna-os

@@ -25,7 +25,7 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`). 8 items.
+Decisions (`open`). 9 items.
 
 - [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OT rows
 - [PI-004](#pi-004-font-families-for-open-ui) — Q15 Font families for open-ui
@@ -35,6 +35,7 @@ Decisions (`open`). 8 items.
 - [PI-008](#pi-008-arch-omarchy-platform-code) — Q8 Arch / Omarchy platform code
 - [PI-010](#pi-010-banking-dewey-role) — Q10 Banking (BS) Dewey role
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
+- [PI-020](#pi-020-grok-bot-anytype-destination) — Grok bot Anytype destination (Central vs AT)
 
 ## Answered
 
@@ -305,3 +306,21 @@ Decisions (`open`). 8 items.
   - [ ] C) Other (text)
 - **Text:** Approved. Display **Open Time**. Path `packages/open-time`. Live Dewey code `OT`. `OD` is the former live code (Open Day) and remains an address alias (like `LO` for `SM`). Reason: “OD” sounds like overdose; `OB` is taken by Open Books. Scope unchanged: tasks, timeline, Quick Blocks, Festy crew. Existing `OD/N-####` addresses stay valid; new work uses `OT`. `BK` (Blocks) retargets to `OT` / `packages/open-time`. Unchanged: Open Books `OB`, Open Bill `BI`, Open Sort `OS`, SubTerra Metro `SM`, SubTerra Central `SC`.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Open Day → Open Time rename section. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4. [PI-011](#pi-011-dewey-bk-to-ot-rewrite) answered A — existing `BK/N-####` rewritten to `OT/N-####`.
+
+---
+
+<h2 id="pi-020-grok-bot-anytype-destination">PI-020 — Grok bot Anytype destination</h2>
+
+- **Status:** `open`
+- **Needed:** decision
+- **Question:** Where does **Grok bot Anytype** live? Powerline intent is SubTerra Central (`SC`) as a package **or** third-party integration. Classification is already locked **integration** (2026-09-30). Grounded Rules conflict report ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) §6) says a Central *marketplace package* conflicts with AT-not-a-package, empty-hub, and the tip Metro-only matrix for personal/local clients. Pick a destination that GR permits, or explicitly override.
+- **Options:**
+  - [ ] A) AT leftover integration — `SubTerraCo/subterra-anytype`, `integrations/anytype` (GR-compliant preferred)
+  - [ ] B) Optional Metro-side consumer / Luna tool on `SM` (not a marketplace package; still AT integration for the Cara process)
+  - [ ] C) Central is a LAN *client* only (same hop as Rook / Powerline); package home stays AT
+  - [ ] D) Central marketplace package anyway (overrides X1–X5 — say so in Text)
+  - [ ] Need More Context
+  - [ ] Open discussion
+  - [ ] OTHER (text)
+- **Text:**
+- **More context:** [DESIGN_RECORDS/GV-0007-grok-bot-anytype.md](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md). [ARCHITECTURE.md](ARCHITECTURE.md) PKM + Central packaging note. [APP_REGISTRY](../codes/APP_REGISTRY.yaml) AT row. Sibling unmerged [PR #12](https://github.com/SubTerraCo/grounded-rules/pull/12) GV-0005 display framing (F1 Luna stays Metro). Classification is not reopened: not plugin, not extension.
