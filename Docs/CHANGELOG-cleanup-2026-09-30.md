@@ -64,7 +64,7 @@ Living clickable queue: [POWERLINE_INPUT.md](POWERLINE_INPUT.md) (`PI-001`–`PI
 
 | Path | What changed |
 |------|----------------|
-| `Docs/POWERLINE_INPUT.md` | **Added.** Open index + 14 items (13 `open` decisions, 1 `watching`). |
+| `Docs/POWERLINE_INPUT.md` | **Added.** 14 items total in the file; Open index = 13 (12 `open` decisions + 1 `watching`); PI-014 Answered. |
 | `Docs/GOVERNANCE_OVERVIEW.md` | Source-of-truth table: Powerline input queue → `POWERLINE_INPUT.md`. |
 | `Docs/CHANGELOG-cleanup-2026-09-30.md` | This note. Still-open list unchanged. |
 
