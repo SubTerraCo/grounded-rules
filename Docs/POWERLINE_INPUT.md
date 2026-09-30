@@ -37,7 +37,7 @@ Decisions (`open`) and watches (`watching`). 13 items.
 - [PI-010](#pi-010-banking-dewey-role) — Q10 Banking (BS) Dewey role
 - [PI-011](#pi-011-dewey-bk-to-od-rewrite) — Q13 Dewey BK→OD rewrite
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
-- [PI-013](#pi-013-luna-os-open-ui-token-pr) — Luna OS open-ui token PR *(watching)* — luna-os#1 draft @ `39bb566`; pending PI-003
+- [PI-013](#pi-013-luna-os-open-ui-token-pr) — Luna OS open-ui token PR *(watching)* — luna-os#1 draft @ `39bb566`; Patron chrome PASS 7/7; pending PI-003
 
 ## Answered
 
@@ -221,10 +221,10 @@ Decisions (`open`) and watches (`watching`). 13 items.
 - **Needed:** status
 - **Question:** Track until Powerline merge decision (stay draft pending PI-003).
 - **Options:** N/A — Rook updates until Powerline merge. Do not mark answered until that decision.
-- **Text:** Lattice 2026-09-30: `nits_only`, blockers none; stay draft pending PI-003. Patron chrome validation in flight after Lattice clear.
+- **Text:** Lattice 2026-09-30: `nits_only`, blockers none; stay draft pending PI-003. Patron 2026-09-30 chrome validation PASS (7/7) on luna-os#1 @ `39bb566`.
 - **Current:** draft PR [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `39bb566` — branch `cursor/powerline-open-ui-tokens-2bbb`. Agent [bc-ceeeb171-7643-5354-9303-55a529182bbb](https://cursor.com/agents/bc-ceeeb171-7643-5354-9303-55a529182bbb).
 - **Lattice (2026-09-30):** `nits_only`, blockers none. Stay draft pending [PI-003](#pi-003-palette-replace-vs-supplement).
-- **Patron:** chrome validation in flight after Lattice clear.
+- **Patron (2026-09-30):** chrome validation PASS (7/7) on [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `39bb566`.
 - **More context:** Sibling of [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3). Governance palette docs already on [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
@@ -254,5 +254,5 @@ Decisions (`open`) and watches (`watching`). 13 items.
   - [x] A) Preferred — no new Dewey APP code; WL gate only; wizard on LO; brand pack in packages/open-ui; no fourth shell; no BR/open-brand.
   - [ ] B) Alt A — add BR / packages/open-brand.
   - [ ] C) Other
-- **Text:** Preferred locked. Dewey mapping (existing codes only): APP `WL` = commercial gate (APP_REGISTRY reserved; not a package/shell). APP `LO` = host of first-run wizard + primary WL runtime. Brand tokens = `packages/open-ui` (no APP code in registry — Open UI row uses em dash). Area `UI` for wizard chrome. Area `AU` optional for WL entitlement/key. Do not use ST for WL path. Reject BR and fourth shell.
+- **Text:** Preferred locked. Dewey mapping (existing codes only): APP `WL` = commercial gate (APP_REGISTRY reserved; not a package/shell). APP `LO` = host of first-run wizard + primary WL runtime. APP `SC` = optional co-brand. APP `ST` = out (do not use for WL path). Brand pack = `packages/open-ui` (no APP letter in registry — Open UI row uses em dash). Area `UI` for wizard chrome. Area `AU` optional for WL entitlement/key. Reject BR and fourth shell.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md). [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL / Open UI rows. [PI-001](#pi-001-white-label-catalog-row) still open for a catalog `null` row for the gate. [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
