@@ -123,7 +123,7 @@ items:
     upstream: anyproto/anytype-api
     legacyRepo: SubTerraCo/anytype-google-contact-integration  # superseded predecessor, kept for reference
     defaultBranch: master
-    note: "PKM is a dedicated Anytype workspace (not a PKM packages/* product). Twin role/marketplace/sdk fields are deprecated leftover until fold-in. Grok bot Anytype is the Central-owned Local API integration under AT (classification integration only). Cara only runs Anytype desktop on 127.0.0.1:31009. Bridge allowlist OB+BI+OT+AT."
+    note: "Not a required monorepo package. Leftover PKM lives in a dedicated Anytype workspace. Central hosts the Anytype integration (Powerline lock 2026-09-30; Dewey role: integration only — not plugin/extension). Intended shape: Anytype / Grok bot Anytype as a Central integration. Central owns the Local API client and credentials; Cara only runs Anytype desktop on 127.0.0.1:31009 (GV-0007). Packages-under-Central is sanctioned (GV-0004 C16). Metro↔Central data bridge allowlist includes owner-marked AT records (with OB, BI, OT). any-sync ASAL limits still apply. Open Axiom is cut. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
 
   # GV-0004 monorepo items. No twin role / marketplace: apps|integrations / twin SDK.
   - id: luna-os
@@ -152,7 +152,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "GV-0004. Tauri command center, including Arch Linux for Omarchy. Personal data is isolated from SC. Live gate is audience, not twin marketplace fields. Former code LO is an address alias. Personal agent Luna (LU) is unchanged."
+    note: "Powerline lock 2026-09-30. Social media app (Tauri), including Arch Linux for Omarchy. Consumes extensions and packages hosted in Central. Catalog audience admin still mounts here. Live gate is audience, not twin marketplace fields. Former code LO is an address alias. Personal agent Luna (LU) is unchanged."
 
   - id: subterra-central
     appCode: SC
@@ -166,7 +166,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "Gig and event hub PWA. Anonymous NFC event page. One-time Artist, Venue, or Vendor upgrade. Friend visibility off by default. Live gate is audience, not twin marketplace fields."
+    note: "Powerline lock 2026-09-30. Personal AI hub and suite of all tools. Hosts packages and integrations; a packages-under-Central path is sanctioned (GV-0004 C16). Catalog audience member still mounts here. NFC event page remains challenge-response. Live gate is audience, not twin marketplace fields."
 
   - id: open-gig
     appCode: OG
@@ -220,7 +220,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro; Central only through the owner's bridge. Wraps @actual-app/api. Not Open Bill."
+    note: "ARCHITECTURE matrix: SubTerra Metro; Central only through the owner's bridge (allowlist OB + BI + OT + AT). Wraps @actual-app/api. Not Open Bill."
 
   - id: home-assistant
     appCode: HA
@@ -272,7 +272,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro (tasks + Festy draft); Central gets a public schedule only when granted. Former code OD is an address alias."
+    note: "ARCHITECTURE matrix: SubTerra Metro (tasks + Festy draft); Central gets a public schedule only when granted. Former code OD is an address alias. Owner-marked Metro↔Central bridge allowlist includes OT (with OB, BI, AT)."
 
   - id: open-sort
     appCode: OS
@@ -298,7 +298,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro; Central only through the owner's bridge. Invoicing and 1099 exports."
+    note: "ARCHITECTURE matrix: SubTerra Metro; Central only through the owner's bridge (allowlist OB + BI + OT + AT). Invoicing and 1099 exports."
 
   - id: forum
     appCode: FM

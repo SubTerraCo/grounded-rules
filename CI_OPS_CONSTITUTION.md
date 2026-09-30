@@ -18,19 +18,19 @@ Existing SubTerraCo product repos stay on `master` and keep calling Grounded Rul
 | Path | Repo | Role |
 |------|------|------|
 | this repo | `SubTerraCo/subterra-governance` | Grounded Rules — constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
-| (future) `apps/` `packages/` `tooling/` | `SubTerraCo/luna` | Enterprise monorepo — SubTerra Metro, SubTerra Central, and packages. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) |
+| (future) `apps/` `packages/` `tooling/` | `SubTerraCo/luna` | Enterprise monorepo — SubTerra Metro, SubTerra Central, and packages. Central hosts packages and integrations; a packages-under-Central path is sanctioned (Powerline lock 2026-09-30 / GV-0004 C16). Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) |
 | `shell/` | `SubTerraCo/subterra-shell` | Leftover shell repo until Phase 1 copies what is still useful. Do not build leftover `apps/admin` folders or `packages/shell-core` |
 | existing `apps/<name>/` | per product (Blocks, Mailbot, …) | Leftover standalone app repos until folded into `packages/` / `apps/` in `luna` |
-| existing `integrations/<name>/` | per integration (Anytype) | Leftover standalone integration repos until folded. PKM stays a dedicated Anytype workspace, not a monorepo package |
+| existing `integrations/<name>/` | per integration (Anytype) | Leftover standalone integration repos until folded. Central may host the folded integration. Leftover PKM stays a dedicated Anytype workspace unless folded; it is not required as a monorepo package |
 
 ### 1.1 Shell targets (GV-0004; supersedes GV-0002 D1–D2)
 
-Exactly two executable runtimes. Product packages install into them. SubTerra Metro personal data and SubTerra Central data do not share a read or write path unless the owner turns on the optional data bridge.
+Exactly two executable runtimes. Central hosts packages and integrations as the personal AI hub and tool suite. A packages-under-Central path is a legitimate, sanctioned shape (conflict 4 rewritten, Powerline lock 2026-09-30). Metro is the social media app and consumes Central-hosted packages. SubTerra Metro and SubTerra Central data do not share a read or write path unless the owner turns on the optional data bridge. The owner-marked bridge allowlist is Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`).
 
 | Shell | Path | Runtime | Hosts |
 |-------|------|---------|-------|
-| SubTerra Metro | `apps/subterra-metro` | Tauri v2 + React 19 + Vite | Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
-| SubTerra Central | `apps/subterra-central` | Offline-first PWA | Gigs, events; Open Gig and Community install here |
+| SubTerra Metro | `apps/subterra-metro` | Tauri v2 + React 19 + Vite | Social media app. Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Consumes Central-hosted packages |
+| SubTerra Central | `apps/subterra-central` | Offline-first PWA | Personal AI hub and suite of all tools. Hosts packages and integrations (`apps/subterra-central/packages/` and Central-hosted integrations are sanctioned) |
 
 Shared UI is `packages/open-ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
 
@@ -50,7 +50,7 @@ Leftover `apps/admin` folders and `packages/shell-core` from GV-0002 are not the
 - Twin SDKs with **identical APIs**: `@subterra/app-sdk` and `@subterra/integration-sdk` (leftover only)
 - Same CI Ops / Dewey / `/NF` `/NB` `/RD` / `/BUILD` process
 
-Do **not** start new product work as a pair of separate app/integration GitHub repos. New work follows [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Prefer the monorepo package layout. The Grounded Rules **product-repo template** still exists only for leftover standalone repos that must be registered before fold-in.
+Do **not** start new product work as a pair of separate app/integration GitHub repos. New work follows [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Central-hosted packages and integrations (including a packages-under-Central path) are the sanctioned host shape (GV-0004 C16). Root `packages/` in `luna` remains valid. The Grounded Rules **product-repo template** still exists only for leftover standalone repos that must be registered before fold-in.
 
 ---
 
@@ -387,9 +387,9 @@ Product implementations that shortcut this invariant are constitution violations
 
 GV-0002 D3/D6 historically listed TK as `audience: [admin]` only. The live catalog follows the ARCHITECTURE matrix: both shells.
 
-### 13.4 Dewey areas added for the member shell
+### 13.4 Dewey areas added for catalog `member`
 
-Reserved in GV-0002 D7 for the member shell (SubTerra Central):
+Reserved in GV-0002 D7. Catalog `member` still mounts on SubTerra Central. Product role (Powerline lock 2026-09-30): Central is the personal AI hub; Metro is the social media app.
 
 | Code | Area |
 |------|------|
@@ -471,4 +471,4 @@ This constitution cannot relicense other people's code:
 | InvoiceShelf, if used | AGPL-3.0. It is not wrapped into the BSL packages or the paid multi-tenant host |
 | Anytype any-sync | Any Source Available License. Commercial use stays limited to Allowed Networks |
 
-`packages/open-books`, `packages/open-bill`, and `packages/open-ui` are BSL only for code we write. Imported upstream code keeps its own license. PKM stays in an Anytype workspace, not in this repo.
+`packages/open-books`, `packages/open-bill`, and `packages/open-ui` are BSL only for code we write. Imported upstream code keeps its own license. Leftover PKM stays in an Anytype workspace unless folded; Central hosting the Anytype integration (and other packages) is allowed.

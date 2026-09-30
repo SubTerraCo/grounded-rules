@@ -32,11 +32,13 @@ Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANC
 - [Docs/DESIGN_RECORDS/GV-0003-material-3.md](./Docs/DESIGN_RECORDS/GV-0003-material-3.md) — Material Design 3 (tokens now `packages/open-ui`)
 - [.cursor/rules/governance-agent.mdc](./.cursor/rules/governance-agent.mdc)
 
-## Current product shape (GV-0004)
+## Current product shape (GV-0004 + Powerline lock 2026-09-30)
 
-- Two runtimes: `apps/subterra-metro` (Tauri v2, including Arch / Omarchy) and `apps/subterra-central` (PWA).
-- Catalog `audience` values stay `admin` and `member` (GV-0002 D4). Mapping: `admin` → SubTerra Metro; `member` → SubTerra Central. Default `["admin"]` fail-closed. No third audience.
-- Packages: Open Time, Open Sort, Open Books, Open Bill, Subtoken, Luna, Banking, Forum, Home Assistant, Media, Open UI.
+- Two runtimes: `apps/subterra-metro` (Tauri v2 social media app, including Arch / Omarchy; consumes Central-hosted packages) and `apps/subterra-central` (PWA personal AI hub and suite of all tools; hosts packages and integrations).
+- **Packages-under-Central is sanctioned** (`apps/subterra-central/packages/` or equivalent). Old cut that this invented a forbidden product shape is rewritten (GV-0004 C16).
+- Catalog `audience` values stay `admin` and `member` (GV-0002 D4). Mapping: `admin` → SubTerra Metro; `member` → SubTerra Central. Default `["admin"]` fail-closed. No third audience. Audience strings are mount gates, not product-role labels.
+- Metro↔Central data bridge (off by default, owner-marked): Open Books, Open Bill, Open Time, **and Anytype (`AT`)**.
+- Packages: Open Time, Open Sort, Open Books, Open Bill, Subtoken, Luna, Banking, Forum, Home Assistant, Media, Open UI. Anytype is a Central-hosted integration (leftover PKM workspace is not required as a monorepo package).
 - Twin `role` / `marketplace` / SDK fields are **deprecated leftover** on standalone-repo rows. New monorepo packages: `marketplace: null`, `sdk: null`.
 - Material 3 in `packages/open-ui`: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`; interim M3 type scale; 4dp spacing.
 - New original monorepo code is BSL 1.1. Already published MIT stays MIT.

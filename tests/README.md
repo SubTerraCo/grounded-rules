@@ -45,7 +45,7 @@ So `contract` tests against the leftover SDK surface are unblocked in principle,
 
 1. Catalog items render in the active shell, filtered by `audience`.
 2. An installed package opens against an empty hub.
-3. SubTerra Metro and SubTerra Central do not share hub data unless the owner-marked bridge is on.
+3. SubTerra Metro and SubTerra Central do not share hub data unless the owner-marked bridge is on. Allowlist: Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`).
 
 ## Running
 

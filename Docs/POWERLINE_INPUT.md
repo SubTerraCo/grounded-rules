@@ -38,6 +38,7 @@ Decisions (`open`). 8 items.
 
 ## Answered
 
+- [PI-019](#pi-019-central-hub-metro-social-anytype) — Central personal hub + Metro social; Anytype Central integration; packages-under-Central sanctioned; bridge OB+BI+OT+AT / 2026-09-30 voice
 - [PI-003](#pi-003-palette-replace-vs-supplement) — A) Replace amber entirely / 2026-09-30 MT
 - [PI-014](#pi-014-shell-token-pr-3-lattice-nits) — A) accept residual nits / merged 2026-09-30 MT
 - [PI-015](#pi-015-white-label-first-run-dewey-path) — A) Preferred WL-FR-001 / 2026-09-30 MT
@@ -309,6 +310,20 @@ Decisions (`open`). 8 items.
 
 ---
 
+<h2 id="pi-019-central-hub-metro-social-anytype">PI-019 — Central personal hub + Metro social + Anytype Central integration</h2>
+
+- **Status:** `answered` (2026-09-30 voice)
+- **Needed:** decision
+- **Question:** Lock Central / Metro product roles, Anytype as a Central integration, packages-under-Central, and Metro↔Central bridge allowlist?
+- **Options:**
+  - [x] A) Yes — Central = personal AI hub + suite of all tools; Metro = social media app consuming Central-hosted packages; Anytype as Central integration intended; packages-under-Central sanctioned; bridge allowlist OB + BI + OT + AT
+  - [ ] B) Keep prior Metro-as-command-center / Central-as-public-member-shell framing
+  - [ ] C) Other (text)
+- **Text:** Powerline lock 2026-09-30 voice. (1) Central is the personal AI hub and suite of all tools. (2) Metro is converting to the social media app, with access to all extensions and packages hosted in Central. Catalog `audience` `admin`/`member` machine values unchanged. (3) Anytype as a Central integration is the intended shape (`role: integration` only — not plugin/extension). Leftover PKM workspace is not required as a monorepo package; Central hosts the integration. Prior conflict that packaging Anytype / Grok bot Anytype for Central violated Grounded Rules is rewritten, not merely noted. (4) Conflict 4 rewritten: old cut “forcing a packages path under Central invents a product shape Grounded Rules already cut” → new rule: a packages-under-Central path is a legitimate, sanctioned shape. (5) Metro↔Central data bridge allowlist (owner-marked, off by default) is Open Books, Open Bill, Open Time, **and Anytype**.
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) PI-019 section. [ARCHITECTURE.md](ARCHITECTURE.md) Shell roles. [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md) C15 / C16.
+
+---
+
 <h2 id="pi-020-grok-bot-anytype-destination">PI-020 — Grok bot Anytype destination</h2>
 
 - **Status:** `answered` (2026-09-30 MT)
@@ -322,5 +337,5 @@ Decisions (`open`). 8 items.
   - [ ] Need More Context
   - [ ] Open discussion
   - [x] OTHER (text)
-- **Text:** Powerline 2026-09-30. Destination = **Central integration**. **Central owns** the Local API client, credentials (`ANYTYPE_API_KEY` in Central/runtime env), first-pull, and tag/view. **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Classification **integration** only. Bridge allowlist **OB + BI + OT + AT**. Packages/integrations hosted on Central; Metro accesses Central-hosted extensions/packages. Prior Central-placement conflict reading **superseded**.
-- **More context:** [DESIGN_RECORDS/GV-0007-grok-bot-anytype.md](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) §3–§4, §6. Sibling `bc-f5beba97` owns canonical Central/Metro role docs.
+- **Text:** Powerline 2026-09-30. Destination = **Central integration**. **Central owns** the Local API client, credentials (`ANYTYPE_API_KEY` in Central/runtime env), first-pull, and tag/view. **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Classification **integration** only. Aligns with [PI-019](#pi-019-central-hub-metro-social-anytype). Bridge allowlist **OB + BI + OT + AT**.
+- **More context:** [DESIGN_RECORDS/GV-0007-grok-bot-anytype.md](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) §3–§4, §6. [PI-019](#pi-019-central-hub-metro-social-anytype).

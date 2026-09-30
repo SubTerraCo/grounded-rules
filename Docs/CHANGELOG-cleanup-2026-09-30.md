@@ -6,29 +6,55 @@ Companion readable summary (not a diff list): [GOVERNANCE_OVERVIEW.md](GOVERNANC
 
 ---
 
-## Grok bot Anytype — GV-0007 (conflicts three + four resolved)
+## Grok bot Anytype — GV-0007 (merged onto PI-019 master)
 
-Powerline 2026-09-30: display **Grok bot Anytype**; classification **integration** only. **Central owns** the Local API client and credentials; **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Destination **Central integration**. No runtime. No secrets.
+Powerline 2026-09-30. **Grok bot Anytype** classification **integration** only. **Central owns** the Local API client and credentials; **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Aligns with merged PI-019 (#19) hub+social + bridge OB+BI+OT+AT + packages-under-Central. No secrets.
 
-**Conflict three — resolved:** Metro↔Central data bridge allowlist **OB + BI + OT + AT**.
-
-**Conflict four — resolved by rewrite:** Central hosts packages and integrations. Old X1–X5 conflict table **removed**. Topology: Central client → LAN/tunnel → Cara Anytype desktop `:31009`.
-
-[PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination) answered. Numbering: GV-0005 is PR #12; GV-0006 is PR #15; this record is GV-0007.
+[PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination) answered. Record: [GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md).
 
 | Path | What changed |
 |------|----------------|
-| `Docs/DESIGN_RECORDS/GV-0007-grok-bot-anytype.md` | Central-owned client topology §3–§4; §6 superseded / intended Central integration (no X1–X5 table); AT on bridge allowlist. |
-| `Docs/ARCHITECTURE.md` | PKM bullet; allowlist OB+BI+OT+AT; packages-under-Central sanctioned; Central integration note. |
-| `Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md` | Bridge allowlist +AT; Central hosts packages and integrations. |
-| `codes/APP_REGISTRY.yaml` / `subterra.manifest.yaml` | AT notes. |
-| `Docs/GOVERNANCE_OVERVIEW.md` | Pointers + allowlist. |
-| `Docs/POWERLINE_INPUT.md` | PI-020 answered. Open index 8. |
+| `Docs/DESIGN_RECORDS/GV-0007-grok-bot-anytype.md` | **New.** Central-owned client topology; Cara desktop-only. |
+| Shared files vs #19 | Prefer PI-019 canonical hub/social / allowlist / C16; add GV-0007 client-ownership pointers. |
+
+---
+
+## PI-019 — Central personal hub + Metro social + Anytype + packages-under-Central
+
+Powerline lock 2026-09-30 voice. Docs/governance only. Ready for review (not draft). No secrets. No deletes/archives. No application builds.
+
+1. **Central** = personal AI hub and suite of all tools. Hosts extensions, packages, and integrations. Catalog `audience` `member` still mounts here.
+2. **Metro** = social media app that consumes Central-hosted packages. Catalog `audience` `admin` still mounts here.
+3. **Anytype as a Central integration is the intended shape** (`role: integration` only — not plugin/extension). Leftover PKM workspace is not required as a monorepo package; Central hosts the integration. Prior “packaging Anytype / Grok bot Anytype for Central violates Grounded Rules” conflict is rewritten (GV-0004 C15).
+4. **Conflict 4 rewritten (live rule, not an override note):** old cut “forcing a packages path under Central invents a product shape Grounded Rules already cut” → **new rule:** Central-hosted packages and integrations are sanctioned. A packages-under-Central path (`apps/subterra-central/packages/` or equivalent) is legitimate (GV-0004 C16). Root `luna` `packages/` remains valid.
+5. **Metro↔Central data bridge allowlist** (owner-marked, off by default): Open Books (`OB`) + Open Bill (`BI`) + Open Time (`OT`) + **Anytype (`AT`)**.
+
+### File-by-file (this lock)
+
+| Path | What changed |
+|------|----------------|
+| `Docs/ARCHITECTURE.md` | Shell-roles section; conflict 4 rewritten as the live packages-under-Central rule; tree shows `apps/subterra-central/packages/` and `integrations/` as sanctioned; bridge allowlist OB+BI+OT+AT; Anytype Central integration; matrix column labels + AT row; phases 2 and 5. |
+| `Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md` | C15 Anytype Central integration rewritten; **C16 conflict 4 rewritten** (packages-under-Central sanctioned). SM/SC/AT names-table roles. Bridge allowlist includes AT. |
+| `Docs/DESIGN_RECORDS/GV-0002-nexus-dual-shell.md` | Product-role rewrite (Central hub / Metro social); D2 annotated; topology comments; packages-under-Central sanctioned via C16 pointer. |
+| `CI_OPS_CONSTITUTION.md` | §1 topology: Central hosts packages/integrations; leftover AT fold note. §1.1 shell table + bridge allowlist OB+BI+OT+AT. §2 packages-under-Central sanctioned. §13.4 member-audience vs product role. §16 PKM leftover vs Central-hosted integration. |
+| `Docs/GOVERNANCE_OVERVIEW.md` | Product-shape table; SC/SM/AT rows; marketplace bridge; phases; date line. |
+| `codes/APP_REGISTRY.yaml` | SM social; SC personal hub + sanctioned packages path; AT Central integration + bridge AT. |
+| `subterra.manifest.yaml` | SM/SC/AT/OB/BI/OT notes match lock. |
+| `codes/AREA_CODES.yaml` | SO note: Metro social / Central hub. |
+| `README.md` | Current product shape bullets. |
+| `tests/README.md` | Marketplace planned coverage names OB+BI+OT+AT allowlist. |
+| `.cursor/rules/governance-agent.mdc` | Mandate + invariant: Central hosts packages; packages-under-Central sanctioned. |
+| `Docs/POWERLINE_INPUT.md` | PI-019 answered (voice); moved to Answered index; body left. |
 | `Docs/CHANGELOG-cleanup-2026-09-30.md` | This section. |
+
+**Bridge allowlist files (the OB/BI/OT-only restriction):** `Docs/ARCHITECTURE.md` (marketplace paragraph, matrix, phase 5), `Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md` (§3), `Docs/GOVERNANCE_OVERVIEW.md` (§5), `CI_OPS_CONSTITUTION.md` (§1.1), `subterra.manifest.yaml` (OB/BI/OT/AT notes), `tests/README.md`.
+
+**Packages-under-Central cut rewritten in:** `Docs/ARCHITECTURE.md` (conflict 4 + tree), `Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md` (C16), `CI_OPS_CONSTITUTION.md` (§1 topology + §1.1 + §2), `Docs/GOVERNANCE_OVERVIEW.md` (§3), `.cursor/rules/governance-agent.mdc`.
 
 ---
 
 ## PI-011 answered — rewrite existing BK→OT
+
 
 Powerline answered 2026-09-30 MT. **Option A:** rewrite **all existing** Dewey addresses on Blocks (`BK/N-####`) to **`OT/N-####`** (Open Time). Documented address examples now use OT. `BK` remains an address-alias catalog row pointing at OT / `packages/open-time`. **Unchanged:** Open Books `OB`; leftover Blocks repo / workflow consumer comments; fleet snapshot BK row.
 
