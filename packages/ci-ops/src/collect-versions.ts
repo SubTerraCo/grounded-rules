@@ -52,7 +52,7 @@ const PATH_FALLBACKS: Record<string, readonly string[]> = {
   "apps/subterra-metro": ["apps/subterra-metro", "apps/luna-os"],
   "apps/luna-os": ["apps/luna-os", "apps/subterra-metro"],
   shell: ["shell"],
-  governance: ["governance", "."],
+  governance: ["governance", ".", "grounded-rules", "subterra-governance"],
 };
 
 export interface ManifestItem {
@@ -150,7 +150,7 @@ export function parseManifestItems(text: string): ManifestItem[] {
  * Tries, in order: the manifest `localPath`, its junction/legacy fallbacks,
  * and the repo-name directory. Cloud multi-repo environments clone each repo
  * under its own repo name (e.g. `Blocks`, `subterra-shell`) as a sibling of
- * governance, which never matches the `apps/…` / `Packages/…` layouts, so the
+ * Grounded Rules, which never matches the `apps/…` / `Packages/…` layouts, so the
  * `repo` slug is the reliable fallback there.
  *
  * @returns absolute path to a directory that exists, or null
@@ -168,6 +168,8 @@ export function resolveLocalCheckout(
   }
   const repoName = repo?.split("/").pop();
   if (repoName) candidates.push(repoName);
+  // Live GitHub slug is still subterra-governance until Powerline Settings rename.
+  if (repoName === "grounded-rules") candidates.push("subterra-governance");
   for (const rel of candidates) {
     const abs = rel === "." ? govRoot : join(metaRoot, rel);
     if (existsSync(abs)) return abs;
@@ -327,13 +329,14 @@ export function buildFleet(): FleetSnapshot {
 
   const byCode = new Map<string, FleetApp>();
 
-  // Governance is not a marketplace item — always first.
+  // Grounded Rules (GV) is not a marketplace item — always first.
+  // id/localPath/role stay machine keys (`governance`); display name is Grounded Rules.
   byCode.set(
     "GV",
     collectRow({
       id: "governance",
       appCode: "GV",
-      name: "Governance",
+      name: "Grounded Rules",
       repo: "SubTerraCo/subterra-governance",
       localPath: "governance",
       role: "governance",

@@ -1,11 +1,11 @@
 // ============================================================================
-// SubTerra — Workspace QA (governance layer)
+// SubTerra — Workspace QA (Grounded Rules layer)
 // Cross-repo contract tests: manifest ↔ registry parity,
 // twin-SDK API identity (legacy shell), design-token parity, catalog handoff.
 //
 // Scope split (CI_OPS_CONSTITUTION §12):
 //   product repo tests/  → one app's own UI and flows
-//   governance tests/    → contracts BETWEEN repos (until luna tests/contract)
+//   Grounded Rules tests/ → contracts BETWEEN repos (until luna tests/contract)
 //
 // Coverage is deferred (GV-0001 D5) until a shell host is running.
 // Contract projects need no browser; only `marketplace` does.

@@ -1,8 +1,8 @@
 # Enterprise monorepo blueprint
 
-Resolved ingestion of the PoweredUp / SubTerra architecture. Conflicts with older governance are settled in [GV-0004](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md). Where this file and an older ruling disagree, this file wins. Where this file is silent, `CI_OPS_CONSTITUTION.md` still applies.
+Resolved ingestion of the PoweredUp / SubTerra architecture. Conflicts with older Grounded Rules rulings are settled in [GV-0004](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md). Where this file and an older ruling disagree, this file wins. Where this file is silent, `CI_OPS_CONSTITUTION.md` still applies.
 
-Readable current-state summary of this governance repo: [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md).
+Readable current-state summary of this Grounded Rules repo: [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md).
 
 Copy this file to the monorepo root at Phase 1. Until that repo exists, this copy is the source of truth.
 
@@ -15,7 +15,7 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
 - Finance store: Actual's own SQLite CRDT inside `packages/open-books` (`OB`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
 - PKM lives in a dedicated Anytype workspace. It is not a package in this monorepo. The shell hub does not require it.
-- Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. `packages/open-ui` owns palette, type, and spacing. Locked palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Type: interim Material 3 type scale (display, headline, title, body, label); font families are not locked. Spacing: 4dp baseline grid. The single amber seed `#e8a54b` is withdrawn. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx` (docs may cite these palette hexes; product screens use tokens). Token *code* is not in this governance repo.
+- Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. `packages/open-ui` owns palette, type, and spacing. Locked palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Type: interim Material 3 type scale (display, headline, title, body, label); font families are not locked. Spacing: 4dp baseline grid. The single amber seed `#e8a54b` is withdrawn. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx` (docs may cite these palette hexes; product screens use tokens). Token *code* is not in this Grounded Rules repo.
 
 ## Apps and packages
 
@@ -73,7 +73,7 @@ Use these projects for the engine and the patches. Write the Material 3 screen a
 | Booking `BO` | No maintained open marketplace matches a profile, a rate, and a date request | Team@Once and Mercur. They are staffing or product commerce, not this listing |
 | Anytype `AT` | any-sync, optional | Making it required |
 
-Existing SubTerraCo repos stay on `master` and keep calling governance workflows until they are folded in.
+Existing SubTerraCo repos stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
 ## License
 
@@ -158,6 +158,6 @@ These files were searched before building. Vendor roadmaps inside `actual/` stay
 
 Do not start a build from those files. Start from this blueprint.
 
-## Kept from governance
+## Kept from Grounded Rules
 
-Dewey addresses, manifest registration, fail-closed audience, vendor `upstream` remotes, NFC challenge-response, and the rule that product e2e stays beside the product while cross-repo contracts stay in governance `tests/` until the monorepo `tests/contract` replaces them.
+Dewey addresses, manifest registration, fail-closed audience, vendor `upstream` remotes, NFC challenge-response, and the rule that product e2e stays beside the product while cross-repo contracts stay in Grounded Rules `tests/` until the monorepo `tests/contract` replaces them.

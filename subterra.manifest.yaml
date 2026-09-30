@@ -1,4 +1,7 @@
 schemaVersion: 1
+# Top-level key `governance:` is the catalog schema (not the product display name).
+# Display product/repo name: Grounded Rules. Live GitHub slug remains SubTerraCo/subterra-governance
+# until Powerline Settings-renames to grounded-rules.
 governance:
   repo: SubTerraCo/subterra-governance
   ciOpsVersion: "26.8.4"

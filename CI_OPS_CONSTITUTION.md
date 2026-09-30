@@ -1,6 +1,6 @@
 # SubTerra CI Ops Constitution
 
-> Source of truth for SubTerraCo governance and for every repo that consumes it.
+> Source of truth for Grounded Rules and for every repo that consumes it.
 > Product repos **consume** this document; they do not fork conflicting rules.
 >
 > **GV-0004 and [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) supersede this constitution wherever they disagree.** The enterprise monorepo (SubTerra Metro + packages, two runtimes, BSL for new original code, Tailwind Material 3 tokens, Rust only inside Tauri) is the current product shape. Readable summary: [Docs/GOVERNANCE_OVERVIEW.md](Docs/GOVERNANCE_OVERVIEW.md). Rules below still apply when GV-0004 is silent.
@@ -11,13 +11,13 @@
 
 ## 1. Topology (GV-0004)
 
-The **product** is one pnpm + Turborepo enterprise monorepo (`SubTerraCo/luna`, not created yet). This repository (`SubTerraCo/subterra-governance`) stays the rules, Dewey, manifest, reusable Actions, and `@subterra/ci-ops` repo. It is not the product monorepo.
+The **product** is one pnpm + Turborepo enterprise monorepo (`SubTerraCo/luna`, not created yet). This repository (**Grounded Rules**, GitHub slug `SubTerraCo/subterra-governance`) stays the rules, Dewey, manifest, reusable Actions, and `@subterra/ci-ops` repo. It is not the product monorepo. Powerline may Settings-rename the GitHub slug to `grounded-rules` after this identity lands; until then consumers keep the live slug.
 
-Existing SubTerraCo product repos stay on `master` and keep calling governance workflows until they are folded in.
+Existing SubTerraCo product repos stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
 | Path | Repo | Role |
 |------|------|------|
-| this repo | `SubTerraCo/subterra-governance` | Constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
+| this repo | `SubTerraCo/subterra-governance` | Grounded Rules — constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
 | (future) `apps/` `packages/` `tooling/` | `SubTerraCo/luna` | Enterprise monorepo — SubTerra Metro, SubTerra Central, and packages. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) |
 | `shell/` | `SubTerraCo/subterra-shell` | Leftover shell repo until Phase 1 copies what is still useful. Do not build leftover `apps/admin` folders or `packages/shell-core` |
 | existing `apps/<name>/` | per product (Blocks, Mailbot, …) | Leftover standalone app repos until folded into `packages/` / `apps/` in `luna` |
@@ -50,7 +50,7 @@ Leftover `apps/admin` folders and `packages/shell-core` from GV-0002 are not the
 - Twin SDKs with **identical APIs**: `@subterra/app-sdk` and `@subterra/integration-sdk` (leftover only)
 - Same CI Ops / Dewey / `/NF` `/NB` `/RD` / `/BUILD` process
 
-Do **not** start new product work as a pair of separate app/integration GitHub repos. New work follows [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Prefer the monorepo package layout. The governance **product-repo template** still exists only for leftover standalone repos that must be registered before fold-in.
+Do **not** start new product work as a pair of separate app/integration GitHub repos. New work follows [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Prefer the monorepo package layout. The Grounded Rules **product-repo template** still exists only for leftover standalone repos that must be registered before fold-in.
 
 ---
 
@@ -114,7 +114,7 @@ Rules (from Blocks CI Ops):
 
 ### 4.2 Fleet version dashboard
 
-Cross-repo versions are aggregated in governance (not in Shell UI):
+Cross-repo versions are aggregated in Grounded Rules (not in Shell UI):
 
 | Artifact | Path |
 |----------|------|
@@ -172,6 +172,8 @@ jobs:
     uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
 ```
 
+Powerline may Settings-rename this GitHub repo to `grounded-rules` later; until that click, keep the live slug above.
+
 Local scripts: consume `@subterra/ci-ops` from this repo (`packages/ci-ops`) via path/link or published package when available.
 
 ---
@@ -189,13 +191,13 @@ Docs/Working Docs-Features-Incidents/
 scripts/                  # release:rollover, etc. (shell has full set; others may path-link ci-ops)
 ```
 
-Governance itself uses this constitution + codes + manifest; it does not ship a product ROADMAP for features.
+Grounded Rules itself uses this constitution + codes + manifest; it does not ship a product ROADMAP for features.
 
 ---
 
-## 9. Governance Agent mandate (GV)
+## 9. Grounded Rules agent mandate (GV)
 
-The Governance agent is the **one-stop shop** for cross-repo standards. Product agents (SM, OD, OS, AT, … and address aliases ST, LO, BK, MB) consume these artifacts; they do not fork conflicting pipelines or Dewey rules.
+The Grounded Rules agent is the **one-stop shop** for cross-repo standards. Product agents (SM, OD, OS, AT, … and address aliases ST, LO, BK, MB) consume these artifacts; they do not fork conflicting pipelines or Dewey rules.
 
 ### Owns
 
@@ -204,21 +206,21 @@ The Governance agent is the **one-stop shop** for cross-repo standards. Product 
 | **Rulesets & Dewey** | Constitution, APP/PP/PR codes, manifest, CI Ops gates |
 | **Design language parity** | Material Design 3 (§15, GV-0003, GV-0004). One theme in `packages/open-ui` |
 | **Feature parity** | Installable packages stand alone (GV-0004). Twin-SDK API identity remains only for leftover `subterra-shell` items until fold-in. New monorepo catalog items do not declare twin `role` / `marketplace` / SDK |
-| **GitHub repo management** | Create/configure SubTerraCo repos (governance, leftover product repos, and later `luna`); branch protections; default labels; secrets/vars conventions |
+| **GitHub repo management** | Create/configure SubTerraCo repos (Grounded Rules, leftover product repos, and later `luna`); branch protections; default labels; secrets/vars conventions |
 | **Deployment pipelines** | Reusable Actions (`ci-node`, deploy, release) consumed by product repos until the monorepo pipeline in `luna` replaces them |
 | **Product templates** | `templates/product-repo/` (still used for leftover standalone repos; new product work prefers the monorepo layout) |
-| **Workspace QA (Playwright)** | Cross-package e2e at the governance layer until monorepo `tests/contract` replaces it |
+| **Workspace QA (Playwright)** | Cross-package e2e at the Grounded Rules layer until monorepo `tests/contract` replaces it |
 
 ### Does not own
 
 - Product-specific feature implementation inside a single app (that stays on the product APP code)
-- Product-local Playwright suites that only cover one app’s UI (e.g. leftover Blocks `tests/e2e`, later Open Day in the monorepo) — those remain in-product; governance QA covers **cross-repo / catalog / SDK contract** journeys
+- Product-local Playwright suites that only cover one app’s UI (e.g. leftover Blocks `tests/e2e`, later Open Day in the monorepo) — those remain in-product; Grounded Rules QA covers **cross-repo / catalog / SDK contract** journeys
 
 ### Invariants
 
 1. New catalog items are registered in `codes/APP_REGISTRY.yaml` **and** `subterra.manifest.yaml` before first release.
-2. Leftover standalone repos start from the governance product template and wire reusable workflows from this repo. New product work goes in `SubTerraCo/luna` once that repo exists.
-3. Deployment / CI changes for existing repos land in governance first, then product repos bump the workflow ref (`@v1` / pin). Monorepo CI follows the blueprint pipeline in [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) (GV-0004 C5).
+2. Leftover standalone repos start from the Grounded Rules product template and wire reusable workflows from this repo. New product work goes in `SubTerraCo/luna` once that repo exists.
+3. Deployment / CI changes for existing repos land in Grounded Rules first, then product repos bump the workflow ref (`@v1` / pin). Monorepo CI follows the blueprint pipeline in [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) (GV-0004 C5).
 4. Workspace Playwright QA is the release gate for catalog + SDK parity until the monorepo `tests/contract` suite replaces it — not a substitute for product `/testrelease`.
 5. SubTerra-owned UI uses Material Design 3 (§15). Product repos do not add a second component library or token set.
 
@@ -246,7 +248,7 @@ Every product repo carries a `master protection` **ruleset** (private-repo rules
 |------|--------|
 | `deletion` | The default branch cannot be deleted |
 | `non_fast_forward` | No force-pushes onto the default branch |
-| `required_status_checks` | CI must pass — `validate / lint-build` (governance), `ci / lint-build` (consumers) |
+| `required_status_checks` | CI must pass — `validate / lint-build` (Grounded Rules), `ci / lint-build` (consumers) |
 
 Org admins are **bypass actors**, so solo direct-to-`master` pushes still work. Requiring pull requests is deliberately *not* enabled; revisit when more than one person commits.
 
@@ -281,7 +283,7 @@ When a product is seeded from a third-party repo, keep the vendor as a **separat
 
 ## 11. Reusable deployment pipelines
 
-Governance owns six reusable workflows in `.github/workflows/`. Product repos call them; they do not fork equivalents.
+Grounded Rules owns six reusable workflows in `.github/workflows/`. Product repos call them; they do not fork equivalents.
 
 | Workflow | Purpose | Status |
 |----------|---------|--------|
@@ -303,14 +305,16 @@ jobs:
     secrets: inherit
 ```
 
-Changes land here first, then product repos bump the ref (§9 invariant 3). `v1` is a moving tag on the governance default branch; force-move it after every change consumers should pick up.
+Powerline may Settings-rename this GitHub repo to `grounded-rules` later; until that click, keep the live slug above.
+
+Changes land here first, then product repos bump the ref (§9 invariant 3). `v1` is a moving tag on the Grounded Rules default branch; force-move it after every change consumers should pick up.
 
 ### Two prerequisites for cross-repo calls
 
 Both are easy to break and both fail the same way — an instant run with **no jobs and no logs** (`startup_failure`), which reports nothing useful:
 
 1. **Team plan.** Private-repo reusable workflows do not run on Free.
-2. **Access policy.** `subterra-governance` must keep Actions access set to `organization`:
+2. **Access policy.** Grounded Rules must keep Actions access set to `organization`:
 
 ```bash
 gh api repos/SubTerraCo/subterra-governance/actions/permissions/access
@@ -332,7 +336,7 @@ Home: **`tests/`** in this repo — its own Playwright project, run via `pnpm te
 | Layer | Owner | Covers |
 |-------|-------|--------|
 | Product e2e | Product repo (e.g. Blocks `tests/e2e`) | One app's own UI and flows |
-| **Workspace QA** | **Governance** | Cross-repo contracts: manifest ↔ registry parity, catalog/audience handoff, twin-SDK API identity (legacy shell), design-token parity. Replaced by monorepo `tests/contract` when `luna` exists |
+| **Workspace QA** | **Grounded Rules** | Cross-repo contracts: manifest ↔ registry parity, catalog/audience handoff, twin-SDK API identity (legacy shell), design-token parity. Replaced by monorepo `tests/contract` when `luna` exists |
 
 ### Status
 
@@ -434,7 +438,7 @@ Design record: [GV-0003](Docs/DESIGN_RECORDS/GV-0003-material-3.md).
 |------|-------------|
 | System | [Material Design 3](https://m3.material.io/) only. Do not add a second UI kit (MUI, shadcn, or a hand-rolled button/nav set) for new UI |
 | Web, desktop, and mobile | Tailwind CSS preset plus `@material/material-color-utilities` in `packages/open-ui` (GV-0004). Arbitrary Tailwind values and hardcoded hex/RGB in `.tsx` fail CI. Docs may cite the locked palette hexes below; product `.tsx` must use tokens |
-| Theme | One theme, owned by `packages/open-ui`. That package owns **palette, type, and spacing**. `@subterra/shell-ui` is the legacy package until the monorepo lands. Token *code* lives in the product monorepo / leftover shell — not this governance repo |
+| Theme | One theme, owned by `packages/open-ui`. That package owns **palette, type, and spacing**. `@subterra/shell-ui` is the legacy package until the monorepo lands. Token *code* lives in the product monorepo / leftover shell — not this Grounded Rules repo |
 | Palette | Purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. The single amber seed `#e8a54b` is withdrawn. Not Blocks magenta |
 | Type | Interim [Material 3 type scale](https://m3.material.io/styles/typography/type-scale-tokens) (display, headline, title, body, label). Font **families are not locked** — do not invent a typeface; wait for Powerline |
 | Spacing | 4dp baseline grid (4px at 1×). Component padding and gaps snap to that grid |

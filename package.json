@@ -1,8 +1,8 @@
 {
-  "name": "subterra-governance",
+  "name": "grounded-rules",
   "version": "26.8.4",
   "private": true,
-  "description": "SubTerra governance — CI Ops constitution, Dewey codes, manifest, reusable workflows",
+  "description": "Grounded Rules — CI Ops constitution, Dewey codes, manifest, reusable workflows",
   "type": "module",
   "packageManager": "pnpm@11.14.0",
   "engines": {

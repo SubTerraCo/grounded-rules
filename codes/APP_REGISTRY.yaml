@@ -31,10 +31,11 @@ apps:
     status: reserved
     note: "Address alias for BI Open Bill at packages/open-bill."
   - code: GV
-    name: Governance
+    name: Grounded Rules
     role: governance
     localPath: governance
     repo: SubTerraCo/subterra-governance
+    note: "Display name Grounded Rules. Live GitHub slug remains SubTerraCo/subterra-governance until Powerline Settings-renames to grounded-rules. localPath governance is the meta-workspace folder. Dewey code GV unchanged."
   - code: AT
     name: Anytype
     role: integration

@@ -7,7 +7,7 @@
     {
       "appCode": "GV",
       "id": "governance",
-      "name": "Governance",
+      "name": "Grounded Rules",
       "role": "governance",
       "repo": "SubTerraCo/subterra-governance",
       "localPath": "governance",

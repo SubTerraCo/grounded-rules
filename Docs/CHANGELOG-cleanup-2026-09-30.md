@@ -1,10 +1,46 @@
-# Governance cleanup change log — 2026-09-30
+# Grounded Rules / governance cleanup change log — 2026-09-30
 
-**Branch:** `cursor/governance-cleanup-5f88`  
-**Scope:** Align this repo with locked GV-0004 / [ARCHITECTURE.md](ARCHITECTURE.md), plus follow-ups (Central PWA; catalog `audience` stays `admin`/`member`; twin marketplace stop; TK/CH matrix; four-color palette).  
 **Deletes / archives:** **Held.** No file was deleted or moved to an archive folder. Proposed later archive moves wait for Powerline approval.
 
 Companion readable summary (not a diff list): [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md).
+
+---
+
+## Grounded Rules rename (PI-017)
+
+Powerline approved 2026-09-30 MT. Display **SubTerra Governance** → **Grounded Rules** (electrical grounding safety + grounded rules). Dewey code **GV** unchanged. GitHub slug **left** `SubTerraCo/subterra-governance` — Settings rename to `grounded-rules` is a Powerline click after merge. **Unchanged:** SubTerra Metro / SM / Central / SC / LO aliases; personal Luna / LU / `packages/luna`; machine keys `role: governance`, catalog `governance:`, `localPath: governance`; on-disk filenames (`GOVERNANCE_OVERVIEW.md`, `governance-ci.yml`, `governance-agent.mdc`).
+
+**Base:** `master` @ `c6b9aba` (PR #7 squash-merged). New branch — not a reopen of #7. Stay draft. No deletes/archives.
+
+### File-by-file (this rename)
+
+| Path | What changed |
+|------|----------------|
+| `package.json` | `"name": "grounded-rules"`. Description **Grounded Rules**. Version left `26.8.4`. |
+| `README.md` | Title Grounded Rules. Live `uses:` slug still `subterra-governance`. Note Powerline Settings rename. |
+| `CI_OPS_CONSTITUTION.md` | Display Grounded Rules; live GitHub slug `subterra-governance`; agent mandate §9; `uses:` paths left working. |
+| `codes/APP_REGISTRY.yaml` | GV `name: Grounded Rules`. `repo:` still `SubTerraCo/subterra-governance`. |
+| `subterra.manifest.yaml` | Comment: display Grounded Rules. `governance.repo` still `SubTerraCo/subterra-governance`. Schema key `governance:` unchanged. |
+| `Docs/VERSIONS.md` / `versions/fleet.json` | GV display name Grounded Rules. Repo slug unchanged. Not a full fleet regen. |
+| `packages/ci-ops/src/collect-versions.ts` | GV row display Grounded Rules. Repo slug unchanged. Path fallbacks include future `grounded-rules`. |
+| `packages/ci-ops/src/index.ts` / `index.mjs` | Comments name Grounded Rules. Exported `governanceRootFromCiOps` left (machine API). |
+| `Docs/GOVERNANCE_OVERVIEW.md` | Title and GV row Grounded Rules. Filename unchanged. |
+| `Docs/ARCHITECTURE.md` | “this Grounded Rules repo”; workflows from Grounded Rules. `tooling/design-governance/` left (monorepo folder). |
+| `Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md` | Names table GV = Grounded Rules. C1/C5/C6 current-state wording. Historical conflict columns left. |
+| `Docs/DESIGN_RECORDS/GV-0001-github-pipelines-qa.md` | Owner + current-state “this Grounded Rules repo”. Historical create-`subterra-governance` tables left (what actually happened). |
+| `Docs/DESIGN_RECORDS/GV-0002-nexus-dual-shell.md` | Owner line only. Filename unchanged. |
+| `Docs/DESIGN_RECORDS/GV-0003-material-3.md` | Owner; D4 annotation; follow-on repo column. Historical D7 left. |
+| `Docs/POWERLINE_INPUT.md` | Header: #7 merged; this repo is Grounded Rules. PI-017 answered. “governance PR #7” → “merged PR #7”. PI-006/007 name Grounded Rules. |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | This section. Prior pass tables left as historical audit. |
+| `.cursor/rules/governance-agent.mdc` | Agent display Grounded Rules. Filename unchanged. |
+| `.cursor/rules/material-3.mdc` | “this Grounded Rules repo”. |
+| `tests/README.md`, `tests/playwright.config.ts`, `tests/contract/placeholder.spec.ts` | Layer owned by Grounded Rules. |
+| `templates/product-repo/README.md` | Register in Grounded Rules. CI `uses:` slug unchanged. |
+| `templates/product-repo/Docs/Working Docs-Features-Incidents/ROADMAP.md` | Label Grounded Rules; slug unchanged. |
+| `.github/workflows/governance-ci.yml` | Workflow `name: Grounded Rules CI`. Filename unchanged. |
+| `.github/workflows/ci-node.yml` | Comment names Grounded Rules. `uses:` slug unchanged. |
+
+**GitHub repo rename:** **not performed.** Powerline Settings: `SubTerraCo/subterra-governance` → `SubTerraCo/grounded-rules` after merge.
 
 ---
 

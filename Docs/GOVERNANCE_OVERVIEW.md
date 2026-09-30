@@ -1,4 +1,4 @@
-# SubTerra Governance — current state
+# Grounded Rules — current state
 
 **Who this is for:** people who work on SubTerra rules, catalog, and CI.  
 **Catalog `audience` (locked GV-0002 D4):** machine values are only `admin` and `member`. They are not renamed.
@@ -10,7 +10,7 @@
 
 There is no third audience. “Powerline” is an owner/approver of archive decisions, not an `audience` value. “Collective” is not an `audience` value.
 
-**Date:** 2026-09-30 (SubTerra Metro / SM; former Luna OS / LO is an address alias; Luna LU unchanged)  
+**Date:** 2026-09-30 (Grounded Rules display name; SubTerra Metro / SM; former Luna OS / LO is an address alias; Luna LU unchanged)  
 **This document** is a readable merge of the locked rulings in this repo. It does not replace them.
 
 | If you need | Read |
@@ -27,11 +27,11 @@ Nothing in this 2026-09-30 pass was deleted or archived. Deletes and archive mov
 
 ## 1. What this repo is
 
-`SubTerraCo/subterra-governance` is the **rules, Dewey, catalog, reusable CI, and templates** repo.
+**Grounded Rules** (`SubTerraCo/subterra-governance`) is the **rules, Dewey, catalog, reusable CI, and templates** repo. GitHub slug stays `subterra-governance` until Powerline Settings-renames it to `grounded-rules`.
 
 It is **not** the product. The product is one pnpm + Turborepo enterprise monorepo, `SubTerraCo/luna`, which **has not been created yet** (GV-0004 §4). Until it exists, this copy of [ARCHITECTURE.md](ARCHITECTURE.md) is the product blueprint.
 
-Existing SubTerraCo product repos (`subterra-shell`, `Blocks`, `mailbot`, `subterra-anytype`, reserved `billbot` / `subtoken`) stay on `master` and keep calling governance workflows until they are folded in.
+Existing SubTerraCo product repos (`subterra-shell`, `Blocks`, `mailbot`, `subterra-anytype`, reserved `billbot` / `subtoken`) stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
 ---
 
@@ -87,7 +87,7 @@ One product, one code, one folder. The folder is the name people say.
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
 | BS | Banking | `packages/banking` | SimpleFIN + GoCardless. Monorepo package, not a twin integration |
 | AT | Anytype | dedicated workspace | **not** a monorepo package |
-| GV | Governance | this repo | rules / CI / templates |
+| GV | Grounded Rules | this repo | rules / CI / templates |
 | WL | White-label | — | commercial gate on SubTerra Metro, not a package |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
 
@@ -144,7 +144,7 @@ Community (`CH`) is also `[admin, member]`: crew discussion on SubTerra Metro; p
 
 ## 7. Material Design 3
 
-SubTerra-owned UI uses Material 3 only. `packages/open-ui` owns **palette, type, and spacing**. Token *code* is product-repo work (not this governance repo).
+SubTerra-owned UI uses Material 3 only. `packages/open-ui` owns **palette, type, and spacing**. Token *code* is product-repo work (not this Grounded Rules repo).
 
 - Tokens applied through the Tailwind preset in `tooling/config-tailwind`, generated with `@material/material-color-utilities`.
 - Palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Amber `#e8a54b` is withdrawn.
@@ -163,13 +163,13 @@ SubTerra-owned UI uses Material 3 only. `packages/open-ui` owns **palette, type,
 |-------|---------|
 | New original monorepo code | BSL 1.1. Royalty-free grant: solos, artists, contributors, nonprofits, and orgs under 5 seats and under $100,000 annual gross. Ed25519 commercial key from PoweredUpLabs past that. Each commit becomes Apache 2.0 after 36 months |
 | MIT upstream (Actual API, Flarum, …) | stays MIT |
-| Already published SubTerraCo `LICENSE` files (including **this** governance repo) | stay MIT |
+| Already published SubTerraCo `LICENSE` files (including **this** Grounded Rules repo) | stay MIT |
 | InvoiceShelf | AGPL — not vendored |
 | any-sync | Any Source Available License |
 
 AGPL servers are not copied into the monorepo.
 
-This governance repo remains MIT. Relicensing it is not part of GV-0004.
+This Grounded Rules repo remains MIT. Relicensing it is not part of GV-0004.
 
 ---
 
@@ -179,7 +179,7 @@ This governance repo remains MIT. Relicensing it is not part of GV-0004.
 
 Release stamp: `vYY.MM.DD` / `vYY.MM.DDbX`. npm form `YY.M.D-bX`. Each repo stamps independently. Fleet dashboard: [VERSIONS.md](VERSIONS.md) (generated; not regenerated in this cleanup).
 
-**This governance repo** keeps its own workflow (pnpm 11.14, Node 22, reusable `ci-node.yml@v1`). **Monorepo CI** (when `luna` exists) is the blueprint pipeline: pnpm 9, Node 22, Turbo, fail on lint / typecheck / token check / unit tests / build. Playwright: visual regression, offline Yjs, finance path, tenant isolation, mocked NFC, local Solana validator.
+**This Grounded Rules repo** keeps its own workflow (pnpm 11.14, Node 22, reusable `ci-node.yml@v1`). **Monorepo CI** (when `luna` exists) is the blueprint pipeline: pnpm 9, Node 22, Turbo, fail on lint / typecheck / token check / unit tests / build. Playwright: visual regression, offline Yjs, finance path, tenant isolation, mocked NFC, local Solana validator.
 
 Leftover reusable workflows here:
 
@@ -200,7 +200,7 @@ Vendor remotes: `origin` is always ours; vendor is `upstream`.
 
 ## 10. Existing GitHub vs later `luna`
 
-Linked today: `subterra-governance`, `subterra-shell`, `Blocks`, `mailbot`, `subterra-anytype`.
+Linked today: `subterra-governance` (Grounded Rules; slug rename to `grounded-rules` is a Powerline Settings click), `subterra-shell`, `Blocks`, `mailbot`, `subterra-anytype`.
 
 Reserved / leftover: `billbot`, `subtoken`, `tag-writer`, `validation`.
 
@@ -242,7 +242,7 @@ New work uses current codes (SM, OD, OS, BI, …). Alias codes (ST, LO, BK, MB, 
 
 1. Change rules here first; leftover product repos consume via workflow ref / template / `@subterra/ci-ops`.
 2. Register new items in APP_REGISTRY **and** the manifest before GitHub scaffolding.
-3. Do not invent product features in governance.
+3. Do not invent product features in Grounded Rules.
 4. Do not create leftover `apps/admin` folders or a second PWA besides SubTerra Central.
 5. Material 3 / four-color palette / `packages/open-ui` only. No amber `#e8a54b`.
 

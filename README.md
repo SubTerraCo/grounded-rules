@@ -1,6 +1,8 @@
-# subterra-governance
+# Grounded Rules
 
-**Governance Agent (GV)** home — rules, Dewey codes, catalog, reusable CI, and templates for SubTerra.
+**Grounded Rules agent (GV)** home — rules, Dewey codes, catalog, reusable CI, and templates for SubTerra.
+
+Display name **Grounded Rules** (electrical grounding safety + grounded rules). GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames it to `grounded-rules`. Dewey code **GV** is unchanged.
 
 The **product** is the SubTerra Metro enterprise monorepo (`SubTerraCo/luna`, not created yet). This repo stays the constitution and pipeline source. It is not the product monorepo.
 
@@ -17,7 +19,7 @@ Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANC
 
 ## Quick links
 
-- [Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANCE_OVERVIEW.md) — current state of SubTerra Governance
+- [Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANCE_OVERVIEW.md) — current state of Grounded Rules
 - [Docs/ARCHITECTURE.md](./Docs/ARCHITECTURE.md) — enterprise monorepo blueprint (**wins** where older rulings disagree)
 - [Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](./Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md) — locked conflict resolutions
 - [CI_OPS_CONSTITUTION.md](./CI_OPS_CONSTITUTION.md) — Dewey, versioning, audience, NFC, Material 3, license. Silent only where GV-0004 is silent
@@ -26,7 +28,7 @@ Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANC
 - [codes/PLATFORM_CODES.yaml](./codes/PLATFORM_CODES.yaml)
 - [codes/AREA_CODES.yaml](./codes/AREA_CODES.yaml)
 - [tests/README.md](./tests/README.md) — workspace QA scope and planned coverage
-- [Docs/DESIGN_RECORDS/](./Docs/DESIGN_RECORDS/) — locked governance decisions (GV-0002 shell paths are historical)
+- [Docs/DESIGN_RECORDS/](./Docs/DESIGN_RECORDS/) — locked Grounded Rules decisions (GV-0002 shell paths are historical)
 - [Docs/DESIGN_RECORDS/GV-0003-material-3.md](./Docs/DESIGN_RECORDS/GV-0003-material-3.md) — Material Design 3 (tokens now `packages/open-ui`)
 - [.cursor/rules/governance-agent.mdc](./.cursor/rules/governance-agent.mdc)
 
@@ -68,12 +70,10 @@ pnpm test:workspace              # all QA projects
 
 Production branch is **`master`** across all repos (§4.1) — not `main`.
 
-## Product template
-
-Copy [`templates/product-repo/`](./templates/product-repo/) only when a leftover standalone repo must be created before fold-in. New product work belongs in `SubTerraCo/luna` once that repo exists. Wire leftover CI to:
-
 ```yaml
 jobs:
   ci:
     uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
 ```
+
+Powerline may Settings-rename this GitHub repo to `grounded-rules` later; until that click, keep the live slug above.

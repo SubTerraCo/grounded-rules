@@ -1,6 +1,6 @@
 /**
  * @subterra/ci-ops — shared versioning helpers for SubTerra product repos.
- * R0: rollover stamp + manifest validate. Expand as apps adopt governance.
+ * R0: rollover stamp + manifest validate. Expand as apps adopt Grounded Rules.
  */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";

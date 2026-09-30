@@ -1,4 +1,4 @@
-# Reusable Node CI for SubTerra product repos.
+# Reusable Node CI for SubTerra product repos (Grounded Rules).
 # Consumers:
 #   jobs:
 #     ci:

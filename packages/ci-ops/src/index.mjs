@@ -18,7 +18,7 @@ try {
   ts = require("typescript");
 } catch (error) {
   const wrapped = new Error(
-    "index.mjs needs the typescript package from subterra-governance (pnpm install) to load the TypeScript implementation.",
+    "index.mjs needs the typescript package from Grounded Rules (this repo; pnpm install) to load the TypeScript implementation.",
   );
   wrapped.cause = error;
   throw wrapped;
