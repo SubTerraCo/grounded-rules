@@ -39,7 +39,9 @@ Pass 1 file-by-file below is the earlier cleanup. Live current-state is this fol
 
 ---
 
-## What was stale (summary)
+## What was stale (summary) — Pass 1
+
+The following quotes leftover wording **as it existed then** (audit trail). Live docs after the Powerline follow-up no longer use those product names.
 
 After GV-0004 landed, live documents still spoke as if the product were a **polyrepo** with **`apps/admin` + `apps/nexus`**, **Electron / Next**, **Material Web / `@subterra/shell-ui`**, and **Apps ↔ Integrations tabs**. Catalog rows for Luna OS / Central existed, but several locked packages were missing from the manifest, Axiom was still an active reserved app after Open Axiom was cut, and Subtoken’s `localPath` still said `apps/subtoken`.
 
