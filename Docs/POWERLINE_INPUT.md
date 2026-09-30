@@ -42,6 +42,7 @@ Decisions (`open`) and watches (`watching`). 13 items.
 ## Answered
 
 - [PI-014](#pi-014-shell-token-pr-3-lattice-nits) — A) accept residual nits / merged 2026-09-30 MT
+- [PI-015](#pi-015-white-label-first-run-dewey-path) — A) Preferred WL-FR-001 / 2026-09-30 MT
 
 ---
 
@@ -55,7 +56,7 @@ Decisions (`open`) and watches (`watching`). 13 items.
   - [ ] B) No — keep registry-only (commercial gate, not a package)
   - [ ] C) Other (text)
 - **Text:**
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #11. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL row “commercial gate on Luna OS, not a package”. [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** Preferred WL-FR-001 path locked ([PI-015](#pi-015-white-label-first-run-dewey-path)); PI-001 still open for a catalog `marketplace: null` row for the *gate*. [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #11. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL row “commercial gate on Luna OS, not a package”. [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
 
@@ -241,3 +242,17 @@ Decisions (`open`) and watches (`watching`). 13 items.
 - **Lattice (2026-09-30):** PASS / `nits_only`. Patron chrome PASS. Accepted residuals are only unused `--space-unit` CSS; semantic `status.warning` `#f59e0b`; CI notices. Pink/focus PR-body sync was already fixed and is not a residual.
 - **Merged:** [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3) into `master`. Head `c0e4f699`. Merge commit `50a540c5`.
 - **More context:** Sibling palette lock on [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+
+---
+
+<h2 id="pi-015-white-label-first-run-dewey-path">PI-015 — White-label first-run Dewey path (WL-FR-001)</h2>
+
+- **Status:** `answered` (2026-09-30 MT)
+- **Needed:** decision
+- **Question:** Confirm Meridian Preferred vs Alt A (BR) for white-label branding first-run?
+- **Options:**
+  - [x] A) Preferred — no new Dewey APP code; WL gate only; wizard on LO; brand pack in packages/open-ui; no fourth shell; no BR/open-brand.
+  - [ ] B) Alt A — add BR / packages/open-brand.
+  - [ ] C) Other
+- **Text:** Preferred locked. Dewey mapping (existing codes only): APP `WL` = commercial gate (APP_REGISTRY reserved; not a package/shell). APP `LO` = host of first-run wizard + primary WL runtime. Brand tokens = `packages/open-ui` (no APP code in registry — Open UI row uses em dash). Area `UI` for wizard chrome. Area `AU` optional for WL entitlement/key. Do not use ST for WL path. Reject BR and fourth shell.
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md). [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL / Open UI rows. [PI-001](#pi-001-white-label-catalog-row) still open for a catalog `null` row for the gate. [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
