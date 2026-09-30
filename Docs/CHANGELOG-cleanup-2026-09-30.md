@@ -6,19 +6,24 @@ Companion readable summary (not a diff list): [GOVERNANCE_OVERVIEW.md](GOVERNANC
 
 ---
 
-## Grok bot Anytype — GV-0007 draft (integration lock)
+## Grok bot Anytype — GV-0007 (conflicts three + four resolved)
 
-Powerline 2026-09-30: display **Grok bot Anytype**; classification **integration** only (plugin/extension considered and rejected). Cara Local API bridge topology documented. **Stay draft. Do not merge.** No runtime. No secrets.
+Powerline 2026-09-30: display **Grok bot Anytype**; classification **integration** only. Cara Local API bridge topology documented. Destination **Central integration**. Merge authority granted once #18 is ready. No runtime. No secrets.
 
-**OPEN:** destination. Central package intent vs Dewey AT / not-a-monorepo-package / Metro-vs-Central placement — [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination). Numbering: GV-0005 is PR #12; GV-0006 is PR #15; this record is GV-0007.
+**Conflict three — resolved:** Metro↔Central data bridge allowlist is **OB + BI + OT + AT** (marked records; same pattern as Open Books / Open Bill / Open Time). Not override-only.
+
+**Conflict four — resolved by rewrite:** old “packages path under Central invents a cut product shape” → new “Central hosts packages and integrations as the personal AI hub / tool suite; packages-under-Central is **sanctioned**.” Grok bot Anytype itself stays AT integration (not a PKM `packages/*` row).
+
+[PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination) answered. Numbering: GV-0005 is PR #12; GV-0006 is PR #15; this record is GV-0007.
 
 | Path | What changed |
 |------|----------------|
-| `Docs/DESIGN_RECORDS/GV-0007-grok-bot-anytype.md` | **New.** Cara topology, dual-credential hops, Powerline first pull/write, conflict report §6, compliant AT integration shape. |
-| `Docs/ARCHITECTURE.md` | PKM bullet + Anytype upstream row + marketplace + Central packaging note → GV-0007 / PI-020. |
-| `codes/APP_REGISTRY.yaml` / `subterra.manifest.yaml` | AT notes: Grok bot Anytype is the optional Cara Local API **integration** under AT; still not `packages/*`. |
-| `Docs/GOVERNANCE_OVERVIEW.md` | Source-of-truth + AT row pointers. |
-| `Docs/POWERLINE_INPUT.md` | PI-020 open (destination). Open index 9. Classification not a PI — locked integration. |
+| `Docs/DESIGN_RECORDS/GV-0007-grok-bot-anytype.md` | Cara topology; §6.2 conflict three resolved; §6.3 conflict four resolved by rewrite. |
+| `Docs/ARCHITECTURE.md` | PKM bullet; allowlist OB+BI+OT+AT; packages-under-Central sanctioned; Central integration note. |
+| `Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md` | Bridge allowlist +AT; Central hosts packages and integrations. |
+| `codes/APP_REGISTRY.yaml` / `subterra.manifest.yaml` | AT notes. |
+| `Docs/GOVERNANCE_OVERVIEW.md` | Pointers + allowlist. |
+| `Docs/POWERLINE_INPUT.md` | PI-020 answered. Open index 8. |
 | `Docs/CHANGELOG-cleanup-2026-09-30.md` | This section. |
 
 ---

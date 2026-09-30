@@ -17,7 +17,7 @@ There is no third audience. “Powerline” is an owner/approver of archive deci
 |-------------|------|
 | Product shape (wins on conflict) | [ARCHITECTURE.md](ARCHITECTURE.md) |
 | Conflict resolutions | [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md) |
-| Grok bot Anytype (Cara Local API, AT integration) | [DESIGN_RECORDS/GV-0007-grok-bot-anytype.md](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) (draft; destination [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination)) |
+| Grok bot Anytype (Cara Local API, AT integration) | [DESIGN_RECORDS/GV-0007-grok-bot-anytype.md](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) (conflict three + four resolved; [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination) answered) |
 | Dewey, versioning, NFC, Material 3, license (when the blueprint is silent) | [../CI_OPS_CONSTITUTION.md](../CI_OPS_CONSTITUTION.md) |
 | File-by-file cleanup of this pass | [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) |
 | Powerline input queue | [POWERLINE_INPUT.md](POWERLINE_INPUT.md) |
@@ -87,7 +87,7 @@ One product, one code, one folder. The folder is the name people say.
 | HA | Home Assistant | `packages/home-assistant` | client only |
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
 | BS | Banking | `packages/banking` | SimpleFIN + GoCardless. Monorepo package, not a twin integration |
-| AT | Anytype | dedicated workspace | **not** a monorepo package. Optional Cara bridge **Grok bot Anytype** is an **integration** under AT ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)); Central package intent conflicts — [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination) |
+| AT | Anytype | dedicated workspace | **not** a PKM `packages/*` product. **Grok bot Anytype** is a **Central integration** under AT ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)). Packages-under-Central sanctioned for the suite (conflict four). Bridge allowlist OB+BI+OT+AT (conflict three) |
 | GV | Grounded Rules | this repo | rules / CI / templates |
 | WL | White-label | — | commercial gate on SubTerra Metro, not a package (PI-001: registry-only; no catalog row) |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
@@ -106,7 +106,7 @@ Every installable package stands alone. It may not import another package. The s
 
 Optional facts another package might have written are read from the hub only after the user grants that read.
 
-The same package can be installed in SubTerra Metro, in SubTerra Central, or in both. Each shell has its own hub. A person who uses both may turn on a **data bridge** (off by default). The bridge copies only Open Books, Open Bill, and Open Time records that the person marks. Mail, banking, and home automation stay on SubTerra Metro.
+The same package can be installed in SubTerra Metro, in SubTerra Central, or in both. Each shell has its own hub. A person who uses both may turn on a **data bridge** (off by default). The bridge copies only Open Books, Open Bill, Open Time, and Anytype records that the person marks (`OB` + `BI` + `OT` + `AT`; [GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) conflict three). Mail, banking, and home automation stay off the bridge. Central hosts packages and integrations (packages-under-Central sanctioned — GV-0007 conflict four).
 
 **Dropped:** separate Apps and Integrations tabs; separate GitHub repos as the product shape.
 

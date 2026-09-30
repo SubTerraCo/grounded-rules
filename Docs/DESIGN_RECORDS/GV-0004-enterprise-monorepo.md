@@ -78,9 +78,9 @@ Open stays on names that would collide with a published app. The others use the 
 | InvoiceShelf | AGPL-3.0. Not vendored into a BSL package and not part of the multi-tenant host |
 | any-sync | Any Source Available License |
 
-SubTerra Metro and SubTerra Central keep separate hubs. The same owner may link a bridge that copies only Open Books, Open Bill, and Open Time records they mark. The bridge is off by default. Central anonymous access is an NFC challenge-response to an event page, with a one-time upgrade for Artist, Venue, or Vendor profile tools. Friend-show visibility is off by default. Open Gig is free for a solo freelancer and billed for a crew manager of 5 or more.
+SubTerra Metro and SubTerra Central keep separate hubs. The same owner may link a bridge that copies only Open Books, Open Bill, Open Time, and Anytype records they mark (`OB` + `BI` + `OT` + `AT`; [GV-0007](GV-0007-grok-bot-anytype.md) conflict three). The bridge is off by default. Central anonymous access is an NFC challenge-response to an event page, with a one-time upgrade for Artist, Venue, or Vendor profile tools. Friend-show visibility is off by default. Open Gig is free for a solo freelancer and billed for a crew manager of 5 or more.
 
-Packages do not import each other. Each shell ships a SQLite hub, and every package runs against an empty hub. Anytype is an optional mirror for a personal SubTerra Metro install, not a dependency. Forum is an optional richer backend for Community. The deployment matrix is in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md).
+Packages do not import each other. Each shell ships a SQLite hub, and every package runs against an empty hub. Anytype is an optional Central-hosted **integration** (Grok bot Anytype; GV-0007), not a required dependency. Central hosts packages and integrations (packages-under-Central sanctioned — GV-0007 conflict four). Forum is an optional richer backend for Community. The deployment matrix is in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md).
 
 ---
 

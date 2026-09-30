@@ -14,7 +14,7 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 - Rust only inside Tauri bindings: filesystem, local IPC, NFC hardware, DaVinci socket.
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
 - Finance store: Actual's own SQLite CRDT inside `packages/open-books` (`OB`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
-- PKM lives in a dedicated Anytype workspace. It is not a package in this monorepo. The shell hub does not require it. Optional Cara Local API bridge **Grok bot Anytype** (classification **integration**, Dewey `AT`) is recorded in [GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md). It is not a Central marketplace package; destination vs AT leftover path is [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination).
+- PKM lives in a dedicated Anytype workspace. **Grok bot Anytype** is a **Central integration** (classification **integration** only, Dewey `AT`) — [GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md). Central hosts **packages and integrations** (packages-under-Central sanctioned, GV-0007 conflict four). PKM is still not a dedicated Anytype monorepo `packages/*` product. Metro may access Central-hosted packages and integrations.
 - Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. `packages/open-ui` owns palette, type, and spacing. Locked palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Type: interim Material 3 type scale (display, headline, title, body, label); font families are not locked. Spacing: 4dp baseline grid. The single amber seed `#e8a54b` is withdrawn. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx` (docs may cite these palette hexes; product screens use tokens). Token *code* is not in this Grounded Rules repo.
 
 ## Apps and packages
@@ -71,7 +71,7 @@ Use these projects for the engine and the patches. Write the Material 3 screen a
 | Hub | Yjs and SQLCipher | A CRDT written here |
 | UI | `@material/material-color-utilities` | A second design system |
 | Booking `BO` | No maintained open marketplace matches a profile, a rate, and a date request | Team@Once and Mercur. They are staffing or product commerce, not this listing |
-| Anytype `AT` | any-sync, optional. Cara bridge **Grok bot Anytype** is an **integration** under AT ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)) | Making it required; inventing `packages/anytype-bridge` or a Central marketplace PKM package |
+| Anytype `AT` | any-sync, optional. Cara bridge **Grok bot Anytype** is a **Central integration** under AT ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)). Data-bridge allowlist **OB + BI + OT + AT**. Packages-under-Central sanctioned for the suite | Making Anytype required for other packages |
 
 Existing SubTerraCo repos stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
@@ -87,13 +87,13 @@ Every installable package stands alone. It may not import another package. The s
 
 Optional facts another package might have written are read from the hub only after the user grants that read. If the other package is not installed, those fields stay empty and the installed package still runs.
 
-PKM stays in a dedicated Anytype workspace. It is not a package here, and Open Axiom is cut. The shell hub is the store for installed packages. Other people are not required to run Anytype. Optional Cara Local API bridge **Grok bot Anytype** is an **integration** under `AT` ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)). It is not a Central (or Metro) marketplace package; Central packaging intent vs this rule is [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination).
+PKM stays in a dedicated Anytype workspace. Open Axiom is cut. Other people are not required to run Anytype. Optional Cara Local API bridge **Grok bot Anytype** is a **Central integration** under `AT` ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)). Classification **integration** only. Central hosts **packages and integrations** (packages-under-Central sanctioned — conflict four rewrite). Grok bot Anytype is not a PKM `packages/*` row.
 
 The same package can be installed in SubTerra Metro, in the SubTerra Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other.
 
 Catalog registration for these packages uses `audience` as the mount gate. Do not write leftover twin fields (`role: app|integration`, `marketplace: apps|integrations`, twin SDKs) on new Luna items.
 
-A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only Open Books, Open Bill, and Open Time records that the person marks. Mail, banking, and home automation stay on SubTerra Metro. Central's public pages never receive the unbridged SubTerra Metro hub.
+A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only **Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`)** records that the person marks. Mail, banking, and home automation stay off the bridge. Central's public pages never receive the unbridged hub. Allowlist lock: [GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) §6.2 (conflict three resolved). Sibling hub/social PR should use the same **OB + BI + OT + AT** clause.
 
 ## SubTerra Central access
 
@@ -122,7 +122,7 @@ Booking listings are free for a single freelancer. A crew manager with 5 or more
 
 UI is not a marketplace item. It ships inside both shells.
 
-**Grok bot Anytype (Central packaging note).** Powerline intent is to add this as a Central package or third-party integration. Grounded Rules classification is **integration** only (GV-0007). A Central *marketplace package* conflicts with AT-not-a-package, the empty-hub rule, and the tip install matrix (personal/local clients are Metro-only). Compliant shape until [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination): leftover AT integration (`integrations/anytype`); Central may be a LAN *client* of the Cara bridge, not the package home.
+**Grok bot Anytype (Central integration).** Classification **integration** only ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)). Central is the personal AI hub and hosts **packages and integrations** (packages-under-Central **sanctioned**, conflict four rewrite). Grok bot Anytype itself stays Dewey `AT` / `integrations/anytype`, not a PKM `packages/*` row. Metro (social) may access Central-hosted packages and integrations. Data-bridge allowlist is **OB + BI + OT + AT** (marked records only; conflict three resolved).
 
 Monetization is the BSL seat key and PoweredUpLabs hosting for SubTerra Metro, ticket prices on SubTerra Central, a one-time Artist, Venue, or Vendor profile upgrade, and the Open Gig fee for crew managers of 5 or more. A solo freelancer does not pay that fee. A package that is not installed is not billed and is not loaded.
 
@@ -132,7 +132,7 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for SubTerra Metro, t
 2. Shell hub on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs. `packages/open-books` around `@actual-app/api`. `packages/open-bill` stays a separate invoicing package. `anytype` is an optional mirror of the hub, not the store packages require.
 3. `luna` with the provider interface and a tool registry for Open Books, Open Time, and Media. Default the local provider at the Omarchy host.
 4. `packages/open-ui` Material 3 tokens (palette, type scale, 4dp spacing) and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
-5. Bundle `subterra-metro` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked SubTerra Metro hub cannot read SubTerra Central data. Confirm a linked bridge copies only Open Books, Open Bill, and Open Time records the owner marked.
+5. Bundle `subterra-metro` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked SubTerra Metro hub cannot read SubTerra Central data. Confirm a linked bridge copies only Open Books, Open Bill, Open Time, and Anytype records the owner marked (`OB` + `BI` + `OT` + `AT`).
 6. Playwright suites listed under CI.
 
 ## Festy Blocks

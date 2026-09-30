@@ -25,7 +25,7 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`). 9 items.
+Decisions (`open`). 8 items.
 
 - [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OT rows
 - [PI-004](#pi-004-font-families-for-open-ui) — Q15 Font families for open-ui
@@ -35,7 +35,6 @@ Decisions (`open`). 9 items.
 - [PI-008](#pi-008-arch-omarchy-platform-code) — Q8 Arch / Omarchy platform code
 - [PI-010](#pi-010-banking-dewey-role) — Q10 Banking (BS) Dewey role
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
-- [PI-020](#pi-020-grok-bot-anytype-destination) — Grok bot Anytype destination (Central vs AT)
 
 ## Answered
 
@@ -49,6 +48,7 @@ Decisions (`open`). 9 items.
 - [PI-001](#pi-001-white-label-catalog-row) — B) No marketplace-null catalog row / 2026-09-30 MT
 - [PI-018](#pi-018-open-day-to-open-time) — A) Open Day → Open Time / OD → OT / 2026-09-30 MT
 - [PI-011](#pi-011-dewey-bk-to-ot-rewrite) — A) Rewrite existing BK→OT / 2026-09-30 MT
+- [PI-020](#pi-020-grok-bot-anytype-destination) — Central integration; conflict three+four resolved / 2026-09-30 MT
 
 ---
 
@@ -311,7 +311,7 @@ Decisions (`open`). 9 items.
 
 <h2 id="pi-020-grok-bot-anytype-destination">PI-020 — Grok bot Anytype destination</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
 - **Question:** Where does **Grok bot Anytype** live? Powerline intent is SubTerra Central (`SC`) as a package **or** third-party integration. Classification is already locked **integration** (2026-09-30). Grounded Rules conflict report ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) §6) says a Central *marketplace package* conflicts with AT-not-a-package, empty-hub, and the tip Metro-only matrix for personal/local clients. Pick a destination that GR permits, or explicitly override.
 - **Options:**
@@ -321,6 +321,6 @@ Decisions (`open`). 9 items.
   - [ ] D) Central marketplace package anyway (overrides X1–X5 — say so in Text)
   - [ ] Need More Context
   - [ ] Open discussion
-  - [ ] OTHER (text)
-- **Text:**
-- **More context:** [DESIGN_RECORDS/GV-0007-grok-bot-anytype.md](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md). [ARCHITECTURE.md](ARCHITECTURE.md) PKM + Central packaging note. [APP_REGISTRY](../codes/APP_REGISTRY.yaml) AT row. Sibling unmerged [PR #12](https://github.com/SubTerraCo/grounded-rules/pull/12) GV-0005 display framing (F1 Luna stays Metro). Classification is not reopened: not plugin, not extension.
+  - [x] OTHER (text)
+- **Text:** Powerline 2026-09-30 voice. Destination = **Central integration**. Classification **integration** only. Conflict three **resolved:** Metro↔Central data bridge allowlist is **OB + BI + OT + AT** (marked records). Conflict four **resolved by rewrite:** Central hosts packages and integrations; packages-under-Central is **sanctioned** (not a cut product shape). Grok bot Anytype itself stays Dewey AT / `integrations/anytype` (not a PKM `packages/*` row). Metro (social) accesses Central-hosted packages and integrations.
+- **More context:** [DESIGN_RECORDS/GV-0007-grok-bot-anytype.md](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) §6.2–§6.3. [ARCHITECTURE.md](ARCHITECTURE.md). Sibling hub/social PR owns the canonical Central/Metro role clause. Classification not reopened.
