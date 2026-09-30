@@ -29,20 +29,21 @@ Decisions (`open`) and watches (`watching`). 12 items.
 - [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OD rows
 - [PI-004](#pi-004-font-families-for-open-ui) — Q15 Font families for open-ui
 - [PI-005](#pi-005-archive-axiom) — Q5 Archive Axiom (AX)
-- [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / Luna OS release workflow timing
+- [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / SubTerra Metro release workflow timing
 - [PI-007](#pi-007-pnpm-11-14-vs-9) — Q7 pnpm 11.14 vs 9
 - [PI-008](#pi-008-arch-omarchy-platform-code) — Q8 Arch / Omarchy platform code
 - [PI-009](#pi-009-open-ui-c6-confirm) — Q9 open-ui C6 confirm
 - [PI-010](#pi-010-banking-dewey-role) — Q10 Banking (BS) Dewey role
 - [PI-011](#pi-011-dewey-bk-to-od-rewrite) — Q13 Dewey BK→OD rewrite
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
-- [PI-013](#pi-013-luna-os-open-ui-token-pr) — Luna OS open-ui token PR *(watching)* — luna-os#1 draft @ `39bb566`; Patron chrome PASS 7/7; PI-003 replace answered — merge when Powerline says
+- [PI-013](#pi-013-luna-os-open-ui-token-pr) — SubTerra Metro open-ui token PR *(watching)* — luna-os#1 draft @ `39bb566`; Patron chrome PASS 7/7; PI-003 replace answered — merge when Powerline says
 
 ## Answered
 
 - [PI-003](#pi-003-palette-replace-vs-supplement) — A) Replace amber entirely / 2026-09-30 MT
 - [PI-014](#pi-014-shell-token-pr-3-lattice-nits) — A) accept residual nits / merged 2026-09-30 MT
 - [PI-015](#pi-015-white-label-first-run-dewey-path) — A) Preferred WL-FR-001 / 2026-09-30 MT
+- [PI-016](#pi-016-subterra-metro-rename) — A) Luna OS → SubTerra Metro / LO → SM / 2026-09-30 MT
 
 ---
 
@@ -56,7 +57,7 @@ Decisions (`open`) and watches (`watching`). 12 items.
   - [ ] B) No — keep registry-only (commercial gate, not a package)
   - [ ] C) Other (text)
 - **Text:**
-- **More context:** Preferred WL-FR-001 path locked ([PI-015](#pi-015-white-label-first-run-dewey-path)); PI-001 still open for a catalog `marketplace: null` row for the *gate*. [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #11. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL row “commercial gate on Luna OS, not a package”. [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** Preferred WL-FR-001 path locked ([PI-015](#pi-015-white-label-first-run-dewey-path)); PI-001 still open for a catalog `marketplace: null` row for the *gate*. [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #11. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL row “commercial gate on SubTerra Metro, not a package”. [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
 
@@ -117,11 +118,11 @@ Decisions (`open`) and watches (`watching`). 12 items.
 
 ---
 
-<h2 id="pi-006-tauri-luna-os-release-workflow">PI-006 — Q6 Tauri / Luna OS release workflow timing</h2>
+<h2 id="pi-006-tauri-luna-os-release-workflow">PI-006 — Q6 Tauri / SubTerra Metro release workflow timing</h2>
 
 - **Status:** `open`
 - **Needed:** decision
-- **Question:** When should a Tauri / Luna OS release workflow be authored?
+- **Question:** When should a Tauri / SubTerra Metro release workflow be authored?
 - **Options:**
   - [ ] A) After `luna` monorepo Phase 5 shell bundle
   - [ ] B) Author stub now on governance
@@ -215,7 +216,7 @@ Decisions (`open`) and watches (`watching`). 12 items.
 
 ---
 
-<h2 id="pi-013-luna-os-open-ui-token-pr">PI-013 — Luna OS open-ui token PR</h2>
+<h2 id="pi-013-luna-os-open-ui-token-pr">PI-013 — SubTerra Metro open-ui token PR</h2>
 
 - **Status:** `watching`
 - **Needed:** status
@@ -251,8 +252,22 @@ Decisions (`open`) and watches (`watching`). 12 items.
 - **Needed:** decision
 - **Question:** Confirm Meridian Preferred vs Alt A (BR) for white-label branding first-run?
 - **Options:**
-  - [x] A) Preferred — no new Dewey APP code; WL gate only; wizard on LO; brand pack in packages/open-ui; no fourth shell; no BR/open-brand.
+  - [x] A) Preferred — no new Dewey APP code; WL gate only; wizard on SM; brand pack in packages/open-ui; no fourth shell; no BR/open-brand.
   - [ ] B) Alt A — add BR / packages/open-brand.
   - [ ] C) Other
-- **Text:** Preferred locked. Dewey mapping (existing codes only): APP `WL` = commercial gate (APP_REGISTRY reserved; not a package/shell). APP `LO` = host of first-run wizard + primary WL runtime. APP `SC` = optional co-brand. APP `ST` = out (do not use for WL path). Brand pack = `packages/open-ui` (no APP letter in registry — Open UI row uses em dash). Area `UI` for wizard chrome. Area `AU` optional for WL entitlement/key. Reject BR and fourth shell.
+- **Text:** Preferred locked. Dewey mapping (existing codes only): APP `WL` = commercial gate (APP_REGISTRY reserved; not a package/shell). APP `SM` = host of first-run wizard + primary WL runtime (former live code `LO` is an address alias). APP `SC` = optional co-brand. APP `ST` = out (do not use for WL path). Brand pack = `packages/open-ui` (no APP letter in registry — Open UI row uses em dash). Area `UI` for wizard chrome. Area `AU` optional for WL entitlement/key. Reject BR and fourth shell. Personal agent Luna (`LU`) is unchanged.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md). [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL / Open UI rows. [PI-001](#pi-001-white-label-catalog-row) still open for a catalog `null` row for the gate. [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+
+---
+
+<h2 id="pi-016-subterra-metro-rename">PI-016 — Luna OS → SubTerra Metro rename</h2>
+
+- **Status:** `answered` (2026-09-30 MT)
+- **Needed:** decision
+- **Question:** Approve display rename Luna OS → SubTerra Metro and Dewey live shell code LO → SM?
+- **Options:**
+  - [x] A) Yes — display SubTerra Metro; path `apps/subterra-metro`; live code `SM`; `LO` address alias
+  - [ ] B) Keep Luna OS / LO
+  - [ ] C) Other (text)
+- **Text:** Approved. Display **SubTerra Metro** (match SubTerra Central casing). Path `apps/subterra-metro`. Live Dewey shell code `SM`. `LO` is the former live code and remains an address alias (like `ST`). Personal agent **Luna** / Luna 7, Dewey `LU`, and `packages/luna` are unchanged. Audience `admin` | `member` unchanged. SubTerra Central / `SC` unchanged. GV-0002 on-disk filename unchanged. Existing `LO/N-####` addresses stay valid; new work uses `SM`.
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Luna OS → SubTerra Metro rename section. [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).

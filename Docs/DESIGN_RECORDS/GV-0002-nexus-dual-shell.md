@@ -6,14 +6,14 @@
 |--|--|
 | **Address** | `GV.CX.DV.01.020.010` |
 | **Release** | `v26.08.04` |
-| **Status** | Historical folder sketch superseded by GV-0004 (Luna OS and SubTerra Central). Audience and NFC challenge-response still stand |
+| **Status** | Historical folder sketch superseded by GV-0004 (SubTerra Metro and SubTerra Central). Audience and NFC challenge-response still stand |
 | **Owner** | Governance agent (GV) |
 
 Locks a dual-shell model: an admin shell and a member-facing public shell. Marketplace items gain an `audience` gate. NFC login must be challenge-response, never UID-only.
 
 **Still stands:** `audience` (`admin` / `member`, fail-closed default `["admin"]`); NFC challenge-response (no UID-only auth); Dewey areas `SO` and `EV`; Subtoken `TK` absorbs the 2022 NFC repos; `role` is never used for permissions. Live TK / CH `audience` lists follow the ARCHITECTURE install matrix (`[admin, member]`), not the historical admin-only D3/D6 rows.
 
-**Superseded by GV-0004:** leftover `apps/admin` / shared `shell-core` folder sketch, SubTerra OS as the shell to build, and separate product repos as the product shape. Build `apps/luna-os` (`LO`, address alias `ST`) and `apps/subterra-central` (`SC`).
+**Superseded by GV-0004:** leftover `apps/admin` / shared `shell-core` folder sketch, SubTerra OS as the shell to build, and separate product repos as the product shape. Build `apps/subterra-metro` (`SM`, address aliases `LO` and `ST`) and `apps/subterra-central` (`SC`).
 
 ---
 
@@ -43,10 +43,10 @@ Locks a dual-shell model: an admin shell and a member-facing public shell. Marke
 
 | Ref | Decision |
 |-----|----------|
-| **D1** | **Two shell targets.** Admin and member surfaces share marketplace, item host, and session logic. Neither shell forks that core. GV-0004 paths: `apps/luna-os` (admin) and `apps/subterra-central` (member). Do not build leftover `apps/admin` or `packages/shell-core`. |
-| **D2** | **The member shell is a shell target, not a marketplace app.** It has APP code `SC` (`role: shell`). Social / events / ticket UX lives on SubTerra Central; Luna OS (`LO`) tools stay on the `admin` shell. |
-| **D3** | **Member shell name is SubTerra Central.** Backend ticketing / NFC product remains **Subtoken** under APP code `TK`. Historical lock listed `audience: [admin]`. **Live catalog (ARCHITECTURE matrix):** `audience: [admin, member]` — organizer tools on Luna OS; event page, tickets, show log, and digital goods on SubTerra Central. |
-| **D4** | **Permissions use `audience`, never `role`.** Machine values stay exactly `admin` \| `member`. Manifest field `audience` is a list. Default when omitted: `["admin"]` (**fail-closed** — never visible on SubTerra Central unless `member` is listed). Mapping: `admin` → Luna OS (`apps/luna-os`); `member` → SubTerra Central (`apps/subterra-central`). |
+| **D1** | **Two shell targets.** Admin and member surfaces share marketplace, item host, and session logic. Neither shell forks that core. GV-0004 paths: `apps/subterra-metro` (admin) and `apps/subterra-central` (member). Do not build leftover `apps/admin` or `packages/shell-core`. |
+| **D2** | **The member shell is a shell target, not a marketplace app.** It has APP code `SC` (`role: shell`). Social / events / ticket UX lives on SubTerra Central; SubTerra Metro (`SM`) tools stay on the `admin` shell. |
+| **D3** | **Member shell name is SubTerra Central.** Backend ticketing / NFC product remains **Subtoken** under APP code `TK`. Historical lock listed `audience: [admin]`. **Live catalog (ARCHITECTURE matrix):** `audience: [admin, member]` — organizer tools on SubTerra Metro; event page, tickets, show log, and digital goods on SubTerra Central. |
+| **D4** | **Permissions use `audience`, never `role`.** Machine values stay exactly `admin` \| `member`. Manifest field `audience` is a list. Default when omitted: `["admin"]` (**fail-closed** — never visible on SubTerra Central unless `member` is listed). Mapping: `admin` → SubTerra Metro (`SM`, `apps/subterra-metro`; aliases `LO`, `ST`); `member` → SubTerra Central (`apps/subterra-central`). |
 | **D5** | **NFC auth is challenge-response.** Login proves possession of the tag private key (ECDSA). UID is an identifier only. UID-only "auth" is forbidden. Crypto from the 2022 `validation` app becomes shared auth code, not mobile-only. |
 | **D6** | **Subtoken (`TK`) absorbs** `SubTerraCo/subtoken`, `tag-writer`, and `validation`. Consolidation and revival are **deferred** follow-on work. Historical lock listed admin-facing only (`audience: [admin]`). **Live catalog (ARCHITECTURE matrix):** `audience: [admin, member]` as in D3. |
 | **D7** | Dewey areas **`SO`** (Social / feed) and **`EV`** (Events / ticketing) are reserved. Existing **`AU`** and **`NF`** cover auth and NFC crypto. |
@@ -57,7 +57,7 @@ Locks a dual-shell model: an admin shell and a member-facing public shell. Marke
 ## 3. Topology (target — GV-0004)
 
 ```
-apps/luna-os/            # LO — Tauri command center (audience: admin)
+apps/subterra-metro/            # SM — Tauri command center (audience: admin); LO = former code
 apps/subterra-central/   # SC — PWA; gigs, events, tickets (audience: member)
 packages/subtoken/       # TK — NFC / ticketing
   # deferred revive from SubTerraCo/{subtoken,tag-writer,validation}
@@ -71,7 +71,7 @@ Marketplace filtering: a shell session with audience `member` only mounts items 
 
 | Work | Why deferred |
 |------|----------------|
-| Luna OS and SubTerra Central hosts | Shell code — after this record; paths locked in GV-0004 |
+| SubTerra Metro and SubTerra Central hosts | Shell code — after this record; paths locked in GV-0004 |
 | `sdk-contract` `audience` / session surface + parity tests | Twin SDK change — after this record |
 | Subtoken merge + Expo / Vue revival | Product work; Python `tools/tag-writer` needs future `ci-python.yml` (Anytype needs it too) |
 | Ticket payments | Out of scope |

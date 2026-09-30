@@ -49,6 +49,8 @@ const PATH_FALLBACKS: Record<string, readonly string[]> = {
   "packages/open-day": ["packages/open-day", "apps/blocks", "Packages/Blocks"],
   "packages/open-sort": ["packages/open-sort", "apps/mailbot", "Packages/Mail Bot"],
   "packages/open-bill": ["packages/open-bill", "apps/billbot", "Packages/Bill Bot"],
+  "apps/subterra-metro": ["apps/subterra-metro", "apps/luna-os"],
+  "apps/luna-os": ["apps/luna-os", "apps/subterra-metro"],
   shell: ["shell"],
   governance: ["governance", "."],
 };
@@ -348,6 +350,7 @@ export function buildFleet(): FleetSnapshot {
 
   const preferredOrder = [
     "GV",
+    "SM",
     "LO",
     "ST",
     "SC",
@@ -415,7 +418,7 @@ export function renderVersionsMarkdown(fleet: FleetSnapshot): string {
     "- **npm** is `package.json` `version` (npm semver form `YY.M.D` / `YY.M.D-bX`).",
     "- Rows with Display/npm `—` usually mean the local checkout is missing or not yet on the SubTerra stamp.",
     "- Refresh: `pnpm versions:fleet` from this repo root (or `governance/` in a meta-workspace checkout).",
-    "- ST / BK / MB / BB are address aliases. The packages to build are LO / SC / OD / OS / BI (GV-0004).",
+    "- ST / LO / BK / MB / BB are address aliases. The packages to build are SM / SC / OD / OS / BI (GV-0004). LO is the former live code for SubTerra Metro.",
     "",
   );
   return `${lines.join("\n")}`;

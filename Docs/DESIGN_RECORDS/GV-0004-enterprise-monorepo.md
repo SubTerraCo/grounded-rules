@@ -17,7 +17,7 @@ The enterprise blueprint wins wherever it disagrees with GV-0001, GV-0002, or GV
 | # | Old ruling | Blueprint | Resolution |
 |---|------------|-----------|------------|
 | C1 | One GitHub repo per app (§1) | One pnpm + Turborepo monorepo | The product is the monorepo. `subterra-governance` stays this rules repo. `tooling/design-governance` enforces tokens; it does not fork the constitution |
-| C2 | Shells are leftover `apps/admin` plus a member PWA over `shell-core` (GV-0002) | Exactly two runtimes: Tauri v2 and a PWA | Build `apps/luna-os` (Tauri, including Arch Linux / Omarchy) and `apps/subterra-central` (PWA). Do not create leftover `apps/admin` folders or a second PWA runtime besides Central |
+| C2 | Shells are leftover `apps/admin` plus a member PWA over `shell-core` (GV-0002) | Exactly two runtimes: Tauri v2 and a PWA | Build `apps/subterra-metro` (Tauri, including Arch Linux / Omarchy) and `apps/subterra-central` (PWA). Do not create leftover `apps/admin` folders or a second PWA runtime besides Central |
 | C3 | Electron + Next shell | Vite, React 19, Tauri v2 | Tauri + Vite. `subterra-shell` stays until Phase 1 copies what is still useful |
 | C4 | Every repo defaults to `master` (§4.1) | The first blueprint draft used `main` and `staging` | Withdrawn. The monorepo uses `master` and `dev`, same as every other SubTerraCo repo |
 | C5 | pnpm 11.14, reusable `ci-node.yml@v1` | pnpm 9, Node 22, Turbo pipeline in-repo | Monorepo CI is the blueprint pipeline (pnpm 9, Node 22). This governance repo keeps its own workflow |
@@ -45,7 +45,7 @@ Open stays on names that would collide with a published app. The others use the 
 
 | Code | Name | Path | What it is |
 |------|------|------|------------|
-| LO | Luna OS | `apps/luna-os` | Tauri command center, including Arch / Omarchy. Replaces ST |
+| SM | SubTerra Metro | `apps/subterra-metro` | Tauri command center, including Arch / Omarchy. Replaces ST. Former code `LO` is an address alias |
 | LU | Luna | `packages/luna` | Agent router. Gemma 4 12B through Ollama |
 | SC | SubTerra Central | `apps/subterra-central` | Gigs and events. Member PWA (not a second runtime folder) |
 | OD | Open Day | `packages/open-day` | Tasks, timeline, Quick Blocks, Festy crew tools. Replaces BK |
@@ -61,10 +61,10 @@ Open stays on names that would collide with a published app. The others use the 
 | BS | Banking | `packages/banking` | SimpleFIN and GoCardless |
 | AT | Anytype | — | Dedicated workspace. Not a package. Open Axiom is cut |
 | GV | Governance | `SubTerraCo/subterra-governance` | This rules repo |
-| WL | White-label | — | Commercial gate on Luna OS. Not a package |
+| WL | White-label | — | Commercial gate on SubTerra Metro. Not a package |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
 
-`ST` is an address alias for leftover shell addresses only. `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity, InvoiceShelf, and gmailctl are not adopted. Blocks, Billbot, and Mailbot are built here.
+`ST` and `LO` are address aliases (`LO` = former live code for SM). `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity, InvoiceShelf, and gmailctl are not adopted. Blocks, Billbot, and Mailbot are built here.
 
 ---
 
@@ -78,9 +78,9 @@ Open stays on names that would collide with a published app. The others use the 
 | InvoiceShelf | AGPL-3.0. Not vendored into a BSL package and not part of the multi-tenant host |
 | any-sync | Any Source Available License |
 
-Luna OS and SubTerra Central keep separate hubs. The same owner may link a bridge that copies only Open Books, Open Bill, and Open Day records they mark. The bridge is off by default. Central anonymous access is an NFC challenge-response to an event page, with a one-time upgrade for Artist, Venue, or Vendor profile tools. Friend-show visibility is off by default. Open Gig is free for a solo freelancer and billed for a crew manager of 5 or more.
+SubTerra Metro and SubTerra Central keep separate hubs. The same owner may link a bridge that copies only Open Books, Open Bill, and Open Day records they mark. The bridge is off by default. Central anonymous access is an NFC challenge-response to an event page, with a one-time upgrade for Artist, Venue, or Vendor profile tools. Friend-show visibility is off by default. Open Gig is free for a solo freelancer and billed for a crew manager of 5 or more.
 
-Packages do not import each other. Each shell ships a SQLite hub, and every package runs against an empty hub. Anytype is an optional mirror for a personal Luna OS install, not a dependency. Forum is an optional richer backend for Community. The deployment matrix is in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md).
+Packages do not import each other. Each shell ships a SQLite hub, and every package runs against an empty hub. Anytype is an optional mirror for a personal SubTerra Metro install, not a dependency. Forum is an optional richer backend for Community. The deployment matrix is in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md).
 
 ---
 

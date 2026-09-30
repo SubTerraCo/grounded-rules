@@ -60,13 +60,44 @@ No merge blockers. Stay draft. No deletes/archives. Q11 (WL catalog row) and Q12
 
 ## Powerline input queue added
 
-Living clickable queue: [POWERLINE_INPUT.md](POWERLINE_INPUT.md) (`PI-001`–`PI-015`). Rook maintains it whenever a new blocker-for-Powerline appears. Changelog questions Q11–Q15 remain open *as PI items where those PIs are still open* (PI-001=Q11, PI-002=Q12, PI-004=Q15, PI-011=Q13, PI-012=Q14). PI-003 (palette replace) and PI-015 (WL-FR-001 path) are **answered** and are not Q11–Q15. Open index = 12 (11 `open` decisions + 1 `watching`). Answered: PI-003, PI-014, PI-015. PI-003 **answered** 2026-09-30 MT: **replace** amber entirely (four-color lock; `#e8a54b` withdrawn). PI-014 **answered** 2026-09-30 MT: accept residual nits; shell#3 merged to `master` (`c0e4f699` / merge `50a540c5`). PI-015 **answered** 2026-09-30 MT: Preferred (WL-FR-001) — no new Dewey APP code; WL gate only; wizard on LO; brand pack in `packages/open-ui`; no BR / fourth shell.
+Living clickable queue: [POWERLINE_INPUT.md](POWERLINE_INPUT.md) (`PI-001`–`PI-016`). Rook maintains it whenever a new blocker-for-Powerline appears. Changelog questions Q11–Q15 remain open *as PI items where those PIs are still open* (PI-001=Q11, PI-002=Q12, PI-004=Q15, PI-011=Q13, PI-012=Q14). PI-003 (palette replace), PI-015 (WL-FR-001 path), and PI-016 (SubTerra Metro rename) are **answered** and are not Q11–Q15. Open index = 12 (11 `open` decisions + 1 `watching`). Answered: PI-003, PI-014, PI-015, PI-016. PI-003 **answered** 2026-09-30 MT: **replace** amber entirely (four-color lock; `#e8a54b` withdrawn). PI-014 **answered** 2026-09-30 MT: accept residual nits; shell#3 merged to `master` (`c0e4f699` / merge `50a540c5`). PI-015 **answered** 2026-09-30 MT: Preferred (WL-FR-001) — no new Dewey APP code; WL gate only; wizard on SM; brand pack in `packages/open-ui`; no BR / fourth shell. PI-016 **answered** 2026-09-30 MT: Luna OS → **SubTerra Metro**; live Dewey `LO` → `SM`; `LO` kept as address alias.
 
 | Path | What changed |
 |------|----------------|
-| `Docs/POWERLINE_INPUT.md` | **Added.** 15 items total in the file; Open index = 12 (11 `open` decisions + 1 `watching`); Answered: PI-003, PI-014, PI-015. |
+| `Docs/POWERLINE_INPUT.md` | **Added.** 16 items total in the file; Open index = 12 (11 `open` decisions + 1 `watching`); Answered: PI-003, PI-014, PI-015, PI-016. |
 | `Docs/GOVERNANCE_OVERVIEW.md` | Source-of-truth table: Powerline input queue → `POWERLINE_INPUT.md`. |
 | `Docs/CHANGELOG-cleanup-2026-09-30.md` | This note. Still-open list unchanged. |
+
+---
+
+## Luna OS → SubTerra Metro rename (PI-016)
+
+Powerline approved 2026-09-30 MT. Display **Luna OS** → **SubTerra Metro**. Path `apps/luna-os` → `apps/subterra-metro`. Live Dewey shell code `LO` → `SM`. `LO` remains an address alias (like `ST`). **Unchanged:** personal agent Luna / Luna 7; Dewey `LU` / `packages/luna`; audience `admin` | `member`; SubTerra Central / `SC`; GV-0002 on-disk filename; existing `LO/N-####` address strings.
+
+**Deletes still held.** No archive of GV-0002. Catalog `id: luna-os` kept as the LO alias row (not a second shell).
+
+### File-by-file (this rename)
+
+| Path | What changed |
+|------|----------------|
+| `codes/APP_REGISTRY.yaml` | Live shell `SM` / SubTerra Metro / `apps/subterra-metro`. `LO` is address alias. `LU` / Luna / `packages/luna` untouched. |
+| `subterra.manifest.yaml` | Live item `subterra-metro` `appCode: SM`. Alias item `luna-os` `appCode: LO`. Path `apps/subterra-metro`. Matrix notes say SubTerra Metro. `LU` Luna row untouched. |
+| `CI_OPS_CONSTITUTION.md` | Display SubTerra Metro; path `apps/subterra-metro`; live code `SM`; aliases `LO`, `ST`. New work uses SM. |
+| `Docs/ARCHITECTURE.md` | Tree `subterra-metro/`; matrix column SubTerra Metro. |
+| `Docs/GOVERNANCE_OVERVIEW.md` | Codes table SM live; LO listed as alias. |
+| `Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md` | Names table SM; LO alias note. |
+| `Docs/DESIGN_RECORDS/GV-0002-nexus-dual-shell.md` | Live paths/codes SM; **filename unchanged**. |
+| `Docs/POWERLINE_INPUT.md` | PI-016 answered. PI-015 wizard on SM. PI-013 GitHub URL still luna-os#1 (real PR). |
+| `Docs/VERSIONS.md` | Alias note includes LO; live codes SM / SC / OD / OS / BI. |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | This section. Prior pass tables left as historical audit (they said Luna OS then). |
+| `.cursor/rules/governance-agent.mdc` | Audience mapping SM / SubTerra Metro. |
+| `README.md` | Runtimes SubTerra Metro + Central; aliases include LO. |
+| `codes/AREA_CODES.yaml` | SO/EV notes name SubTerra Metro. |
+| `tests/README.md`, `tests/marketplace/placeholder.spec.ts`, `tests/playwright.config.ts` | Host names SubTerra Metro / Central; reserved path `apps/subterra-metro`. |
+| `.github/workflows/release-desktop.yml`, `build-android.yml`, `publish-npm.yml` | Comments SubTerra Metro (jobs unchanged). |
+| `packages/ci-ops/src/validate-manifest.ts` | Requires `appCode: SM` and still `appCode: LO`. |
+| `packages/ci-ops/src/collect-versions.ts` | preferredOrder includes SM; PATH_FALLBACKS for `apps/subterra-metro` (and leftover `apps/luna-os`). |
+| `templates/product-repo/README.md` | Twin stop wording: new monorepo packages (not “Luna packages”). |
 
 ---
 

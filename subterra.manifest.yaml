@@ -24,18 +24,19 @@ governance:
       non_fast_forward, required_status_checks) with org admins as bypass actors.
     legacyOwner: PoweredUpLabs  # still holds unrelated repos; nothing SubTerra should live there
 
-# Canonical catalog. GV-0004 product shape: Luna OS + SubTerra Central + standalone packages.
+# Canonical catalog. GV-0004 product shape: SubTerra Metro + SubTerra Central + standalone packages.
 # Leftover standalone-repo items stay as address aliases until folded into SubTerraCo/luna.
 #
 # audience (GV-0002 D4): list of catalog audiences that may mount the item.
 # Locked machine values: admin | member only. Do not rename these strings.
 # Default when omitted: [admin] (fail-closed).
-# Mapping: admin → Luna OS (LO, apps/luna-os); member → SubTerra Central (SC, apps/subterra-central).
+# Mapping: admin → SubTerra Metro (SM, apps/subterra-metro; aliases LO, ST);
+#          member → SubTerra Central (SC, apps/subterra-central).
 # No third audience. Never reuse the word `role` for this — leftover twin role is deprecated.
 #
 # Twin fields (role: app|integration, marketplace: apps|integrations, @subterra/*-sdk):
-# DEPRECATED on leftover standalone repos. Do not write them on new Luna catalog items.
-# Luna packages use marketplace: null, no twin SDK, and audience as the live mount gate.
+# DEPRECATED on leftover standalone repos. Do not write them on new monorepo catalog items.
+# Monorepo packages use marketplace: null, no twin SDK, and audience as the live mount gate.
 items:
   - id: shell
     appCode: ST
@@ -49,7 +50,7 @@ items:
     defaultOpen: false
     sdk: null
     status: linked  # first consumer of the reusable ci-node workflow
-    note: "Address alias for LO Luna OS. Leftover SubTerraCo/subterra-shell until Phase 1. Twin SDK packages below are deprecated leftover until fold-in."
+    note: "Address alias for SM SubTerra Metro (former live code LO). Leftover SubTerraCo/subterra-shell until Phase 1. Twin SDK packages below are deprecated leftover until fold-in."
     provides:
       # Twin SDKs scaffolded and parity-verified (GV-0001 D10). Deprecated leftover surface.
       - "@subterra/sdk-contract"   # internal single source of truth
@@ -119,14 +120,14 @@ items:
     upstream: anyproto/anytype-api
     legacyRepo: SubTerraCo/anytype-google-contact-integration  # superseded predecessor, kept for reference
     defaultBranch: master
-    note: "Not a Luna package. PKM is a dedicated Anytype workspace. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
+    note: "Not a monorepo package. PKM is a dedicated Anytype workspace. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
 
-  # GV-0004 Luna monorepo items. No twin role / marketplace: apps|integrations / twin SDK.
+  # GV-0004 monorepo items. No twin role / marketplace: apps|integrations / twin SDK.
   - id: luna-os
     appCode: LO
-    name: Luna OS
+    name: SubTerra Metro (address alias)
     repo: null
-    localPath: apps/luna-os
+    localPath: apps/subterra-metro
     platforms: [DT, AD, IO, AP]
     role: shell
     marketplace: null
@@ -134,7 +135,21 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "GV-0004. Tauri command center, including Arch Linux for Omarchy. Personal data is isolated from SC. Live gate is audience, not twin marketplace fields."
+    note: "Former live Dewey code for SM. Address alias only. Path to build is apps/subterra-metro. Existing LO addresses stay valid."
+
+  - id: subterra-metro
+    appCode: SM
+    name: SubTerra Metro
+    repo: null
+    localPath: apps/subterra-metro
+    platforms: [DT, AD, IO, AP]
+    role: shell
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "GV-0004. Tauri command center, including Arch Linux for Omarchy. Personal data is isolated from SC. Live gate is audience, not twin marketplace fields. Former code LO is an address alias. Personal agent Luna (LU) is unchanged."
 
   - id: subterra-central
     appCode: SC
@@ -161,7 +176,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Luna OS and SubTerra Central. Free for a solo freelancer. Fee for a crew manager of 5 or more."
+    note: "ARCHITECTURE matrix: SubTerra Metro and SubTerra Central. Free for a solo freelancer. Fee for a crew manager of 5 or more."
 
   - id: axiom-wiki
     appCode: AX
@@ -189,7 +204,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: crew discussion on Luna OS and public discussion on SubTerra Central."
+    note: "ARCHITECTURE matrix: crew discussion on SubTerra Metro and public discussion on SubTerra Central."
 
   - id: open-books
     appCode: OB
@@ -202,7 +217,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Luna OS; Central only through the owner's bridge. Wraps @actual-app/api. Not Open Bill."
+    note: "ARCHITECTURE matrix: SubTerra Metro; Central only through the owner's bridge. Wraps @actual-app/api. Not Open Bill."
 
   - id: home-assistant
     appCode: HA
@@ -215,7 +230,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Luna OS only. Client only. Upstream Home Assistant server is Apache 2.0."
+    note: "ARCHITECTURE matrix: SubTerra Metro only. Client only. Upstream Home Assistant server is Apache 2.0."
 
   - id: luna
     appCode: LU
@@ -228,7 +243,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Luna OS only. Agent router. Ollama / Gemma 4 12B default on Omarchy."
+    note: "ARCHITECTURE matrix: SubTerra Metro only. Agent router. Ollama / Gemma 4 12B default on Omarchy."
 
   - id: open-day
     appCode: OD
@@ -241,7 +256,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Luna OS (tasks + Festy draft); Central gets a public schedule only when granted."
+    note: "ARCHITECTURE matrix: SubTerra Metro (tasks + Festy draft); Central gets a public schedule only when granted."
 
   - id: open-sort
     appCode: OS
@@ -254,7 +269,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Luna OS only. Gmail and IMAP labels and archive."
+    note: "ARCHITECTURE matrix: SubTerra Metro only. Gmail and IMAP labels and archive."
 
   - id: open-bill
     appCode: BI
@@ -267,7 +282,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Luna OS; Central only through the owner's bridge. Invoicing and 1099 exports."
+    note: "ARCHITECTURE matrix: SubTerra Metro; Central only through the owner's bridge. Invoicing and 1099 exports."
 
   - id: forum
     appCode: FM
@@ -280,7 +295,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: optional on Luna OS and SubTerra Central. Flarum. Community still runs without it."
+    note: "ARCHITECTURE matrix: optional on SubTerra Metro and SubTerra Central. Flarum. Community still runs without it."
 
   - id: media
     appCode: MA
@@ -293,7 +308,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Luna OS only. DaVinci, OBS, Loupedeck."
+    note: "ARCHITECTURE matrix: SubTerra Metro only. DaVinci, OBS, Loupedeck."
 
   - id: banking
     appCode: BS
@@ -306,7 +321,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Luna OS only. SimpleFIN and GoCardless. Treated as a Luna package, not a twin integration."
+    note: "ARCHITECTURE matrix: SubTerra Metro only. SimpleFIN and GoCardless. Treated as a monorepo package, not a twin integration."
 
   - id: subtoken
     appCode: TK
@@ -320,6 +335,6 @@ items:
     sdk: null
     status: reserved
     note: >-
-      ARCHITECTURE matrix: organizer tools on Luna OS; event page, tickets, show
+      ARCHITECTURE matrix: organizer tools on SubTerra Metro; event page, tickets, show
       log, and digital goods on SubTerra Central. Absorbs leftover
       SubTerraCo/subtoken, tag-writer, and validation. UID-only auth is forbidden.

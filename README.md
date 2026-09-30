@@ -2,7 +2,7 @@
 
 **Governance Agent (GV)** home — rules, Dewey codes, catalog, reusable CI, and templates for SubTerra.
 
-The **product** is the Luna OS enterprise monorepo (`SubTerraCo/luna`, not created yet). This repo stays the constitution and pipeline source. It is not the product monorepo.
+The **product** is the SubTerra Metro enterprise monorepo (`SubTerraCo/luna`, not created yet). This repo stays the constitution and pipeline source. It is not the product monorepo.
 
 Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANCE_OVERVIEW.md)**. File-by-file cleanup log: **[Docs/CHANGELOG-cleanup-2026-09-30.md](./Docs/CHANGELOG-cleanup-2026-09-30.md)**.
 
@@ -32,15 +32,15 @@ Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANC
 
 ## Current product shape (GV-0004)
 
-- Two runtimes: `apps/luna-os` (Tauri v2, including Arch / Omarchy) and `apps/subterra-central` (PWA).
-- Catalog `audience` values stay `admin` and `member` (GV-0002 D4). Mapping: `admin` → Luna OS; `member` → SubTerra Central. Default `["admin"]` fail-closed. No third audience.
+- Two runtimes: `apps/subterra-metro` (Tauri v2, including Arch / Omarchy) and `apps/subterra-central` (PWA).
+- Catalog `audience` values stay `admin` and `member` (GV-0002 D4). Mapping: `admin` → SubTerra Metro; `member` → SubTerra Central. Default `["admin"]` fail-closed. No third audience.
 - Packages: Open Day, Open Sort, Open Books, Open Bill, Subtoken, Luna, Banking, Forum, Home Assistant, Media, Open UI.
-- Twin `role` / `marketplace` / SDK fields are **deprecated leftover** on standalone-repo rows. New Luna packages: `marketplace: null`, `sdk: null`.
+- Twin `role` / `marketplace` / SDK fields are **deprecated leftover** on standalone-repo rows. New monorepo packages: `marketplace: null`, `sdk: null`.
 - Material 3 in `packages/open-ui`: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`; interim M3 type scale; 4dp spacing.
 - New original monorepo code is BSL 1.1. Already published MIT stays MIT.
 - Default branch is **`master`** on every SubTerraCo repo, including `luna`.
 
-Address aliases (`ST`, `BK`, `MB`, `BB`) remain valid on existing Dewey addresses. They are not the folders to build.
+Address aliases (`ST`, `LO`, `BK`, `MB`, `BB`) remain valid on existing Dewey addresses. They are not the folders to build. Live shell code is `SM`.
 
 ## Local
 
@@ -61,9 +61,9 @@ pnpm test:workspace              # all QA projects
 |----------|--------|
 | `ci-node.yml` | Live |
 | `deploy-web.yml` | Live |
-| `release-desktop.yml` | R0 stub (Electron / leftover Blocks — not the Luna OS Tauri pipeline) |
+| `release-desktop.yml` | R0 stub (Electron / leftover Blocks — not the SubTerra Metro Tauri pipeline) |
 | `publish-npm.yml` | R0 stub |
-| `build-android.yml` | R0 stub (Expo / leftover Blocks mobile — Luna OS Android is Tauri) |
+| `build-android.yml` | R0 stub (Expo / leftover Blocks mobile — SubTerra Metro Android is Tauri) |
 | `nightly-dev-push.yml` | R0 stub |
 
 Production branch is **`master`** across all repos (§4.1) — not `main`.

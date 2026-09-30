@@ -44,7 +44,7 @@ export default defineConfig({
       use: {},
     },
     {
-      // Cross-app browser journeys. Blocked until Luna OS / SubTerra Central run.
+      // Cross-app browser journeys. Blocked until SubTerra Metro / SubTerra Central run.
       name: "marketplace",
       testDir: "./marketplace",
       use: {

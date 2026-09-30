@@ -1,8 +1,9 @@
 # Dewey APP segment — every app and integration reserves its own code.
 # Schema: APP.PP.PR.AA.SSS.FFF
 # All repos live under the SubTerraCo GitHub organization.
-# GV-0004 current codes: LO, LU, SC, OD, OS, OB, BI, TK, OG, CH, FM, HA, MA, BS, GV, WL.
-# Address aliases (not folders to build): ST, BK, MB, BB. AX is cut (Open Axiom).
+# GV-0004 current codes: SM, LU, SC, OD, OS, OB, BI, TK, OG, CH, FM, HA, MA, BS, GV, WL.
+# Address aliases (not folders to build): ST, LO, BK, MB, BB. AX is cut (Open Axiom).
+# LO = former live code for SM SubTerra Metro. New work uses SM.
 schemaVersion: 1
 apps:
   - code: ST
@@ -10,7 +11,7 @@ apps:
     role: shell
     localPath: shell
     repo: SubTerraCo/subterra-shell
-    note: "Leftover shell. The shell to build is LO Luna OS at apps/luna-os. Keep ST as an address alias."
+    note: "Leftover shell. The shell to build is SM SubTerra Metro at apps/subterra-metro. ST is an address alias. LO is the former live code, also an address alias for SM."
   - code: BK
     name: Blocks
     role: app
@@ -50,7 +51,7 @@ apps:
     status: reserved
     audience: [admin, member]
     note: >-
-      ARCHITECTURE matrix: organizer tools on Luna OS (admin); event page, tickets,
+      ARCHITECTURE matrix: organizer tools on SubTerra Metro (admin); event page, tickets,
       show log, and digital goods on SubTerra Central (member). NFC package
       packages/subtoken. NTAG424 challenge-response. UID-only auth is forbidden.
       Absorbs leftover SubTerraCo/subtoken, tag-writer, and validation.
@@ -59,22 +60,29 @@ apps:
     name: White-label OS
     role: app
     status: reserved
-    note: "GV-0004: not a separate app. Commercial gate and hosting live with PoweredUpLabs on Luna OS."
+    note: "GV-0004: not a separate app. Commercial gate and hosting live with PoweredUpLabs on SubTerra Metro."
   # Open names stay only where the bare name collides with a published app.
   # Luna, Central, Budget, Token, Community, Forum, Home, Media, and Bank are rewound.
   - code: LO
-    name: Luna OS
+    name: SubTerra Metro (address alias)
     role: shell
-    localPath: apps/luna-os
+    localPath: apps/subterra-metro
+    status: reserved
+    note: "Former live Dewey code for SubTerra Metro. Address alias for SM. New work uses SM. Do not build a second shell. Existing LO/N-#### addresses stay valid."
+  - code: SM
+    name: SubTerra Metro
+    role: shell
+    localPath: apps/subterra-metro
     status: reserved
     platforms: [DT, AD, IO, AP]
-    note: "Tauri command center for Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST. The Omarchy machine is the local AI host."
+    audience: [admin]
+    note: "Tauri command center for Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST. Former code LO is an address alias. The Omarchy machine is the local AI host. Personal agent Luna (LU) is unchanged."
   - code: LU
     name: Luna
     role: app
     localPath: packages/luna
     status: reserved
-    note: "Agent router inside Luna OS. Ollama runs Gemma 4 12B on the 16GB GPU. Cloud Gemini stays available. API keys are per-user, never committed."
+    note: "Agent router inside SubTerra Metro. Package and code LU are unchanged (not Metro). Ollama runs Gemma 4 12B on the 16GB GPU. Cloud Gemini stays available. API keys are per-user, never committed."
   - code: SC
     name: SubTerra Central
     role: shell
@@ -119,7 +127,7 @@ apps:
     status: reserved
     audience: [admin, member]
     note: >-
-      ARCHITECTURE matrix: crew discussion on Luna OS (admin); public discussion
+      ARCHITECTURE matrix: crew discussion on SubTerra Metro (admin); public discussion
       on SubTerra Central (member). Voting and discussion UI over Forum. Flarum,
       not Discourse.
   - code: FM
@@ -147,8 +155,8 @@ apps:
     localPath: packages/banking
     status: reserved
     note: >-
-      ARCHITECTURE matrix: Luna OS only. SimpleFIN and GoCardless. Teller and
-      Plaid are optional adapters. Treated as a Luna package (marketplace: null),
+      ARCHITECTURE matrix: SubTerra Metro only. SimpleFIN and GoCardless. Teller and
+      Plaid are optional adapters. Treated as a monorepo package (marketplace: null),
       not a twin integration. Dewey `role: integration` on this registry row is
       leftover vocabulary until Powerline reclassifies it.
   - code: AX

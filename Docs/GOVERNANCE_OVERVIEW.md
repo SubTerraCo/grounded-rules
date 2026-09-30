@@ -5,12 +5,12 @@
 
 | Catalog `audience` | Mounts in |
 |--------------------|-----------|
-| `admin` (default when omitted; fail-closed) | Luna OS (`LO`, `apps/luna-os`) |
+| `admin` (default when omitted; fail-closed) | SubTerra Metro (`SM`, `apps/subterra-metro`; aliases `LO`, `ST`) |
 | `member` | SubTerra Central (`SC`, `apps/subterra-central`) |
 
 There is no third audience. “Powerline” is an owner/approver of archive decisions, not an `audience` value. “Collective” is not an `audience` value.
 
-**Date:** 2026-09-30 (twin marketplace stopped on Luna packages; TK/CH follow ARCHITECTURE matrix; four-color palette)  
+**Date:** 2026-09-30 (SubTerra Metro / SM; former Luna OS / LO is an address alias; Luna LU unchanged)  
 **This document** is a readable merge of the locked rulings in this repo. It does not replace them.
 
 | If you need | Read |
@@ -53,7 +53,7 @@ Two runtimes only:
 
 | Shell | Path | Runtime | Audience |
 |-------|------|---------|----------|
-| Luna OS | `apps/luna-os` (`LO`) | Tauri v2 + React 19 + Vite — Windows, macOS, Android, iOS, Arch Linux / Omarchy | `admin` |
+| SubTerra Metro | `apps/subterra-metro` (`SM`) | Tauri v2 + React 19 + Vite — Windows, macOS, Android, iOS, Arch Linux / Omarchy | `admin` |
 | SubTerra Central | `apps/subterra-central` (`SC`) | Offline-first PWA — gigs, events; Open Gig and Community install here | `member` |
 
 The PWA **is** SubTerra Central. There is no second web runtime folder. The path to build is `apps/subterra-central`.
@@ -72,30 +72,30 @@ One product, one code, one folder. The folder is the name people say.
 
 | Code | Name | Path | Status |
 |------|------|------|--------|
-| LO | Luna OS | `apps/luna-os` | to build (replaces ST) |
-| LU | Luna | `packages/luna` | agent router (Ollama, Gemma 4 12B default) |
+| SM | SubTerra Metro | `apps/subterra-metro` | to build (replaces ST; former code LO) |
+| LU | Luna | `packages/luna` | agent router (Ollama, Gemma 4 12B default). Not Metro. |
 | SC | SubTerra Central | `apps/subterra-central` | to build — member PWA |
 | OG | Open Gig | `apps/open-gig` | profile, listing, rate, date request |
-| CH | Community | `apps/community` | voting / discussion UI. Audience `[admin, member]`: crew on Luna OS; public on Central |
+| CH | Community | `apps/community` | voting / discussion UI. Audience `[admin, member]`: crew on SubTerra Metro; public on Central |
 | OD | Open Day | `packages/open-day` | tasks, timeline, Quick Blocks, Festy crew (replaces BK) |
 | OS | Open Sort | `packages/open-sort` | Gmail/IMAP labels and archive (replaces MB) |
 | OB | Open Books | `packages/open-books` | `@actual-app/api` budgeting (not “Open Budget”) |
 | BI | Open Bill | `packages/open-bill` | invoicing / 1099 (replaces BB) |
-| TK | Subtoken | `packages/subtoken` | NTAG424 + tickets. Audience `[admin, member]`: organizer tools on Luna OS; event page / tickets / show log / digital goods on Central |
+| TK | Subtoken | `packages/subtoken` | NTAG424 + tickets. Audience `[admin, member]`: organizer tools on SubTerra Metro; event page / tickets / show log / digital goods on Central |
 | FM | Forum | `packages/forum` | Flarum (optional) |
 | HA | Home Assistant | `packages/home-assistant` | client only |
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
-| BS | Banking | `packages/banking` | SimpleFIN + GoCardless. Luna package, not a twin integration |
+| BS | Banking | `packages/banking` | SimpleFIN + GoCardless. Monorepo package, not a twin integration |
 | AT | Anytype | dedicated workspace | **not** a monorepo package |
 | GV | Governance | this repo | rules / CI / templates |
-| WL | White-label | — | commercial gate on Luna OS, not a package |
+| WL | White-label | — | commercial gate on SubTerra Metro, not a package |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
 
-**Address aliases** (keep on existing Dewey addresses; not folders to build): `ST` (leftover Shell), `BK` (Blocks), `MB` (Mailbot), `BB` (Billbot).
+**Address aliases** (keep on existing Dewey addresses; not folders to build): `ST` (leftover Shell), `LO` (former SubTerra Metro live code), `BK` (Blocks), `MB` (Mailbot), `BB` (Billbot).
 
 **Cut:** Open Axiom (`AX` catalog row kept until archive approval). Withdrawn product codes are not used. `ST` is an alias only. `FN` and `BO` are not current names.
 
-Festy Blocks (`SubTerraCo/festy-blocks`) does not get its own code. Crew tools live in Open Day inside Luna OS; the finished schedule can appear read-only on Central when granted.
+Festy Blocks (`SubTerraCo/festy-blocks`) does not get its own code. Crew tools live in Open Day inside SubTerra Metro; the finished schedule can appear read-only on Central when granted.
 
 ---
 
@@ -105,11 +105,11 @@ Every installable package stands alone. It may not import another package. The s
 
 Optional facts another package might have written are read from the hub only after the user grants that read.
 
-The same package can be installed in Luna OS, in SubTerra Central, or in both. Each shell has its own hub. A person who uses both may turn on a **data bridge** (off by default). The bridge copies only Open Books, Open Bill, and Open Day records that the person marks. Mail, banking, and home automation stay on Luna OS.
+The same package can be installed in SubTerra Metro, in SubTerra Central, or in both. Each shell has its own hub. A person who uses both may turn on a **data bridge** (off by default). The bridge copies only Open Books, Open Bill, and Open Day records that the person marks. Mail, banking, and home automation stay on SubTerra Metro.
 
 **Dropped:** separate Apps and Integrations tabs; separate GitHub repos as the product shape.
 
-**Twin marketplace fields — stop on new Luna packages.** Do not write `role: app|integration`, `marketplace: apps|integrations`, or a twin SDK on reserved monorepo rows. Those items use `marketplace: null`, `sdk: null`, and `audience` as the live mount gate.
+**Twin marketplace fields — stop on new monorepo packages.** Do not write `role: app|integration`, `marketplace: apps|integrations`, or a twin SDK on reserved monorepo rows. Those items use `marketplace: null`, `sdk: null`, and `audience` as the live mount gate.
 
 **Deprecated leftover until fold-in:** filled twin fields on Blocks, Mailbot, Billbot, Anytype, and leftover `@subterra/app-sdk` / `@subterra/integration-sdk` in `subterra-shell`. Those twins must keep identical symbol names (`SDK_SURFACE`), differing only in `SDK_ROLE`. Validator needles stay on the leftover rows.
 
@@ -117,7 +117,7 @@ The same package can be installed in Luna OS, in SubTerra Central, or in both. E
 
 | Catalog value | Shell that may mount the item |
 |---------------|-------------------------------|
-| `admin` | Luna OS (`LO`, `apps/luna-os`) |
+| `admin` | SubTerra Metro (`SM`, `apps/subterra-metro`; aliases `LO`, `ST`) |
 | `member` | SubTerra Central (`SC`, `apps/subterra-central`) |
 
 An item is never visible on SubTerra Central unless its list includes `member`. Never overload SDK `role` for permissions. Do not invent a third audience (including “Powerline”, “Collective”, or “operator”).
@@ -136,9 +136,9 @@ A one-time charge upgrades that profile to Artist, Venue, or Vendor.
 
 Open Gig listings are free for a single freelancer. A crew manager with 5 or more members pays the booking fee.
 
-Subtoken (`TK`) absorbs `SubTerraCo/subtoken`, `tag-writer`, and `validation`. Revival is still deferred. Catalog `audience` is `[admin, member]` per the ARCHITECTURE install matrix (organizer tools on Luna OS; event page, tickets, show log, and digital goods on Central).
+Subtoken (`TK`) absorbs `SubTerraCo/subtoken`, `tag-writer`, and `validation`. Revival is still deferred. Catalog `audience` is `[admin, member]` per the ARCHITECTURE install matrix (organizer tools on SubTerra Metro; event page, tickets, show log, and digital goods on Central).
 
-Community (`CH`) is also `[admin, member]`: crew discussion on Luna OS; public discussion on SubTerra Central.
+Community (`CH`) is also `[admin, member]`: crew discussion on SubTerra Metro; public discussion on SubTerra Central.
 
 ---
 
@@ -187,9 +187,9 @@ Leftover reusable workflows here:
 |----------|--------|
 | `ci-node.yml` | Live |
 | `deploy-web.yml` | Live (Vercel, `master`) |
-| `release-desktop.yml` | R0 stub — Electron / leftover Blocks, **not** Luna OS Tauri |
+| `release-desktop.yml` | R0 stub — Electron / leftover Blocks, **not** SubTerra Metro Tauri |
 | `publish-npm.yml` | R0 stub |
-| `build-android.yml` | R0 stub — Expo / leftover Blocks mobile, **not** Luna OS Android |
+| `build-android.yml` | R0 stub — Expo / leftover Blocks mobile, **not** SubTerra Metro Android |
 | `nightly-dev-push.yml` | R0 stub |
 
 `SubTerraCo` is on GitHub Team (required for private reusable workflows). Org secrets, `master protection` rulesets, Actions access `organization` on this repo.
@@ -218,7 +218,7 @@ Product-repo template under `templates/product-repo/` is only for leftover stand
 2. Shell hub on SQLite + Yjs. Open Books around `@actual-app/api`. Open Bill separate. Anytype optional mirror, not the store.
 3. `luna` provider interface + tool registry. Default local provider at the Omarchy host.
 4. `packages/open-ui` tokens (palette, type, 4dp spacing) and domain widgets.
-5. Bundle Luna OS in Tauri (including Arch / Omarchy) and SubTerra Central as the PWA. Confirm hub isolation and the marked-record bridge.
+5. Bundle SubTerra Metro in Tauri (including Arch / Omarchy) and SubTerra Central as the PWA. Confirm hub isolation and the marked-record bridge.
 6. Playwright suites listed under CI.
 
 ---
@@ -232,7 +232,7 @@ N-####    B-####    vYY.MM.DD[bX]
 
 Tables: `codes/APP_REGISTRY.yaml`, `codes/PLATFORM_CODES.yaml`, `codes/AREA_CODES.yaml`. Catalog: `subterra.manifest.yaml`.
 
-New work uses current codes (LO, OD, OS, BI, …). Alias codes remain valid on existing addresses.
+New work uses current codes (SM, OD, OS, BI, …). Alias codes (ST, LO, BK, MB, BB) remain valid on existing addresses.
 
 `/NF` `/NB` `/RD` still require Round 1 + Round 2 with conflict audits. Use AskQuestion when available.
 
@@ -246,4 +246,4 @@ New work uses current codes (LO, OD, OS, BI, …). Alias codes remain valid on e
 4. Do not create leftover `apps/admin` folders or a second PWA besides SubTerra Central.
 5. Material 3 / four-color palette / `packages/open-ui` only. No amber `#e8a54b`.
 
-Implementation of Luna OS, Open Day, Open Sort, Open Bill, Central, and Anytype handlers belongs to those product agents — not GV — unless explicitly asked.
+Implementation of SubTerra Metro, Open Day, Open Sort, Open Bill, Central, and Anytype handlers belongs to those product agents — not GV — unless explicitly asked.

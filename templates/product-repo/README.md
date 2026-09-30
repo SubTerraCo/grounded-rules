@@ -2,7 +2,7 @@
 
 Copy into a leftover standalone repo only when a new GitHub repo must exist before fold-in to `SubTerraCo/luna`. New product work belongs in the enterprise monorepo (see `Docs/ARCHITECTURE.md`).
 
-1. Register in governance `subterra.manifest.yaml`. Leftover standalone repos may keep deprecated twin `role` / `marketplace` / SDK. Do not add those twin fields on new Luna packages (`marketplace: null`, `sdk: null`, `audience` is the gate)
+1. Register in governance `subterra.manifest.yaml`. Leftover standalone repos may keep deprecated twin `role` / `marketplace` / SDK. Do not add those twin fields on new monorepo packages (`marketplace: null`, `sdk: null`, `audience` is the gate)
 2. Reserve APP code in `codes/APP_REGISTRY.yaml`
 3. Replace `APPCODE` / product name in Docs and package.json
 4. Point CI at `SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1`
