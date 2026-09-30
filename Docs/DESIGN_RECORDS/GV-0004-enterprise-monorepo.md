@@ -21,7 +21,7 @@ The enterprise blueprint wins wherever it disagrees with GV-0001, GV-0002, or GV
 | C3 | Electron + Next shell | Vite, React 19, Tauri v2 | Tauri + Vite. `subterra-shell` stays until Phase 1 copies what is still useful |
 | C4 | Every repo defaults to `master` (§4.1) | The first blueprint draft used `main` and `staging` | Withdrawn. The monorepo uses `master` and `dev`, same as every other SubTerraCo repo |
 | C5 | pnpm 11.14, reusable `ci-node.yml@v1` | pnpm 9, Node 22, Turbo pipeline in-repo | Monorepo CI is the blueprint pipeline (pnpm 9, Node 22). This governance repo keeps its own workflow |
-| C6 | Material Web and `@subterra/shell-ui` (GV-0003 D2–D3) | Tailwind + `@material/material-color-utilities`, `packages/open-ui` | Material 3 stays. Tokens live in `packages/open-ui`. Arbitrary Tailwind values and hardcoded colors fail CI. Seed stays amber `#e8a54b`. (`packages/ui` was a draft folder name; the locked path is `open-ui`.) |
+| C6 | Material Web and `@subterra/shell-ui` (GV-0003 D2–D3); later a single amber seed `#e8a54b` (GV-0003 D4) | Tailwind + `@material/material-color-utilities`, `packages/open-ui` | Material 3 stays. Tokens live in `packages/open-ui`, which owns palette, type, and spacing. Arbitrary Tailwind values and hardcoded colors in `.tsx` fail CI. Locked palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Type: interim Material 3 type scale; font families pending Powerline. Spacing: 4dp grid. Amber `#e8a54b` is withdrawn. (`packages/ui` was a draft folder name; the locked path is `open-ui`.) Token *code* is product-repo work, not this governance repo. |
 | C7 | New Rust is forbidden (§14) | Rust for Tauri bindings only | Rust is allowed only in those bindings. App logic stays TypeScript |
 | C8 | Public repos are MIT | BSL 1.1, Apache 2.0 after 36 months, commercial key for 5+ seats | BSL applies to new original monorepo code. See §3. MIT files already published stay MIT |
 | C9 | Actual UI is a vendor-fork exemption | Import `@actual-app/api` into the budgeting package | Package is `packages/open-books`, code `OB`. Open Bill stays `packages/open-bill`, code `BI`. Use the headless API. Actual's SQLite CRDT stays inside Open Books. SQLCipher is the hub store |
@@ -62,7 +62,7 @@ Open stays on names that would collide with a published app. The others use the 
 | AT | Anytype | — | Dedicated workspace. Not a package. Open Axiom is cut |
 | GV | Governance | `SubTerraCo/subterra-governance` | This rules repo |
 | WL | White-label | — | Commercial gate on Luna OS. Not a package |
-| — | Open UI | `packages/open-ui` | Material 3 tokens. No app code |
+| — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
 
 `ST` is an address alias for leftover shell addresses only. `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity, InvoiceShelf, and gmailctl are not adopted. Blocks, Billbot, and Mailbot are built here.
 

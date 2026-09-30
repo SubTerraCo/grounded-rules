@@ -35,7 +35,8 @@ Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANC
 - Two runtimes: `apps/luna-os` (Tauri v2, including Arch / Omarchy) and `apps/subterra-central` (PWA).
 - Catalog `audience` values stay `admin` and `member` (GV-0002 D4). Mapping: `admin` → Luna OS; `member` → SubTerra Central. Default `["admin"]` fail-closed. No third audience.
 - Packages: Open Day, Open Sort, Open Books, Open Bill, Subtoken, Luna, Banking, Forum, Home Assistant, Media, Open UI.
-- Material 3 in `packages/open-ui`, seed `#e8a54b`.
+- Twin `role` / `marketplace` / SDK fields are **deprecated leftover** on standalone-repo rows. New Luna packages: `marketplace: null`, `sdk: null`.
+- Material 3 in `packages/open-ui`: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`; interim M3 type scale; 4dp spacing.
 - New original monorepo code is BSL 1.1. Already published MIT stays MIT.
 - Default branch is **`master`** on every SubTerraCo repo, including `luna`.
 

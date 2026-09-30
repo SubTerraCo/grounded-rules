@@ -40,15 +40,15 @@ Leftover `apps/admin` folders and `packages/shell-core` from GV-0002 are not the
 
 ## 2. Marketplace and remaining twin-SDK contract
 
-**Current product marketplace (GV-0004).** Every installable package stands alone. It may not import another package. The shell is the only dependency: Material 3, the marketplace, and a small SQLite hub. A package opens and works when the hub is empty. Separate Apps and Integrations tabs are **dropped**. The same package can be installed in Luna OS, in SubTerra Central, or in both; each shell has its own hub.
+**Current product marketplace (GV-0004).** Every installable package stands alone. It may not import another package. The shell is the only dependency: Material 3, the marketplace, and a small SQLite hub. A package opens and works when the hub is empty. Separate Apps and Integrations tabs are **dropped**. The same package can be installed in Luna OS, in SubTerra Central, or in both; each shell has its own hub. The live mount gate is catalog **`audience`**, not twin marketplace fields.
 
-**Until existing repos are folded.** The current `subterra-shell` SDK surface still treats Apps and Integrations as operational twins:
+**Stop on new Luna packages.** Do not write `role: app` / `role: integration`, `marketplace: apps` / `marketplace: integrations`, or a twin SDK (`@subterra/app-sdk` / `@subterra/integration-sdk`) on reserved monorepo items. Those rows use `marketplace: null`, `sdk: null`, and `audience`.
+
+**Deprecated leftover.** Existing filled twin fields on leftover standalone-repo items (Blocks, Mailbot, Billbot, Anytype, and the leftover shell SDK packages) stay in the catalog until fold-in. They keep the leftover `subterra-shell` surface:
 
 - Same manifest schema (`subterra.manifest.yaml`)
-- Twin SDKs with **identical APIs**: `@subterra/app-sdk` and `@subterra/integration-sdk`
+- Twin SDKs with **identical APIs**: `@subterra/app-sdk` and `@subterra/integration-sdk` (leftover only)
 - Same CI Ops / Dewey / `/NF` `/NB` `/RD` / `/BUILD` process
-
-Difference is **role** (`app` vs `integration`), which SDK package is declared, and (on the legacy shell) which marketplace tab discovers the item — not a second architecture.
 
 Do **not** start new product work as a pair of separate app/integration GitHub repos. New work follows [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Prefer the monorepo package layout. The governance **product-repo template** still exists only for leftover standalone repos that must be registered before fold-in.
 
@@ -143,21 +143,22 @@ Collection is **local checkouts only** (manifest `localPath` + Package junctions
 
 Canonical catalog: [`subterra.manifest.yaml`](subterra.manifest.yaml).
 
-Each shell (Luna OS or SubTerra Central) vendors or generates JSON at build time from the catalog, then **filters by `audience`** for the active shell session (§13). Legacy `role` + `marketplace` fields remain on existing items (`apps` / `integrations`). New installable packages follow GV-0004: they stand alone and do not need a second marketplace tab.
+Each shell (Luna OS or SubTerra Central) vendors or generates JSON at build time from the catalog, then **filters by `audience`** for the active shell session (§13). New Luna packages stand alone (GV-0004) and do not declare a twin marketplace tab.
 
 ### 6.1 Item fields (audience — GV-0002 D4)
 
 | Field | Meaning |
 |-------|---------|
-| `role` | `app` \| `integration` \| `shell` \| `governance` — **which marketplace / topology**, not who is logged in |
-| `marketplace` | `apps` \| `integrations` \| `null` (shell/governance) |
-| `audience` | List of catalog audiences that may mount the item. **Locked values: `admin` and/or `member` only** (GV-0002 D4). Do not rename these strings. |
+| `role` | Topology: `shell` \| `governance`. Twin values `app` \| `integration` are **deprecated leftover** on standalone-repo rows only — not who is logged in, and not for new Luna packages |
+| `marketplace` | Leftover twin: `apps` \| `integrations` on BK/MB/BB/AT. Luna packages and shells use `null` |
+| `sdk` | Leftover twin package (`@subterra/app-sdk` or `@subterra/integration-sdk`), or `null` on Luna items |
+| `audience` | Live mount gate. List of catalog audiences that may mount the item. **Locked values: `admin` and/or `member` only** (GV-0002 D4). Do not rename these strings. |
 
 **Mapping (locked):** `admin` → Luna OS (`LO`, `apps/luna-os`); `member` → SubTerra Central (`SC`, `apps/subterra-central`).
 
 **Default when `audience` is omitted: `["admin"]` (fail-closed).** An item is never visible on SubTerra Central unless it explicitly includes `member`. There is no third audience.
 
-Do **not** overload `role` for permissions — `SubterraRole` in `@subterra/sdk-contract` already means app vs integration.
+Do **not** overload leftover twin `role` for permissions — `SubterraRole` in `@subterra/sdk-contract` already means app vs integration on the leftover shell.
 
 ---
 
@@ -202,7 +203,7 @@ The Governance agent is the **one-stop shop** for cross-repo standards. Product 
 |--------|--------|
 | **Rulesets & Dewey** | Constitution, APP/PP/PR codes, manifest, CI Ops gates |
 | **Design language parity** | Material Design 3 (§15, GV-0003, GV-0004). One theme in `packages/open-ui` |
-| **Feature parity** | Installable packages stand alone (GV-0004). Twin-SDK API identity remains for the legacy `subterra-shell` surface until fold-in |
+| **Feature parity** | Installable packages stand alone (GV-0004). Twin-SDK API identity remains only for leftover `subterra-shell` items until fold-in. New Luna catalog items do not declare twin `role` / `marketplace` / SDK |
 | **GitHub repo management** | Create/configure SubTerraCo repos (governance, leftover product repos, and later `luna`); branch protections; default labels; secrets/vars conventions |
 | **Deployment pipelines** | Reusable Actions (`ci-node`, deploy, release) consumed by product repos until the monorepo pipeline in `luna` replaces them |
 | **Product templates** | `templates/product-repo/` (still used for leftover standalone repos; new product work prefers the monorepo layout) |
@@ -264,8 +265,8 @@ Callers pass them with `secrets: inherit`. Reusable workflows must never hardcod
 ### New repo checklist
 
 1. Reserve the APP code in `codes/APP_REGISTRY.yaml`.
-2. Add the item to `subterra.manifest.yaml` with `role` + `marketplace`.
-3. Copy `templates/product-repo/` and replace `APPCODE` / product name.
+2. Add the item to `subterra.manifest.yaml`. Leftover standalone repos may keep deprecated twin `role` + `marketplace`. New Luna packages: `marketplace: null`, `sdk: null`, `audience` as the gate.
+3. Copy `templates/product-repo/` and replace `APPCODE` / product name. Only for leftover standalone repos — new product work belongs in `luna`.
 4. Create the repo in the org (private by default).
 5. Set default branch to `master` (§4.1).
 6. Wire CI to the reusable workflows (§11).
@@ -354,9 +355,9 @@ Catalog field `audience` is a list. **Machine values stay exactly `admin` and `m
 | `admin` | Luna OS (`apps/luna-os`, code `LO`; address alias `ST`) | Items whose `audience` list contains `admin` (this is the default when the field is omitted) |
 | `member` | SubTerra Central (`apps/subterra-central`, code `SC`) | Only items whose `audience` list contains `member` |
 
-Prefer shell names (Luna OS / SubTerra Central) in prose. Do not invent a third audience. Leftover `apps/admin` folders are not an audience value and are not the paths to build.
+Prefer shell names (Luna OS / SubTerra Central) in prose. Do not invent a third audience. “Powerline” and “Collective” are not `audience` values. Leftover `apps/admin` folders are not an audience value and are not the paths to build.
 
-Session identity is separate from marketplace `role`. Host context must expose audience without reusing the `role` field name.
+Session identity is separate from leftover twin `role`. Host context must expose audience without reusing the `role` field name.
 
 ### 13.2 NFC authentication invariant
 
@@ -374,9 +375,13 @@ Product implementations that shortcut this invariant are constitution violations
 | | |
 |--|--|
 | APP | `TK` — **Subtoken** |
-| Audience | `[admin]` |
+| Audience | `[admin, member]` — ARCHITECTURE install matrix |
+| Luna OS (`admin`) | Organizer tools |
+| SubTerra Central (`member`) | Event page, tickets, show log, digital goods |
 | Absorbs | `SubTerraCo/subtoken`, `tag-writer`, `validation` |
 | Status | Reserved — consolidation and revival deferred (GV-0002 D6 / D8) |
+
+GV-0002 D3/D6 historically listed TK as `audience: [admin]` only. The live catalog follows the ARCHITECTURE matrix: both shells.
 
 ### 13.4 Dewey areas added for the member shell
 
@@ -388,6 +393,16 @@ Reserved in GV-0002 D7 for the member shell (SubTerra Central):
 | `EV` | Events / ticketing |
 
 Existing `AU` (Auth / device identity) and `NF` (NFC / crypto tags) cover challenge-response and tag crypto.
+
+### 13.5 Community (CH)
+
+| | |
+|--|--|
+| APP | `CH` — **Community** |
+| Audience | `[admin, member]` — ARCHITECTURE install matrix |
+| Luna OS (`admin`) | Crew discussion |
+| SubTerra Central (`member`) | Public discussion |
+| Engine | Flarum (`FM`, optional). Community still runs without Forum |
 
 ---
 
@@ -418,9 +433,11 @@ Design record: [GV-0003](Docs/DESIGN_RECORDS/GV-0003-material-3.md).
 | Rule | Requirement |
 |------|-------------|
 | System | [Material Design 3](https://m3.material.io/) only. Do not add a second UI kit (MUI, shadcn, or a hand-rolled button/nav set) for new UI |
-| Web, desktop, and mobile | Tailwind CSS preset plus `@material/material-color-utilities` in `packages/open-ui` (GV-0004). Arbitrary Tailwind values and hardcoded hex/RGB in `.tsx` fail CI |
-| Theme | One theme, owned by `packages/open-ui`. `@subterra/shell-ui` is the legacy package until the monorepo lands |
-| Seed color | Amber `#e8a54b` (current shell accent). Not Blocks magenta, and not Material's default purple |
+| Web, desktop, and mobile | Tailwind CSS preset plus `@material/material-color-utilities` in `packages/open-ui` (GV-0004). Arbitrary Tailwind values and hardcoded hex/RGB in `.tsx` fail CI. Docs may cite the locked palette hexes below; product `.tsx` must use tokens |
+| Theme | One theme, owned by `packages/open-ui`. That package owns **palette, type, and spacing**. `@subterra/shell-ui` is the legacy package until the monorepo lands. Token *code* lives in the product monorepo / leftover shell — not this governance repo |
+| Palette | Purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. The single amber seed `#e8a54b` is withdrawn. Not Blocks magenta |
+| Type | Interim [Material 3 type scale](https://m3.material.io/styles/typography/type-scale-tokens) (display, headline, title, body, label). Font **families are not locked** — do not invent a typeface; wait for Powerline |
+| Spacing | 4dp baseline grid (4px at 1×). Component padding and gaps snap to that grid |
 | New UI | Material 3 components: app bars, navigation, buttons, text fields, lists, sheets |
 | Existing UI | Migrates when that screen is edited. This rule does not require a rewrite in place |
 

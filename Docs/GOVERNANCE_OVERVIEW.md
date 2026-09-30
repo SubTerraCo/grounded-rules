@@ -10,7 +10,7 @@
 
 There is no third audience. “Powerline” is an owner/approver of archive decisions, not an `audience` value. “Collective” is not an `audience` value.
 
-**Date:** 2026-09-30 (audience mapping locked: keep `admin`/`member`; shells are Luna OS / SubTerra Central)  
+**Date:** 2026-09-30 (twin marketplace stopped on Luna packages; TK/CH follow ARCHITECTURE matrix; four-color palette)  
 **This document** is a readable merge of the locked rulings in this repo. It does not replace them.
 
 | If you need | Read |
@@ -41,8 +41,8 @@ Existing SubTerraCo product repos (`subterra-shell`, `Blocks`, `mailbot`, `subte
 3. **[CI_OPS_CONSTITUTION.md](../CI_OPS_CONSTITUTION.md)** — applies where the blueprint is silent (Dewey format, `master`, audience, NFC crypto, design gates, reusable workflows for leftover repos).
 4. Older design records — historical locks. What still stands is called out on each record:
    - GV-0001: GitHub org, Team plan, reusable pipelines, vendor `upstream`, workspace QA location.
-   - GV-0002: `audience`, NFC challenge-response, Dewey `SO` / `EV`, Subtoken absorbs 2022 NFC repos. **Not** leftover `apps/admin` / `shell-core` folders.
-   - GV-0003: Material 3 and seed `#e8a54b`. **Not** Material Web or `@subterra/shell-ui` as the owner.
+   - GV-0002: `audience`, NFC challenge-response, Dewey `SO` / `EV`, Subtoken absorbs 2022 NFC repos. Live TK / CH lists follow the ARCHITECTURE install matrix (`[admin, member]`). **Not** leftover `apps/admin` / `shell-core` folders.
+   - GV-0003: Material 3. Palette purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`; interim M3 type scale; 4dp spacing. **Not** Material Web, `@subterra/shell-ui`, or amber `#e8a54b`.
 
 ---
 
@@ -75,20 +75,20 @@ One product, one code, one folder. The folder is the name people say.
 | LU | Luna | `packages/luna` | agent router (Ollama, Gemma 4 12B default) |
 | SC | SubTerra Central | `apps/subterra-central` | to build — member PWA |
 | OG | Open Gig | `apps/open-gig` | profile, listing, rate, date request |
-| CH | Community | `apps/community` | voting / discussion UI |
+| CH | Community | `apps/community` | voting / discussion UI. Audience `[admin, member]`: crew on Luna OS; public on Central |
 | OD | Open Day | `packages/open-day` | tasks, timeline, Quick Blocks, Festy crew (replaces BK) |
 | OS | Open Sort | `packages/open-sort` | Gmail/IMAP labels and archive (replaces MB) |
 | OB | Open Books | `packages/open-books` | `@actual-app/api` budgeting (not “Open Budget”) |
 | BI | Open Bill | `packages/open-bill` | invoicing / 1099 (replaces BB) |
-| TK | Subtoken | `packages/subtoken` | NTAG424 + tickets |
+| TK | Subtoken | `packages/subtoken` | NTAG424 + tickets. Audience `[admin, member]`: organizer tools on Luna OS; event page / tickets / show log / digital goods on Central |
 | FM | Forum | `packages/forum` | Flarum (optional) |
 | HA | Home Assistant | `packages/home-assistant` | client only |
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
-| BS | Banking | `packages/banking` | SimpleFIN + GoCardless |
+| BS | Banking | `packages/banking` | SimpleFIN + GoCardless. Luna package, not a twin integration |
 | AT | Anytype | dedicated workspace | **not** a monorepo package |
 | GV | Governance | this repo | rules / CI / templates |
 | WL | White-label | — | commercial gate on Luna OS, not a package |
-| — | Open UI | `packages/open-ui` | Material 3 tokens. No app code |
+| — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
 
 **Address aliases** (keep on existing Dewey addresses; not folders to build): `ST` (leftover Shell), `BK` (Blocks), `MB` (Mailbot), `BB` (Billbot).
 
@@ -108,7 +108,9 @@ The same package can be installed in Luna OS, in SubTerra Central, or in both. E
 
 **Dropped:** separate Apps and Integrations tabs; separate GitHub repos as the product shape.
 
-**Leftover until fold-in:** `@subterra/app-sdk` and `@subterra/integration-sdk` in `subterra-shell` must keep identical symbol names (`SDK_SURFACE`), differing only in `SDK_ROLE`. Manifest `role` / `marketplace` fields remain on existing catalog items.
+**Twin marketplace fields — stop on new Luna packages.** Do not write `role: app|integration`, `marketplace: apps|integrations`, or a twin SDK on reserved monorepo rows. Those items use `marketplace: null`, `sdk: null`, and `audience` as the live mount gate.
+
+**Deprecated leftover until fold-in:** filled twin fields on Blocks, Mailbot, Billbot, Anytype, and leftover `@subterra/app-sdk` / `@subterra/integration-sdk` in `subterra-shell`. Those twins must keep identical symbol names (`SDK_SURFACE`), differing only in `SDK_ROLE`. Validator needles stay on the leftover rows.
 
 **Catalog `audience` (GV-0002 D4, locked):** machine values stay exactly `admin` and `member`. Do not rename them to luna/central or anything else. Fail-closed default when omitted: `["admin"]`.
 
@@ -133,16 +135,20 @@ A one-time charge upgrades that profile to Artist, Venue, or Vendor.
 
 Open Gig listings are free for a single freelancer. A crew manager with 5 or more members pays the booking fee.
 
-Subtoken (`TK`) absorbs `SubTerraCo/subtoken`, `tag-writer`, and `validation`. Revival is still deferred.
+Subtoken (`TK`) absorbs `SubTerraCo/subtoken`, `tag-writer`, and `validation`. Revival is still deferred. Catalog `audience` is `[admin, member]` per the ARCHITECTURE install matrix (organizer tools on Luna OS; event page, tickets, show log, and digital goods on Central).
+
+Community (`CH`) is also `[admin, member]`: crew discussion on Luna OS; public discussion on SubTerra Central.
 
 ---
 
 ## 7. Material Design 3
 
-SubTerra-owned UI uses Material 3 only.
+SubTerra-owned UI uses Material 3 only. `packages/open-ui` owns **palette, type, and spacing**. Token *code* is product-repo work (not this governance repo).
 
-- Tokens: `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`.
-- Seed: amber `#e8a54b`.
+- Tokens applied through the Tailwind preset in `tooling/config-tailwind`, generated with `@material/material-color-utilities`.
+- Palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Amber `#e8a54b` is withdrawn.
+- Type: interim Material 3 type scale (display, headline, title, body, label). Font families are **not locked** — do not invent a typeface.
+- Spacing: 4dp baseline grid.
 - No arbitrary Tailwind values. No hardcoded hex/RGB in `.tsx`.
 - Do not add MUI, shadcn, Material Web as owner, or a second kit.
 - `@subterra/shell-ui` is leftover until the monorepo lands.
@@ -210,7 +216,7 @@ Product-repo template under `templates/product-repo/` is only for leftover stand
 1. Workspace skeleton: layout, strict TypeScript, ESLint 9 flat, pnpm workspace, Turborepo.
 2. Shell hub on SQLite + Yjs. Open Books around `@actual-app/api`. Open Bill separate. Anytype optional mirror, not the store.
 3. `luna` provider interface + tool registry. Default local provider at the Omarchy host.
-4. `packages/open-ui` tokens and domain widgets.
+4. `packages/open-ui` tokens (palette, type, 4dp spacing) and domain widgets.
 5. Bundle Luna OS in Tauri (including Arch / Omarchy) and SubTerra Central as the PWA. Confirm hub isolation and the marked-record bridge.
 6. Playwright suites listed under CI.
 
@@ -237,6 +243,6 @@ New work uses current codes (LO, OD, OS, BI, …). Alias codes remain valid on e
 2. Register new items in APP_REGISTRY **and** the manifest before GitHub scaffolding.
 3. Do not invent product features in governance.
 4. Do not create leftover `apps/admin` folders or a second PWA besides SubTerra Central.
-5. Material 3 / `#e8a54b` / `packages/open-ui` only.
+5. Material 3 / four-color palette / `packages/open-ui` only. No amber `#e8a54b`.
 
 Implementation of Luna OS, Open Day, Open Sort, Open Bill, Central, and Anytype handlers belongs to those product agents — not GV — unless explicitly asked.

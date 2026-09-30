@@ -15,7 +15,7 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
 - Finance store: Actual's own SQLite CRDT inside `packages/open-books` (`OB`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
 - PKM lives in a dedicated Anytype workspace. It is not a package in this monorepo. The shell hub does not require it.
-- Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. Seed color `#e8a54b`. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx`.
+- Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. `packages/open-ui` owns palette, type, and spacing. Locked palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Type: interim Material 3 type scale (display, headline, title, body, label); font families are not locked. Spacing: 4dp baseline grid. The single amber seed `#e8a54b` is withdrawn. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx` (docs may cite these palette hexes; product screens use tokens). Token *code* is not in this governance repo.
 
 ## Apps and packages
 
@@ -91,6 +91,8 @@ PKM stays in a dedicated Anytype workspace. It is not a package here, and Open A
 
 The same package can be installed in Luna OS, in the SubTerra Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other.
 
+Catalog registration for these packages uses `audience` as the mount gate. Do not write leftover twin fields (`role: app|integration`, `marketplace: apps|integrations`, twin SDKs) on new Luna items.
+
 A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only Open Books, Open Bill, and Open Day records that the person marks. Mail, banking, and home automation stay on Luna OS. Central's public pages never receive the unbridged Luna hub.
 
 ## SubTerra Central access
@@ -127,7 +129,7 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for Luna OS, ticket p
 1. Workspace skeleton matching this layout, strict TypeScript, ESLint 9 flat config, pnpm workspace, Turborepo.
 2. Shell hub on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs. `budget` around `@actual-app/api`. `billbot` stays a separate invoicing package. `anytype` is an optional mirror of the hub, not the store packages require.
 3. `luna` with the provider interface and a tool registry for budget, blocks, and media. Default the local provider at the Omarchy host.
-4. `packages/open-ui` Material 3 tokens and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
+4. `packages/open-ui` Material 3 tokens (palette, type scale, 4dp spacing) and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
 5. Bundle `luna-os` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked Luna OS hub cannot read SubTerra Central data. Confirm a linked bridge copies only Open Books, Open Bill, and Open Day records the owner marked.
 6. Playwright suites listed under CI.
 

@@ -35,7 +35,7 @@ So `contract` tests against the leftover SDK surface are unblocked in principle,
 
 1. Every `subterra.manifest.yaml` item has a matching `codes/APP_REGISTRY.yaml` entry, and vice versa (withdrawn rows such as AX Axiom stay in both until Powerline approves archive).
 2. Every leftover linked item's `localPath` exists in the meta workspace. Reserved monorepo paths (`apps/luna-os`, `packages/open-day`, …) are allowed to be absent until `luna` exists.
-3. Legacy `role` and `marketplace` agree (`app`→`apps`, `integration`→`integrations`) on leftover items.
+3. Leftover standalone-repo items keep deprecated twin `role` / `marketplace` (`app`→`apps`, `integration`→`integrations`). New Luna packages must not declare those twin fields (`marketplace: null`, `sdk: null`).
 4. Every item declares platform codes that exist in `PLATFORM_CODES.yaml`.
 5. While `subterra-shell` remains, `@subterra/app-sdk` and `@subterra/integration-sdk` export identical symbol names, equal to `SDK_SURFACE`, differing only in `SDK_ROLE`.
 6. Each leftover product repo's CI references the governance reusable workflows.

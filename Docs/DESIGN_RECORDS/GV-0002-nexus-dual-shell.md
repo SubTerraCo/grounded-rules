@@ -11,7 +11,7 @@
 
 Locks a dual-shell model: an admin shell and a member-facing public shell. Marketplace items gain an `audience` gate. NFC login must be challenge-response, never UID-only.
 
-**Still stands:** `audience` (`admin` / `member`, fail-closed default `["admin"]`); NFC challenge-response (no UID-only auth); Dewey areas `SO` and `EV`; Subtoken `TK` absorbs the 2022 NFC repos; `role` is never used for permissions.
+**Still stands:** `audience` (`admin` / `member`, fail-closed default `["admin"]`); NFC challenge-response (no UID-only auth); Dewey areas `SO` and `EV`; Subtoken `TK` absorbs the 2022 NFC repos; `role` is never used for permissions. Live TK / CH `audience` lists follow the ARCHITECTURE install matrix (`[admin, member]`), not the historical admin-only D3/D6 rows.
 
 **Superseded by GV-0004:** leftover `apps/admin` / shared `shell-core` folder sketch, SubTerra OS as the shell to build, and separate product repos as the product shape. Build `apps/luna-os` (`LO`, address alias `ST`) and `apps/subterra-central` (`SC`).
 
@@ -45,10 +45,10 @@ Locks a dual-shell model: an admin shell and a member-facing public shell. Marke
 |-----|----------|
 | **D1** | **Two shell targets.** Admin and member surfaces share marketplace, item host, and session logic. Neither shell forks that core. GV-0004 paths: `apps/luna-os` (admin) and `apps/subterra-central` (member). Do not build leftover `apps/admin` or `packages/shell-core`. |
 | **D2** | **The member shell is a shell target, not a marketplace app.** It has APP code `SC` (`role: shell`). Social / events / ticket UX lives on SubTerra Central; Luna OS (`LO`) tools stay on the `admin` shell. |
-| **D3** | **Member shell name is SubTerra Central.** Backend ticketing / NFC product remains **Subtoken** under APP code `TK` (`audience: [admin]`). |
+| **D3** | **Member shell name is SubTerra Central.** Backend ticketing / NFC product remains **Subtoken** under APP code `TK`. Historical lock listed `audience: [admin]`. **Live catalog (ARCHITECTURE matrix):** `audience: [admin, member]` — organizer tools on Luna OS; event page, tickets, show log, and digital goods on SubTerra Central. |
 | **D4** | **Permissions use `audience`, never `role`.** Machine values stay exactly `admin` \| `member`. Manifest field `audience` is a list. Default when omitted: `["admin"]` (**fail-closed** — never visible on SubTerra Central unless `member` is listed). Mapping: `admin` → Luna OS (`apps/luna-os`); `member` → SubTerra Central (`apps/subterra-central`). |
 | **D5** | **NFC auth is challenge-response.** Login proves possession of the tag private key (ECDSA). UID is an identifier only. UID-only "auth" is forbidden. Crypto from the 2022 `validation` app becomes shared auth code, not mobile-only. |
-| **D6** | **Subtoken (`TK`) absorbs** `SubTerraCo/subtoken`, `tag-writer`, and `validation` as the admin-facing NFC / ticketing product (`audience: [admin]`). Consolidation and revival are **deferred** follow-on work. |
+| **D6** | **Subtoken (`TK`) absorbs** `SubTerraCo/subtoken`, `tag-writer`, and `validation`. Consolidation and revival are **deferred** follow-on work. Historical lock listed admin-facing only (`audience: [admin]`). **Live catalog (ARCHITECTURE matrix):** `audience: [admin, member]` as in D3. |
 | **D7** | Dewey areas **`SO`** (Social / feed) and **`EV`** (Events / ticketing) are reserved. Existing **`AU`** and **`NF`** cover auth and NFC crypto. |
 | **D8** | Governance encodes D1–D7 now (this record, codes, manifest, constitution). Shell implementation and Subtoken revival are explicit follow-ons — not part of this gate. |
 
@@ -63,7 +63,7 @@ packages/subtoken/       # TK — NFC / ticketing
   # deferred revive from SubTerraCo/{subtoken,tag-writer,validation}
 ```
 
-Marketplace filtering: a shell session with audience `member` only mounts items whose `audience` includes `member`. Admin shells see `admin` items. Fail-closed default keeps Subtoken, Blocks, Mailbot, etc. off the SubTerra Central catalog until each opts in.
+Marketplace filtering: a shell session with audience `member` only mounts items whose `audience` includes `member`. Admin shells see `admin` items. Fail-closed default keeps leftover Blocks, Mailbot, and similar admin-only rows off SubTerra Central until each lists `member`. Subtoken (`TK`) and Community (`CH`) list both audiences per the ARCHITECTURE install matrix.
 
 ---
 

@@ -1,10 +1,46 @@
 # Governance cleanup change log — 2026-09-30
 
 **Branch:** `cursor/governance-cleanup-5f88`  
-**Scope:** Align this repo with locked GV-0004 / [ARCHITECTURE.md](ARCHITECTURE.md), plus terminology follow-ups (Central PWA; catalog `audience` stays `admin`/`member`).  
+**Scope:** Align this repo with locked GV-0004 / [ARCHITECTURE.md](ARCHITECTURE.md), plus follow-ups (Central PWA; catalog `audience` stays `admin`/`member`; twin marketplace stop; TK/CH matrix; four-color palette).  
 **Deletes / archives:** **Held.** No file was deleted or moved to an archive folder. Proposed later archive moves wait for Powerline approval.
 
 Companion readable summary (not a diff list): [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md).
+
+---
+
+## Follow-up — twin marketplace stop, TK/CH matrix, four-color palette
+
+Powerline queue (same day, draft PR #7):
+
+1. **Twin marketplace:** stop `role: app|integration`, `marketplace: apps|integrations`, and twin SDKs on new Luna packages. Deprecate those fields where they are already filled on leftover standalone-repo rows.
+2. **Subtoken + Community:** catalog `audience` and docs follow the ARCHITECTURE install matrix (`[admin, member]`).
+3. **Palette:** replace amber `#e8a54b` with purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. `packages/open-ui` owns palette, type, and spacing (interim Material 3 type scale; 4dp grid; font families pending Powerline). Token *code* is sibling product-repo work — not this governance repo.
+4. **Audience:** keep `admin` / `member`; Powerline / Collective stay out of audience prose (already locked earlier this branch; restated where the new copy touched audiences).
+
+**Deletes still held.** No files deleted or archived. Validator still requires leftover twin needles on BK/MB/BB/AT.
+
+### File-by-file (this batch)
+
+| Path | What changed |
+|------|----------------|
+| `subterra.manifest.yaml` | Header: twin fields deprecated leftover; Luna items use `marketplace: null` / `sdk: null`. Leftover ST/BK/MB/BB/AT keep filled twin fields with `# DEPRECATED leftover twin field`. Luna packages (OG/AX/CH/OB/HA/LU/OD/OS/BI/FM/MA/BS/TK) have no twin role. TK and CH `audience: [admin, member]` with ARCHITECTURE matrix notes. BS treated as a Luna package, not a twin integration. Validator needles remain on leftover rows. |
+| `CI_OPS_CONSTITUTION.md` | §2: stop twin fields on new Luna packages; leftover twins deprecated. §6.1: `audience` is the live gate; `role`/`marketplace`/`sdk` leftover. §9 feature-parity; §10 new-repo checklist. §13.1: Powerline/Collective are not audience values. §13.3 TK `[admin, member]` with matrix. §13.5 Community (CH) added. §15: four-color palette, interim M3 type scale, 4dp spacing; amber withdrawn. |
+| `codes/APP_REGISTRY.yaml` | TK `audience: [admin, member]` + matrix note. CH `audience: [admin, member]` + matrix note. BS note: Luna package, not a twin integration; Dewey `role: integration` leftover until reclassified. |
+| `codes/AREA_CODES.yaml` | SO: CH also mounts crew discussion on Luna OS. EV: TK organizer tools on Luna OS and event/ticket surfaces on Central. |
+| `Docs/DESIGN_RECORDS/GV-0002-nexus-dual-shell.md` | Still-stands box: live TK/CH follow ARCHITECTURE matrix. D3/D6 annotated: historical `[admin]` superseded by `[admin, member]`. Filtering paragraph no longer keeps Subtoken off Central. |
+| `Docs/DESIGN_RECORDS/GV-0003-material-3.md` | Status: D4 amber withdrawn. D4 annotated superseded with four-color palette + type + 4dp. Follow-on: token *code* is product work. Historical C1 evidence still cites amber. |
+| `Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md` | C6 resolution: four-color palette, interim M3 type, 4dp spacing; amber withdrawn. Open UI names-row: palette, type, spacing. |
+| `Docs/ARCHITECTURE.md` | Stack: four-color palette, type, 4dp spacing; amber withdrawn. Marketplace: do not write twin fields on new Luna items. Phase 4 names palette/type/spacing. |
+| `Docs/GOVERNANCE_OVERVIEW.md` | Twin stop; TK/CH matrix; four-color palette + type + spacing; BS not a twin integration. Powerline/Collective remain non-audience. |
+| `.cursor/rules/governance-agent.mdc` | Twin fields not on new Luna items. Palette hexes. Powerline/Collective not audience labels. Token *code* out of scope. |
+| `.cursor/rules/material-3.mdc` | Four-color palette, interim M3 type, 4dp spacing; amber withdrawn. |
+| `README.md` | Twin stop bullet. Palette hexes instead of amber seed. |
+| `templates/product-repo/README.md` | Register leftover twins only; Luna packages `marketplace: null`. Palette hexes. |
+| `tests/README.md` | Planned coverage: leftover twins vs Luna `marketplace: null`. |
+| `tests/contract/placeholder.spec.ts` | Fixme title: leftover twin agreement vs Luna `marketplace: null` (no silent drop of coverage). |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | This section. Question 3 resolved. Question 10 noted (Dewey role leftover; catalog is Luna package). |
+
+Sibling agents own luna-os / leftover-shell token *code*. This repo has no `packages/open-ui` tree.
 
 ---
 
@@ -178,21 +214,21 @@ No other deletions proposed. R0 workflow stubs stay (constitution §11: do not d
 
 1. ~~`apps/web-shell` vs `apps/subterra-central`~~ — **Central is the PWA.** Path to build is `apps/subterra-central`. No second web-runtime product or Dewey code.
 2. ~~Should the old web-runtime slug get a catalog row~~ — **No.** SC is the catalog row.
+3. ~~Twin SDKs and `role` / `marketplace: apps|integrations`: keep on every new catalog item until fold-in, or stop adding them on reserved monorepo packages?~~ — **Stop on new Luna packages.** Leftover filled twin fields stay deprecated until fold-in. Validator needles remain on those leftover rows.
 4. ~~Rename audience values (`admin` / `member`) to Luna OS / Central~~ — **Keep `admin` and `member` exactly.** Mapping: `admin` → Luna OS; `member` → SubTerra Central. No third audience.
 
 **Still open**
-
-3. Twin SDKs and `role` / `marketplace: apps|integrations`: keep on every new catalog item until fold-in, or stop adding them on reserved monorepo packages?
 5. Archive Axiom (`AX`) after this review, or drop the catalog rows in a follow-up (still via archive, not delete)?
 6. When should a **Tauri / Luna OS** release workflow be authored? This PR only labeled the Electron stub; it did not invent a replacement.
 7. Confirm governance stays on **pnpm 11.14** while `luna` uses **pnpm 9** (GV-0004 C5). Left as-is.
 8. **`PP.AP` = macOS.** Is Arch Linux / Omarchy `DT` (Desktop), or do we need a Linux/Arch platform code?
 9. GV-0004 C6 originally said `packages/ui`; names table + ARCHITECTURE say `packages/open-ui`. This PR aligned C6 to **open-ui**. Confirm.
-10. Banking (`BS`) is `role: integration` in APP_REGISTRY while other packages are `role: app`. Copied as-is. Should BS be `app` like Open Books?
+10. Banking (`BS`) Dewey `role: integration` in APP_REGISTRY vs other packages `role: app`. Catalog now treats BS as a Luna package (`marketplace: null`, not a twin integration). Dewey role left as-is until Powerline reclassifies it.
 11. White-label (`WL`) is in APP_REGISTRY, not in the manifest. Should it get a `marketplace: null` catalog row?
 12. `Docs/VERSIONS.md` / `versions/fleet.json` were not fully regenerated. The withdrawn member-shell fleet row was removed by hand. Should the next meta-workspace `pnpm versions:fleet` add reserved LO/SC/OD/… rows (mostly `—`) to the dashboard?
 13. Should existing Dewey addresses on Blocks (`BK/N-####`) be rewritten to `OD/N-####`, or only **new** work use OD/OS/BI/LO?
 14. GV-0002 on-disk filename: rename after archive approval (and leave a stub), or keep forever as history?
+15. Font **families** for `packages/open-ui` — interim Material 3 type scale and 4dp spacing are locked; typeface names wait on Powerline.
 
 ---
 

@@ -48,10 +48,12 @@ apps:
     localPath: packages/subtoken
     repo: SubTerraCo/subtoken  # leftover NFC repo; revival deferred (GV-0002 D6)
     status: reserved
-    audience: [admin]
+    audience: [admin, member]
     note: >-
-      NFC package packages/subtoken. NTAG424 challenge-response and ticket records.
-      UID-only auth is forbidden. Absorbs tag-writer and validation.
+      ARCHITECTURE matrix: organizer tools on Luna OS (admin); event page, tickets,
+      show log, and digital goods on SubTerra Central (member). NFC package
+      packages/subtoken. NTAG424 challenge-response. UID-only auth is forbidden.
+      Absorbs leftover SubTerraCo/subtoken, tag-writer, and validation.
       PKM stays in a dedicated Anytype workspace, not in this repo.
   - code: WL
     name: White-label OS
@@ -115,7 +117,11 @@ apps:
     role: app
     localPath: apps/community
     status: reserved
-    note: "Voting and discussion UI over Forum. Flarum, not Discourse."
+    audience: [admin, member]
+    note: >-
+      ARCHITECTURE matrix: crew discussion on Luna OS (admin); public discussion
+      on SubTerra Central (member). Voting and discussion UI over Forum. Flarum,
+      not Discourse.
   - code: FM
     name: Forum
     role: app
@@ -140,7 +146,11 @@ apps:
     role: integration
     localPath: packages/banking
     status: reserved
-    note: "SimpleFIN and GoCardless. Teller and Plaid are optional adapters. Catalog role stays integration until Powerline says otherwise; the monorepo path is packages/banking."
+    note: >-
+      ARCHITECTURE matrix: Luna OS only. SimpleFIN and GoCardless. Teller and
+      Plaid are optional adapters. Treated as a Luna package (marketplace: null),
+      not a twin integration. Dewey `role: integration` on this registry row is
+      leftover vocabulary until Powerline reclassifies it.
   - code: AX
     name: Axiom (withdrawn)
     role: app
