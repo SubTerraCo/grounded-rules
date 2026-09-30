@@ -25,10 +25,9 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`). 8 items.
+Decisions (`open`). 7 items.
 
 - [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OT rows
-- [PI-004](#pi-004-font-families-for-open-ui) — Q15 Font families for open-ui
 - [PI-005](#pi-005-archive-axiom) — Q5 Archive Axiom (AX)
 - [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / SubTerra Metro release workflow timing
 - [PI-007](#pi-007-pnpm-11-14-vs-9) — Q7 pnpm 11.14 vs 9
@@ -50,6 +49,7 @@ Decisions (`open`). 8 items.
 - [PI-018](#pi-018-open-day-to-open-time) — A) Open Day → Open Time / OD → OT / 2026-09-30 MT
 - [PI-011](#pi-011-dewey-bk-to-ot-rewrite) — A) Rewrite existing BK→OT / 2026-09-30 MT
 - [PI-020](#pi-020-grok-bot-anytype-destination) — Central integration; conflict three+four resolved / 2026-09-30 MT
+- [PI-004](#pi-004-font-families-for-open-ui) — A) Roboto + Roboto Flex as typeface lock / 2026-09-30 MT
 
 ---
 
@@ -97,14 +97,14 @@ Decisions (`open`). 8 items.
 
 <h2 id="pi-004-font-families-for-open-ui">PI-004 — Q15 Font families for open-ui</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
 - **Question:** Font **families** for `packages/open-ui` — interim Material 3 type scale and 4dp spacing are locked; typeface names wait on Powerline.
 - **Options:**
-  - [ ] A) Name typefaces now (use Text)
+  - [x] A) Name typefaces now (use Text)
   - [ ] B) Keep interim M3 type scale only until later
   - [ ] C) Other (text)
-- **Text:**
+- **Text:** Roboto + Roboto Flex locked for open-ui (PI-004).
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #15. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §7. [DESIGN_RECORDS/GV-0003-material-3.md](DESIGN_RECORDS/GV-0003-material-3.md). [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
