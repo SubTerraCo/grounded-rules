@@ -4,7 +4,7 @@ Living clickable queue of every item that needs **Powerline’s input** before R
 
 Display name for this repo: **Grounded Rules**. GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames it to `grounded-rules`.
 
-PR #7 squash-merged to `master` @ `c6b9aba` (Metro / GV-0004 cleanup). Grounded Rules rename is **draft [PR #8](https://github.com/SubTerraCo/subterra-governance/pull/8)** off that tip — not a reopen of #7. Stay draft. No deletes or archives from this queue.
+PR #7 squash-merged to `master` @ `c6b9aba` (Metro / GV-0004 cleanup). [PR #8](https://github.com/SubTerraCo/subterra-governance/pull/8) squash-merged to `master` @ `9b7d901` (Grounded Rules display identity). GitHub slug rename to `grounded-rules` still pending Powerline Settings. No deletes or archives from this queue.
 
 ## Format
 
@@ -25,20 +25,16 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`) and watches (`watching`). 12 items.
+Decisions (`open`). 8 items.
 
-- [PI-001](#pi-001-white-label-catalog-row) — Q11 White-label catalog row
-- [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OD rows
+- [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OT rows
 - [PI-004](#pi-004-font-families-for-open-ui) — Q15 Font families for open-ui
 - [PI-005](#pi-005-archive-axiom) — Q5 Archive Axiom (AX)
 - [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / SubTerra Metro release workflow timing
 - [PI-007](#pi-007-pnpm-11-14-vs-9) — Q7 pnpm 11.14 vs 9
 - [PI-008](#pi-008-arch-omarchy-platform-code) — Q8 Arch / Omarchy platform code
-- [PI-009](#pi-009-open-ui-c6-confirm) — Q9 open-ui C6 confirm
 - [PI-010](#pi-010-banking-dewey-role) — Q10 Banking (BS) Dewey role
-- [PI-011](#pi-011-dewey-bk-to-od-rewrite) — Q13 Dewey BK→OD rewrite
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
-- [PI-013](#pi-013-luna-os-open-ui-token-pr) — SubTerra Metro open-ui token PR *(watching)* — luna-os#1 draft @ `0cdf88b` (Metro rename landed); Patron chrome PASS 7/7 @ `39bb566`; PI-003 replace answered — merge when Powerline says
 
 ## Answered
 
@@ -47,34 +43,39 @@ Decisions (`open`) and watches (`watching`). 12 items.
 - [PI-015](#pi-015-white-label-first-run-dewey-path) — A) Preferred WL-FR-001 / 2026-09-30 MT
 - [PI-016](#pi-016-subterra-metro-rename) — A) Luna OS → SubTerra Metro / LO → SM / 2026-09-30 MT
 - [PI-017](#pi-017-grounded-rules-rename) — A) SubTerra Governance → Grounded Rules / 2026-09-30 MT
+- [PI-009](#pi-009-open-ui-c6-confirm) — A) Confirm open-ui / 2026-09-30 MT
+- [PI-013](#pi-013-luna-os-open-ui-token-pr) — luna-os#1 squash-merged @ `edd17c3` / 2026-09-30 MT
+- [PI-001](#pi-001-white-label-catalog-row) — B) No marketplace-null catalog row / 2026-09-30 MT
+- [PI-018](#pi-018-open-day-to-open-time) — A) Open Day → Open Time / OD → OT / 2026-09-30 MT
+- [PI-011](#pi-011-dewey-bk-to-ot-rewrite) — A) Rewrite existing BK→OT / 2026-09-30 MT
 
 ---
 
 <h2 id="pi-001-white-label-catalog-row">PI-001 — Q11 White-label catalog row</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
 - **Question:** White-label (`WL`) is in APP_REGISTRY, not in the manifest. Should it get a `marketplace: null` catalog row?
 - **Options:**
   - [ ] A) Yes — add reserved `marketplace: null` / `sdk: null` catalog row for WL
-  - [ ] B) No — keep registry-only (commercial gate, not a package)
+  - [x] B) No — keep registry-only (commercial gate, not a package)
   - [ ] C) Other (text)
-- **Text:**
-- **More context:** Preferred WL-FR-001 path locked ([PI-015](#pi-015-white-label-first-run-dewey-path)); PI-001 still open for a catalog `marketplace: null` row for the *gate*. [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #11. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL row “commercial gate on SubTerra Metro, not a package”. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **Text:** No marketplace-null catalog row for white-label. Keep registry-only (APP_REGISTRY commercial gate on SubTerra Metro).
+- **More context:** Preferred WL-FR-001 path locked ([PI-015](#pi-015-white-label-first-run-dewey-path)). [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) PI-001 answered section. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL row “commercial gate on SubTerra Metro, not a package (PI-001: registry-only; no catalog row)”. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
 
-<h2 id="pi-002-fleet-reserved-rows">PI-002 — Q12 Fleet reserved LO/SC/OD rows</h2>
+<h2 id="pi-002-fleet-reserved-rows">PI-002 — Q12 Fleet reserved LO/SC/OT rows</h2>
 
 - **Status:** `open`
 - **Needed:** decision
-- **Question:** `Docs/VERSIONS.md` / `versions/fleet.json` were not fully regenerated. The withdrawn member-shell fleet row was removed by hand. Should the next meta-workspace `pnpm versions:fleet` add reserved LO/SC/OD/… rows (mostly `—`) to the dashboard?
+- **Question:** `Docs/VERSIONS.md` / `versions/fleet.json` were not fully regenerated. The withdrawn member-shell fleet row was removed by hand. Should the next meta-workspace `pnpm versions:fleet` add reserved LO/SC/OT/… rows (mostly `—`) to the dashboard?
 - **Options:**
-  - [ ] A) Yes — add reserved LO/SC/OD/… rows on next fleet regen
+  - [ ] A) Yes — add reserved LO/SC/OT/… rows on next fleet regen
   - [ ] B) No — leave fleet as leftover snapshot until monorepo exists
   - [ ] C) Other (text)
 - **Text:**
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #12. Lattice left Q12 open on [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #12. Lattice left Q12 open on [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). Live Open Time code is `OT` ([PI-018](#pi-018-open-day-to-open-time)); `OD` is an address alias.
 
 ---
 
@@ -165,14 +166,14 @@ Decisions (`open`) and watches (`watching`). 12 items.
 
 <h2 id="pi-009-open-ui-c6-confirm">PI-009 — Q9 open-ui C6 confirm</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
 - **Question:** GV-0004 C6 originally said `packages/ui`; names table + ARCHITECTURE say `packages/open-ui`. This PR aligned C6 to **open-ui**. Confirm.
 - **Options:**
-  - [ ] A) Confirm open-ui
+  - [x] A) Confirm open-ui
   - [ ] B) Prefer packages/ui
   - [ ] C) Other (text)
-- **Text:**
+- **Text:** Confirm packages/open-ui (GV-0004 C6 aligned); not packages/ui.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #9. [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md) C6. [ARCHITECTURE.md](ARCHITECTURE.md). [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
@@ -191,17 +192,18 @@ Decisions (`open`) and watches (`watching`). 12 items.
 
 ---
 
-<h2 id="pi-011-dewey-bk-to-od-rewrite">PI-011 — Q13 Dewey BK→OD rewrite</h2>
+<a id="pi-011-dewey-bk-to-od-rewrite"></a>
+<h2 id="pi-011-dewey-bk-to-ot-rewrite">PI-011 — Q13 Dewey BK→OT rewrite</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
-- **Question:** Should existing Dewey addresses on Blocks (`BK/N-####`) be rewritten to `OD/N-####`, or only **new** work use OD/OS/BI/SM? (`LO` is an address alias for `SM` per [PI-016](#pi-016-subterra-metro-rename); new shell work uses `SM`.)
+- **Question:** Should existing Dewey addresses on Blocks (`BK/N-####`) be rewritten to `OT/N-####`, or only **new** work use OT/OS/BI/SM? (`LO` is an address alias for `SM` per [PI-016](#pi-016-subterra-metro-rename); `OD` is an address alias for `OT` per [PI-018](#pi-018-open-day-to-open-time); new work uses `SM` / `OT`.)
 - **Options:**
-  - [ ] A) Rewrite existing BK→OD
-  - [ ] B) Only new work uses OD/OS/BI/SM (`LO` address alias only)
+  - [x] A) Rewrite existing BK→OT
+  - [ ] B) Only new work uses OT/OS/BI/SM (`LO` and `OD` address aliases)
   - [ ] C) Other (text)
-- **Text:**
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #13. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **Text:** Rewrite all existing BK addresses (`BK/N-####`) to `OT` (Open Time). 2026-09-30 MT. Documented address examples now use `OT/N-####`. `BK` remains an address-alias catalog row pointing at OT / `packages/open-time`. Open Books `OB` unchanged.
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) PI-011 A rewrite section. [PI-018](#pi-018-open-day-to-open-time) Open Day → Open Time. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
 
@@ -221,15 +223,16 @@ Decisions (`open`) and watches (`watching`). 12 items.
 
 <h2 id="pi-013-luna-os-open-ui-token-pr">PI-013 — SubTerra Metro open-ui token PR</h2>
 
-- **Status:** `watching`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** status
 - **Question:** Track until Powerline merge decision (this agent does not merge).
 - **Options:** N/A — Rook updates until Powerline merge. Do not mark answered until that decision.
-- **Text:** Lattice 2026-09-30: `nits_only`, blockers none. Patron 2026-09-30 chrome validation PASS (7/7) on luna-os#1 @ `39bb566`. Tip now `0cdf88b` (Metro rename landed on that PR). [PI-003](#pi-003-palette-replace-vs-supplement) answered replace — luna-os#1 may merge when Powerline says (this agent does not merge).
-- **Current:** draft PR [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `0cdf88b` — branch `cursor/powerline-open-ui-tokens-2bbb`. Agent [bc-ceeeb171-7643-5354-9303-55a529182bbb](https://cursor.com/agents/bc-ceeeb171-7643-5354-9303-55a529182bbb). Metro rename landed on this PR.
+- **Text:** Lattice 2026-09-30: `nits_only`, blockers none. Patron 2026-09-30 chrome validation PASS (7/7) on luna-os#1 @ `39bb566`. Tip was `0cdf88b` (Metro rename landed on that PR). [PI-003](#pi-003-palette-replace-vs-supplement) answered replace. luna-os#1 squash-merged @ `edd17c3` (2026-09-30 MT).
+- **Current:** squash-merged [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) into `master` @ `edd17c3` (2026-09-30 MT). Former tip `0cdf88b` — branch `cursor/powerline-open-ui-tokens-2bbb`. Agent [bc-ceeeb171-7643-5354-9303-55a529182bbb](https://cursor.com/agents/bc-ceeeb171-7643-5354-9303-55a529182bbb). Metro rename landed on this PR.
+- **Merged:** [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) squash-merged into `master` @ `edd17c3` (2026-09-30 MT). Merge commit `edd17c308ca835db50bb3d4455116ed1972df471`.
 - **Lattice (2026-09-30):** `nits_only`, blockers none.
 - **Patron (2026-09-30):** chrome validation PASS (7/7) on [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `39bb566`.
-- **More context:** Sibling of [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3). Palette docs already on [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). PI-003 replace answered; luna-os#1 merge waits on Powerline (not this agent).
+- **More context:** Sibling of [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3). Palette docs already on [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). PI-003 replace answered; luna-os#1 squash-merged @ `edd17c3`.
 
 ---
 
@@ -259,7 +262,7 @@ Decisions (`open`) and watches (`watching`). 12 items.
   - [ ] B) Alt A — add BR / packages/open-brand.
   - [ ] C) Other
 - **Text:** Preferred locked. Dewey mapping (existing codes only): APP `WL` = commercial gate (APP_REGISTRY reserved; not a package/shell). APP `SM` = host of first-run wizard + primary WL runtime (former live code `LO` is an address alias). APP `SC` = optional co-brand. APP `ST` = out (do not use for WL path). Brand pack = `packages/open-ui` (no APP letter in registry — Open UI row uses em dash). Area `UI` for wizard chrome. Area `AU` optional for WL entitlement/key. Reject BR and fourth shell. Personal agent Luna (`LU`) is unchanged.
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md). [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL / Open UI rows. [PI-001](#pi-001-white-label-catalog-row) still open for a catalog `null` row for the gate. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md). [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL / Open UI rows. [PI-001](#pi-001-white-label-catalog-row) answered B — no catalog row for the gate. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
 
@@ -288,3 +291,17 @@ Decisions (`open`) and watches (`watching`). 12 items.
   - [ ] C) Other (text)
 - **Text:** Approved. Display **Grounded Rules**. Pun: electrical grounding safety + grounded rules. Dewey code `GV` unchanged. Machine keys (`role: governance`, catalog `governance:`, `localPath: governance`, on-disk filenames) unchanged. GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames to `grounded-rules`. Metro / SM / Central / SC / LO / Luna / LU unchanged. PR #7 already squash-merged; this is a new draft off `master` @ `c6b9aba`.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Grounded Rules rename section. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+
+---
+
+<h2 id="pi-018-open-day-to-open-time">PI-018 — Open Day → Open Time rename</h2>
+
+- **Status:** `answered` (2026-09-30 MT)
+- **Needed:** decision
+- **Question:** Approve display rename Open Day → Open Time and Dewey live package code OD → OT?
+- **Options:**
+  - [x] A) Yes — display Open Time; path `packages/open-time`; live code `OT`; `OD` address alias
+  - [ ] B) Keep Open Day / OD
+  - [ ] C) Other (text)
+- **Text:** Approved. Display **Open Time**. Path `packages/open-time`. Live Dewey code `OT`. `OD` is the former live code (Open Day) and remains an address alias (like `LO` for `SM`). Reason: “OD” sounds like overdose; `OB` is taken by Open Books. Scope unchanged: tasks, timeline, Quick Blocks, Festy crew. Existing `OD/N-####` addresses stay valid; new work uses `OT`. `BK` (Blocks) retargets to `OT` / `packages/open-time`. Unchanged: Open Books `OB`, Open Bill `BI`, Open Sort `OS`, SubTerra Metro `SM`, SubTerra Central `SC`.
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Open Day → Open Time rename section. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4. [PI-011](#pi-011-dewey-bk-to-ot-rewrite) answered A — existing `BK/N-####` rewritten to `OT/N-####`.

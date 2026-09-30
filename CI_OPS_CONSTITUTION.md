@@ -72,9 +72,9 @@ vYY.MM.DDbX              Batch within that day
 | **AA.SSS.FFF** | Per-repo `FEATURE_REGISTRY.md` | Section tree |
 | **III** | Incident suffix on address | `-001`, `-002`, … |
 
-**Cross-repo references:** `OD/N-0026` or the address alias `BK/N-0026`; `SM/N-0001` or the aliases `LO/N-0001` / `ST/N-0001` (APP + local N/B). New work uses the current codes (SM, OD, OS, BI, …). Alias codes (ST, LO, BK, MB, BB) remain valid on existing addresses. `LO` is the former live shell code for SubTerra Metro.
+**Cross-repo references:** `OT/N-0026` (rewritten from `BK/N-0026`, PI-011 A) or the former-code alias `OD/N-0026`; `SM/N-0001` or the aliases `LO/N-0001` / `ST/N-0001` (APP + local N/B). New work uses the current codes (SM, OT, OS, BI, …). Existing `BK/N-####` addresses were rewritten to `OT/N-####`. Alias codes (ST, LO, OD, MB, BB) remain valid on existing addresses. `BK` stays an address-alias catalog row for leftover Blocks. `LO` is the former live shell code for SubTerra Metro. `OD` is the former live code for Open Time.
 
-**PP.MC vs PR.MC:** `PP.MC` = MCP as a delivery platform; `PR.MC` = MCP feature area. Prefer unambiguous combinations (e.g. `OD.DT.MC.01.010.010`, or the alias `BK.DT.MC.01.010.010`).
+**PP.MC vs PR.MC:** `PP.MC` = MCP as a delivery platform; `PR.MC` = MCP feature area. Prefer unambiguous combinations (e.g. `OT.DT.MC.01.010.010`, or the former-code alias `OD.DT.MC.01.010.010`). `BK.DT.MC.01.010.010` was rewritten to `OT.DT.MC.01.010.010` (PI-011 A).
 
 ---
 
@@ -197,7 +197,7 @@ Grounded Rules itself uses this constitution + codes + manifest; it does not shi
 
 ## 9. Grounded Rules agent mandate (GV)
 
-The Grounded Rules agent is the **one-stop shop** for cross-repo standards. Product agents (SM, OD, OS, AT, … and address aliases ST, LO, BK, MB) consume these artifacts; they do not fork conflicting pipelines or Dewey rules.
+The Grounded Rules agent is the **one-stop shop** for cross-repo standards. Product agents (SM, OT, OS, AT, … and address aliases ST, LO, OD, BK, MB) consume these artifacts; they do not fork conflicting pipelines or Dewey rules.
 
 ### Owns
 
@@ -214,7 +214,7 @@ The Grounded Rules agent is the **one-stop shop** for cross-repo standards. Prod
 ### Does not own
 
 - Product-specific feature implementation inside a single app (that stays on the product APP code)
-- Product-local Playwright suites that only cover one app’s UI (e.g. leftover Blocks `tests/e2e`, later Open Day in the monorepo) — those remain in-product; Grounded Rules QA covers **cross-repo / catalog / SDK contract** journeys
+- Product-local Playwright suites that only cover one app’s UI (e.g. leftover Blocks `tests/e2e`, later Open Time in the monorepo) — those remain in-product; Grounded Rules QA covers **cross-repo / catalog / SDK contract** journeys
 
 ### Invariants
 

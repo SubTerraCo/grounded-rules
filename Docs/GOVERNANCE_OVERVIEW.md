@@ -10,7 +10,7 @@
 
 There is no third audience. “Powerline” is an owner/approver of archive decisions, not an `audience` value. “Collective” is not an `audience` value.
 
-**Date:** 2026-09-30 (Grounded Rules display name; SubTerra Metro / SM; former Luna OS / LO is an address alias; Luna LU unchanged)  
+**Date:** 2026-09-30 (Grounded Rules display name; SubTerra Metro / SM; former Luna OS / LO is an address alias; Open Time / OT; former Open Day / OD is an address alias; Luna LU unchanged)  
 **This document** is a readable merge of the locked rulings in this repo. It does not replace them.
 
 | If you need | Read |
@@ -77,7 +77,7 @@ One product, one code, one folder. The folder is the name people say.
 | SC | SubTerra Central | `apps/subterra-central` | to build — member PWA |
 | OG | Open Gig | `apps/open-gig` | profile, listing, rate, date request |
 | CH | Community | `apps/community` | voting / discussion UI. Audience `[admin, member]`: crew on SubTerra Metro; public on Central |
-| OD | Open Day | `packages/open-day` | tasks, timeline, Quick Blocks, Festy crew (replaces BK) |
+| OT | Open Time | `packages/open-time` | tasks, timeline, Quick Blocks, Festy crew (replaces BK; former code OD) |
 | OS | Open Sort | `packages/open-sort` | Gmail/IMAP labels and archive (replaces MB) |
 | OB | Open Books | `packages/open-books` | `@actual-app/api` budgeting (not “Open Budget”) |
 | BI | Open Bill | `packages/open-bill` | invoicing / 1099 (replaces BB) |
@@ -88,14 +88,14 @@ One product, one code, one folder. The folder is the name people say.
 | BS | Banking | `packages/banking` | SimpleFIN + GoCardless. Monorepo package, not a twin integration |
 | AT | Anytype | dedicated workspace | **not** a monorepo package |
 | GV | Grounded Rules | this repo | rules / CI / templates |
-| WL | White-label | — | commercial gate on SubTerra Metro, not a package |
+| WL | White-label | — | commercial gate on SubTerra Metro, not a package (PI-001: registry-only; no catalog row) |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
 
-**Address aliases** (keep on existing Dewey addresses; not folders to build): `ST` (leftover Shell), `LO` (former SubTerra Metro live code), `BK` (Blocks), `MB` (Mailbot), `BB` (Billbot).
+**Address aliases** (keep on existing Dewey addresses; not folders to build): `ST` (leftover Shell), `LO` (former SubTerra Metro live code), `OD` (former Open Time live code / Open Day), `MB` (Mailbot), `BB` (Billbot). `BK` (Blocks) is an alias catalog row; existing `BK/N-####` were rewritten to `OT/N-####` (PI-011 A).
 
 **Cut:** Open Axiom (`AX` catalog row kept until archive approval). Withdrawn product codes are not used. `ST` is an alias only. `FN` and `BO` are not current names.
 
-Festy Blocks (`SubTerraCo/festy-blocks`) does not get its own code. Crew tools live in Open Day inside SubTerra Metro; the finished schedule can appear read-only on Central when granted.
+Festy Blocks (`SubTerraCo/festy-blocks`) does not get its own code. Crew tools live in Open Time inside SubTerra Metro; the finished schedule can appear read-only on Central when granted.
 
 ---
 
@@ -105,7 +105,7 @@ Every installable package stands alone. It may not import another package. The s
 
 Optional facts another package might have written are read from the hub only after the user grants that read.
 
-The same package can be installed in SubTerra Metro, in SubTerra Central, or in both. Each shell has its own hub. A person who uses both may turn on a **data bridge** (off by default). The bridge copies only Open Books, Open Bill, and Open Day records that the person marks. Mail, banking, and home automation stay on SubTerra Metro.
+The same package can be installed in SubTerra Metro, in SubTerra Central, or in both. Each shell has its own hub. A person who uses both may turn on a **data bridge** (off by default). The bridge copies only Open Books, Open Bill, and Open Time records that the person marks. Mail, banking, and home automation stay on SubTerra Metro.
 
 **Dropped:** separate Apps and Integrations tabs; separate GitHub repos as the product shape.
 
@@ -122,7 +122,7 @@ The same package can be installed in SubTerra Metro, in SubTerra Central, or in 
 
 An item is never visible on SubTerra Central unless its list includes `member`. Never overload SDK `role` for permissions. Do not invent a third audience (including “Powerline”, “Collective”, or “operator”).
 
-What sells where is in [ARCHITECTURE.md](ARCHITECTURE.md) (Open Books/Bill/Day/Sort, Banking, HA, Media, Luna, Subtoken, Open Gig, Community, Forum). UI is not a marketplace item.
+What sells where is in [ARCHITECTURE.md](ARCHITECTURE.md) (Open Books/Bill/Time/Sort, Banking, HA, Media, Luna, Subtoken, Open Gig, Community, Forum). UI is not a marketplace item.
 
 ---
 
@@ -232,7 +232,7 @@ N-####    B-####    vYY.MM.DD[bX]
 
 Tables: `codes/APP_REGISTRY.yaml`, `codes/PLATFORM_CODES.yaml`, `codes/AREA_CODES.yaml`. Catalog: `subterra.manifest.yaml`.
 
-New work uses current codes (SM, OD, OS, BI, …). Alias codes (ST, LO, BK, MB, BB) remain valid on existing addresses.
+New work uses current codes (SM, OT, OS, BI, …). Existing `BK/N-####` were rewritten to `OT/N-####` (PI-011 A). Alias codes (ST, LO, OD, MB, BB) remain valid on existing addresses. `BK` stays an alias catalog row for leftover Blocks.
 
 `/NF` `/NB` `/RD` still require Round 1 + Round 2 with conflict audits. Use AskQuestion when available.
 
@@ -246,4 +246,4 @@ New work uses current codes (SM, OD, OS, BI, …). Alias codes (ST, LO, BK, MB, 
 4. Do not create leftover `apps/admin` folders or a second PWA besides SubTerra Central.
 5. Material 3 / four-color palette / `packages/open-ui` only. No amber `#e8a54b`.
 
-Implementation of SubTerra Metro, Open Day, Open Sort, Open Bill, Central, and Anytype handlers belongs to those product agents — not GV — unless explicitly asked.
+Implementation of SubTerra Metro, Open Time, Open Sort, Open Bill, Central, and Anytype handlers belongs to those product agents — not GV — unless explicitly asked.
