@@ -37,7 +37,7 @@ Decisions (`open`) and watches (`watching`). 13 items.
 - [PI-010](#pi-010-banking-dewey-role) — Q10 Banking (BS) Dewey role
 - [PI-011](#pi-011-dewey-bk-to-od-rewrite) — Q13 Dewey BK→OD rewrite
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
-- [PI-013](#pi-013-luna-os-open-ui-token-pr) — Luna OS open-ui token PR *(watching)*
+- [PI-013](#pi-013-luna-os-open-ui-token-pr) — Luna OS open-ui token PR *(watching)* — luna-os#1 draft @ `39bb566`; pending PI-003
 
 ## Answered
 
@@ -218,10 +218,12 @@ Decisions (`open`) and watches (`watching`). 13 items.
 
 - **Status:** `watching`
 - **Needed:** status
-- **Question:** Track until draft PR is ready for Lattice.
-- **Options:** N/A — Rook updates when PR ready / Lattice clears.
-- **Text:**
-- **Current:** agent [bc-ceeeb171-7643-5354-9303-55a529182bbb](https://cursor.com/agents/bc-ceeeb171-7643-5354-9303-55a529182bbb) — branch `cursor/powerline-open-ui-tokens-2bbb` — PR [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) (was running when queued).
+- **Question:** Track until Powerline merge decision (stay draft pending PI-003).
+- **Options:** N/A — Rook updates until Powerline merge. Do not mark answered until that decision.
+- **Text:** Lattice 2026-09-30: `nits_only`, blockers none; stay draft pending PI-003. Patron chrome validation in flight after Lattice clear.
+- **Current:** draft PR [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `39bb566` — branch `cursor/powerline-open-ui-tokens-2bbb`. Agent [bc-ceeeb171-7643-5354-9303-55a529182bbb](https://cursor.com/agents/bc-ceeeb171-7643-5354-9303-55a529182bbb).
+- **Lattice (2026-09-30):** `nits_only`, blockers none. Stay draft pending [PI-003](#pi-003-palette-replace-vs-supplement).
+- **Patron:** chrome validation in flight after Lattice clear.
 - **More context:** Sibling of [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3). Governance palette docs already on [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
