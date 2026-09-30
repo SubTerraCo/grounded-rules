@@ -16,8 +16,8 @@ The enterprise blueprint wins wherever it disagrees with GV-0001, GV-0002, or GV
 
 | # | Old ruling | Blueprint | Resolution |
 |---|------------|-----------|------------|
-| C1 | Polyrepo, one repo per app (§1) | One pnpm + Turborepo monorepo | Monorepo is the product. `subterra-governance` stays this rules repo. `tooling/design-governance` enforces tokens; it does not fork the constitution |
-| C2 | Shells are `apps/admin` and `apps/nexus` over `shell-core` (GV-0002) | Exactly two runtimes: Tauri v2 and a PWA | Build `apps/luna-os` (Tauri, including Arch Linux / Omarchy) and `apps/web-shell` (PWA). Do not create `apps/admin` or `apps/nexus` |
+| C1 | One GitHub repo per app (§1) | One pnpm + Turborepo monorepo | The product is the monorepo. `subterra-governance` stays this rules repo. `tooling/design-governance` enforces tokens; it does not fork the constitution |
+| C2 | Shells are leftover `apps/admin` plus a member PWA over `shell-core` (GV-0002) | Exactly two runtimes: Tauri v2 and a PWA | Build `apps/luna-os` (Tauri, including Arch Linux / Omarchy) and `apps/subterra-central` (PWA). Do not create leftover `apps/admin` folders or a second PWA runtime besides Central |
 | C3 | Electron + Next shell | Vite, React 19, Tauri v2 | Tauri + Vite. `subterra-shell` stays until Phase 1 copies what is still useful |
 | C4 | Every repo defaults to `master` (§4.1) | The first blueprint draft used `main` and `staging` | Withdrawn. The monorepo uses `master` and `dev`, same as every other SubTerraCo repo |
 | C5 | pnpm 11.14, reusable `ci-node.yml@v1` | pnpm 9, Node 22, Turbo pipeline in-repo | Monorepo CI is the blueprint pipeline (pnpm 9, Node 22). This governance repo keeps its own workflow |
@@ -47,7 +47,7 @@ Open stays on names that would collide with a published app. The others use the 
 |------|------|------|------------|
 | LO | Luna OS | `apps/luna-os` | Tauri command center, including Arch / Omarchy. Replaces ST |
 | LU | Luna | `packages/luna` | Agent router. Gemma 4 12B through Ollama |
-| SC | SubTerra Central | `apps/subterra-central` | Gigs and events. Replaces NX |
+| SC | SubTerra Central | `apps/subterra-central` | Gigs and events. Member PWA (not a second runtime folder) |
 | OD | Open Day | `packages/open-day` | Tasks, timeline, Quick Blocks, Festy crew tools. Replaces BK |
 | OS | Open Sort | `packages/open-sort` | Mail labels and archive. Replaces MB |
 | OB | Open Books | `packages/open-books` | Budgeting via `@actual-app/api`. Not named Open Budget |
@@ -64,7 +64,7 @@ Open stays on names that would collide with a published app. The others use the 
 | WL | White-label | — | Commercial gate on Luna OS. Not a package |
 | — | Open UI | `packages/open-ui` | Material 3 tokens. No app code |
 
-`ST`, `NX`, `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity, InvoiceShelf, and gmailctl are not adopted. Blocks, Billbot, and Mailbot are built here.
+`ST` is an address alias for leftover shell addresses only. `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity, InvoiceShelf, and gmailctl are not adopted. Blocks, Billbot, and Mailbot are built here.
 
 ---
 

@@ -1,7 +1,7 @@
 /**
  * Placeholder for the `marketplace` project.
  *
- * Genuinely blocked: Luna OS and the web shell do not exist yet, so there is
+ * Genuinely blocked: Luna OS and SubTerra Central do not exist yet, so there is
  * nothing to drive a browser against (GV-0001 D5). Unblock alongside the
  * first shell host. GV-0004 dropped separate Apps and Integrations tabs.
  *

@@ -34,7 +34,7 @@ One-stop shop for:
 
 Product repos **consume** governance; they must not fork conflicting Dewey, versioning, or reusable pipeline rules.
 
-**GV-0004 / `Docs/ARCHITECTURE.md` win** where they disagree with older polyrepo, `apps/admin` / `apps/nexus`, Electron, Next, or Material Web rulings.
+**GV-0004 / `Docs/ARCHITECTURE.md` win** where they disagree with older leftover-repo topology, leftover `apps/admin` folders, Electron, Next, or Material Web rulings.
 
 ## Standing invariants
 
@@ -47,7 +47,7 @@ Product repos **consume** governance; they must not fork conflicting Dewey, vers
 - NFC login must be **challenge-response** (ECDSA); UID-only auth is forbidden (constitution §13).
 - SubTerra-owned UI uses **Material Design 3** tokens from `packages/open-ui` (seed `#e8a54b`). Tailwind carries those tokens. Do not add a second component library (constitution §15, GV-0004).
 - The enterprise monorepo uses `master`, the same as every other SubTerraCo repo. New original monorepo code is BSL 1.1. MIT upstream and already published MIT grants stay MIT (constitution §16).
-- Do not create `apps/admin`, `apps/nexus`, or `packages/shell-core`. Do not start new work as a separate Apps/Integrations polyrepo pair.
+- Do not create leftover `apps/admin` folders or `packages/shell-core`. Do not start new work as a pair of separate app/integration GitHub repos.
 
 ## When working here
 

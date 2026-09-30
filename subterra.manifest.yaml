@@ -25,7 +25,7 @@ governance:
     legacyOwner: PoweredUpLabs  # still holds unrelated repos; nothing SubTerra should live there
 
 # Canonical catalog. GV-0004 product shape: Luna OS + SubTerra Central + standalone packages.
-# Existing polyrepo items stay as address aliases until folded into SubTerraCo/luna.
+# Leftover standalone-repo items stay as address aliases until folded into SubTerraCo/luna.
 #
 # audience (GV-0002 D4): list of shell audiences that may mount the item.
 # Values: admin | member. Default when omitted: [admin] (fail-closed).
@@ -44,26 +44,12 @@ items:
     defaultOpen: false
     sdk: null
     status: linked  # first consumer of the reusable ci-node workflow
-    note: "Address alias for LO Luna OS. Leftover SubTerraCo/subterra-shell until Phase 1. Do not build apps/admin or packages/shell-core."
+    note: "Address alias for LO Luna OS. Leftover SubTerraCo/subterra-shell until Phase 1. Do not build leftover apps/admin folders or packages/shell-core."
     provides:
       # Twin SDKs scaffolded and parity-verified (GV-0001 D10).
       - "@subterra/sdk-contract"   # internal single source of truth
       - "@subterra/app-sdk"
       - "@subterra/integration-sdk"
-
-  - id: nexus
-    appCode: NX
-    name: Nexus
-    repo: SubTerraCo/subterra-shell
-    localPath: shell
-    platforms: [DT, WB, AD]
-    role: shell
-    marketplace: null
-    audience: [member]
-    defaultOpen: false
-    sdk: null
-    status: reserved  # shell code deferred (GV-0002 D8)
-    note: "Address alias for SC SubTerra Central. Leftover Nexus name. Do not build apps/nexus."
 
   - id: blocks
     appCode: BK

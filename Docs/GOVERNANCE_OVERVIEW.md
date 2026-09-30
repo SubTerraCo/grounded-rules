@@ -1,7 +1,7 @@
 # SubTerra Governance — current state
 
 **Audience:** Powerline / SubTerra Collective  
-**Date:** 2026-09-30  
+**Date:** 2026-09-30 (terminology follow-up: SubTerra Central is the PWA; leftover product-name and topology words removed from live prose)  
 **This document** is a readable merge of the locked rulings in this repo. It does not replace them.
 
 | If you need | Read |
@@ -32,7 +32,7 @@ Existing SubTerraCo product repos (`subterra-shell`, `Blocks`, `mailbot`, `subte
 3. **[CI_OPS_CONSTITUTION.md](../CI_OPS_CONSTITUTION.md)** — applies where the blueprint is silent (Dewey format, `master`, audience, NFC crypto, design gates, reusable workflows for leftover repos).
 4. Older design records — historical locks. What still stands is called out on each record:
    - GV-0001: GitHub org, Team plan, reusable pipelines, vendor `upstream`, workspace QA location.
-   - GV-0002: `audience`, NFC challenge-response, Dewey `SO` / `EV`, Subtoken absorbs 2022 NFC repos. **Not** `apps/admin` / `apps/nexus`.
+   - GV-0002: `audience`, NFC challenge-response, Dewey `SO` / `EV`, Subtoken absorbs 2022 NFC repos. **Not** leftover `apps/admin` / `shell-core` folders.
    - GV-0003: Material 3 and seed `#e8a54b`. **Not** Material Web or `@subterra/shell-ui` as the owner.
 
 ---
@@ -44,11 +44,11 @@ Two runtimes only:
 | Shell | Path | Runtime | Audience |
 |-------|------|---------|----------|
 | Luna OS | `apps/luna-os` (`LO`) | Tauri v2 + React 19 + Vite — Windows, macOS, Android, iOS, Arch Linux / Omarchy | `admin` |
-| Web | `apps/web-shell` | Offline-first PWA | hosts SubTerra Central, Open Gig, Community |
+| SubTerra Central | `apps/subterra-central` (`SC`) | Offline-first PWA — gigs, events; Open Gig and Community install here | `member` |
 
-SubTerra Central (`SC`, `apps/subterra-central`) is the gig/event hub on the web runtime. See Questions: how `web-shell` and `subterra-central` relate as folders.
+The PWA **is** SubTerra Central. There is no second web runtime folder. The path to build is `apps/subterra-central`.
 
-Do **not** build `apps/admin`, `apps/nexus`, `packages/shell-core`, Electron, or Next shells. `subterra-shell` remains until Phase 1 copies what is still useful.
+Do **not** build leftover `apps/admin` folders, `packages/shell-core`, Electron, or Next shells. `subterra-shell` remains until Phase 1 copies what is still useful.
 
 **Stack:** TypeScript strict, React 19, Vite. Rust only inside Tauri bindings (filesystem, local IPC, NFC hardware, DaVinci socket). Hub store: SQLite via SQLCipher + Yjs. Finance: Actual's own SQLite CRDT inside Open Books via `@actual-app/api`. PKM: dedicated Anytype workspace — not a monorepo package; Open Axiom is cut.
 
@@ -64,7 +64,7 @@ One product, one code, one folder. The folder is the name people say.
 |------|------|------|--------|
 | LO | Luna OS | `apps/luna-os` | to build (replaces ST) |
 | LU | Luna | `packages/luna` | agent router (Ollama, Gemma 4 12B default) |
-| SC | SubTerra Central | `apps/subterra-central` | to build (replaces NX) |
+| SC | SubTerra Central | `apps/subterra-central` | to build — member PWA |
 | OG | Open Gig | `apps/open-gig` | profile, listing, rate, date request |
 | CH | Community | `apps/community` | voting / discussion UI |
 | OD | Open Day | `packages/open-day` | tasks, timeline, Quick Blocks, Festy crew (replaces BK) |
@@ -81,9 +81,9 @@ One product, one code, one folder. The folder is the name people say.
 | WL | White-label | — | commercial gate on Luna OS, not a package |
 | — | Open UI | `packages/open-ui` | Material 3 tokens. No app code |
 
-**Address aliases** (keep on existing Dewey addresses; not folders to build): `ST` (Shell), `NX` (Nexus), `BK` (Blocks), `MB` (Mailbot), `BB` (Billbot).
+**Address aliases** (keep on existing Dewey addresses; not folders to build): `ST` (leftover Shell), `BK` (Blocks), `MB` (Mailbot), `BB` (Billbot).
 
-**Cut:** Open Axiom (`AX` catalog row kept until archive approval). Codes that are not codes: `ST`/`NX`/`LF`/`TE`/`MT`/`PK`/`SN`/`CE` as products to build; `FN` and `BO` as current names.
+**Cut:** Open Axiom (`AX` catalog row kept until archive approval). Withdrawn product codes are not used. `ST` is an alias only. `FN` and `BO` are not current names.
 
 Festy Blocks (`SubTerraCo/festy-blocks`) does not get its own code. Crew tools live in Open Day inside Luna OS; the finished schedule can appear read-only on Central when granted.
 
@@ -97,7 +97,7 @@ Optional facts another package might have written are read from the hub only aft
 
 The same package can be installed in Luna OS, in SubTerra Central, or in both. Each shell has its own hub. A person who uses both may turn on a **data bridge** (off by default). The bridge copies only Open Books, Open Bill, and Open Day records that the person marks. Mail, banking, and home automation stay on Luna OS.
 
-**Dropped:** separate Apps and Integrations tabs; polyrepo as the product shape.
+**Dropped:** separate Apps and Integrations tabs; separate GitHub repos as the product shape.
 
 **Leftover until fold-in:** `@subterra/app-sdk` and `@subterra/integration-sdk` in `subterra-shell` must keep identical symbol names (`SDK_SURFACE`), differing only in `SDK_ROLE`. Manifest `role` / `marketplace` fields remain on existing catalog items.
 
@@ -227,7 +227,7 @@ New work uses current codes (LO, OD, OS, BI, …). Alias codes remain valid on e
 1. Change rules here first; leftover product repos consume via workflow ref / template / `@subterra/ci-ops`.
 2. Register new items in APP_REGISTRY **and** the manifest before GitHub scaffolding.
 3. Do not invent product features in governance.
-4. Do not create `apps/admin` or `apps/nexus`.
+4. Do not create leftover `apps/admin` folders or a second PWA besides SubTerra Central.
 5. Material 3 / `#e8a54b` / `packages/open-ui` only.
 
 Implementation of Luna OS, Open Day, Open Sort, Open Bill, Central, and Anytype handlers belongs to those product agents — not GV — unless explicitly asked.

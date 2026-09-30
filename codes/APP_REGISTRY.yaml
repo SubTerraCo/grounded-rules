@@ -2,7 +2,7 @@
 # Schema: APP.PP.PR.AA.SSS.FFF
 # All repos live under the SubTerraCo GitHub organization.
 # GV-0004 current codes: LO, LU, SC, OD, OS, OB, BI, TK, OG, CH, FM, HA, MA, BS, GV, WL.
-# Address aliases (not folders to build): ST, NX, BK, MB, BB. AX is cut (Open Axiom).
+# Address aliases (not folders to build): ST, BK, MB, BB. AX is cut (Open Axiom).
 schemaVersion: 1
 apps:
   - code: ST
@@ -10,14 +10,7 @@ apps:
     role: shell
     localPath: shell
     repo: SubTerraCo/subterra-shell
-    note: "Legacy shell. The shell to build is LO Luna OS at apps/luna-os. Keep ST as an address alias."
-  - code: NX
-    name: Nexus
-    role: shell
-    localPath: shell
-    repo: SubTerraCo/subterra-shell
-    status: reserved
-    note: "Legacy Nexus. GV-0004 replaces this with SC / apps/subterra-central. Keep NX as the address alias. Do not build apps/nexus."
+    note: "Leftover shell. The shell to build is LO Luna OS at apps/luna-os. Keep ST as an address alias."
   - code: BK
     name: Blocks
     role: app
@@ -86,7 +79,7 @@ apps:
     localPath: apps/subterra-central
     status: reserved
     audience: [member]
-    note: "Gig and event hub. Replaces NX. Anonymous NFC event page. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. A granted Open Day schedule is public here. Wishlists and the draft stay in Open Day."
+    note: "Gig and event hub. Member PWA at apps/subterra-central. Anonymous NFC event page. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. A granted Open Day schedule is public here. Wishlists and the draft stay in Open Day."
   - code: OD
     name: Open Day
     role: app

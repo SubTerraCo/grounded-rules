@@ -21,7 +21,7 @@ areas:
     name: NFC / crypto tags
   - code: SO
     name: Social / feed
-    note: "Member-shell social surface (GV-0002 D7). Shell to build is SubTerra Central (SC), not Nexus folders."
+    note: "Member-shell social surface (GV-0002 D7). Shell to build is SubTerra Central (SC)."
   - code: EV
     name: Events / ticketing
     note: "Events + Subtoken ticketing (GV-0002 D7). Member surface is SubTerra Central (SC)."

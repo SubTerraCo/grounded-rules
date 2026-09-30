@@ -351,7 +351,6 @@ export function buildFleet(): FleetSnapshot {
     "LO",
     "ST",
     "SC",
-    "NX",
     "OD",
     "BK",
     "OS",
@@ -416,7 +415,7 @@ export function renderVersionsMarkdown(fleet: FleetSnapshot): string {
     "- **npm** is `package.json` `version` (npm semver form `YY.M.D` / `YY.M.D-bX`).",
     "- Rows with Display/npm `—` usually mean the local checkout is missing or not yet on the SubTerra stamp.",
     "- Refresh: `pnpm versions:fleet` from this repo root (or `governance/` in a meta-workspace checkout).",
-    "- ST / NX / BK / MB / BB are address aliases. The packages to build are LO / SC / OD / OS / BI (GV-0004).",
+    "- ST / BK / MB / BB are address aliases. The packages to build are LO / SC / OD / OS / BI (GV-0004).",
     "",
   );
   return `${lines.join("\n")}`;

@@ -25,7 +25,7 @@ Locked in [GV-0001](../Docs/DESIGN_RECORDS/GV-0001-github-pipelines-qa.md) D5: t
 | Precondition | State |
 |--------------|-------|
 | Twin SDKs are real code | **Met** for the leftover shell — scaffolded under `shell/packages/` (D10). Exports are identical and match `SDK_SURFACE` |
-| Shell host is running | **Not met** — Luna OS and web-shell do not exist yet, so `marketplace` has nothing to drive |
+| Shell host is running | **Not met** — Luna OS and SubTerra Central do not exist yet, so `marketplace` has nothing to drive |
 
 So `contract` tests against the leftover SDK surface are unblocked in principle, while `marketplace` remains genuinely blocked. GV-0004 dropped separate Apps and Integrations tabs; when marketplace tests land they should drive package install into a shell, not two grids.
 

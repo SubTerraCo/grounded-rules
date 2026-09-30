@@ -18,10 +18,10 @@ Existing SubTerraCo product repos stay on `master` and keep calling governance w
 | Path | Repo | Role |
 |------|------|------|
 | this repo | `SubTerraCo/subterra-governance` | Constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
-| (future) `apps/` `packages/` `tooling/` | `SubTerraCo/luna` | Enterprise monorepo — Luna OS, web shell, and packages. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) |
-| `shell/` | `SubTerraCo/subterra-shell` | Legacy shell repo until Phase 1 copies what is still useful. Do not build `apps/admin`, `apps/nexus`, or `packages/shell-core` |
-| existing `apps/<name>/` | per product (Blocks, Mailbot, …) | Legacy polyrepo apps until folded into `packages/` / `apps/` in `luna` |
-| existing `integrations/<name>/` | per integration (Anytype) | Legacy polyrepo integrations until folded. PKM stays a dedicated Anytype workspace, not a monorepo package |
+| (future) `apps/` `packages/` `tooling/` | `SubTerraCo/luna` | Enterprise monorepo — Luna OS, SubTerra Central, and packages. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) |
+| `shell/` | `SubTerraCo/subterra-shell` | Leftover shell repo until Phase 1 copies what is still useful. Do not build leftover `apps/admin` folders or `packages/shell-core` |
+| existing `apps/<name>/` | per product (Blocks, Mailbot, …) | Leftover standalone app repos until folded into `packages/` / `apps/` in `luna` |
+| existing `integrations/<name>/` | per integration (Anytype) | Leftover standalone integration repos until folded. PKM stays a dedicated Anytype workspace, not a monorepo package |
 
 ### 1.1 Shell targets (GV-0004; supersedes GV-0002 D1–D2)
 
@@ -30,11 +30,11 @@ Exactly two executable runtimes. Product packages install into them. Luna OS per
 | Shell | Path | Runtime | Hosts |
 |-------|------|---------|-------|
 | Desktop and mobile | `apps/luna-os` | Tauri v2 + React 19 + Vite | Luna OS on Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
-| Web | `apps/web-shell` | Offline-first PWA | SubTerra Central, Open Gig, Community |
+| Web | `apps/subterra-central` | Offline-first PWA | SubTerra Central (gigs, events; Open Gig and Community install here) |
 
 Shared UI is `packages/open-ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
 
-`apps/admin`, `apps/nexus`, and `packages/shell-core` from GV-0002 are not the paths to build. `subterra-shell` remains until the monorepo exists.
+Leftover `apps/admin` folders and `packages/shell-core` from GV-0002 are not the paths to build. `subterra-shell` remains until the monorepo exists.
 
 ---
 
@@ -50,7 +50,7 @@ Shared UI is `packages/open-ui` (Material 3). Shared local facts go through the 
 
 Difference is **role** (`app` vs `integration`), which SDK package is declared, and (on the legacy shell) which marketplace tab discovers the item — not a second architecture.
 
-Do **not** start new product work as a separate Apps-vs-Integrations polyrepo pair. New work follows [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Prefer the monorepo package layout. The governance **product-repo template** still exists only for leftover standalone repos that must be registered before fold-in.
+Do **not** start new product work as a pair of separate app/integration GitHub repos. New work follows [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Prefer the monorepo package layout. The governance **product-repo template** still exists only for leftover standalone repos that must be registered before fold-in.
 
 ---
 
@@ -72,7 +72,7 @@ vYY.MM.DDbX              Batch within that day
 | **AA.SSS.FFF** | Per-repo `FEATURE_REGISTRY.md` | Section tree |
 | **III** | Incident suffix on address | `-001`, `-002`, … |
 
-**Cross-repo references:** `OD/N-0026` or the address alias `BK/N-0026`; `LO/N-0001` or the alias `ST/N-0001` (APP + local N/B). New work uses the current codes (LO, OD, OS, BI, …). Alias codes (ST, NX, BK, MB, BB) remain valid on existing addresses.
+**Cross-repo references:** `OD/N-0026` or the address alias `BK/N-0026`; `LO/N-0001` or the alias `ST/N-0001` (APP + local N/B). New work uses the current codes (LO, OD, OS, BI, …). Alias codes (ST, BK, MB, BB) remain valid on existing addresses.
 
 **PP.MC vs PR.MC:** `PP.MC` = MCP as a delivery platform; `PR.MC` = MCP feature area. Prefer unambiguous combinations (e.g. `OD.DT.MC.01.010.010`, or the alias `BK.DT.MC.01.010.010`).
 
@@ -153,7 +153,7 @@ Each shell (Luna OS or SubTerra Central) vendors or generates JSON at build time
 | `marketplace` | `apps` \| `integrations` \| `null` (shell/governance) |
 | `audience` | List of shell audiences that may mount the item: `admin` and/or `member` |
 
-**Default when `audience` is omitted: `["admin"]` (fail-closed).** An item is never member-visible on SubTerra Central unless it explicitly includes `member`. (Nexus was the GV-0002 name for that shell; the shell to build is SubTerra Central, `SC`.)
+**Default when `audience` is omitted: `["admin"]` (fail-closed).** An item is never member-visible on SubTerra Central unless it explicitly includes `member`.
 
 Do **not** overload `role` for permissions — `SubterraRole` in `@subterra/sdk-contract` already means app vs integration.
 
@@ -333,7 +333,7 @@ Home: **`tests/`** in this repo — its own Playwright project, run via `pnpm te
 
 ### Status
 
-Coverage is **deferred** (GV-0001 D5) until a shell host and real SDK surface exist to assert against. Twin SDK scaffolds live in `subterra-shell`; Luna OS / web-shell do not exist yet. The suite's config, docs, and location are locked; tests land once a shell host is real.
+Coverage is **deferred** (GV-0001 D5) until a shell host and real SDK surface exist to assert against. Twin SDK scaffolds live in `subterra-shell`; Luna OS / SubTerra Central do not exist yet. The suite's config, docs, and location are locked; tests land once a shell host is real.
 
 Workspace QA is a release gate for marketplace + SDK parity. It never substitutes for a product's own `/testrelease`.
 
@@ -348,9 +348,9 @@ Design record: [GV-0002](Docs/DESIGN_RECORDS/GV-0002-nexus-dual-shell.md).
 | Audience | Typical shell | Sees |
 |----------|---------------|------|
 | `admin` | Luna OS (`apps/luna-os`, code `LO`; address alias `ST`) | Items with `audience` containing `admin` (default) |
-| `member` | SubTerra Central (`apps/subterra-central`, code `SC`; address alias `NX`) | Only items that explicitly list `member` |
+| `member` | SubTerra Central (`apps/subterra-central`, code `SC`) | Only items that explicitly list `member` |
 
-Session identity is separate from marketplace `role`. Host context must expose audience without reusing the `role` field name. `apps/admin` and `apps/nexus` are not the paths to build.
+Session identity is separate from marketplace `role`. Host context must expose audience without reusing the `role` field name. Leftover `apps/admin` folders are not the paths to build.
 
 ### 13.2 NFC authentication invariant
 
@@ -374,7 +374,7 @@ Product implementations that shortcut this invariant are constitution violations
 
 ### 13.4 Dewey areas added for the member shell
 
-Reserved in GV-0002 D7 for the customer/member surface (then named Nexus; now SubTerra Central):
+Reserved in GV-0002 D7 for the customer/member surface (SubTerra Central):
 
 | Code | Area |
 |------|------|

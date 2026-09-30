@@ -9,7 +9,7 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 ## Stack
 
 - TypeScript strict mode for UI, domain logic, and shared types. React 19. Vite.
-- Two shells only: `apps/luna-os` (Tauri v2 for Windows, macOS, Android, iOS, and Arch Linux) and `apps/web-shell` (offline-first PWA).
+- Two shells only: `apps/luna-os` (Tauri v2 for Windows, macOS, Android, iOS, and Arch Linux) and `apps/subterra-central` (offline-first PWA).
 - Arch builds install on Omarchy. That machine is the dedicated local AI host: Ollama runs there, and `packages/luna` calls it on localhost. Ship an AppImage and a PKGBUILD.
 - Rust only inside Tauri bindings: filesystem, local IPC, NFC hardware, DaVinci socket.
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
@@ -22,8 +22,8 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 ```
 apps/
   luna-os/               # LO — Tauri command center, including Arch / Omarchy
-  web-shell/             # PWA runtime
-  subterra-central/      # SC — gigs, events, NFC event page
+  subterra-central/      # SC — PWA; gigs, events, NFC event page
+
   open-gig/              # OG — profile, listing, rate, date request
   community/             # CH — voting and discussion UI
 packages/
@@ -148,11 +148,11 @@ These files were searched before building. Vendor roadmaps inside `actual/` stay
 
 | Plan | Still used | Dropped |
 |------|------------|---------|
-| `subterra-shell` roadmap, August 2026 | Marketplace of optional packages | Electron and Next shells, `apps/nexus`, separate Apps and Integrations tabs, code `ST` as the thing to build |
+| `subterra-shell` roadmap, August 2026 | Marketplace of optional packages | Electron and Next shells, leftover admin/member folder split, separate Apps and Integrations tabs, code `ST` as the thing to build |
 | `blocks` roadmap | Kanban, timeline, quick-add, and task fields are the Blocks (`BK`) screen spec | Windows-desktop-first order. Luna OS Tauri is the shell for every platform |
 | `blocks/Docs/Integrations/HERMES_ECOSYSTEM_ARCHITECTURE.md` | A local agent with tools for Blocks, Billbot, Mailbot, and Anytype | Separate repos and MCP as the architecture. The agent is `packages/luna`. Packages do not import each other |
 | `mailbot/cursor_gmail_api_auto_sorting_bot_strat.md` | A later Mailbot slice can pull a bill PDF and hand line items to Billbot if both are installed | Google Sheets as the system of record. The chat export is not a spec |
-| GV-0001, GV-0002 | Dewey codes, audience, NFC challenge-response, vendor `upstream` remotes | Admin/Nexus folder layout, Electron shell, polyrepo as the product shape |
+| GV-0001, GV-0002 | Dewey codes, audience, NFC challenge-response, vendor `upstream` remotes | Leftover admin/member folder layout, Electron shell, separate GitHub repos as the product shape |
 
 Do not start a build from those files. Start from this blueprint.
 
