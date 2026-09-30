@@ -23,7 +23,7 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`) and watches (`watching`). 14 items.
+Decisions (`open`) and watches (`watching`). 13 items.
 
 - [PI-001](#pi-001-white-label-catalog-row) — Q11 White-label catalog row
 - [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OD rows
@@ -38,11 +38,10 @@ Decisions (`open`) and watches (`watching`). 14 items.
 - [PI-011](#pi-011-dewey-bk-to-od-rewrite) — Q13 Dewey BK→OD rewrite
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
 - [PI-013](#pi-013-luna-os-open-ui-token-pr) — Luna OS open-ui token PR *(watching)*
-- [PI-014](#pi-014-shell-token-pr-3-lattice-nits) — Shell token PR #3 residual Lattice nits (ready for review; pending Powerline merge)
 
 ## Answered
 
-None yet.
+- [PI-014](#pi-014-shell-token-pr-3-lattice-nits) — A) accept residual nits / merged 2026-09-30 MT
 
 ---
 
@@ -229,13 +228,14 @@ None yet.
 
 <h2 id="pi-014-shell-token-pr-3-lattice-nits">PI-014 — Shell token PR #3 Lattice nits</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
 - **Question:** Accept residual Lattice nits on shell#3 as-is, or ask Shell UI Dev to fix them further before Powerline merge?
 - **Options:**
-  - [ ] A) Accept residual nits (unused `--space-unit` CSS; semantic `status.warning` `#f59e0b`; CI notices)
+  - [x] A) Accept residual nits (unused `--space-unit` CSS; semantic `status.warning` `#f59e0b`; CI notices)
   - [ ] B) Further fix those residual nits before Powerline merge
   - [ ] C) Other (text)
-- **Text:**
-- **Lattice (2026-09-30):** PASS / `nits_only`. Patron chrome PASS. Pink/focus PR-body sync already fixed — not an open Lattice nit. Do not list tealLight / PR-body as open. PR marked ready for review; merge waits on Powerline (not merged).
-- **More context:** [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3) @ `c0e4f699`. Sibling palette lock on [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **Text:** accept residual nits / merged 2026-09-30 MT — SHA `c0e4f699`; residual unused `--space-unit`, `status.warning`, CI notices.
+- **Lattice (2026-09-30):** PASS / `nits_only`. Patron chrome PASS. Pink/focus PR-body sync already fixed — not an open Lattice nit. Do not list tealLight / PR-body as open.
+- **Merged:** [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3) into `master`. Head `c0e4f699`. Merge commit `50a540c5`.
+- **More context:** Sibling palette lock on [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).

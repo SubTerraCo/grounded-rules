@@ -60,7 +60,7 @@ No merge blockers. Stay draft. No deletes/archives. Q11 (WL catalog row) and Q12
 
 ## Powerline input queue added
 
-Living clickable queue: [POWERLINE_INPUT.md](POWERLINE_INPUT.md) (`PI-001`–`PI-014`). Rook maintains it whenever a new blocker-for-Powerline appears. **Q11–Q15 (and other still-open changelog questions) are not resolved** — they are indexed there as open/watching items. PI-014 updated to shell#3 head `c0e4f699` (Lattice PASS / nits_only; residual nits only; ready for review pending Powerline merge).
+Living clickable queue: [POWERLINE_INPUT.md](POWERLINE_INPUT.md) (`PI-001`–`PI-014`). Rook maintains it whenever a new blocker-for-Powerline appears. **Q11–Q15 (and other still-open changelog questions) are not resolved** — they are indexed there as open/watching items. PI-014 **answered** 2026-09-30 MT: accept residual nits; shell#3 merged to `master` (`c0e4f699` / merge `50a540c5`). Removed from Open index.
 
 | Path | What changed |
 |------|----------------|
