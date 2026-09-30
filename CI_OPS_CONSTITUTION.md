@@ -151,9 +151,11 @@ Each shell (Luna OS or SubTerra Central) vendors or generates JSON at build time
 |-------|---------|
 | `role` | `app` \| `integration` \| `shell` \| `governance` — **which marketplace / topology**, not who is logged in |
 | `marketplace` | `apps` \| `integrations` \| `null` (shell/governance) |
-| `audience` | List of shell audiences that may mount the item: `admin` and/or `member` |
+| `audience` | List of catalog audiences that may mount the item. **Locked values: `admin` and/or `member` only** (GV-0002 D4). Do not rename these strings. |
 
-**Default when `audience` is omitted: `["admin"]` (fail-closed).** An item is never member-visible on SubTerra Central unless it explicitly includes `member`.
+**Mapping (locked):** `admin` → Luna OS (`LO`, `apps/luna-os`); `member` → SubTerra Central (`SC`, `apps/subterra-central`).
+
+**Default when `audience` is omitted: `["admin"]` (fail-closed).** An item is never visible on SubTerra Central unless it explicitly includes `member`. There is no third audience.
 
 Do **not** overload `role` for permissions — `SubterraRole` in `@subterra/sdk-contract` already means app vs integration.
 
@@ -345,12 +347,16 @@ Design record: [GV-0002](Docs/DESIGN_RECORDS/GV-0002-nexus-dual-shell.md).
 
 ### 13.1 Audiences
 
-| Audience | Typical shell | Sees |
-|----------|---------------|------|
-| `admin` | Luna OS (`apps/luna-os`, code `LO`; address alias `ST`) | Items with `audience` containing `admin` (default) |
-| `member` | SubTerra Central (`apps/subterra-central`, code `SC`) | Only items that explicitly list `member` |
+Catalog field `audience` is a list. **Machine values stay exactly `admin` and `member`** (GV-0002 D4). Do not rename them to shell names or any other enum.
 
-Session identity is separate from marketplace `role`. Host context must expose audience without reusing the `role` field name. Leftover `apps/admin` folders are not the paths to build.
+| Catalog `audience` | Shell | Sees |
+|--------------------|-------|------|
+| `admin` | Luna OS (`apps/luna-os`, code `LO`; address alias `ST`) | Items whose `audience` list contains `admin` (this is the default when the field is omitted) |
+| `member` | SubTerra Central (`apps/subterra-central`, code `SC`) | Only items whose `audience` list contains `member` |
+
+Prefer shell names (Luna OS / SubTerra Central) in prose. Do not invent a third audience. Leftover `apps/admin` folders are not an audience value and are not the paths to build.
+
+Session identity is separate from marketplace `role`. Host context must expose audience without reusing the `role` field name.
 
 ### 13.2 NFC authentication invariant
 
@@ -374,7 +380,7 @@ Product implementations that shortcut this invariant are constitution violations
 
 ### 13.4 Dewey areas added for the member shell
 
-Reserved in GV-0002 D7 for the customer/member surface (SubTerra Central):
+Reserved in GV-0002 D7 for the member shell (SubTerra Central):
 
 | Code | Area |
 |------|------|

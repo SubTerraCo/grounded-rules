@@ -14,7 +14,7 @@ One-stop shop for:
 1. **Rulesets** — `CI_OPS_CONSTITUTION.md`, Dewey codes, `subterra.manifest.yaml`
 2. **GitHub repo management** — configure SubTerraCo repos (this governance repo, leftover product repos, later `luna`)
 3. **Deployment pipelines & templates** — reusable Actions + `templates/product-repo/` (leftover standalone repos)
-4. **Design language & catalog** — Material Design 3 (GV-0003 / GV-0004, constitution §15); standalone installable packages; audience-gated shells (Luna OS `admin` + SubTerra Central `member`)
+4. **Design language & catalog** — Material Design 3 (GV-0003 / GV-0004, constitution §15); standalone installable packages; catalog `audience` `admin` mounts on Luna OS, `member` mounts on SubTerra Central
 5. **Workspace Playwright QA** — cross-package e2e at the governance layer until monorepo `tests/contract` replaces it
 
 ## Source of truth
@@ -43,7 +43,7 @@ Product repos **consume** governance; they must not fork conflicting Dewey, vers
 - All SubTerra repos live under **`SubTerraCo`** (Team plan required for private-repo reusable workflows).
 - Twin SDKs (`@subterra/app-sdk`, `@subterra/integration-sdk`) must export identical symbol names equal to `SDK_SURFACE`, differing only in `SDK_ROLE`, for as long as the legacy `subterra-shell` surface exists. Change the surface in `sdk-contract` and mirror into both twins.
 - Vendor upstreams are a separate `upstream` remote — `origin` is always our own repo.
-- Manifest **`audience`** (`admin` / `member`) gates which shell may mount an item; default `["admin"]` fail-closed. Never overload SDK `role` for permissions (GV-0002). Typical shells: Luna OS (`admin`) and SubTerra Central (`member`).
+- Manifest **`audience`** machine values stay exactly `admin` and `member` (GV-0002 D4). Do not rename them. Mapping: `admin` → Luna OS (`apps/luna-os`); `member` → SubTerra Central (`apps/subterra-central`). Default `["admin"]` fail-closed. Never overload SDK `role` for permissions. Do not invent a third audience.
 - NFC login must be **challenge-response** (ECDSA); UID-only auth is forbidden (constitution §13).
 - SubTerra-owned UI uses **Material Design 3** tokens from `packages/open-ui` (seed `#e8a54b`). Tailwind carries those tokens. Do not add a second component library (constitution §15, GV-0004).
 - The enterprise monorepo uses `master`, the same as every other SubTerraCo repo. New original monorepo code is BSL 1.1. MIT upstream and already published MIT grants stay MIT (constitution §16).

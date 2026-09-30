@@ -21,10 +21,10 @@ areas:
     name: NFC / crypto tags
   - code: SO
     name: Social / feed
-    note: "Member-shell social surface (GV-0002 D7). Shell to build is SubTerra Central (SC)."
+    note: "Member-shell social (GV-0002 D7; catalog audience member). Shell is SubTerra Central (SC)."
   - code: EV
     name: Events / ticketing
-    note: "Events + Subtoken ticketing (GV-0002 D7). Member surface is SubTerra Central (SC)."
+    note: "Events + Subtoken ticketing (GV-0002 D7). Member shell (catalog audience member) is SubTerra Central (SC)."
   - code: IN
     name: Invoicing / billing
   - code: CM

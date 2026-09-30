@@ -1,7 +1,7 @@
 # Governance cleanup change log — 2026-09-30
 
 **Branch:** `cursor/governance-cleanup-5f88`  
-**Scope:** Align this repo with locked GV-0004 / [ARCHITECTURE.md](ARCHITECTURE.md) / recent architecture-ingestion, plus Powerline terminology follow-up (Central PWA; drop leftover product-name and topology words from live prose).  
+**Scope:** Align this repo with locked GV-0004 / [ARCHITECTURE.md](ARCHITECTURE.md), plus terminology follow-ups (Central PWA; catalog `audience` stays `admin`/`member`).  
 **Deletes / archives:** **Held.** No file was deleted or moved to an archive folder. Proposed later archive moves wait for Powerline approval.
 
 Companion readable summary (not a diff list): [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md).
@@ -35,7 +35,28 @@ Mandatory: (1) product-facing PWA is **SubTerra Central** at `apps/subterra-cent
 | `Docs/GOVERNANCE_OVERVIEW.md` | Two shells: Luna OS + SubTerra Central PWA. No second web-runtime folder. Aliases without the withdrawn member-shell code. Dropped “separate GitHub repos as the product shape”. How-to: no leftover admin folder / no second PWA. |
 | `Docs/CHANGELOG-cleanup-2026-09-30.md` | This follow-up section. Questions 1–2 marked resolved. |
 
-Pass 1 file-by-file below is the earlier cleanup. Live current-state is this follow-up plus [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md).
+Pass 1 file-by-file below is the earlier cleanup. Live current-state is later follow-ups plus [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md).
+
+---
+
+## Follow-up — catalog audience locked (`admin` / `member`)
+
+Decision: keep machine values `admin` and `member` exactly (GV-0002 D4). Mapping: `admin` → Luna OS (`LO` / `apps/luna-os`); `member` → SubTerra Central (`SC` / `apps/subterra-central`). Prefer shell names in prose. Do not invent a third audience (including Powerline or Collective as `audience` labels). Powerline remains the archive/approver where factual.
+
+**Deletes still held.** Catalog YAML `audience:` lists were not renamed.
+
+### File-by-file (this audience pass)
+
+| Path | What changed |
+|------|----------------|
+| `Docs/GOVERNANCE_OVERVIEW.md` | Replaced header `Audience: Powerline / SubTerra Collective` with catalog mapping table (`admin`/`member` → Luna OS / SubTerra Central). §5 audience block states locked values, fail-closed default, no third audience. Powerline kept only as archive approver. |
+| `CI_OPS_CONSTITUTION.md` | §6.1 and §13.1 state locked machine values and the shell mapping. §13.4 “customer/member surface” → member shell (SubTerra Central). |
+| `subterra.manifest.yaml` | Header comments: locked values, mapping, no third audience. Item `audience:` lists **unchanged** (`admin` / `member` only). |
+| `.cursor/rules/governance-agent.mdc` | Invariant: do not rename catalog values; mapping; no third audience. |
+| `Docs/DESIGN_RECORDS/GV-0002-nexus-dual-shell.md` | D2–D4 use member shell / SubTerra Central; D4 records mapping and fail-closed onto Central, not “customer-visible”. |
+| `codes/AREA_CODES.yaml` | SO/EV notes name the member shell and catalog `member`. |
+| `README.md` | Product-shape bullet: `admin`/`member` mapping. |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | This section. Question 4 marked resolved. |
 
 ---
 
@@ -157,11 +178,11 @@ No other deletions proposed. R0 workflow stubs stay (constitution §11: do not d
 
 1. ~~`apps/web-shell` vs `apps/subterra-central`~~ — **Central is the PWA.** Path to build is `apps/subterra-central`. No second web-runtime product or Dewey code.
 2. ~~Should the old web-runtime slug get a catalog row~~ — **No.** SC is the catalog row.
+4. ~~Rename audience values (`admin` / `member`) to Luna OS / Central~~ — **Keep `admin` and `member` exactly.** Mapping: `admin` → Luna OS; `member` → SubTerra Central. No third audience.
 
 **Still open**
 
 3. Twin SDKs and `role` / `marketplace: apps|integrations`: keep on every new catalog item until fold-in, or stop adding them on reserved monorepo packages?
-4. Rename audience values (`admin` / `member`) to Luna OS / Central, or keep the strings and only change the typical-shell mapping (what this PR did)?
 5. Archive Axiom (`AX`) after this review, or drop the catalog rows in a follow-up (still via archive, not delete)?
 6. When should a **Tauri / Luna OS** release workflow be authored? This PR only labeled the Electron stub; it did not invent a replacement.
 7. Confirm governance stays on **pnpm 11.14** while `luna` uses **pnpm 9** (GV-0004 C5). Left as-is.

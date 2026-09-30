@@ -27,10 +27,11 @@ governance:
 # Canonical catalog. GV-0004 product shape: Luna OS + SubTerra Central + standalone packages.
 # Leftover standalone-repo items stay as address aliases until folded into SubTerraCo/luna.
 #
-# audience (GV-0002 D4): list of shell audiences that may mount the item.
-# Values: admin | member. Default when omitted: [admin] (fail-closed).
-# Typical shells: Luna OS (admin), SubTerra Central (member).
-# Never reuse the word `role` for this — role is app vs integration (legacy shell) or catalog kind.
+# audience (GV-0002 D4): list of catalog audiences that may mount the item.
+# Locked machine values: admin | member only. Do not rename these strings.
+# Default when omitted: [admin] (fail-closed).
+# Mapping: admin → Luna OS (LO, apps/luna-os); member → SubTerra Central (SC, apps/subterra-central).
+# No third audience. Never reuse the word `role` for this — role is app vs integration (legacy shell) or catalog kind.
 items:
   - id: shell
     appCode: ST

@@ -1,7 +1,16 @@
 # SubTerra Governance — current state
 
-**Audience:** Powerline / SubTerra Collective  
-**Date:** 2026-09-30 (terminology follow-up: SubTerra Central is the PWA; leftover product-name and topology words removed from live prose)  
+**Who this is for:** people who work on SubTerra rules, catalog, and CI.  
+**Catalog `audience` (locked GV-0002 D4):** machine values are only `admin` and `member`. They are not renamed.
+
+| Catalog `audience` | Mounts in |
+|--------------------|-----------|
+| `admin` (default when omitted; fail-closed) | Luna OS (`LO`, `apps/luna-os`) |
+| `member` | SubTerra Central (`SC`, `apps/subterra-central`) |
+
+There is no third audience. “Powerline” is an owner/approver of archive decisions, not an `audience` value. “Collective” is not an `audience` value.
+
+**Date:** 2026-09-30 (audience mapping locked: keep `admin`/`member`; shells are Luna OS / SubTerra Central)  
 **This document** is a readable merge of the locked rulings in this repo. It does not replace them.
 
 | If you need | Read |
@@ -101,14 +110,14 @@ The same package can be installed in Luna OS, in SubTerra Central, or in both. E
 
 **Leftover until fold-in:** `@subterra/app-sdk` and `@subterra/integration-sdk` in `subterra-shell` must keep identical symbol names (`SDK_SURFACE`), differing only in `SDK_ROLE`. Manifest `role` / `marketplace` fields remain on existing catalog items.
 
-**Audience** (still `admin` / `member`; fail-closed default `["admin"]`):
+**Catalog `audience` (GV-0002 D4, locked):** machine values stay exactly `admin` and `member`. Do not rename them to luna/central or anything else. Fail-closed default when omitted: `["admin"]`.
 
-| Audience | Typical shell |
-|----------|----------------|
-| `admin` | Luna OS |
-| `member` | SubTerra Central |
+| Catalog value | Shell that may mount the item |
+|---------------|-------------------------------|
+| `admin` | Luna OS (`LO`, `apps/luna-os`) |
+| `member` | SubTerra Central (`SC`, `apps/subterra-central`) |
 
-Never overload SDK `role` for permissions.
+An item is never visible on SubTerra Central unless its list includes `member`. Never overload SDK `role` for permissions. Do not invent a third audience (including “Powerline”, “Collective”, or “operator”).
 
 What sells where is in [ARCHITECTURE.md](ARCHITECTURE.md) (Open Books/Bill/Day/Sort, Banking, HA, Media, Luna, Subtoken, Open Gig, Community, Forum). UI is not a marketplace item.
 

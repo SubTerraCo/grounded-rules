@@ -33,6 +33,7 @@ Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANC
 ## Current product shape (GV-0004)
 
 - Two runtimes: `apps/luna-os` (Tauri v2, including Arch / Omarchy) and `apps/subterra-central` (PWA).
+- Catalog `audience` values stay `admin` and `member` (GV-0002 D4). Mapping: `admin` → Luna OS; `member` → SubTerra Central. Default `["admin"]` fail-closed. No third audience.
 - Packages: Open Day, Open Sort, Open Books, Open Bill, Subtoken, Luna, Banking, Forum, Home Assistant, Media, Open UI.
 - Material 3 in `packages/open-ui`, seed `#e8a54b`.
 - New original monorepo code is BSL 1.1. Already published MIT stays MIT.
