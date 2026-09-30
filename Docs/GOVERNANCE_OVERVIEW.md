@@ -10,7 +10,7 @@
 
 There is no third audience. “Powerline” is an owner/approver of archive decisions, not an `audience` value. “Collective” is not an `audience` value.
 
-**Date:** 2026-09-30 (Grounded Rules display name; SubTerra Metro / SM; former Luna OS / LO is an address alias; Open Time / OT; former Open Day / OD is an address alias; Luna LU unchanged)  
+**Date:** 2026-09-30 (Powerline lock: Central = personal AI hub; Metro = social; packages-under-Central sanctioned; bridge allowlist OB+BI+OT+AT)  
 **This document** is a readable merge of the locked rulings in this repo. It does not replace them.
 
 | If you need | Read |
@@ -51,16 +51,16 @@ Existing SubTerraCo product repos (`subterra-shell`, `Blocks`, `mailbot`, `subte
 
 Two runtimes only:
 
-| Shell | Path | Runtime | Audience |
-|-------|------|---------|----------|
-| SubTerra Metro | `apps/subterra-metro` (`SM`) | Tauri v2 + React 19 + Vite — Windows, macOS, Android, iOS, Arch Linux / Omarchy | `admin` |
-| SubTerra Central | `apps/subterra-central` (`SC`) | Offline-first PWA — gigs, events; Open Gig and Community install here | `member` |
+| Shell | Path | Runtime | Audience | Product role (Powerline lock 2026-09-30) |
+|-------|------|---------|----------|------------------------------------------|
+| SubTerra Metro | `apps/subterra-metro` (`SM`) | Tauri v2 + React 19 + Vite — Windows, macOS, Android, iOS, Arch Linux / Omarchy | `admin` | Social media app. Consumes Central-hosted packages |
+| SubTerra Central | `apps/subterra-central` (`SC`) | Offline-first PWA | `member` | Personal AI hub and suite of all tools. Hosts packages and integrations |
 
-The PWA **is** SubTerra Central. There is no second web runtime folder. The path to build is `apps/subterra-central`.
+The PWA **is** SubTerra Central. There is no second web runtime folder. The path to build is `apps/subterra-central`. Central-hosted packages (`apps/subterra-central/packages/` or equivalent) and Central-hosted integrations are a **sanctioned** shape (conflict 4 rewritten; GV-0004 C16).
 
 Do **not** build leftover `apps/admin` folders, `packages/shell-core`, Electron, or Next shells. `subterra-shell` remains until Phase 1 copies what is still useful.
 
-**Stack:** TypeScript strict, React 19, Vite. Rust only inside Tauri bindings (filesystem, local IPC, NFC hardware, DaVinci socket). Hub store: SQLite via SQLCipher + Yjs. Finance: Actual's own SQLite CRDT inside Open Books via `@actual-app/api`. PKM: dedicated Anytype workspace — not a monorepo package; Open Axiom is cut.
+**Stack:** TypeScript strict, React 19, Vite. Rust only inside Tauri bindings (filesystem, local IPC, NFC hardware, DaVinci socket). Hub store: SQLite via SQLCipher + Yjs. Finance: Actual's own SQLite CRDT inside Open Books via `@actual-app/api`. Leftover PKM: dedicated Anytype workspace — not required as a monorepo package; Central hosts the Anytype integration. Open Axiom is cut.
 
 **Omarchy** (Arch) is the dedicated local AI host. Ollama on localhost. Ship AppImage and PKGBUILD.
 
@@ -72,9 +72,9 @@ One product, one code, one folder. The folder is the name people say.
 
 | Code | Name | Path | Status |
 |------|------|------|--------|
-| SM | SubTerra Metro | `apps/subterra-metro` | to build (replaces ST; former code LO) |
+| SM | SubTerra Metro | `apps/subterra-metro` | to build — social media app (replaces ST; former code LO). Consumes Central-hosted packages |
 | LU | Luna | `packages/luna` | agent router (Ollama, Gemma 4 12B default). Not Metro. |
-| SC | SubTerra Central | `apps/subterra-central` | to build — member PWA |
+| SC | SubTerra Central | `apps/subterra-central` | to build — personal AI hub PWA. Hosts packages and integrations; packages-under-Central is sanctioned |
 | OG | Open Gig | `apps/open-gig` | profile, listing, rate, date request |
 | CH | Community | `apps/community` | voting / discussion UI. Audience `[admin, member]`: crew on SubTerra Metro; public on Central |
 | OT | Open Time | `packages/open-time` | tasks, timeline, Quick Blocks, Festy crew (replaces BK; former code OD) |
@@ -86,7 +86,7 @@ One product, one code, one folder. The folder is the name people say.
 | HA | Home Assistant | `packages/home-assistant` | client only |
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
 | BS | Banking | `packages/banking` | SimpleFIN + GoCardless. Monorepo package, not a twin integration |
-| AT | Anytype | dedicated workspace | **not** a monorepo package |
+| AT | Anytype | Central-hosted integration | leftover PKM workspace is not required as a monorepo package; Central hosts the integration (`role: integration`) |
 | GV | Grounded Rules | this repo | rules / CI / templates |
 | WL | White-label | — | commercial gate on SubTerra Metro, not a package (PI-001: registry-only; no catalog row) |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
@@ -105,7 +105,7 @@ Every installable package stands alone. It may not import another package. The s
 
 Optional facts another package might have written are read from the hub only after the user grants that read.
 
-The same package can be installed in SubTerra Metro, in SubTerra Central, or in both. Each shell has its own hub. A person who uses both may turn on a **data bridge** (off by default). The bridge copies only Open Books, Open Bill, and Open Time records that the person marks. Mail, banking, and home automation stay on SubTerra Metro.
+The same package can be installed in SubTerra Metro, in SubTerra Central, or in both. Each shell has its own hub. Central hosts packages and integrations; Metro as the social app consumes them. A person who uses both may turn on a **data bridge** (off by default). The bridge copies only Open Books, Open Bill, Open Time, and Anytype records that the person marks (Powerline lock 2026-09-30). Mail, banking, and home automation stay off the bridge.
 
 **Dropped:** separate Apps and Integrations tabs; separate GitHub repos as the product shape.
 
@@ -215,10 +215,10 @@ Product-repo template under `templates/product-repo/` is only for leftover stand
 ## 11. Phases (from the blueprint)
 
 1. Workspace skeleton: layout, strict TypeScript, ESLint 9 flat, pnpm workspace, Turborepo.
-2. Shell hub on SQLite + Yjs. Open Books around `@actual-app/api`. Open Bill separate. Anytype optional mirror, not the store.
+2. Shell hub on SQLite + Yjs. Open Books around `@actual-app/api`. Open Bill separate. Anytype as a Central-hosted integration (leftover PKM workspace not required as a monorepo package). Owner-marked bridge allowlist: OB, BI, OT, AT.
 3. `luna` provider interface + tool registry. Default local provider at the Omarchy host.
 4. `packages/open-ui` tokens (palette, type, 4dp spacing) and domain widgets.
-5. Bundle SubTerra Metro in Tauri (including Arch / Omarchy) and SubTerra Central as the PWA. Confirm hub isolation and the marked-record bridge.
+5. Bundle SubTerra Metro in Tauri (including Arch / Omarchy) and SubTerra Central as the PWA. Confirm hub isolation and the marked-record bridge (OB + BI + OT + AT).
 6. Playwright suites listed under CI.
 
 ---

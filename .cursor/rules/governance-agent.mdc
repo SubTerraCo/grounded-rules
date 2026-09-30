@@ -16,7 +16,7 @@ One-stop shop for:
 1. **Rulesets** — `CI_OPS_CONSTITUTION.md`, Dewey codes, `subterra.manifest.yaml`
 2. **GitHub repo management** — configure SubTerraCo repos (this Grounded Rules repo, leftover product repos, later `luna`)
 3. **Deployment pipelines & templates** — reusable Actions + `templates/product-repo/` (leftover standalone repos)
-4. **Design language & catalog** — Material Design 3 (GV-0003 / GV-0004, constitution §15); standalone installable packages; catalog `audience` `admin` mounts on SubTerra Metro, `member` mounts on SubTerra Central. Twin `role` / `marketplace` / SDK fields are deprecated leftover on standalone-repo rows; do not write them on new monorepo packages
+4. **Design language & catalog** — Material Design 3 (GV-0003 / GV-0004, constitution §15); standalone installable packages; catalog `audience` `admin` mounts on SubTerra Metro (social app), `member` mounts on SubTerra Central (personal AI hub; hosts packages and integrations). Twin `role` / `marketplace` / SDK fields are deprecated leftover on standalone-repo rows; do not write them on new monorepo packages. Packages-under-Central is sanctioned (GV-0004 C16).
 5. **Workspace Playwright QA** — cross-package e2e at the Grounded Rules layer until monorepo `tests/contract` replaces it
 
 ## Source of truth
@@ -49,7 +49,7 @@ Product repos **consume** Grounded Rules; they must not fork conflicting Dewey, 
 - NFC login must be **challenge-response** (ECDSA); UID-only auth is forbidden (constitution §13).
 - SubTerra-owned UI uses **Material Design 3** tokens from `packages/open-ui` (palette purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`; interim M3 type scale; 4dp spacing). Tailwind carries those tokens. Do not add a second component library (constitution §15, GV-0004). Token *code* is product-repo work.
 - The enterprise monorepo uses `master`, the same as every other SubTerraCo repo. New original monorepo code is BSL 1.1. MIT upstream and already published MIT grants stay MIT (constitution §16).
-- Do not create leftover `apps/admin` folders or `packages/shell-core`. Do not start new work as a pair of separate app/integration GitHub repos.
+- Do not create leftover `apps/admin` folders or `packages/shell-core`. Do not start new work as a pair of separate app/integration GitHub repos. Central-hosted packages and integrations (including a packages-under-Central path) are sanctioned (Powerline lock 2026-09-30 / GV-0004 C16).
 
 ## When working here
 

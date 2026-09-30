@@ -15,6 +15,8 @@ Locks a dual-shell model: an admin shell and a member-facing public shell. Marke
 
 **Superseded by GV-0004:** leftover `apps/admin` / shared `shell-core` folder sketch, SubTerra OS as the shell to build, and separate product repos as the product shape. Build `apps/subterra-metro` (`SM`, address aliases `LO` and `ST`) and `apps/subterra-central` (`SC`).
 
+**Rewritten by Powerline lock 2026-09-30 (voice):** product-role prose that called Central a public/member shell and Metro the personal command center. Live roles: Central = personal AI hub + suite of all tools (hosts packages and integrations; packages-under-Central is sanctioned, GV-0004 C16); Metro = social media app that consumes Central-hosted packages. Catalog `audience` machine values and mapping are **not** renamed. Anytype as a Central integration is the intended shape (GV-0004 C15).
+
 ---
 
 ## 1. Conflict audit findings
@@ -44,7 +46,7 @@ Locks a dual-shell model: an admin shell and a member-facing public shell. Marke
 | Ref | Decision |
 |-----|----------|
 | **D1** | **Two shell targets.** Admin and member surfaces share marketplace, item host, and session logic. Neither shell forks that core. GV-0004 paths: `apps/subterra-metro` (admin) and `apps/subterra-central` (member). Do not build leftover `apps/admin` or `packages/shell-core`. |
-| **D2** | **The member shell is a shell target, not a marketplace app.** It has APP code `SC` (`role: shell`). Social / events / ticket UX lives on SubTerra Central; SubTerra Metro (`SM`) tools stay on the `admin` shell. |
+| **D2** | **The member-audience shell is a shell target, not a marketplace app.** It has APP code `SC` (`role: shell`). Catalog `member` still mounts on SubTerra Central; catalog `admin` still mounts on SubTerra Metro (`SM`). **Product roles (Powerline lock 2026-09-30):** Central is the personal AI hub and suite of all tools; Metro is the social media app and consumes Central-hosted packages. Historical D2 prose that put social / events / ticket UX on Central as a public member surface is superseded for *product role*; audience machine values are unchanged. |
 | **D3** | **Member shell name is SubTerra Central.** Backend ticketing / NFC product remains **Subtoken** under APP code `TK`. Historical lock listed `audience: [admin]`. **Live catalog (ARCHITECTURE matrix):** `audience: [admin, member]` — organizer tools on SubTerra Metro; event page, tickets, show log, and digital goods on SubTerra Central. |
 | **D4** | **Permissions use `audience`, never `role`.** Machine values stay exactly `admin` \| `member`. Manifest field `audience` is a list. Default when omitted: `["admin"]` (**fail-closed** — never visible on SubTerra Central unless `member` is listed). Mapping: `admin` → SubTerra Metro (`SM`, `apps/subterra-metro`; aliases `LO`, `ST`); `member` → SubTerra Central (`apps/subterra-central`). |
 | **D5** | **NFC auth is challenge-response.** Login proves possession of the tag private key (ECDSA). UID is an identifier only. UID-only "auth" is forbidden. Crypto from the 2022 `validation` app becomes shared auth code, not mobile-only. |
@@ -57,8 +59,8 @@ Locks a dual-shell model: an admin shell and a member-facing public shell. Marke
 ## 3. Topology (target — GV-0004)
 
 ```
-apps/subterra-metro/            # SM — Tauri command center (audience: admin); LO = former code
-apps/subterra-central/   # SC — PWA; gigs, events, tickets (audience: member)
+apps/subterra-metro/            # SM — social media app, Tauri (audience: admin); consumes Central-hosted packages; LO = former code
+apps/subterra-central/   # SC — personal AI hub PWA (audience: member); hosts packages and integrations
 packages/subtoken/       # TK — NFC / ticketing
   # deferred revive from SubTerraCo/{subtoken,tag-writer,validation}
 ```

@@ -45,7 +45,7 @@ apps:
     repo: SubTerraCo/subterra-anytype
     status: linked  # GV-0001 D2 — vendor kept as `upstream` remote
     upstream: anyproto/anytype-api
-    note: "Not a monorepo package. PKM lives in a dedicated Anytype workspace. any-sync ASAL limits still apply. Open Axiom is cut."
+    note: "Not a required monorepo package. Leftover PKM lives in a dedicated Anytype workspace. Central hosts the Anytype integration (Powerline lock 2026-09-30; Dewey role: integration only — not plugin/extension). Intended shape: Anytype / Grok bot Anytype as a Central integration. Packages-under-Central is sanctioned (GV-0004 C16). Metro↔Central data bridge allowlist includes owner-marked AT records (with OB, BI, OT). any-sync ASAL limits still apply. Open Axiom is cut."
   - code: TK
     name: Subtoken
     role: app
@@ -79,7 +79,7 @@ apps:
     status: reserved
     platforms: [DT, AD, IO, AP]
     audience: [admin]
-    note: "Tauri command center for Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST. Former code LO is an address alias. The Omarchy machine is the local AI host. Personal agent Luna (LU) is unchanged."
+    note: "Social media app (Powerline lock 2026-09-30). Consumes extensions and packages hosted in SubTerra Central. Tauri v2 for Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST. Former code LO is an address alias. Catalog audience admin still mounts here. The Omarchy machine is the local AI host. Personal agent Luna (LU) is unchanged."
   - code: LU
     name: Luna
     role: app
@@ -92,7 +92,7 @@ apps:
     localPath: apps/subterra-central
     status: reserved
     audience: [member]
-    note: "Gig and event hub. Member PWA at apps/subterra-central. Anonymous NFC event page. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. A granted Open Time schedule is public here. Wishlists and the draft stay in Open Time."
+    note: "Personal AI hub and suite of all tools (Powerline lock 2026-09-30). Hosts packages and integrations; a packages-under-Central path is sanctioned (GV-0004 C16). Offline-first PWA at apps/subterra-central. Catalog audience member still mounts here. NFC event page remains challenge-response. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. Metro as the social app consumes packages hosted here."
   - code: OD
     name: Open Time (address alias)
     role: app
