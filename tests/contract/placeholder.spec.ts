@@ -15,8 +15,8 @@ const pending = () => {
 
 test.describe("@contract manifest parity", () => {
   test.fixme("every manifest item has an APP_REGISTRY entry and vice versa", pending);
-  test.fixme("every item localPath exists in the meta workspace", pending);
-  test.fixme("role and marketplace agree for every item", pending);
+  test.fixme("every leftover linked localPath exists; reserved monorepo paths may be absent", pending);
+  test.fixme("leftover items keep twin role/marketplace; Luna items use marketplace null", pending);
   test.fixme("every item declares known PLATFORM_CODES", pending);
 });
 

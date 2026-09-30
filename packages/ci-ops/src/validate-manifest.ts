@@ -18,6 +18,9 @@ const text = readFileSync(manifestPath, "utf8");
 const required = [
   "schemaVersion:",
   "appCode: ST",
+  "appCode: LO",
+  "appCode: SM",
+  "appCode: SC",
   "appCode: BK",
   "role: app",
   "role: integration",

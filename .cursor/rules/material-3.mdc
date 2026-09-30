@@ -1,14 +1,14 @@
 ---
-description: SubTerra UI uses Material Design 3 and the shared shell theme
+description: SubTerra UI uses Material Design 3 and packages/open-ui tokens
 alwaysApply: true
 ---
 
 # Material Design 3
 
-SubTerra-owned UI uses Material Design 3. Constitution §15 and `Docs/DESIGN_RECORDS/GV-0003-material-3.md`.
+SubTerra-owned UI uses Material Design 3. Constitution §15, `Docs/DESIGN_RECORDS/GV-0003-material-3.md`, and GV-0004 / `Docs/ARCHITECTURE.md`.
 
 - Web, desktop, and mobile: Material 3 tokens in `packages/open-ui` via Tailwind and `@material/material-color-utilities` (GV-0004). No arbitrary Tailwind values, no hardcoded hex/RGB in `.tsx`.
-- Theme: import `packages/open-ui`. Seed color is amber `#e8a54b`. `@subterra/shell-ui` is legacy until the monorepo lands.
+- Theme: import `packages/open-ui`. That package owns palette, type, and spacing. Locked palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Type: interim Material 3 type scale; font families pending Powerline. Spacing: 4dp grid. Amber `#e8a54b` is withdrawn. `@subterra/shell-ui` is the legacy package until the monorepo lands. Material Web (`@material/web`) is not the owner. Token *code* is product-repo work, not this governance repo.
 - Do not add MUI, shadcn, or a new hand-rolled button/nav kit.
 - New screens use Material 3 components. Change an existing screen over to Material 3 when you edit it.
-- Exempt: vendor-fork UI that still tracks upstream (Actual / `FN`), and tools with no UI (`tag-writer`). New SubTerra screens inside an exempt repo still follow this rule.
+- Exempt: vendor-fork UI that still tracks upstream (Actual screens; Open Books `OB` uses the headless API and our Material 3 wrapper), and tools with no UI (`tag-writer`). New SubTerra screens inside an exempt repo still follow this rule.

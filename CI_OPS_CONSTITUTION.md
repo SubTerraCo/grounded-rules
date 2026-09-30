@@ -1,52 +1,56 @@
 # SubTerra CI Ops Constitution
 
-> Source of truth for all SubTerraCo SubTerra polyrepos.  
+> Source of truth for SubTerraCo governance and for every repo that consumes it.
 > Product repos **consume** this document; they do not fork conflicting rules.
 >
-> **GV-0004 supersedes this constitution wherever they disagree.** The enterprise monorepo (two shells, package layout, BSL for new original code, Tailwind Material 3 tokens, Rust only inside Tauri) is the current ruling. Its default branch is `master`, the same as every other SubTerraCo repo. Rules below still apply when GV-0004 is silent.
+> **GV-0004 and [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) supersede this constitution wherever they disagree.** The enterprise monorepo (SubTerra Metro + packages, two runtimes, BSL for new original code, Tailwind Material 3 tokens, Rust only inside Tauri) is the current product shape. Readable summary: [Docs/GOVERNANCE_OVERVIEW.md](Docs/GOVERNANCE_OVERVIEW.md). Rules below still apply when GV-0004 is silent.
 
-**ciOpsVersion:** aligns with `governance/package.json` version (`YY.M.D`).
+**ciOpsVersion:** aligns with this repo's `package.json` version (`YY.M.D`).
 
 ---
 
-## 1. Polyrepo topology
+## 1. Topology (GV-0004)
 
-| Path (meta workspace) | Repo | Role |
-|-----------------------|------|------|
-| `governance/` | `SubTerraCo/subterra-governance` | This constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
-| `shell/` | `SubTerraCo/subterra-shell` | Dual shell targets + `@subterra/*` + `packages/shell-core` (GV-0002) |
-| `apps/<name>/` | per product | Apps marketplace |
-| `integrations/<name>/` | per integration | Integrations marketplace |
+The **product** is one pnpm + Turborepo enterprise monorepo (`SubTerraCo/luna`, not created yet). This repository (`SubTerraCo/subterra-governance`) stays the rules, Dewey, manifest, reusable Actions, and `@subterra/ci-ops` repo. It is not the product monorepo.
+
+Existing SubTerraCo product repos stay on `master` and keep calling governance workflows until they are folded in.
+
+| Path | Repo | Role |
+|------|------|------|
+| this repo | `SubTerraCo/subterra-governance` | Constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
+| (future) `apps/` `packages/` `tooling/` | `SubTerraCo/luna` | Enterprise monorepo — SubTerra Metro, SubTerra Central, and packages. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) |
+| `shell/` | `SubTerraCo/subterra-shell` | Leftover shell repo until Phase 1 copies what is still useful. Do not build leftover `apps/admin` folders or `packages/shell-core` |
+| existing `apps/<name>/` | per product (Blocks, Mailbot, …) | Leftover standalone app repos until folded into `packages/` / `apps/` in `luna` |
+| existing `integrations/<name>/` | per integration (Anytype) | Leftover standalone integration repos until folded. PKM stays a dedicated Anytype workspace, not a monorepo package |
 
 ### 1.1 Shell targets (GV-0004; supersedes GV-0002 D1–D2)
 
-Exactly two executable shells. Product entry points share them. Luna OS personal data and SubTerra Collective data do not share a read or write path.
+Exactly two executable runtimes. Product packages install into them. SubTerra Metro personal data and SubTerra Central data do not share a read or write path unless the owner turns on the optional data bridge.
 
 | Shell | Path | Runtime | Hosts |
 |-------|------|---------|-------|
-| Desktop and mobile | `apps/luna-os` | Tauri v2 + React 19 + Vite | Luna OS on Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
-| Web | `apps/web-shell` | Offline-first PWA | SubTerra Central, Open Gig, Community |
+| SubTerra Metro | `apps/subterra-metro` | Tauri v2 + React 19 + Vite | Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
+| SubTerra Central | `apps/subterra-central` | Offline-first PWA | Gigs, events; Open Gig and Community install here |
 
 Shared UI is `packages/open-ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
 
-`apps/admin`, `apps/nexus`, and `packages/shell-core` from GV-0002 are not the paths to build. `subterra-shell` remains until the monorepo exists.
+Leftover `apps/admin` folders and `packages/shell-core` from GV-0002 are not the paths to build. `subterra-shell` remains until the monorepo exists.
 
 ---
 
-## 2. Apps ↔ Integrations parity (mandatory)
+## 2. Marketplace and remaining twin-SDK contract
 
-**Apps and Integrations are operational twins.**
+**Current product marketplace (GV-0004).** Every installable package stands alone. It may not import another package. The shell is the only dependency: Material 3, the marketplace, and a small SQLite hub. A package opens and works when the hub is empty. Separate Apps and Integrations tabs are **dropped**. The same package can be installed in SubTerra Metro, in SubTerra Central, or in both; each shell has its own hub. The live mount gate is catalog **`audience`**, not twin marketplace fields.
 
-- Same folder depth under the meta workspace
-- Same repo-per-item polyrepo pattern
+**Stop on new monorepo packages.** Do not write `role: app` / `role: integration`, `marketplace: apps` / `marketplace: integrations`, or a twin SDK (`@subterra/app-sdk` / `@subterra/integration-sdk`) on reserved monorepo items. Those rows use `marketplace: null`, `sdk: null`, and `audience`.
+
+**Deprecated leftover.** Existing filled twin fields on leftover standalone-repo items (Blocks, Mailbot, Billbot, Anytype, and the leftover shell SDK packages) stay in the catalog until fold-in. They keep the leftover `subterra-shell` surface:
+
 - Same manifest schema (`subterra.manifest.yaml`)
-- Twin SDKs with **identical APIs**: `@subterra/app-sdk` and `@subterra/integration-sdk`
-- Same SubTerra Shell marketplace chrome (two grids, unified UX)
+- Twin SDKs with **identical APIs**: `@subterra/app-sdk` and `@subterra/integration-sdk` (leftover only)
 - Same CI Ops / Dewey / `/NF` `/NB` `/RD` / `/BUILD` process
 
-Difference is **role** (`app` vs `integration`), which SDK package is declared, and which marketplace tab discovers the item — not architecture or API shape.
-
-New products use the governance **product-repo template** with `role` + target folder (`apps/` vs `integrations/`).
+Do **not** start new product work as a pair of separate app/integration GitHub repos. New work follows [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Prefer the monorepo package layout. The governance **product-repo template** still exists only for leftover standalone repos that must be registered before fold-in.
 
 ---
 
@@ -68,9 +72,9 @@ vYY.MM.DDbX              Batch within that day
 | **AA.SSS.FFF** | Per-repo `FEATURE_REGISTRY.md` | Section tree |
 | **III** | Incident suffix on address | `-001`, `-002`, … |
 
-**Cross-repo references:** `BK/N-0026`, `ST/N-0001` (APP + local N/B).
+**Cross-repo references:** `OD/N-0026` or the address alias `BK/N-0026`; `SM/N-0001` or the aliases `LO/N-0001` / `ST/N-0001` (APP + local N/B). New work uses the current codes (SM, OD, OS, BI, …). Alias codes (ST, LO, BK, MB, BB) remain valid on existing addresses. `LO` is the former live shell code for SubTerra Metro.
 
-**PP.MC vs PR.MC:** `PP.MC` = MCP as a delivery platform; `PR.MC` = MCP feature area. Prefer unambiguous combinations (e.g. `BK.DT.MC.01.010.010`).
+**PP.MC vs PR.MC:** `PP.MC` = MCP as a delivery platform; `PR.MC` = MCP feature area. Prefer unambiguous combinations (e.g. `OD.DT.MC.01.010.010`, or the alias `BK.DT.MC.01.010.010`).
 
 ---
 
@@ -82,7 +86,7 @@ Shared **format** across all repos; each repo stamps **independently**.
 |-------|--------|---------|
 | Release | `vYY.MM.DD` | `v26.08.03` |
 | Batch | `vYY.MM.DDbX` | `v26.08.03b1` |
-| npm / electron-builder | `YY.M.D-bX` | `26.8.3-b1` |
+| npm / installer stamp | `YY.M.D-bX` | `26.8.3-b1` |
 | Branch | `vYY.MM.DD` → nightly → `dev` → `master` | same as Blocks |
 
 ### 4.1 Branch model (locked GV-0001 D7)
@@ -120,8 +124,10 @@ Cross-repo versions are aggregated in governance (not in Shell UI):
 Refresh from the meta workspace:
 
 ```bash
-cd governance && pnpm versions:fleet
+pnpm versions:fleet
 ```
+
+(From this repo root. The older `cd governance && …` form is the meta-workspace checkout path.)
 
 Collection is **local checkouts only** (manifest `localPath` + Package junctions). Each APP row shows Display (`vYY.MM.DDbX`), npm, branch, and catalog status. CI runs `pnpm versions:fleet:check` against the committed JSON (does not regenerate from missing siblings on the runner).
 
@@ -137,19 +143,22 @@ Collection is **local checkouts only** (manifest `localPath` + Package junctions
 
 Canonical catalog: [`subterra.manifest.yaml`](subterra.manifest.yaml).
 
-Shell vendors or generates JSON at build time for **Apps** and **Integrations** marketplaces from `role` + `marketplace` fields, then **filters by `audience`** for the active shell session (§13).
+Each shell (SubTerra Metro or SubTerra Central) vendors or generates JSON at build time from the catalog, then **filters by `audience`** for the active shell session (§13). New monorepo packages stand alone (GV-0004) and do not declare a twin marketplace tab.
 
 ### 6.1 Item fields (audience — GV-0002 D4)
 
 | Field | Meaning |
 |-------|---------|
-| `role` | `app` \| `integration` \| `shell` \| `governance` — **which marketplace / topology**, not who is logged in |
-| `marketplace` | `apps` \| `integrations` \| `null` (shell/governance) |
-| `audience` | List of shell audiences that may mount the item: `admin` and/or `member` |
+| `role` | Topology: `shell` \| `governance`. Twin values `app` \| `integration` are **deprecated leftover** on standalone-repo rows only — not who is logged in, and not for new monorepo packages |
+| `marketplace` | Leftover twin: `apps` \| `integrations` on BK/MB/BB/AT. Luna packages and shells use `null` |
+| `sdk` | Leftover twin package (`@subterra/app-sdk` or `@subterra/integration-sdk`), or `null` on Luna items |
+| `audience` | Live mount gate. List of catalog audiences that may mount the item. **Locked values: `admin` and/or `member` only** (GV-0002 D4). Do not rename these strings. |
 
-**Default when `audience` is omitted: `["admin"]` (fail-closed).** An item is never customer-visible on Nexus unless it explicitly includes `member`.
+**Mapping (locked):** `admin` → SubTerra Metro (`SM`, `apps/subterra-metro`; address aliases `LO`, `ST`); `member` → SubTerra Central (`SC`, `apps/subterra-central`).
 
-Do **not** overload `role` for permissions — `SubterraRole` in `@subterra/sdk-contract` already means app vs integration.
+**Default when `audience` is omitted: `["admin"]` (fail-closed).** An item is never visible on SubTerra Central unless it explicitly includes `member`. There is no third audience.
+
+Do **not** overload leftover twin `role` for permissions — `SubterraRole` in `@subterra/sdk-contract` already means app vs integration on the leftover shell.
 
 ---
 
@@ -186,7 +195,7 @@ Governance itself uses this constitution + codes + manifest; it does not ship a 
 
 ## 9. Governance Agent mandate (GV)
 
-The Governance agent is the **one-stop shop** for cross-polyrepo standards. Product agents (ST, BK, MB, AT, …) consume these artifacts; they do not fork conflicting pipelines or Dewey rules.
+The Governance agent is the **one-stop shop** for cross-repo standards. Product agents (SM, OD, OS, AT, … and address aliases ST, LO, BK, MB) consume these artifacts; they do not fork conflicting pipelines or Dewey rules.
 
 ### Owns
 
@@ -194,23 +203,23 @@ The Governance agent is the **one-stop shop** for cross-polyrepo standards. Prod
 |--------|--------|
 | **Rulesets & Dewey** | Constitution, APP/PP/PR codes, manifest, CI Ops gates |
 | **Design language parity** | Material Design 3 (§15, GV-0003, GV-0004). One theme in `packages/open-ui` |
-| **Feature parity** | Apps ↔ Integrations twins; SDK API identity |
-| **GitHub repo management** | Create/configure SubTerraCo polyrepos for new shell/apps/integrations; branch protections; default labels; secrets/vars conventions |
-| **Deployment pipelines** | Reusable Actions (`ci-node`, deploy, release) consumed by all product repos |
-| **Product templates** | `templates/product-repo/` (+ role variants for `shell` / `app` / `integration`) |
-| **Workspace QA (Playwright)** | Cross-package e2e suite at the governance layer that exercises Shell ↔ Apps ↔ Integrations contracts in the meta workspace |
+| **Feature parity** | Installable packages stand alone (GV-0004). Twin-SDK API identity remains only for leftover `subterra-shell` items until fold-in. New monorepo catalog items do not declare twin `role` / `marketplace` / SDK |
+| **GitHub repo management** | Create/configure SubTerraCo repos (governance, leftover product repos, and later `luna`); branch protections; default labels; secrets/vars conventions |
+| **Deployment pipelines** | Reusable Actions (`ci-node`, deploy, release) consumed by product repos until the monorepo pipeline in `luna` replaces them |
+| **Product templates** | `templates/product-repo/` (still used for leftover standalone repos; new product work prefers the monorepo layout) |
+| **Workspace QA (Playwright)** | Cross-package e2e at the governance layer until monorepo `tests/contract` replaces it |
 
 ### Does not own
 
 - Product-specific feature implementation inside a single app (that stays on the product APP code)
-- Product-local Playwright suites that only cover one app’s UI (e.g. Blocks `tests/e2e`) — those remain in-product; governance QA covers **cross-repo / marketplace / SDK contract** journeys
+- Product-local Playwright suites that only cover one app’s UI (e.g. leftover Blocks `tests/e2e`, later Open Day in the monorepo) — those remain in-product; governance QA covers **cross-repo / catalog / SDK contract** journeys
 
 ### Invariants
 
-1. New polyrepo items are registered in `codes/APP_REGISTRY.yaml` **and** `subterra.manifest.yaml` before first release.
-2. New repos start from the governance product template and wire reusable workflows from this repo.
-3. Deployment / CI changes land in governance first, then product repos bump the workflow ref (`@v1` / pin).
-4. Workspace Playwright QA is the release gate for Shell marketplace + SDK parity — not a substitute for product `/testrelease`.
+1. New catalog items are registered in `codes/APP_REGISTRY.yaml` **and** `subterra.manifest.yaml` before first release.
+2. Leftover standalone repos start from the governance product template and wire reusable workflows from this repo. New product work goes in `SubTerraCo/luna` once that repo exists.
+3. Deployment / CI changes for existing repos land in governance first, then product repos bump the workflow ref (`@v1` / pin). Monorepo CI follows the blueprint pipeline in [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) (GV-0004 C5).
+4. Workspace Playwright QA is the release gate for catalog + SDK parity until the monorepo `tests/contract` suite replaces it — not a substitute for product `/testrelease`.
 5. SubTerra-owned UI uses Material Design 3 (§15). Product repos do not add a second component library or token set.
 
 ---
@@ -256,8 +265,8 @@ Callers pass them with `secrets: inherit`. Reusable workflows must never hardcod
 ### New repo checklist
 
 1. Reserve the APP code in `codes/APP_REGISTRY.yaml`.
-2. Add the item to `subterra.manifest.yaml` with `role` + `marketplace`.
-3. Copy `templates/product-repo/` and replace `APPCODE` / product name.
+2. Add the item to `subterra.manifest.yaml`. Leftover standalone repos may keep deprecated twin `role` + `marketplace`. New monorepo packages: `marketplace: null`, `sdk: null`, `audience` as the gate.
+3. Copy `templates/product-repo/` and replace `APPCODE` / product name. Only for leftover standalone repos — new product work belongs in `luna`.
 4. Create the repo in the org (private by default).
 5. Set default branch to `master` (§4.1).
 6. Wire CI to the reusable workflows (§11).
@@ -278,10 +287,10 @@ Governance owns six reusable workflows in `.github/workflows/`. Product repos ca
 |----------|---------|--------|
 | `ci-node.yml` | Install · type-check · lint · build · manifest validate | **Live** |
 | `deploy-web.yml` | Vercel deploy from `master` | **Live** |
-| `release-desktop.yml` | Electron builder installer | R0 stub — consumer: BK, later ST |
-| `publish-npm.yml` | Publish `@subterra/*` packages | R0 stub — blocked on SDK code |
-| `build-android.yml` | Expo EAS Android build | R0 stub — consumer: BK mobile |
-| `nightly-dev-push.yml` | Nightly batch seal onto `dev` | R0 stub — consumer: BK |
+| `release-desktop.yml` | Desktop installer (authored against Electron / Blocks) | R0 stub — leftover consumer: BK. SubTerra Metro ships with Tauri; do not treat this stub as the SubTerra Metro pipeline |
+| `publish-npm.yml` | Publish `@subterra/*` packages | R0 stub — blocked on SDK code. Tokens move to `packages/open-ui` in the monorepo |
+| `build-android.yml` | Expo EAS Android build | R0 stub — leftover consumer: BK mobile. SubTerra Metro Android is Tauri, not Expo |
+| `nightly-dev-push.yml` | Nightly batch seal onto `dev` | R0 stub — leftover consumer: BK |
 
 `R0 stub` means the workflow is authored and syntactically valid but not yet wired to a consumer. Do not delete stubs; wire them when a consumer appears.
 
@@ -316,18 +325,18 @@ When diagnosing a `startup_failure`, note that a run whose `name` shows the *fil
 
 ## 12. Workspace QA (Playwright)
 
-Home: **`governance/tests/`** — its own Playwright project, run from the meta workspace via `pnpm test:workspace`.
+Home: **`tests/`** in this repo — its own Playwright project, run via `pnpm test:workspace`. (The older `governance/tests/` path is this same folder in a meta-workspace checkout.)
 
 ### Scope split
 
 | Layer | Owner | Covers |
 |-------|-------|--------|
 | Product e2e | Product repo (e.g. Blocks `tests/e2e`) | One app's own UI and flows |
-| **Workspace QA** | **Governance** | Cross-repo contracts: manifest ↔ registry ↔ filesystem parity, Shell marketplace handoff, twin-SDK API identity, design-token parity |
+| **Workspace QA** | **Governance** | Cross-repo contracts: manifest ↔ registry parity, catalog/audience handoff, twin-SDK API identity (legacy shell), design-token parity. Replaced by monorepo `tests/contract` when `luna` exists |
 
 ### Status
 
-Coverage is **deferred** (GV-0001 D5). Shell has no running host and the twin SDKs have no real surface area, so cross-repo browser journeys have nothing to assert against. The suite's config, docs, and location are locked; tests land once Shell and the SDKs are real.
+Coverage is **deferred** (GV-0001 D5) until a shell host and real SDK surface exist to assert against. Twin SDK scaffolds live in `subterra-shell`; SubTerra Metro / SubTerra Central do not exist yet. The suite's config, docs, and location are locked; tests land once a shell host is real.
 
 Workspace QA is a release gate for marketplace + SDK parity. It never substitutes for a product's own `/testrelease`.
 
@@ -339,12 +348,16 @@ Design record: [GV-0002](Docs/DESIGN_RECORDS/GV-0002-nexus-dual-shell.md).
 
 ### 13.1 Audiences
 
-| Audience | Typical shell | Sees |
-|----------|---------------|------|
-| `admin` | ST (`apps/admin`) | Items with `audience` containing `admin` (default) |
-| `member` | NX Nexus (`apps/nexus`) | Only items that explicitly list `member` |
+Catalog field `audience` is a list. **Machine values stay exactly `admin` and `member`** (GV-0002 D4). Do not rename them to shell names or any other enum.
 
-Session identity is separate from marketplace `role`. Host context must expose audience without reusing the `role` field name.
+| Catalog `audience` | Shell | Sees |
+|--------------------|-------|------|
+| `admin` | SubTerra Metro (`apps/subterra-metro`, code `SM`; address aliases `LO`, `ST`) | Items whose `audience` list contains `admin` (this is the default when the field is omitted) |
+| `member` | SubTerra Central (`apps/subterra-central`, code `SC`) | Only items whose `audience` list contains `member` |
+
+Prefer shell names (SubTerra Metro / SubTerra Central) in prose. Do not invent a third audience. “Powerline” and “Collective” are not `audience` values. Leftover `apps/admin` folders are not an audience value and are not the paths to build.
+
+Session identity is separate from leftover twin `role`. Host context must expose audience without reusing the `role` field name.
 
 ### 13.2 NFC authentication invariant
 
@@ -362,11 +375,17 @@ Product implementations that shortcut this invariant are constitution violations
 | | |
 |--|--|
 | APP | `TK` — **Subtoken** |
-| Audience | `[admin]` |
+| Audience | `[admin, member]` — ARCHITECTURE install matrix |
+| SubTerra Metro (`admin`) | Organizer tools |
+| SubTerra Central (`member`) | Event page, tickets, show log, digital goods |
 | Absorbs | `SubTerraCo/subtoken`, `tag-writer`, `validation` |
 | Status | Reserved — consolidation and revival deferred (GV-0002 D6 / D8) |
 
-### 13.4 Dewey areas added for Nexus
+GV-0002 D3/D6 historically listed TK as `audience: [admin]` only. The live catalog follows the ARCHITECTURE matrix: both shells.
+
+### 13.4 Dewey areas added for the member shell
+
+Reserved in GV-0002 D7 for the member shell (SubTerra Central):
 
 | Code | Area |
 |------|------|
@@ -374,6 +393,16 @@ Product implementations that shortcut this invariant are constitution violations
 | `EV` | Events / ticketing |
 
 Existing `AU` (Auth / device identity) and `NF` (NFC / crypto tags) cover challenge-response and tag crypto.
+
+### 13.5 Community (CH)
+
+| | |
+|--|--|
+| APP | `CH` — **Community** |
+| Audience | `[admin, member]` — ARCHITECTURE install matrix |
+| SubTerra Metro (`admin`) | Crew discussion |
+| SubTerra Central (`member`) | Public discussion |
+| Engine | Flarum (`FM`, optional). Community still runs without Forum |
 
 ---
 
@@ -404,9 +433,11 @@ Design record: [GV-0003](Docs/DESIGN_RECORDS/GV-0003-material-3.md).
 | Rule | Requirement |
 |------|-------------|
 | System | [Material Design 3](https://m3.material.io/) only. Do not add a second UI kit (MUI, shadcn, or a hand-rolled button/nav set) for new UI |
-| Web, desktop, and mobile | Tailwind CSS preset plus `@material/material-color-utilities` in `packages/open-ui` (GV-0004). Arbitrary Tailwind values and hardcoded hex/RGB in `.tsx` fail CI |
-| Theme | One theme, owned by `packages/open-ui`. `@subterra/shell-ui` is the legacy package until the monorepo lands |
-| Seed color | Amber `#e8a54b` (current shell accent). Not Blocks magenta, and not Material's default purple |
+| Web, desktop, and mobile | Tailwind CSS preset plus `@material/material-color-utilities` in `packages/open-ui` (GV-0004). Arbitrary Tailwind values and hardcoded hex/RGB in `.tsx` fail CI. Docs may cite the locked palette hexes below; product `.tsx` must use tokens |
+| Theme | One theme, owned by `packages/open-ui`. That package owns **palette, type, and spacing**. `@subterra/shell-ui` is the legacy package until the monorepo lands. Token *code* lives in the product monorepo / leftover shell — not this governance repo |
+| Palette | Purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. The single amber seed `#e8a54b` is withdrawn. Not Blocks magenta |
+| Type | Interim [Material 3 type scale](https://m3.material.io/styles/typography/type-scale-tokens) (display, headline, title, body, label). Font **families are not locked** — do not invent a typeface; wait for Powerline |
+| Spacing | 4dp baseline grid (4px at 1×). Component padding and gaps snap to that grid |
 | New UI | Material 3 components: app bars, navigation, buttons, text fields, lists, sheets |
 | Existing UI | Migrates when that screen is edited. This rule does not require a rewrite in place |
 
@@ -414,7 +445,7 @@ Design record: [GV-0003](Docs/DESIGN_RECORDS/GV-0003-material-3.md).
 
 | Case | Why |
 |------|-----|
-| Vendor-fork UI (Actual / `FN` while it tracks upstream screens) | Restyling upstream UI makes every sync a conflict and blocks contributing back |
+| Vendor-fork UI (Actual screens while they track upstream) | Restyling upstream UI makes every sync a conflict and blocks contributing back. Open Books (`OB`) uses `@actual-app/api` and our Material 3 wrapper |
 | Tools with no UI (`tag-writer`) | Nothing to theme |
 
 A repo that claims an exemption says so in its `.cursor/rules/` and in the manifest when the vendor-fork flag exists. The exemption covers that repo's upstream UI only. New SubTerra screens inside an exempt repo still use Material 3.

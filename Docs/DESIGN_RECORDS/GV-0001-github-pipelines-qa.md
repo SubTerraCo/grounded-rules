@@ -4,10 +4,14 @@
 |--|--|
 | **Address** | `GV.CX.DV.01.010.010` |
 | **Release** | `v26.08.03` |
-| **Status** | Design locked (Round 1 + Round 2) — implementation partially blocked |
+| **Status** | Design locked (Round 1 + Round 2) — implementation partially blocked. **Product topology in this record (separate product repos, Shell as ST) is superseded by GV-0004.** GitHub org, `master`, reusable pipelines, vendor `upstream` remotes, and workspace-QA location still stand |
 | **Owner** | Governance agent (GV) |
 
-Expands the GV mandate (constitution §9) to cover GitHub polyrepo management, reusable deployment pipelines, and a workspace-level Playwright QA suite.
+Expands the GV mandate (constitution §9) to cover GitHub repo management, reusable deployment pipelines, and a workspace-level Playwright QA suite.
+
+**Still stands:** SubTerraCo org, Team plan, `master` as production, six reusable workflows, vendor `upstream` remotes, workspace QA in `tests/`, twin-SDK contract in `sdk-contract`.
+
+**Superseded by GV-0004:** separate GitHub repos as the product shape, Shell application owned only by ST, Electron/Next desktop as the thing to build. The product is `SubTerraCo/luna` (not created yet). This governance repo still owns the reusable workflows consumed by leftover product repos.
 
 ---
 

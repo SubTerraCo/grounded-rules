@@ -8,7 +8,6 @@
 |-----|------|---------|-----|--------|--------|------|
 | GV | Governance | v26.08.04 | 26.8.4 | master | linked | SubTerraCo/subterra-governance |
 | ST | SubTerra Shell | v26.08.04b1 | 26.8.4-b1 | master | linked | SubTerraCo/subterra-shell |
-| NX | Nexus | v26.08.04b1 | 26.8.4-b1 | master | reserved | SubTerraCo/subterra-shell |
 | BK | Blocks | v26.07.17b3 | 26.7.17 | v26.07.17 | linked | SubTerraCo/Blocks |
 | MB | Mailbot | v00.01.00 | 0.1.0 | master | linked | SubTerraCo/mailbot |
 | BB | Billbot | — | — | — | reserved | SubTerraCo/billbot |
@@ -18,6 +17,7 @@
 ## Notes
 
 - **Display** is `vYY.MM.DDbX` from package display field or ROADMAP batch log.
-- **npm** is `package.json` `version` (Electron / npm semver form).
+- **npm** is `package.json` `version` (npm semver form `YY.M.D` / `YY.M.D-bX`).
 - Rows with Display/npm `—` usually mean the local checkout is missing or not yet on the SubTerra stamp.
-- Refresh: `pnpm versions:fleet` from `governance/`.
+- Refresh: `pnpm versions:fleet` from this repo root (or `governance/` in a meta-workspace checkout).
+- ST / LO / BK / MB / BB are address aliases. The packages to build are SM / SC / OD / OS / BI (GV-0004). LO is the former live code for SubTerra Metro. This snapshot was not regenerated in the 2026-09-30 cleanup (sibling checkouts are not on this runner).

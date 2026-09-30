@@ -14,5 +14,5 @@
 
 ## Active sprint 0 (v26.08.03)
 
-- [ ] Wire `@subterra/app-sdk` or `@subterra/integration-sdk`
-- [ ] Register in `subterra.manifest.yaml`
+- [ ] Register in `subterra.manifest.yaml` and `codes/APP_REGISTRY.yaml`
+- [ ] Leftover standalone repos: wire `@subterra/app-sdk` or `@subterra/integration-sdk`. New product work belongs in `SubTerraCo/luna` once that repo exists.

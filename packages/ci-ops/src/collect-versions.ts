@@ -40,11 +40,17 @@ const PATH_FALLBACKS: Record<string, readonly string[]> = {
   "apps/blocks": ["apps/blocks", "Packages/Blocks"],
   "apps/mailbot": ["apps/mailbot", "Packages/Mail Bot"],
   "apps/billbot": ["apps/billbot", "Packages/Bill Bot"],
-  "apps/subtoken": ["apps/subtoken", "Packages/Subtoken"],
+  "apps/subtoken": ["apps/subtoken", "packages/subtoken", "Packages/Subtoken"],
   "integrations/anytype": [
     "integrations/anytype",
     "Packages/Integrations/Anytype",
   ],
+  "packages/subtoken": ["packages/subtoken", "apps/subtoken", "Packages/Subtoken"],
+  "packages/open-day": ["packages/open-day", "apps/blocks", "Packages/Blocks"],
+  "packages/open-sort": ["packages/open-sort", "apps/mailbot", "Packages/Mail Bot"],
+  "packages/open-bill": ["packages/open-bill", "apps/billbot", "Packages/Bill Bot"],
+  "apps/subterra-metro": ["apps/subterra-metro", "apps/luna-os"],
+  "apps/luna-os": ["apps/luna-os", "apps/subterra-metro"],
   shell: ["shell"],
   governance: ["governance", "."],
 };
@@ -344,14 +350,28 @@ export function buildFleet(): FleetSnapshot {
 
   const preferredOrder = [
     "GV",
+    "SM",
+    "LO",
     "ST",
-    "NX",
+    "SC",
+    "OD",
     "BK",
+    "OS",
     "MB",
+    "BI",
     "BB",
+    "OB",
     "TK",
     "AT",
+    "OG",
+    "CH",
+    "LU",
+    "FM",
+    "HA",
+    "MA",
+    "BS",
     "WL",
+    "AX",
   ];
   const apps: FleetApp[] = [];
   for (const code of preferredOrder) {
@@ -395,9 +415,10 @@ export function renderVersionsMarkdown(fleet: FleetSnapshot): string {
     "## Notes",
     "",
     "- **Display** is `vYY.MM.DDbX` from package display field or ROADMAP batch log.",
-    "- **npm** is `package.json` `version` (Electron / npm semver form).",
+    "- **npm** is `package.json` `version` (npm semver form `YY.M.D` / `YY.M.D-bX`).",
     "- Rows with Display/npm `—` usually mean the local checkout is missing or not yet on the SubTerra stamp.",
-    "- Refresh: `pnpm versions:fleet` from `governance/`.",
+    "- Refresh: `pnpm versions:fleet` from this repo root (or `governance/` in a meta-workspace checkout).",
+    "- ST / LO / BK / MB / BB are address aliases. The packages to build are SM / SC / OD / OS / BI (GV-0004). LO is the former live code for SubTerra Metro.",
     "",
   );
   return `${lines.join("\n")}`;

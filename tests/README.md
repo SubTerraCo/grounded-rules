@@ -1,13 +1,13 @@
 # Workspace QA (governance layer)
 
-Cross-repo contract tests for the SubTerra OS polyrepo. Owned by the Governance agent (GV) per CI_OPS_CONSTITUTION §12.
+Cross-repo contract tests for SubTerra. Owned by the Governance agent (GV) per CI_OPS_CONSTITUTION §12. Until `SubTerraCo/luna` exists, this suite lives here; the monorepo `tests/contract` project is intended to replace it (GV-0004 / Docs/ARCHITECTURE.md).
 
 ## Scope
 
 | Layer | Owner | Covers |
 |-------|-------|--------|
-| Product e2e | Product repo (e.g. Blocks `tests/e2e`) | One app's own UI and flows |
-| **Workspace QA** | **Governance** | Contracts *between* repos |
+| Product e2e | Product repo (leftover Blocks `tests/e2e`; later Open Day in `luna`) | One app's own UI and flows |
+| **Workspace QA** | **Governance** | Contracts *between* repos / packages |
 
 This suite never duplicates a product's own e2e. It asserts the things no single repo can check alone.
 
@@ -15,39 +15,37 @@ This suite never duplicates a product's own e2e. It asserts the things no single
 
 | Project | Browser? | Purpose |
 |---------|----------|---------|
-| `contract` | No | Manifest ↔ `APP_REGISTRY` ↔ filesystem parity, twin-SDK API identity, workflow adoption, template drift, design-token parity |
-| `marketplace` | Yes | Shell Apps/Integrations grid handoff, install/open journeys |
+| `contract` | No | Manifest ↔ `APP_REGISTRY` parity, twin-SDK API identity (legacy `subterra-shell`), workflow adoption, template drift, design-token parity |
+| `marketplace` | Yes | Shell catalog handoff and install/open journeys (SubTerra Metro / SubTerra Central once those hosts exist) |
 
 ## Status — coverage deferred
 
 Locked in [GV-0001](../Docs/DESIGN_RECORDS/GV-0001-github-pipelines-qa.md) D5: the suite's location and config are fixed, but tests are deferred.
 
-The two preconditions have diverged since that lock:
-
 | Precondition | State |
 |--------------|-------|
-| Twin SDKs are real code | **Met** — scaffolded and verified under `shell/packages/` (D10). Exports are identical and match `SDK_SURFACE` |
-| Shell host is running | **Not met** — no Shell application exists, so `marketplace` has nothing to drive |
+| Twin SDKs are real code | **Met** for the leftover shell — scaffolded under `shell/packages/` (D10). Exports are identical and match `SDK_SURFACE` |
+| Shell host is running | **Not met** — SubTerra Metro and SubTerra Central do not exist yet, so `marketplace` has nothing to drive |
 
-So `contract` tests are unblocked, while `marketplace` remains genuinely blocked.
+So `contract` tests against the leftover SDK surface are unblocked in principle, while `marketplace` remains genuinely blocked. GV-0004 dropped separate Apps and Integrations tabs; when marketplace tests land they should drive package install into a shell, not two grids.
 
 ## Planned coverage
 
 `contract`:
 
-1. Every `subterra.manifest.yaml` item has a matching `codes/APP_REGISTRY.yaml` entry, and vice versa.
-2. Every item's `localPath` exists in the meta workspace.
-3. `role` and `marketplace` agree (`app`→`apps`, `integration`→`integrations`).
+1. Every `subterra.manifest.yaml` item has a matching `codes/APP_REGISTRY.yaml` entry, and vice versa (withdrawn rows such as AX Axiom stay in both until Powerline approves archive).
+2. Every leftover linked item's `localPath` exists in the meta workspace. Reserved monorepo paths (`apps/subterra-metro`, `packages/open-day`, …) are allowed to be absent until `luna` exists.
+3. Leftover standalone-repo items keep deprecated twin `role` / `marketplace` (`app`→`apps`, `integration`→`integrations`). New monorepo packages must not declare those twin fields (`marketplace: null`, `sdk: null`).
 4. Every item declares platform codes that exist in `PLATFORM_CODES.yaml`.
-5. `@subterra/app-sdk` and `@subterra/integration-sdk` export identical symbol names, equal to `SDK_SURFACE`, differing only in `SDK_ROLE`.
-6. Each product repo's CI references the governance reusable workflows.
-7. No product repo has drifted from `templates/product-repo/` required docs.
+5. While `subterra-shell` remains, `@subterra/app-sdk` and `@subterra/integration-sdk` export identical symbol names, equal to `SDK_SURFACE`, differing only in `SDK_ROLE`.
+6. Each leftover product repo's CI references the governance reusable workflows.
+7. No leftover product repo has drifted from `templates/product-repo/` required docs.
 
 `marketplace`:
 
-1. Apps and Integrations grids render from the manifest.
-2. An item opens in the Shell host and mounts through the SDK lifecycle.
-3. Both grids share identical chrome (Apps ↔ Integrations UX parity, §2).
+1. Catalog items render in the active shell, filtered by `audience`.
+2. An installed package opens against an empty hub.
+3. SubTerra Metro and SubTerra Central do not share hub data unless the owner-marked bridge is on.
 
 ## Running
 

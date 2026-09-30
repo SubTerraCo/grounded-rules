@@ -24,12 +24,19 @@ governance:
       non_fast_forward, required_status_checks) with org admins as bypass actors.
     legacyOwner: PoweredUpLabs  # still holds unrelated repos; nothing SubTerra should live there
 
-# Canonical catalog for SubTerra Shell dual marketplaces (Apps + Integrations).
-# Same schema for both roles — Apps ↔ Integrations parity.
+# Canonical catalog. GV-0004 product shape: SubTerra Metro + SubTerra Central + standalone packages.
+# Leftover standalone-repo items stay as address aliases until folded into SubTerraCo/luna.
 #
-# audience (GV-0002 D4): list of shell audiences that may mount the item.
-# Values: admin | member. Default when omitted: [admin] (fail-closed).
-# Never reuse the word `role` for this — role is app vs integration.
+# audience (GV-0002 D4): list of catalog audiences that may mount the item.
+# Locked machine values: admin | member only. Do not rename these strings.
+# Default when omitted: [admin] (fail-closed).
+# Mapping: admin → SubTerra Metro (SM, apps/subterra-metro; aliases LO, ST);
+#          member → SubTerra Central (SC, apps/subterra-central).
+# No third audience. Never reuse the word `role` for this — leftover twin role is deprecated.
+#
+# Twin fields (role: app|integration, marketplace: apps|integrations, @subterra/*-sdk):
+# DEPRECATED on leftover standalone repos. Do not write them on new monorepo catalog items.
+# Monorepo packages use marketplace: null, no twin SDK, and audience as the live mount gate.
 items:
   - id: shell
     appCode: ST
@@ -43,26 +50,12 @@ items:
     defaultOpen: false
     sdk: null
     status: linked  # first consumer of the reusable ci-node workflow
-    note: "Admin shell target — apps/admin over packages/shell-core (GV-0002 D1)"
+    note: "Address alias for SM SubTerra Metro (former live code LO). Leftover SubTerraCo/subterra-shell until Phase 1. Twin SDK packages below are deprecated leftover until fold-in."
     provides:
-      # Twin SDKs scaffolded and parity-verified (GV-0001 D10).
+      # Twin SDKs scaffolded and parity-verified (GV-0001 D10). Deprecated leftover surface.
       - "@subterra/sdk-contract"   # internal single source of truth
       - "@subterra/app-sdk"
       - "@subterra/integration-sdk"
-
-  - id: nexus
-    appCode: NX
-    name: Nexus
-    repo: SubTerraCo/subterra-shell
-    localPath: shell
-    platforms: [DT, WB, AD]
-    role: shell
-    marketplace: null
-    audience: [member]
-    defaultOpen: false
-    sdk: null
-    status: reserved  # shell code deferred (GV-0002 D8)
-    note: "Customer shell — social, events, tickets; apps/nexus over shell-core (GV-0002 D2)"
 
   - id: blocks
     appCode: BK
@@ -70,13 +63,14 @@ items:
     repo: SubTerraCo/Blocks
     localPath: apps/blocks
     platforms: [DT, WB, AD, IO]
-    role: app
-    marketplace: apps
+    role: app  # DEPRECATED leftover twin field
+    marketplace: apps  # DEPRECATED leftover twin field
     audience: [admin]
     defaultOpen: true
-    sdk: "@subterra/app-sdk"
+    sdk: "@subterra/app-sdk"  # DEPRECATED leftover twin field
     mcp: "@blocks/mcp-server"
     status: linked
+    note: "Address alias for OD Open Day at packages/open-day. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
 
   - id: mailbot
     appCode: MB
@@ -84,15 +78,16 @@ items:
     repo: SubTerraCo/mailbot
     localPath: apps/mailbot
     platforms: [WB, DT]
-    role: app
-    marketplace: apps
+    role: app  # DEPRECATED leftover twin field
+    marketplace: apps  # DEPRECATED leftover twin field
     audience: [admin]
     defaultOpen: false
-    sdk: "@subterra/app-sdk"
+    sdk: "@subterra/app-sdk"  # DEPRECATED leftover twin field
     # Remote repointed off the dead `poweredupbass` handle; local and remote
     # HEAD verified identical (dd1ddaa) before the org transfer.
     status: linked
     defaultBranch: master
+    note: "Address alias for OS Open Sort at packages/open-sort. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
 
   - id: billbot
     appCode: BB
@@ -100,28 +95,13 @@ items:
     repo: SubTerraCo/billbot
     localPath: apps/billbot
     platforms: [WB, DT]
-    role: app
-    marketplace: apps
+    role: app  # DEPRECATED leftover twin field
+    marketplace: apps  # DEPRECATED leftover twin field
     audience: [admin]
     defaultOpen: false
-    sdk: "@subterra/app-sdk"
+    sdk: "@subterra/app-sdk"  # DEPRECATED leftover twin field
     status: reserved
-
-  - id: subtoken
-    appCode: TK
-    name: Subtoken
-    repo: SubTerraCo/subtoken
-    localPath: apps/subtoken
-    platforms: [DT, WB, AD, IO]
-    role: app
-    marketplace: apps
-    audience: [admin]
-    defaultOpen: false
-    sdk: "@subterra/app-sdk"
-    status: reserved  # revival deferred (GV-0002 D6 / D8)
-    note: >-
-      Admin NFC / ticketing. Absorbs SubTerraCo/subtoken, tag-writer, and
-      validation. Challenge-response auth crypto becomes shared (§13).
+    note: "Address alias for BI Open Bill at packages/open-bill. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
 
   - id: anytype
     appCode: AT
@@ -129,24 +109,25 @@ items:
     repo: SubTerraCo/subterra-anytype
     localPath: integrations/anytype
     platforms: [SH, MC]
-    role: integration
-    marketplace: integrations
+    role: integration  # DEPRECATED leftover twin field
+    marketplace: integrations  # DEPRECATED leftover twin field
     audience: [admin]
     defaultOpen: false
-    sdk: "@subterra/integration-sdk"
+    sdk: "@subterra/integration-sdk"  # DEPRECATED leftover twin field
     # GV-0001 D2/D8: our own repo, seeded by pushing local history as-is.
     # The vendor SDK stays a separate `upstream` remote — never `origin`.
     status: linked  # origin is ours, vendor SDK stays on the `upstream` remote
     upstream: anyproto/anytype-api
     legacyRepo: SubTerraCo/anytype-google-contact-integration  # superseded predecessor, kept for reference
     defaultBranch: master
+    note: "Not a monorepo package. PKM is a dedicated Anytype workspace. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
 
-  # GV-0004 monorepo entry points. Repo is not created yet. Old items above stay as aliases.
+  # GV-0004 monorepo items. No twin role / marketplace: apps|integrations / twin SDK.
   - id: luna-os
     appCode: LO
-    name: Luna OS
+    name: SubTerra Metro (address alias)
     repo: null
-    localPath: apps/luna-os
+    localPath: apps/subterra-metro
     platforms: [DT, AD, IO, AP]
     role: shell
     marketplace: null
@@ -154,7 +135,21 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "GV-0004. Tauri command center, including Arch Linux for Omarchy. Replaces ST. Personal data is isolated from SC."
+    note: "Former live Dewey code for SM. Address alias only. Path to build is apps/subterra-metro. Existing LO addresses stay valid."
+
+  - id: subterra-metro
+    appCode: SM
+    name: SubTerra Metro
+    repo: null
+    localPath: apps/subterra-metro
+    platforms: [DT, AD, IO, AP]
+    role: shell
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "GV-0004. Tauri command center, including Arch Linux for Omarchy. Personal data is isolated from SC. Live gate is audience, not twin marketplace fields. Former code LO is an address alias. Personal agent Luna (LU) is unchanged."
 
   - id: subterra-central
     appCode: SC
@@ -168,7 +163,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "Gig and event hub. Anonymous NFC event page. One-time Artist, Venue, or Vendor upgrade. Friend visibility off by default."
+    note: "Gig and event hub PWA. Anonymous NFC event page. One-time Artist, Venue, or Vendor upgrade. Friend visibility off by default. Live gate is audience, not twin marketplace fields."
 
   - id: open-gig
     appCode: OG
@@ -176,13 +171,12 @@ items:
     repo: null
     localPath: apps/open-gig
     platforms: [WB]
-    role: app
-    marketplace: apps
+    marketplace: null
     audience: [admin, member]
     defaultOpen: false
-    sdk: "@subterra/app-sdk"
+    sdk: null
     status: reserved
-    note: "Free for a solo freelancer. Fee for a crew manager of 5 or more."
+    note: "ARCHITECTURE matrix: SubTerra Metro and SubTerra Central. Free for a solo freelancer. Fee for a crew manager of 5 or more."
 
   - id: axiom-wiki
     appCode: AX
@@ -190,12 +184,14 @@ items:
     repo: null
     localPath: apps/axiom
     platforms: [WB]
-    role: app
-    marketplace: apps
+    marketplace: null
     audience: [admin, member]
     defaultOpen: false
-    sdk: "@subterra/app-sdk"
+    sdk: null
     status: reserved
+    note: >-
+      WITHDRAWN — Open Axiom is cut (GV-0004). Catalog row kept until Powerline
+      approves archive. PKM is a dedicated Anytype workspace, not a monorepo package.
 
   - id: community-hub
     appCode: CH
@@ -203,12 +199,12 @@ items:
     repo: null
     localPath: apps/community
     platforms: [WB]
-    role: app
-    marketplace: apps
-    audience: [member]
+    marketplace: null
+    audience: [admin, member]
     defaultOpen: false
-    sdk: "@subterra/app-sdk"
+    sdk: null
     status: reserved
+    note: "ARCHITECTURE matrix: crew discussion on SubTerra Metro and public discussion on SubTerra Central."
 
   - id: open-books
     appCode: OB
@@ -216,13 +212,12 @@ items:
     repo: null
     localPath: packages/open-books
     platforms: [SB]
-    role: app
-    marketplace: apps
+    marketplace: null
     audience: [admin]
     defaultOpen: false
-    sdk: "@subterra/app-sdk"
+    sdk: null
     status: reserved
-    note: "Budgeting only. Wraps @actual-app/api. Separate from BB Billbot. Upstream fork stays actual-budget-master-fork."
+    note: "ARCHITECTURE matrix: SubTerra Metro; Central only through the owner's bridge. Wraps @actual-app/api. Not Open Bill."
 
   - id: home-assistant
     appCode: HA
@@ -230,10 +225,116 @@ items:
     repo: null
     localPath: packages/home-assistant
     platforms: [DT, WB]
-    role: app
-    marketplace: apps
+    marketplace: null
     audience: [admin]
     defaultOpen: false
-    sdk: "@subterra/app-sdk"
+    sdk: null
     status: reserved
-    note: "Home automation. Client only. Upstream Home Assistant server is Apache 2.0 and can run on Omarchy."
+    note: "ARCHITECTURE matrix: SubTerra Metro only. Client only. Upstream Home Assistant server is Apache 2.0."
+
+  - id: luna
+    appCode: LU
+    name: Luna
+    repo: null
+    localPath: packages/luna
+    platforms: [DT]
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "ARCHITECTURE matrix: SubTerra Metro only. Agent router. Ollama / Gemma 4 12B default on Omarchy."
+
+  - id: open-day
+    appCode: OD
+    name: Open Day
+    repo: null
+    localPath: packages/open-day
+    platforms: [DT, WB]
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "ARCHITECTURE matrix: SubTerra Metro (tasks + Festy draft); Central gets a public schedule only when granted."
+
+  - id: open-sort
+    appCode: OS
+    name: Open Sort
+    repo: null
+    localPath: packages/open-sort
+    platforms: [DT, WB]
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "ARCHITECTURE matrix: SubTerra Metro only. Gmail and IMAP labels and archive."
+
+  - id: open-bill
+    appCode: BI
+    name: Open Bill
+    repo: null
+    localPath: packages/open-bill
+    platforms: [DT, WB]
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "ARCHITECTURE matrix: SubTerra Metro; Central only through the owner's bridge. Invoicing and 1099 exports."
+
+  - id: forum
+    appCode: FM
+    name: Forum
+    repo: null
+    localPath: packages/forum
+    platforms: [WB]
+    marketplace: null
+    audience: [admin, member]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "ARCHITECTURE matrix: optional on SubTerra Metro and SubTerra Central. Flarum. Community still runs without it."
+
+  - id: media
+    appCode: MA
+    name: Media
+    repo: null
+    localPath: packages/media
+    platforms: [DT]
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "ARCHITECTURE matrix: SubTerra Metro only. DaVinci, OBS, Loupedeck."
+
+  - id: banking
+    appCode: BS
+    name: Banking
+    repo: null
+    localPath: packages/banking
+    platforms: [DT, WB]
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "ARCHITECTURE matrix: SubTerra Metro only. SimpleFIN and GoCardless. Treated as a monorepo package, not a twin integration."
+
+  - id: subtoken
+    appCode: TK
+    name: Subtoken
+    repo: SubTerraCo/subtoken
+    localPath: packages/subtoken
+    platforms: [DT, WB, AD, IO]
+    marketplace: null
+    audience: [admin, member]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: >-
+      ARCHITECTURE matrix: organizer tools on SubTerra Metro; event page, tickets, show
+      log, and digital goods on SubTerra Central. Absorbs leftover
+      SubTerraCo/subtoken, tag-writer, and validation. UID-only auth is forbidden.

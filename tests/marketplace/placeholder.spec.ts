@@ -1,9 +1,9 @@
 /**
  * Placeholder for the `marketplace` project.
  *
- * Genuinely blocked: no Shell host application exists yet, so there is nothing
- * to drive a browser against (GV-0001 D5, conflict C4). Unblock alongside the
- * Shell R1 marketplace UI.
+ * Genuinely blocked: SubTerra Metro and SubTerra Central do not exist yet, so there is
+ * nothing to drive a browser against (GV-0001 D5). Unblock alongside the
+ * first shell host. GV-0004 dropped separate Apps and Integrations tabs.
  *
  * See tests/README.md for the full planned coverage.
  */
@@ -13,9 +13,8 @@ const pending = () => {
   // Intentionally empty — see the surrounding fixme title for the assertion owed.
 };
 
-test.describe("@marketplace Shell grids", () => {
-  test.fixme("Apps and Integrations grids render from subterra.manifest.yaml", pending);
-  test.fixme("an app opens in the Shell host and mounts via the SDK lifecycle", pending);
-  test.fixme("an integration opens and mounts through the identical twin API", pending);
-  test.fixme("both grids share identical chrome (Apps ↔ Integrations UX parity)", pending);
+test.describe("@marketplace catalog handoff", () => {
+  test.fixme("catalog items render in the active shell, filtered by audience", pending);
+  test.fixme("an installed package opens against an empty hub", pending);
+  test.fixme("SubTerra Metro and SubTerra Central hubs stay isolated unless the bridge is on", pending);
 });

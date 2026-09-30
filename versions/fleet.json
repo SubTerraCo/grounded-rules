@@ -33,20 +33,6 @@
       "note": null
     },
     {
-      "appCode": "NX",
-      "id": "nexus",
-      "name": "Nexus",
-      "role": "shell",
-      "repo": "SubTerraCo/subterra-shell",
-      "localPath": "shell",
-      "status": "reserved",
-      "display": "v26.08.04b1",
-      "npm": "26.8.4-b1",
-      "branch": "master",
-      "checkout": "C:\\Users\\parol\\Documents\\Dev\\SubTerra OS\\shell",
-      "note": null
-    },
-    {
       "appCode": "BK",
       "id": "blocks",
       "name": "Blocks",
@@ -94,7 +80,7 @@
       "name": "Subtoken",
       "role": "app",
       "repo": "SubTerraCo/subtoken",
-      "localPath": "apps/subtoken",
+      "localPath": "packages/subtoken",
       "status": "reserved",
       "display": null,
       "npm": null,
