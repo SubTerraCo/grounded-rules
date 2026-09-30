@@ -23,11 +23,10 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`) and watches (`watching`). 13 items.
+Decisions (`open`) and watches (`watching`). 12 items.
 
 - [PI-001](#pi-001-white-label-catalog-row) — Q11 White-label catalog row
 - [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OD rows
-- [PI-003](#pi-003-palette-replace-vs-supplement) — Palette: replace amber seed vs supplement
 - [PI-004](#pi-004-font-families-for-open-ui) — Q15 Font families for open-ui
 - [PI-005](#pi-005-archive-axiom) — Q5 Archive Axiom (AX)
 - [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / Luna OS release workflow timing
@@ -37,10 +36,11 @@ Decisions (`open`) and watches (`watching`). 13 items.
 - [PI-010](#pi-010-banking-dewey-role) — Q10 Banking (BS) Dewey role
 - [PI-011](#pi-011-dewey-bk-to-od-rewrite) — Q13 Dewey BK→OD rewrite
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
-- [PI-013](#pi-013-luna-os-open-ui-token-pr) — Luna OS open-ui token PR *(watching)* — luna-os#1 draft @ `39bb566`; Patron chrome PASS 7/7; pending PI-003
+- [PI-013](#pi-013-luna-os-open-ui-token-pr) — Luna OS open-ui token PR *(watching)* — luna-os#1 draft @ `39bb566`; Patron chrome PASS 7/7; PI-003 replace answered — merge when Powerline says
 
 ## Answered
 
+- [PI-003](#pi-003-palette-replace-vs-supplement) — A) Replace amber entirely / 2026-09-30 MT
 - [PI-014](#pi-014-shell-token-pr-3-lattice-nits) — A) accept residual nits / merged 2026-09-30 MT
 - [PI-015](#pi-015-white-label-first-run-dewey-path) — A) Preferred WL-FR-001 / 2026-09-30 MT
 
@@ -76,14 +76,14 @@ Decisions (`open`) and watches (`watching`). 13 items.
 
 <h2 id="pi-003-palette-replace-vs-supplement">PI-003 — Palette: replace amber seed vs supplement</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
 - **Question:** Four colors were given — purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Should they **replace** the amber seed `#e8a54b`, or **supplement** it (keep amber alongside)?
 - **Options:**
-  - [ ] A) Replace amber entirely (current draft lock on PR #7 / shell#3)
+  - [x] A) Replace amber entirely (current draft lock on PR #7 / shell#3 / luna-os#1)
   - [ ] B) Supplement — keep amber seed plus the four
   - [ ] C) Other (text)
-- **Text:**
+- **Text:** Replace amber entirely — four-color lock confirmed (purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`). Amber `#e8a54b` withdrawn.
 - **More context:** DRAFT already withdrew amber on [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). Powerline asked to confirm replace vs supplement. [DESIGN_RECORDS/GV-0003-material-3.md](DESIGN_RECORDS/GV-0003-material-3.md). [ARCHITECTURE.md](ARCHITECTURE.md). [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3).
 
 ---
@@ -219,13 +219,13 @@ Decisions (`open`) and watches (`watching`). 13 items.
 
 - **Status:** `watching`
 - **Needed:** status
-- **Question:** Track until Powerline merge decision (stay draft pending PI-003).
+- **Question:** Track until Powerline merge decision (this agent does not merge).
 - **Options:** N/A — Rook updates until Powerline merge. Do not mark answered until that decision.
-- **Text:** Lattice 2026-09-30: `nits_only`, blockers none; stay draft pending PI-003. Patron 2026-09-30 chrome validation PASS (7/7) on luna-os#1 @ `39bb566`.
+- **Text:** Lattice 2026-09-30: `nits_only`, blockers none. Patron 2026-09-30 chrome validation PASS (7/7) on luna-os#1 @ `39bb566`. [PI-003](#pi-003-palette-replace-vs-supplement) answered replace — luna-os#1 may merge when Powerline says (this agent does not merge).
 - **Current:** draft PR [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `39bb566` — branch `cursor/powerline-open-ui-tokens-2bbb`. Agent [bc-ceeeb171-7643-5354-9303-55a529182bbb](https://cursor.com/agents/bc-ceeeb171-7643-5354-9303-55a529182bbb).
-- **Lattice (2026-09-30):** `nits_only`, blockers none. Stay draft pending [PI-003](#pi-003-palette-replace-vs-supplement).
+- **Lattice (2026-09-30):** `nits_only`, blockers none.
 - **Patron (2026-09-30):** chrome validation PASS (7/7) on [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `39bb566`.
-- **More context:** Sibling of [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3). Governance palette docs already on [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** Sibling of [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3). Governance palette docs already on [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). PI-003 replace answered; luna-os#1 merge waits on Powerline (not this agent).
 
 ---
 
