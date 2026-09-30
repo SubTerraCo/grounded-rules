@@ -4,7 +4,7 @@ Living clickable queue of every item that needs **Powerline’s input** before R
 
 Display name for this repo: **Grounded Rules**. GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames it to `grounded-rules`.
 
-PR #7 squash-merged to `master` @ `c6b9aba` (Metro / GV-0004 cleanup). Grounded Rules rename is a **new draft PR** off that tip — not a reopen of #7. Stay draft. No deletes or archives from this queue.
+PR #7 squash-merged to `master` @ `c6b9aba` (Metro / GV-0004 cleanup). Grounded Rules rename is **draft [PR #8](https://github.com/SubTerraCo/subterra-governance/pull/8)** off that tip — not a reopen of #7. Stay draft. No deletes or archives from this queue.
 
 ## Format
 
