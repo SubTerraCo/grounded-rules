@@ -4,7 +4,7 @@
 |--|--|
 | **Address** | `GV.CX.DV.01.020.010` |
 | **Release** | `v26.08.04` |
-| **Status** | Design locked (Round 1 + Round 2) — governance artifacts encoded; shell + Subtoken code deferred |
+| **Status** | Historical. Shell paths `apps/admin` and `apps/nexus` are superseded by GV-0004 (Luna OS and SubTerra Central). Audience and NFC challenge-response still stand |
 | **Owner** | Governance agent (GV) |
 
 Locks a dual-shell model over one shared core: an admin SubTerra OS shell (ST) and a customer-facing **Nexus** shell (NX). Marketplace items gain an `audience` gate. NFC login must be challenge-response, never UID-only.

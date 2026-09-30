@@ -2,6 +2,8 @@
 
 > Source of truth for all SubTerraCo SubTerra polyrepos.  
 > Product repos **consume** this document; they do not fork conflicting rules.
+>
+> **GV-0004 supersedes this constitution wherever they disagree.** The enterprise monorepo (two shells, package layout, BSL for new original code, Tailwind Material 3 tokens, Rust only inside Tauri) is the current ruling. Its default branch is `master`, the same as every other SubTerraCo repo. Rules below still apply when GV-0004 is silent.
 
 **ciOpsVersion:** aligns with `governance/package.json` version (`YY.M.D`).
 
@@ -16,19 +18,18 @@
 | `apps/<name>/` | per product | Apps marketplace |
 | `integrations/<name>/` | per integration | Integrations marketplace |
 
-### 1.1 Dual shell targets (locked GV-0002 D1–D2)
+### 1.1 Shell targets (GV-0004; supersedes GV-0002 D1–D2)
 
-One git repo hosts **two thin shell apps** over a **shared core**. Marketplace grids, item host, and auth session must never be forked per shell.
+Exactly two executable shells. Product entry points share them. Luna OS personal data and SubTerra Collective data do not share a read or write path.
 
-| APP | Shell target | Path (inside `shell/`) | Audience |
-|-----|--------------|------------------------|----------|
-| **ST** | Admin SubTerra OS | `apps/admin` | `admin` |
-| **NX** | Nexus (customer social / events / tickets) | `apps/nexus` | `member` |
-| — | Shared core | `packages/shell-core` | — |
+| Shell | Path | Runtime | Hosts |
+|-------|------|---------|-------|
+| Desktop and mobile | `apps/luna-os` | Tauri v2 + React 19 + Vite | Luna OS on Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
+| Web | `apps/web-shell` | Offline-first PWA | SubTerra Central, Open Gig, Community |
 
-Nexus is a **shell target**, not a marketplace app. Admin-only products (e.g. Subtoken / TK) stay off the Nexus grid via the manifest `audience` field (§6, §13).
+Shared UI is `packages/open-ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
 
-Meta folder `SubTerra OS/` has **no root git**. Open `SubTerra-OS.code-workspace`.
+`apps/admin`, `apps/nexus`, and `packages/shell-core` from GV-0002 are not the paths to build. `subterra-shell` remains until the monorepo exists.
 
 ---
 
@@ -86,7 +87,7 @@ Shared **format** across all repos; each repo stamps **independently**.
 
 ### 4.1 Branch model (locked GV-0001 D7)
 
-**Default branch name.** Every SubTerraCo repository uses the same default branch name: **`master`**. That covers governance, the shell, apps, integrations, and tool repos. Do not invent a different production-branch name.
+**Default branch name.** Every SubTerraCo repository, including the enterprise monorepo, uses **`master`**. Do not invent another production-branch name.
 
 | Branch | Role |
 |--------|------|
@@ -94,9 +95,11 @@ Shared **format** across all repos; each repo stamps **independently**.
 | `dev` | Nightly integration target |
 | `master` | **Production.** The default branch of every SubTerraCo repo; deploy workflows trigger here |
 
-`master` is the production branch across all SubTerra repos. Reusable deploy workflows target `master`. Author workflows against `master`. New repositories are created with `master` as the default (§10 checklist).
+`master` is the production branch for existing SubTerraCo repos. Reusable deploy workflows for those repos target `master`.
 
-When a repository's default branch is still `main`, retarget it to `master` by renaming that branch so history stays intact. If a `master` branch already exists and its tip is a different commit from `main`, stop. Do not force-push over that `master`. Report both tips and reconcile them before changing the default.
+The enterprise monorepo uses `master` for production and `dev` for integration. Do not create it with `main` or `staging`.
+
+When an existing repository's default branch is still `main`, retarget it to `master` by renaming that branch so history stays intact. If a `master` branch already exists and its tip is a different commit from `main`, stop. Do not force-push over that `master`. Report both tips and reconcile them before changing the default.
 
 Rules (from Blocks CI Ops):
 
@@ -190,7 +193,7 @@ The Governance agent is the **one-stop shop** for cross-polyrepo standards. Prod
 | Domain | Scope |
 |--------|--------|
 | **Rulesets & Dewey** | Constitution, APP/PP/PR codes, manifest, CI Ops gates |
-| **Design language parity** | Shared tokens / UX contracts across Shell + Apps + Integrations |
+| **Design language parity** | Material Design 3 (§15, GV-0003, GV-0004). One theme in `packages/open-ui` |
 | **Feature parity** | Apps ↔ Integrations twins; SDK API identity |
 | **GitHub repo management** | Create/configure SubTerraCo polyrepos for new shell/apps/integrations; branch protections; default labels; secrets/vars conventions |
 | **Deployment pipelines** | Reusable Actions (`ci-node`, deploy, release) consumed by all product repos |
@@ -208,6 +211,7 @@ The Governance agent is the **one-stop shop** for cross-polyrepo standards. Prod
 2. New repos start from the governance product template and wire reusable workflows from this repo.
 3. Deployment / CI changes land in governance first, then product repos bump the workflow ref (`@v1` / pin).
 4. Workspace Playwright QA is the release gate for Shell marketplace + SDK parity — not a substitute for product `/testrelease`.
+5. SubTerra-owned UI uses Material Design 3 (§15). Product repos do not add a second component library or token set.
 
 ---
 
@@ -383,6 +387,53 @@ Existing `AU` (Auth / device identity) and `NF` (NFC / crypto tags) cover challe
 | Python | Only when the work needs Python: an existing Python service, script, or tool, or a job that Python is required to perform |
 | JavaScript (`.js`, `.cjs`, `.mjs`) | Only for config and tooling files that the tool itself requires to be JavaScript |
 
-Do not add new JavaScript, JSX (`.jsx`), Rust, or any other language for application code. `.tsx` is TypeScript; use it when a file needs JSX syntax.
+Do not add new JavaScript or JSX (`.jsx`) for application code. `.tsx` is TypeScript; use it when a file needs JSX syntax.
+
+Rust is allowed only inside Tauri v2 native bindings: file system, local process IPC, hardware NFC, and DaVinci socket control (GV-0004). Application logic stays TypeScript.
 
 This rule does not require converting existing code. New code follows it. An existing Python service stays Python, and new modules of that service may be Python. A new app or library starts in TypeScript.
+
+---
+
+## 15. Design language (Material Design 3)
+
+Design record: [GV-0003](Docs/DESIGN_RECORDS/GV-0003-material-3.md).
+
+**Material Design 3 is the UI framework for the SubTerra shell and for every SubTerra-owned app.** Shell chrome and product screens share one component system and one theme so layout, type, shape, and color stay uniform.
+
+| Rule | Requirement |
+|------|-------------|
+| System | [Material Design 3](https://m3.material.io/) only. Do not add a second UI kit (MUI, shadcn, or a hand-rolled button/nav set) for new UI |
+| Web, desktop, and mobile | Tailwind CSS preset plus `@material/material-color-utilities` in `packages/open-ui` (GV-0004). Arbitrary Tailwind values and hardcoded hex/RGB in `.tsx` fail CI |
+| Theme | One theme, owned by `packages/open-ui`. `@subterra/shell-ui` is the legacy package until the monorepo lands |
+| Seed color | Amber `#e8a54b` (current shell accent). Not Blocks magenta, and not Material's default purple |
+| New UI | Material 3 components: app bars, navigation, buttons, text fields, lists, sheets |
+| Existing UI | Migrates when that screen is edited. This rule does not require a rewrite in place |
+
+### Exemptions
+
+| Case | Why |
+|------|-----|
+| Vendor-fork UI (Actual / `FN` while it tracks upstream screens) | Restyling upstream UI makes every sync a conflict and blocks contributing back |
+| Tools with no UI (`tag-writer`) | Nothing to theme |
+
+A repo that claims an exemption says so in its `.cursor/rules/` and in the manifest when the vendor-fork flag exists. The exemption covers that repo's upstream UI only. New SubTerra screens inside an exempt repo still use Material 3.
+
+Headless use of `@actual-app/api` inside `packages/open-books` (`OB`) is the intended integration. That wrapper is ours and uses Material 3. Actual's own UI stays upstream. Open Bill (`BI`, `packages/open-bill`) is invoicing and is a separate package.
+
+---
+
+## 16. Licensing (GV-0004)
+
+New original packages in the enterprise monorepo use **Business Source License 1.1**, with an additional use grant and a 36-month change to Apache 2.0. PoweredUpLabs issues Ed25519 commercial license keys. The grant covers solo operators, artists, contributors, nonprofits, and businesses under 5 seats and under $100,000 annual gross revenue.
+
+This constitution cannot relicense other people's code:
+
+| Code | License that stays |
+|------|--------------------|
+| Already published SubTerraCo MIT files | MIT. Those grants are irrevocable |
+| Actual, Flarum, and other MIT upstream we choose to ship | MIT. Notices stay in the bundle |
+| InvoiceShelf, if used | AGPL-3.0. It is not wrapped into the BSL packages or the paid multi-tenant host |
+| Anytype any-sync | Any Source Available License. Commercial use stays limited to Allowed Networks |
+
+`packages/open-books`, `packages/open-bill`, and `packages/open-ui` are BSL only for code we write. Imported upstream code keeps its own license. PKM stays in an Anytype workspace, not in this repo.

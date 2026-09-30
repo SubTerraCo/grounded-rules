@@ -140,3 +140,100 @@ items:
     upstream: anyproto/anytype-api
     legacyRepo: SubTerraCo/anytype-google-contact-integration  # superseded predecessor, kept for reference
     defaultBranch: master
+
+  # GV-0004 monorepo entry points. Repo is not created yet. Old items above stay as aliases.
+  - id: luna-os
+    appCode: LO
+    name: Luna OS
+    repo: null
+    localPath: apps/luna-os
+    platforms: [DT, AD, IO, AP]
+    role: shell
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "GV-0004. Tauri command center, including Arch Linux for Omarchy. Replaces ST. Personal data is isolated from SC."
+
+  - id: subterra-central
+    appCode: SC
+    name: SubTerra Central
+    repo: null
+    localPath: apps/subterra-central
+    platforms: [WB]
+    role: shell
+    marketplace: null
+    audience: [member]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "Gig and event hub. Anonymous NFC event page. One-time Artist, Venue, or Vendor upgrade. Friend visibility off by default."
+
+  - id: open-gig
+    appCode: OG
+    name: Open Gig
+    repo: null
+    localPath: apps/open-gig
+    platforms: [WB]
+    role: app
+    marketplace: apps
+    audience: [admin, member]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "Free for a solo freelancer. Fee for a crew manager of 5 or more."
+
+  - id: axiom-wiki
+    appCode: AX
+    name: Axiom
+    repo: null
+    localPath: apps/axiom
+    platforms: [WB]
+    role: app
+    marketplace: apps
+    audience: [admin, member]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+
+  - id: community-hub
+    appCode: CH
+    name: Community
+    repo: null
+    localPath: apps/community
+    platforms: [WB]
+    role: app
+    marketplace: apps
+    audience: [member]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+
+  - id: open-books
+    appCode: OB
+    name: Open Books
+    repo: null
+    localPath: packages/open-books
+    platforms: [SB]
+    role: app
+    marketplace: apps
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "Budgeting only. Wraps @actual-app/api. Separate from BB Billbot. Upstream fork stays actual-budget-master-fork."
+
+  - id: home-assistant
+    appCode: HA
+    name: Home Assistant
+    repo: null
+    localPath: packages/home-assistant
+    platforms: [DT, WB]
+    role: app
+    marketplace: apps
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "Home automation. Client only. Upstream Home Assistant server is Apache 2.0 and can run on Omarchy."
