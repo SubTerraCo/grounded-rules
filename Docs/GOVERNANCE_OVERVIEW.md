@@ -28,9 +28,9 @@ Nothing in this 2026-09-30 pass was deleted or archived. Deletes and archive mov
 
 ## 1. What this repo is
 
-**Grounded Rules** (`SubTerraCo/subterra-governance`) is the **rules, Dewey, catalog, reusable CI, and templates** repo. GitHub slug stays `subterra-governance` until Powerline Settings-renames it to `grounded-rules`.
+**Grounded Rules** (`SubTerraCo/grounded-rules`) is the **rules, Dewey, catalog, reusable CI, and templates** repo.
 
-It is **not** the product. The product is one pnpm + Turborepo enterprise monorepo, `SubTerraCo/luna`, which **has not been created yet** (GV-0004 §4). Until it exists, this copy of [ARCHITECTURE.md](ARCHITECTURE.md) is the product blueprint.
+It is **not** the product. The product is one pnpm + Turborepo enterprise monorepo. Live GitHub slug is `SubTerraCo/luna-os` (display **SubTerra Metro**). Powerline Settings-rename to `subterra-metro` is proposed, not performed. Personal agent Luna (`LU`, `packages/luna`) is distinct. This copy of [ARCHITECTURE.md](ARCHITECTURE.md) is the product-shape blueprint until people edit the monorepo copy.
 
 Existing SubTerraCo product repos (`subterra-shell`, `Blocks`, `mailbot`, `subterra-anytype`, reserved `billbot` / `subtoken`) stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
@@ -176,11 +176,11 @@ This Grounded Rules repo remains MIT. Relicensing it is not part of GV-0004.
 
 ## 9. Branches, versions, CI
 
-**Default branch is `master` on every SubTerraCo repo**, including `luna`. Integration branch is `dev`. Do not use `main` or `staging`.
+**Default branch is `master` on every SubTerraCo repo**, including `luna-os`. Integration branch is `dev`. Do not use `main` or `staging`.
 
 Release stamp: `vYY.MM.DD` / `vYY.MM.DDbX`. npm form `YY.M.D-bX`. Each repo stamps independently. Fleet dashboard: [VERSIONS.md](VERSIONS.md) (generated; not regenerated in this cleanup).
 
-**This Grounded Rules repo** keeps its own workflow (pnpm 11.14, Node 22, reusable `ci-node.yml@v1`). **Monorepo CI** (when `luna` exists) is the blueprint pipeline: pnpm 9, Node 22, Turbo, fail on lint / typecheck / token check / unit tests / build. Playwright: visual regression, offline Yjs, finance path, tenant isolation, mocked NFC, local Solana validator.
+**This Grounded Rules repo** keeps its own workflow (pnpm 11.14, Node 22, reusable `ci-node.yml@v1`). **Monorepo CI** (`luna-os`) is the blueprint pipeline: pnpm 9, Node 22, Turbo, fail on lint / typecheck / token check / unit tests / build. Playwright: visual regression, offline Yjs, finance path, tenant isolation, mocked NFC, local Solana validator.
 
 Leftover reusable workflows here:
 
@@ -199,15 +199,13 @@ Vendor remotes: `origin` is always ours; vendor is `upstream`.
 
 ---
 
-## 10. Existing GitHub vs later `luna`
+## 10. Existing GitHub vs `luna-os`
 
-Linked today: `subterra-governance` (Grounded Rules; slug rename to `grounded-rules` is a Powerline Settings click), `subterra-shell`, `Blocks`, `mailbot`, `subterra-anytype`.
+Linked today: `grounded-rules` (Grounded Rules), `luna-os` (product monorepo; display SubTerra Metro; Settings-rename to `subterra-metro` is proposed), `subterra-shell`, `Blocks`, `mailbot`, `subterra-anytype`.
 
 Reserved / leftover: `billbot`, `subtoken`, `tag-writer`, `validation`.
 
-Not created: `SubTerraCo/luna`.
-
-Workspace QA lives in `tests/` here (`contract` + `marketplace`) until `luna` `tests/contract` replaces it. Coverage is still deferred (no shell host).
+Workspace QA lives in `tests/` here (`contract` + `marketplace`) until `luna-os` `tests/contract` replaces it. Coverage is still deferred (no shell host).
 
 Product-repo template under `templates/product-repo/` is only for leftover standalone repos.
 
@@ -217,7 +215,7 @@ Product-repo template under `templates/product-repo/` is only for leftover stand
 
 1. Workspace skeleton: layout, strict TypeScript, ESLint 9 flat, pnpm workspace, Turborepo.
 2. Shell hub on SQLite + Yjs. Open Books around `@actual-app/api`. Open Bill separate. Anytype as a Central-hosted integration (leftover PKM workspace not required as a monorepo package). Owner-marked bridge allowlist: OB, BI, OT, AT.
-3. `luna` provider interface + tool registry. Default local provider at the Omarchy host.
+3. `packages/luna` (`LU`) provider interface + tool registry. Default local provider at the Omarchy host.
 4. `packages/open-ui` tokens (palette, type, 4dp spacing) and domain widgets.
 5. Bundle SubTerra Metro in Tauri (including Arch / Omarchy) and SubTerra Central as the PWA. Confirm hub isolation and the marked-record bridge (OB + BI + OT + AT).
 6. Playwright suites listed under CI.

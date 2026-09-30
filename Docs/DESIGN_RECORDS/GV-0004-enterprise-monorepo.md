@@ -16,7 +16,7 @@ The enterprise blueprint wins wherever it disagrees with GV-0001, GV-0002, or GV
 
 | # | Old ruling | Blueprint | Resolution |
 |---|------------|-----------|------------|
-| C1 | One GitHub repo per app (§1) | One pnpm + Turborepo monorepo | The product is the monorepo. Grounded Rules (`subterra-governance`) stays this rules repo. `tooling/design-governance` enforces tokens; it does not fork the constitution |
+| C1 | One GitHub repo per app (§1) | One pnpm + Turborepo monorepo | The product is the monorepo (`SubTerraCo/luna-os`; display SubTerra Metro). Grounded Rules (`grounded-rules`) stays this rules repo. `tooling/design-governance` enforces tokens; it does not fork the constitution |
 | C2 | Shells are leftover `apps/admin` plus a member PWA over `shell-core` (GV-0002) | Exactly two runtimes: Tauri v2 and a PWA | Build `apps/subterra-metro` (Tauri, including Arch Linux / Omarchy) and `apps/subterra-central` (PWA). Do not create leftover `apps/admin` folders or a second PWA runtime besides Central |
 | C3 | Electron + Next shell | Vite, React 19, Tauri v2 | Tauri + Vite. `subterra-shell` stays until Phase 1 copies what is still useful |
 | C4 | Every repo defaults to `master` (§4.1) | The first blueprint draft used `main` and `staging` | Withdrawn. The monorepo uses `master` and `dev`, same as every other SubTerraCo repo |
@@ -31,7 +31,7 @@ The enterprise blueprint wins wherever it disagrees with GV-0001, GV-0002, or GV
 | C13 | Teller, Plaid, SimpleFIN, GoCardless | Bank feeds without vendor lock-in | SimpleFIN and GoCardless are the default connectors. Teller and Plaid are optional adapters |
 | C14 | "Open Day / Open Sort / Open Shift" rename draft | Named apps in the blueprint | That draft was never locked. Blueprint names win. See §2 |
 | C15 | Packaging Anytype / Grok bot Anytype for Central violated Grounded Rules (Anytype was an optional Metro mirror only; PKM not a package) | Central is the personal AI hub; Anytype as a Central integration is the intended shape | **Rewritten 2026-09-30.** Intended shape = Central integration (`role: integration` only — not plugin/extension). Leftover PKM workspace is not required as a monorepo package. Central **hosts the integration**. Metro↔Central bridge allowlist is Open Books, Open Bill, Open Time, **and Anytype** (owner-marked) |
-| C16 | Conflict 4: forcing a packages path under Central invents a product shape Grounded Rules already cut | Central hosts packages and integrations as the personal AI hub and tool suite | **Rewritten 2026-09-30 (this is the live rule, not an override note).** A packages-under-Central path (`apps/subterra-central/packages/` or equivalent, plus Central-hosted integrations) is a **legitimate, sanctioned** shape. Root `packages/` in `luna` remains valid. Leftover Anytype PKM workspace is still not required as a monorepo package |
+| C16 | Conflict 4: forcing a packages path under Central invents a product shape Grounded Rules already cut | Central hosts packages and integrations as the personal AI hub and tool suite | **Rewritten 2026-09-30 (this is the live rule, not an override note).** A packages-under-Central path (`apps/subterra-central/packages/` or equivalent, plus Central-hosted integrations) is a **legitimate, sanctioned** shape. Root `packages/` in `luna-os` remains valid. Leftover Anytype PKM workspace is still not required as a monorepo package |
 
 External licenses are not overruled: InvoiceShelf stays AGPL and out of the paid host; any-sync stays under the Any Source Available License.
 
@@ -62,7 +62,7 @@ Open stays on names that would collide with a published app. The others use the 
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
 | BS | Banking | `packages/banking` | SimpleFIN and GoCardless |
 | AT | Anytype | Central-hosted integration (leftover dedicated workspace until folded) | Central hosts the integration (`role: integration` only — not plugin/extension). Leftover PKM workspace is not required as a monorepo package. Packages-under-Central is sanctioned (C16). Open Axiom is cut. Owner-marked Metro↔Central bridge includes AT |
-| GV | Grounded Rules | `SubTerraCo/subterra-governance` | This rules repo. Display name Grounded Rules; GitHub slug rename to `grounded-rules` is a Powerline Settings click |
+| GV | Grounded Rules | `SubTerraCo/grounded-rules` | This rules repo. Display name Grounded Rules |
 | WL | White-label | — | Commercial gate on SubTerra Metro. Not a package |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
 
@@ -88,4 +88,4 @@ Packages do not import each other. Each shell ships a SQLite hub, and every pack
 
 ## 4. What this pass does not do
 
-The monorepo repository is not created. Existing app repos are not renamed on GitHub. Phase 1 in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md) is the next implementation step.
+The product monorepo already exists as `SubTerraCo/luna-os` (display **SubTerra Metro**). Powerline Settings-rename to `subterra-metro` is proposed, not performed. Personal agent Luna (`LU` / `packages/luna`) is unchanged. Existing leftover app repos are not renamed on GitHub by this record. Phase 1 in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md) is the next implementation step.

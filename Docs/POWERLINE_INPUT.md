@@ -2,9 +2,9 @@
 
 Living clickable queue of every item that needs **Powerline’s input** before Rook can continue. Rook maintains this file whenever a new blocker-for-Powerline appears.
 
-Display name for this repo: **Grounded Rules**. GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames it to `grounded-rules`.
+Display name for this repo: **Grounded Rules**. Live GitHub slug is `SubTerraCo/grounded-rules`.
 
-PR #7 squash-merged to `master` @ `c6b9aba` (Metro / GV-0004 cleanup). [PR #8](https://github.com/SubTerraCo/subterra-governance/pull/8) squash-merged to `master` @ `9b7d901` (Grounded Rules display identity). GitHub slug rename to `grounded-rules` still pending Powerline Settings. No deletes or archives from this queue.
+PR #7 squash-merged to `master` @ `c6b9aba` (Metro / GV-0004 cleanup). [PR #8](https://github.com/SubTerraCo/grounded-rules/pull/8) squash-merged to `master` @ `9b7d901` (Grounded Rules display identity). Product monorepo live slug remains `SubTerraCo/luna-os` (display SubTerra Metro; Settings-rename to `subterra-metro` is proposed). No deletes or archives from this queue.
 
 ## Format
 
@@ -63,7 +63,7 @@ Decisions (`open`). 8 items.
   - [x] B) No — keep registry-only (commercial gate, not a package)
   - [ ] C) Other (text)
 - **Text:** No marketplace-null catalog row for white-label. Keep registry-only (APP_REGISTRY commercial gate on SubTerra Metro).
-- **More context:** Preferred WL-FR-001 path locked ([PI-015](#pi-015-white-label-first-run-dewey-path)). [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) PI-001 answered section. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL row “commercial gate on SubTerra Metro, not a package (PI-001: registry-only; no catalog row)”. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** Preferred WL-FR-001 path locked ([PI-015](#pi-015-white-label-first-run-dewey-path)). [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) PI-001 answered section. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL row “commercial gate on SubTerra Metro, not a package (PI-001: registry-only; no catalog row)”. [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -77,7 +77,7 @@ Decisions (`open`). 8 items.
   - [ ] B) No — leave fleet as leftover snapshot until monorepo exists
   - [ ] C) Other (text)
 - **Text:**
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #12. Lattice left Q12 open on [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). Live Open Time code is `OT` ([PI-018](#pi-018-open-day-to-open-time)); `OD` is an address alias.
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #12. Lattice left Q12 open on [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7). Live Open Time code is `OT` ([PI-018](#pi-018-open-day-to-open-time)); `OD` is an address alias.
 
 ---
 
@@ -91,7 +91,7 @@ Decisions (`open`). 8 items.
   - [ ] B) Supplement — keep amber seed plus the four
   - [ ] C) Other (text)
 - **Text:** Replace amber entirely — four-color lock confirmed (purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`). Amber `#e8a54b` withdrawn.
-- **More context:** DRAFT already withdrew amber on [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). Powerline asked to confirm replace vs supplement. [DESIGN_RECORDS/GV-0003-material-3.md](DESIGN_RECORDS/GV-0003-material-3.md). [ARCHITECTURE.md](ARCHITECTURE.md). [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3).
+- **More context:** DRAFT already withdrew amber on [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7). Powerline asked to confirm replace vs supplement. [DESIGN_RECORDS/GV-0003-material-3.md](DESIGN_RECORDS/GV-0003-material-3.md). [ARCHITECTURE.md](ARCHITECTURE.md). [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3).
 
 ---
 
@@ -105,7 +105,7 @@ Decisions (`open`). 8 items.
   - [ ] B) Keep interim M3 type scale only until later
   - [ ] C) Other (text)
 - **Text:**
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #15. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §7. [DESIGN_RECORDS/GV-0003-material-3.md](DESIGN_RECORDS/GV-0003-material-3.md). [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #15. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §7. [DESIGN_RECORDS/GV-0003-material-3.md](DESIGN_RECORDS/GV-0003-material-3.md). [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -120,7 +120,7 @@ Decisions (`open`). 8 items.
   - [ ] C) Keep rows indefinitely
   - [ ] D) Other (text)
 - **Text:**
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #5. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 Cut. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #5. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 Cut. [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -130,11 +130,11 @@ Decisions (`open`). 8 items.
 - **Needed:** decision
 - **Question:** When should a Tauri / SubTerra Metro release workflow be authored?
 - **Options:**
-  - [ ] A) After `luna` monorepo Phase 5 shell bundle
+  - [ ] A) After `luna-os` monorepo Phase 5 shell bundle
   - [ ] B) Author stub now on Grounded Rules
   - [ ] C) Other (text)
 - **Text:**
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #6. [ARCHITECTURE.md](ARCHITECTURE.md) Phases. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #6. [ARCHITECTURE.md](ARCHITECTURE.md) Phases. [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -142,13 +142,13 @@ Decisions (`open`). 8 items.
 
 - **Status:** `open`
 - **Needed:** decision
-- **Question:** Confirm Grounded Rules stays on pnpm 11.14 while `luna` uses pnpm 9 (GV-0004 C5).
+- **Question:** Confirm Grounded Rules stays on pnpm 11.14 while `luna-os` uses pnpm 9 (GV-0004 C5).
 - **Options:**
   - [ ] A) Confirm as-is
   - [ ] B) Align both (specify in Text)
   - [ ] C) Other (text)
 - **Text:**
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #7. [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md) C5. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #7. [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md) C5. [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -162,7 +162,7 @@ Decisions (`open`). 8 items.
   - [ ] B) Add Linux/Arch platform code (name in Text)
   - [ ] C) Other (text)
 - **Text:**
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #8. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #8. [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -176,7 +176,7 @@ Decisions (`open`). 8 items.
   - [ ] B) Prefer packages/ui
   - [ ] C) Other (text)
 - **Text:** Confirm packages/open-ui (GV-0004 C6 aligned); not packages/ui.
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #9. [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md) C6. [ARCHITECTURE.md](ARCHITECTURE.md). [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #9. [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md) C6. [ARCHITECTURE.md](ARCHITECTURE.md). [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -190,7 +190,7 @@ Decisions (`open`). 8 items.
   - [ ] B) Leave `integration` until fold-in
   - [ ] C) Other (text)
 - **Text:**
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #10. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 BS row. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #10. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 BS row. [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -205,7 +205,7 @@ Decisions (`open`). 8 items.
   - [ ] B) Only new work uses OT/OS/BI/SM (`LO` and `OD` address aliases)
   - [ ] C) Other (text)
 - **Text:** Rewrite all existing BK addresses (`BK/N-####`) to `OT` (Open Time). 2026-09-30 MT. Documented address examples now use `OT/N-####`. `BK` remains an address-alias catalog row pointing at OT / `packages/open-time`. Open Books `OB` unchanged.
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) PI-011 A rewrite section. [PI-018](#pi-018-open-day-to-open-time) Open Day → Open Time. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) PI-011 A rewrite section. [PI-018](#pi-018-open-day-to-open-time) Open Day → Open Time. [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -219,7 +219,7 @@ Decisions (`open`). 8 items.
   - [ ] B) Keep filename forever
   - [ ] C) Other (text)
 - **Text:**
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #14. [DESIGN_RECORDS/GV-0002-nexus-dual-shell.md](DESIGN_RECORDS/GV-0002-nexus-dual-shell.md). [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #14. [DESIGN_RECORDS/GV-0002-nexus-dual-shell.md](DESIGN_RECORDS/GV-0002-nexus-dual-shell.md). [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -234,7 +234,7 @@ Decisions (`open`). 8 items.
 - **Merged:** [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) squash-merged into `master` @ `edd17c3` (2026-09-30 MT). Merge commit `edd17c308ca835db50bb3d4455116ed1972df471`.
 - **Lattice (2026-09-30):** `nits_only`, blockers none.
 - **Patron (2026-09-30):** chrome validation PASS (7/7) on [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `39bb566`.
-- **More context:** Sibling of [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3). Palette docs already on [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). PI-003 replace answered; luna-os#1 squash-merged @ `edd17c3`.
+- **More context:** Sibling of [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3). Palette docs already on [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7). PI-003 replace answered; luna-os#1 squash-merged @ `edd17c3`.
 
 ---
 
@@ -250,7 +250,7 @@ Decisions (`open`). 8 items.
 - **Text:** accept residual nits / merged 2026-09-30 MT — SHA `c0e4f699`; accepted residuals: unused `--space-unit` CSS; semantic `status.warning` `#f59e0b`; CI notices.
 - **Lattice (2026-09-30):** PASS / `nits_only`. Patron chrome PASS. Accepted residuals are only unused `--space-unit` CSS; semantic `status.warning` `#f59e0b`; CI notices. Pink/focus PR-body sync was already fixed and is not a residual.
 - **Merged:** [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3) into `master`. Head `c0e4f699`. Merge commit `50a540c5`.
-- **More context:** Sibling palette lock on [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** Sibling palette lock on [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -264,7 +264,7 @@ Decisions (`open`). 8 items.
   - [ ] B) Alt A — add BR / packages/open-brand.
   - [ ] C) Other
 - **Text:** Preferred locked. Dewey mapping (existing codes only): APP `WL` = commercial gate (APP_REGISTRY reserved; not a package/shell). APP `SM` = host of first-run wizard + primary WL runtime (former live code `LO` is an address alias). APP `SC` = optional co-brand. APP `ST` = out (do not use for WL path). Brand pack = `packages/open-ui` (no APP letter in registry — Open UI row uses em dash). Area `UI` for wizard chrome. Area `AU` optional for WL entitlement/key. Reject BR and fourth shell. Personal agent Luna (`LU`) is unchanged.
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md). [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL / Open UI rows. [PI-001](#pi-001-white-label-catalog-row) answered B — no catalog row for the gate. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md). [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 WL / Open UI rows. [PI-001](#pi-001-white-label-catalog-row) answered B — no catalog row for the gate. [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -278,7 +278,8 @@ Decisions (`open`). 8 items.
   - [ ] B) Keep Luna OS / LO
   - [ ] C) Other (text)
 - **Text:** Approved. Display **SubTerra Metro** (match SubTerra Central casing). Path `apps/subterra-metro`. Live Dewey shell code `SM`. `LO` is the former live code and remains an address alias (like `ST`). Personal agent **Luna** / Luna 7, Dewey `LU`, and `packages/luna` are unchanged. Audience `admin` | `member` unchanged. SubTerra Central / `SC` unchanged. GV-0002 on-disk filename unchanged. Existing `LO/N-####` addresses stay valid; new work uses `SM`.
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Luna OS → SubTerra Metro rename section. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **Later:** Live GitHub slug for the product monorepo remains `SubTerraCo/luna-os` until Powerline Settings-renames. Proposed slug: `subterra-metro`. Catalog `id: luna-os` stays the LO alias row (not a second shell). Dewey `SM` / `LO` / `LU` unchanged.
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Luna OS → SubTerra Metro rename section. [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 
@@ -292,7 +293,8 @@ Decisions (`open`). 8 items.
   - [ ] B) Keep SubTerra Governance
   - [ ] C) Other (text)
 - **Text:** Approved. Display **Grounded Rules**. Pun: electrical grounding safety + grounded rules. Dewey code `GV` unchanged. Machine keys (`role: governance`, catalog `governance:`, `localPath: governance`, on-disk filenames) unchanged. GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames to `grounded-rules`. Metro / SM / Central / SC / LO / Luna / LU unchanged. PR #7 already squash-merged; this is a new draft off `master` @ `c6b9aba`.
-- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Grounded Rules rename section. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
+- **Later:** Live GitHub slug is now `SubTerraCo/grounded-rules`. Historical `subterra-governance` URLs still redirect.
+- **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Grounded Rules rename section. [merged PR #7](https://github.com/SubTerraCo/grounded-rules/pull/7).
 
 ---
 

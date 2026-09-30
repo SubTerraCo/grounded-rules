@@ -181,7 +181,7 @@ Powerline 2026-09-30 voice: **Central integration.** Intended, not a violation. 
 ## 10. What this pass does not do
 
 - Merge this pull request (Powerline granted; Rook merges).
-- Create `SubTerraCo/luna` or a new GitHub repo.
+- Create a new GitHub repo. The product monorepo already exists as `SubTerraCo/luna-os`.
 - Run product builds or implement the Central Local API client.
 - Own the broader Central/Metro role document (sibling `bc-f5beba97`).
 - Answer PI-010 (Banking).

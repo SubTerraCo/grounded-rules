@@ -11,16 +11,16 @@
 
 ## 1. Topology (GV-0004)
 
-The **product** is one pnpm + Turborepo enterprise monorepo (`SubTerraCo/luna`, not created yet). This repository (**Grounded Rules**, GitHub slug `SubTerraCo/subterra-governance`) stays the rules, Dewey, manifest, reusable Actions, and `@subterra/ci-ops` repo. It is not the product monorepo. Powerline may Settings-rename the GitHub slug to `grounded-rules` after this identity lands; until then consumers keep the live slug.
+The **product** is one pnpm + Turborepo enterprise monorepo. Live GitHub slug is `SubTerraCo/luna-os` (display **SubTerra Metro**). Powerline Settings-rename to `subterra-metro` is proposed, not performed. Personal agent Luna (`LU`, `packages/luna`) is not that repo. This repository (**Grounded Rules**, GitHub slug `SubTerraCo/grounded-rules`) stays the rules, Dewey, manifest, reusable Actions, and `@subterra/ci-ops` repo. It is not the product monorepo.
 
 Existing SubTerraCo product repos stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
 | Path | Repo | Role |
 |------|------|------|
-| this repo | `SubTerraCo/subterra-governance` | Grounded Rules — constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
-| (future) `apps/` `packages/` `tooling/` | `SubTerraCo/luna` | Enterprise monorepo — SubTerra Metro, SubTerra Central, and packages. Central hosts packages and integrations; a packages-under-Central path is sanctioned (Powerline lock 2026-09-30 / GV-0004 C16). Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) |
+| this repo | `SubTerraCo/grounded-rules` | Grounded Rules — constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
+| `apps/` `packages/` `tooling/` | `SubTerraCo/luna-os` | Enterprise monorepo — SubTerra Metro, SubTerra Central, and packages. Live slug `luna-os`; Settings-rename to `subterra-metro` is proposed. Central hosts packages and integrations; a packages-under-Central path is sanctioned (Powerline lock 2026-09-30 / GV-0004 C16). Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) |
 | `shell/` | `SubTerraCo/subterra-shell` | Leftover shell repo until Phase 1 copies what is still useful. Do not build leftover `apps/admin` folders or `packages/shell-core` |
-| existing `apps/<name>/` | per product (Blocks, Mailbot, …) | Leftover standalone app repos until folded into `packages/` / `apps/` in `luna` |
+| existing `apps/<name>/` | per product (Blocks, Mailbot, …) | Leftover standalone app repos until folded into `packages/` / `apps/` in `luna-os` |
 | existing `integrations/<name>/` | per integration (Anytype) | Leftover standalone integration repos until folded. Central may host the folded integration. Leftover PKM stays a dedicated Anytype workspace unless folded; it is not required as a monorepo package |
 
 ### 1.1 Shell targets (GV-0004; supersedes GV-0002 D1–D2)
@@ -34,7 +34,7 @@ Exactly two executable runtimes. Central hosts packages and integrations as the 
 
 Shared UI is `packages/open-ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
 
-Leftover `apps/admin` folders and `packages/shell-core` from GV-0002 are not the paths to build. `subterra-shell` remains until the monorepo exists.
+Leftover `apps/admin` folders and `packages/shell-core` from GV-0002 are not the paths to build. `subterra-shell` remains until Phase 1 copies what is still useful.
 
 ---
 
@@ -50,7 +50,7 @@ Leftover `apps/admin` folders and `packages/shell-core` from GV-0002 are not the
 - Twin SDKs with **identical APIs**: `@subterra/app-sdk` and `@subterra/integration-sdk` (leftover only)
 - Same CI Ops / Dewey / `/NF` `/NB` `/RD` / `/BUILD` process
 
-Do **not** start new product work as a pair of separate app/integration GitHub repos. New work follows [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Central-hosted packages and integrations (including a packages-under-Central path) are the sanctioned host shape (GV-0004 C16). Root `packages/` in `luna` remains valid. The Grounded Rules **product-repo template** still exists only for leftover standalone repos that must be registered before fold-in.
+Do **not** start new product work as a pair of separate app/integration GitHub repos. New work follows [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Central-hosted packages and integrations (including a packages-under-Central path) are the sanctioned host shape (GV-0004 C16). Root `packages/` in `luna-os` remains valid. The Grounded Rules **product-repo template** still exists only for leftover standalone repos that must be registered before fold-in.
 
 ---
 
@@ -150,8 +150,8 @@ Each shell (SubTerra Metro or SubTerra Central) vendors or generates JSON at bui
 | Field | Meaning |
 |-------|---------|
 | `role` | Topology: `shell` \| `governance`. Twin values `app` \| `integration` are **deprecated leftover** on standalone-repo rows only — not who is logged in, and not for new monorepo packages |
-| `marketplace` | Leftover twin: `apps` \| `integrations` on BK/MB/BB/AT. Luna packages and shells use `null` |
-| `sdk` | Leftover twin package (`@subterra/app-sdk` or `@subterra/integration-sdk`), or `null` on Luna items |
+| `marketplace` | Leftover twin: `apps` \| `integrations` on BK/MB/BB/AT. Monorepo packages and shells use `null` |
+| `sdk` | Leftover twin package (`@subterra/app-sdk` or `@subterra/integration-sdk`), or `null` on monorepo items |
 | `audience` | Live mount gate. List of catalog audiences that may mount the item. **Locked values: `admin` and/or `member` only** (GV-0002 D4). Do not rename these strings. |
 
 **Mapping (locked):** `admin` → SubTerra Metro (`SM`, `apps/subterra-metro`; address aliases `LO`, `ST`); `member` → SubTerra Central (`SC`, `apps/subterra-central`).
@@ -169,10 +169,10 @@ Product repos should call:
 ```yaml
 jobs:
   ci:
-    uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
+    uses: SubTerraCo/grounded-rules/.github/workflows/ci-node.yml@v1
 ```
 
-Powerline may Settings-rename this GitHub repo to `grounded-rules` later; until that click, keep the live slug above.
+Live GitHub slug is `grounded-rules`. Historical `subterra-governance` URLs still redirect.
 
 Local scripts: consume `@subterra/ci-ops` from this repo (`packages/ci-ops`) via path/link or published package when available.
 
@@ -206,8 +206,8 @@ The Grounded Rules agent is the **one-stop shop** for cross-repo standards. Prod
 | **Rulesets & Dewey** | Constitution, APP/PP/PR codes, manifest, CI Ops gates |
 | **Design language parity** | Material Design 3 (§15, GV-0003, GV-0004). One theme in `packages/open-ui` |
 | **Feature parity** | Installable packages stand alone (GV-0004). Twin-SDK API identity remains only for leftover `subterra-shell` items until fold-in. New monorepo catalog items do not declare twin `role` / `marketplace` / SDK |
-| **GitHub repo management** | Create/configure SubTerraCo repos (Grounded Rules, leftover product repos, and later `luna`); branch protections; default labels; secrets/vars conventions |
-| **Deployment pipelines** | Reusable Actions (`ci-node`, deploy, release) consumed by product repos until the monorepo pipeline in `luna` replaces them |
+| **GitHub repo management** | Create/configure SubTerraCo repos (Grounded Rules, leftover product repos, and `luna-os`); branch protections; default labels; secrets/vars conventions |
+| **Deployment pipelines** | Reusable Actions (`ci-node`, deploy, release) consumed by product repos until the monorepo pipeline in `luna-os` replaces them |
 | **Product templates** | `templates/product-repo/` (still used for leftover standalone repos; new product work prefers the monorepo layout) |
 | **Workspace QA (Playwright)** | Cross-package e2e at the Grounded Rules layer until monorepo `tests/contract` replaces it |
 
@@ -219,7 +219,7 @@ The Grounded Rules agent is the **one-stop shop** for cross-repo standards. Prod
 ### Invariants
 
 1. New catalog items are registered in `codes/APP_REGISTRY.yaml` **and** `subterra.manifest.yaml` before first release.
-2. Leftover standalone repos start from the Grounded Rules product template and wire reusable workflows from this repo. New product work goes in `SubTerraCo/luna` once that repo exists.
+2. Leftover standalone repos start from the Grounded Rules product template and wire reusable workflows from this repo. New product work goes in `SubTerraCo/luna-os`.
 3. Deployment / CI changes for existing repos land in Grounded Rules first, then product repos bump the workflow ref (`@v1` / pin). Monorepo CI follows the blueprint pipeline in [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) (GV-0004 C5).
 4. Workspace Playwright QA is the release gate for catalog + SDK parity until the monorepo `tests/contract` suite replaces it — not a substitute for product `/testrelease`.
 5. SubTerra-owned UI uses Material Design 3 (§15). Product repos do not add a second component library or token set.
@@ -268,7 +268,7 @@ Callers pass them with `secrets: inherit`. Reusable workflows must never hardcod
 
 1. Reserve the APP code in `codes/APP_REGISTRY.yaml`.
 2. Add the item to `subterra.manifest.yaml`. Leftover standalone repos may keep deprecated twin `role` + `marketplace`. New monorepo packages: `marketplace: null`, `sdk: null`, `audience` as the gate.
-3. Copy `templates/product-repo/` and replace `APPCODE` / product name. Only for leftover standalone repos — new product work belongs in `luna`.
+3. Copy `templates/product-repo/` and replace `APPCODE` / product name. Only for leftover standalone repos — new product work belongs in `luna-os`.
 4. Create the repo in the org (private by default).
 5. Set default branch to `master` (§4.1).
 6. Wire CI to the reusable workflows (§11).
@@ -301,11 +301,11 @@ Grounded Rules owns six reusable workflows in `.github/workflows/`. Product repo
 ```yaml
 jobs:
   ci:
-    uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
+    uses: SubTerraCo/grounded-rules/.github/workflows/ci-node.yml@v1
     secrets: inherit
 ```
 
-Powerline may Settings-rename this GitHub repo to `grounded-rules` later; until that click, keep the live slug above.
+Live GitHub slug is `grounded-rules`. Historical `subterra-governance` URLs still redirect.
 
 Changes land here first, then product repos bump the ref (§9 invariant 3). `v1` is a moving tag on the Grounded Rules default branch; force-move it after every change consumers should pick up.
 
@@ -317,7 +317,7 @@ Both are easy to break and both fail the same way — an instant run with **no j
 2. **Access policy.** Grounded Rules must keep Actions access set to `organization`:
 
 ```bash
-gh api repos/SubTerraCo/subterra-governance/actions/permissions/access
+gh api repos/SubTerraCo/grounded-rules/actions/permissions/access
 # expected: {"access_level":"organization"}
 ```
 
@@ -336,7 +336,7 @@ Home: **`tests/`** in this repo — its own Playwright project, run via `pnpm te
 | Layer | Owner | Covers |
 |-------|-------|--------|
 | Product e2e | Product repo (e.g. Blocks `tests/e2e`) | One app's own UI and flows |
-| **Workspace QA** | **Grounded Rules** | Cross-repo contracts: manifest ↔ registry parity, catalog/audience handoff, twin-SDK API identity (legacy shell), design-token parity. Replaced by monorepo `tests/contract` when `luna` exists |
+| **Workspace QA** | **Grounded Rules** | Cross-repo contracts: manifest ↔ registry parity, catalog/audience handoff, twin-SDK API identity (legacy shell), design-token parity. Replaced by monorepo `tests/contract` when `luna-os` has that suite |
 
 ### Status
 

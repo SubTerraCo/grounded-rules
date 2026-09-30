@@ -2,17 +2,17 @@
 
 **Grounded Rules agent (GV)** home — rules, Dewey codes, catalog, reusable CI, and templates for SubTerra.
 
-Display name **Grounded Rules** (electrical grounding safety + grounded rules). GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames it to `grounded-rules`. Dewey code **GV** is unchanged.
+Display name **Grounded Rules** (electrical grounding safety + grounded rules). Live GitHub slug is `SubTerraCo/grounded-rules`. Dewey code **GV** is unchanged.
 
-The **product** is the SubTerra Metro enterprise monorepo (`SubTerraCo/luna`, not created yet). This repo stays the constitution and pipeline source. It is not the product monorepo.
+The **product** is the SubTerra Metro enterprise monorepo. Live GitHub slug is `SubTerraCo/luna-os` until Powerline Settings-renames it; proposed slug `subterra-metro`. Personal agent Luna (`LU`, `packages/luna`) is distinct. This repo stays the constitution and pipeline source. It is not the product monorepo.
 
 Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANCE_OVERVIEW.md)**. File-by-file cleanup log: **[Docs/CHANGELOG-cleanup-2026-09-30.md](./Docs/CHANGELOG-cleanup-2026-09-30.md)**.
 
 | Domain | What lives here |
 |--------|-----------------|
 | CI Ops / Dewey | Constitution, APP/PP/PR codes, manifest |
-| GitHub | Repo bootstrap conventions for leftover product repos and later `luna` |
-| Pipelines | Reusable Actions (`ci-node`, deploy/release as they land). Monorepo CI follows the blueprint once `luna` exists |
+| GitHub | Repo bootstrap conventions for leftover product repos and `luna-os` |
+| Pipelines | Reusable Actions (`ci-node`, deploy/release as they land). Monorepo CI follows the blueprint in `luna-os` |
 | Templates | `templates/product-repo/` (leftover standalone repos) |
 | Workspace QA | Playwright contracts until monorepo `tests/contract` replaces them |
 | Tooling | `@subterra/ci-ops` |
@@ -42,7 +42,7 @@ Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANC
 - Twin `role` / `marketplace` / SDK fields are **deprecated leftover** on standalone-repo rows. New monorepo packages: `marketplace: null`, `sdk: null`.
 - Material 3 in `packages/open-ui`: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`; interim M3 type scale; 4dp spacing.
 - New original monorepo code is BSL 1.1. Already published MIT stays MIT.
-- Default branch is **`master`** on every SubTerraCo repo, including `luna`.
+- Default branch is **`master`** on every SubTerraCo repo, including `luna-os`.
 
 Address aliases (`ST`, `LO`, `OD`, `MB`, `BB`) remain valid on existing Dewey addresses. They are not the folders to build. Existing `BK/N-####` were rewritten to `OT/N-####` (PI-011 A); `BK` stays an alias catalog row. Live shell code is `SM`. Live Open Time code is `OT`.
 
@@ -75,7 +75,7 @@ Production branch is **`master`** across all repos (§4.1) — not `main`.
 ```yaml
 jobs:
   ci:
-    uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
+    uses: SubTerraCo/grounded-rules/.github/workflows/ci-node.yml@v1
 ```
 
-Powerline may Settings-rename this GitHub repo to `grounded-rules` later; until that click, keep the live slug above.
+Live GitHub slug is `grounded-rules`. Historical `subterra-governance` URLs still redirect.

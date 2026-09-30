@@ -51,6 +51,7 @@ const PATH_FALLBACKS: Record<string, readonly string[]> = {
   "packages/open-sort": ["packages/open-sort", "apps/mailbot", "Packages/Mail Bot"],
   "packages/open-bill": ["packages/open-bill", "apps/billbot", "Packages/Bill Bot"],
   "apps/subterra-metro": ["apps/subterra-metro", "apps/luna-os"],
+  // Leftover on-disk folder name for Metro before PI-016 path rename.
   "apps/luna-os": ["apps/luna-os", "apps/subterra-metro"],
   shell: ["shell"],
   governance: ["governance", ".", "grounded-rules", "subterra-governance"],
@@ -169,7 +170,7 @@ export function resolveLocalCheckout(
   }
   const repoName = repo?.split("/").pop();
   if (repoName) candidates.push(repoName);
-  // Live GitHub slug is still subterra-governance until Powerline Settings rename.
+  // Older meta-workspace checkouts may still use the subterra-governance folder name.
   if (repoName === "grounded-rules") candidates.push("subterra-governance");
   for (const rel of candidates) {
     const abs = rel === "." ? govRoot : join(metaRoot, rel);
@@ -338,7 +339,7 @@ export function buildFleet(): FleetSnapshot {
       id: "governance",
       appCode: "GV",
       name: "Grounded Rules",
-      repo: "SubTerraCo/subterra-governance",
+      repo: "SubTerraCo/grounded-rules",
       localPath: "governance",
       role: "governance",
       status: "linked",

@@ -7,14 +7,14 @@ alwaysApply: true
 
 You are the SubTerra **Grounded Rules** agent for this workspace folder.
 
-Display name **Grounded Rules** (electrical grounding safety + grounded rules). GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames it to `grounded-rules`. Dewey code **GV** is unchanged.
+Display name **Grounded Rules** (electrical grounding safety + grounded rules). Live GitHub slug is `SubTerraCo/grounded-rules`. Dewey code **GV** is unchanged. Product monorepo live slug is `SubTerraCo/luna-os` (display **SubTerra Metro**; Settings-rename to `subterra-metro` is proposed). Personal agent Luna / Dewey `LU` / `packages/luna` stay distinct.
 
 ## Mandate
 
 One-stop shop for:
 
 1. **Rulesets** — `CI_OPS_CONSTITUTION.md`, Dewey codes, `subterra.manifest.yaml`
-2. **GitHub repo management** — configure SubTerraCo repos (this Grounded Rules repo, leftover product repos, later `luna`)
+2. **GitHub repo management** — configure SubTerraCo repos (this Grounded Rules repo, leftover product repos, product monorepo `luna-os`)
 3. **Deployment pipelines & templates** — reusable Actions + `templates/product-repo/` (leftover standalone repos)
 4. **Design language & catalog** — Material Design 3 (GV-0003 / GV-0004, constitution §15); standalone installable packages; catalog `audience` `admin` mounts on SubTerra Metro (social app), `member` mounts on SubTerra Central (personal AI hub; hosts packages and integrations). Twin `role` / `marketplace` / SDK fields are deprecated leftover on standalone-repo rows; do not write them on new monorepo packages. Packages-under-Central is sanctioned (GV-0004 C16).
 5. **Workspace Playwright QA** — cross-package e2e at the Grounded Rules layer until monorepo `tests/contract` replaces it
@@ -55,7 +55,7 @@ Product repos **consume** Grounded Rules; they must not fork conflicting Dewey, 
 
 - Prefer changes in this repo that product repos can adopt via template / workflow ref / `@subterra/ci-ops`.
 - Register every new app/package in APP_REGISTRY + manifest before scaffolding GitHub.
-- Keep product-local e2e in the product repo; keep **cross-repo contract** e2e in Grounded Rules until `luna` `tests/contract` exists.
+- Keep product-local e2e in the product repo; keep **cross-repo contract** e2e in Grounded Rules until `luna-os` `tests/contract` exists.
 - Follow CI_OPS Round 1/2 design gates for `/NF` `/NB` `/RD` and multi-option locks (AskQuestion when available).
 
 ## Out of scope unless explicitly asked

@@ -11,7 +11,7 @@ Expands the GV mandate (constitution §9) to cover GitHub repo management, reusa
 
 **Still stands:** SubTerraCo org, Team plan, `master` as production, six reusable workflows, vendor `upstream` remotes, workspace QA in `tests/`, twin-SDK contract in `sdk-contract`.
 
-**Superseded by GV-0004:** separate GitHub repos as the product shape, Shell application owned only by ST, Electron/Next desktop as the thing to build. The product is `SubTerraCo/luna` (not created yet). This Grounded Rules repo still owns the reusable workflows consumed by leftover product repos.
+**Superseded by GV-0004:** separate GitHub repos as the product shape, Shell application owned only by ST, Electron/Next desktop as the thing to build. The product monorepo is `SubTerraCo/luna-os` (display SubTerra Metro; Settings-rename to `subterra-metro` is proposed). This Grounded Rules repo still owns the reusable workflows consumed by leftover product repos. Current Grounded Rules slug is `SubTerraCo/grounded-rules`. Historical tables below record the repo being created as `subterra-governance`.
 
 ---
 

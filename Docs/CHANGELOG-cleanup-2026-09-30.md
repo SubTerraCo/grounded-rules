@@ -6,6 +6,46 @@ Companion readable summary (not a diff list): [GOVERNANCE_OVERVIEW.md](GOVERNANC
 
 ---
 
+## Remaining Luna OS product naming leftover scrub
+
+Powerline 2026-09-30. Draft only. Kill remaining **Luna OS** *display* for the former product/shell. Live display is **SubTerra Metro**. Dewey codes unchanged (`SM` live, `LO` address alias, `LU` personal agent).
+
+**GitHub slug:** product monorepo stays `SubTerraCo/luna-os` until Powerline Settings-renames. **Proposed slug:** `subterra-metro`. Personal agent Luna / `LU` / `packages/luna` distinct. Catalog `id: luna-os` stays the LO alias row (machine id; not a second shell). Leftover path fallback `apps/luna-os` stays.
+
+**Grounded Rules:** files this pass touched now say Grounded Rules / `grounded-rules`, not live `subterra-governance`. Parallel draft [PR #20](https://github.com/SubTerraCo/grounded-rules/pull/20) still owns leftover workflow `uses:` comments and playwright-kit. Do not merge this into #20; rebase if both land.
+
+Stay draft. No deletes/archives. No Dewey code changes.
+
+### File-by-file (this leftover scrub)
+
+| Path | What changed |
+|------|----------------|
+| `README.md`, `CI_OPS_CONSTITUTION.md`, `Docs/GOVERNANCE_OVERVIEW.md`, `Docs/ARCHITECTURE.md` | Product monorepo is `luna-os` (exists), not `luna` “not created yet”. Display SubTerra Metro. Proposed Settings-rename `subterra-metro`. Live Grounded Rules slug `grounded-rules`. |
+| `Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md` | C1 / GV row / C16 root `packages/` / §4 “monorepo not created” corrected. |
+| `Docs/DESIGN_RECORDS/GV-0001-github-pipelines-qa.md` | Current-state product slug `luna-os`; current Grounded Rules slug `grounded-rules`. Historical create-`subterra-governance` tables left. |
+| `Docs/DESIGN_RECORDS/GV-0003-material-3.md` | Follow-on repo `luna-os`; Grounded Rules (`grounded-rules`). |
+| `Docs/DESIGN_RECORDS/GV-0007-grok-bot-anytype.md` | Out-of-scope “create luna” → product monorepo already `luna-os`. |
+| `codes/APP_REGISTRY.yaml`, `subterra.manifest.yaml` | GV `repo:` `grounded-rules`. SM notes: live slug `luna-os`, proposed `subterra-metro`. Catalog `id: luna-os` comment: LO alias vs GitHub slug. |
+| `packages/ci-ops/src/collect-versions.ts`, `Docs/VERSIONS.md`, `versions/fleet.json` | GV default repo `grounded-rules`. Folder fallback `subterra-governance` kept. Path fallback `apps/luna-os` kept. |
+| `.cursor/rules/governance-agent.mdc`, `tests/*`, `templates/product-repo/*` | Product monorepo `luna-os`; Grounded Rules `uses:` `grounded-rules`. |
+| `Docs/POWERLINE_INPUT.md` | Header. PI-006/007 `luna` → `luna-os`. PI-016/017 **Later** lines. Live PR links `grounded-rules`. PI-016 question/options left as the answered rename. |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | This section. Prior pass tables left as historical audit (they said Luna OS then). PI-019 C16 live wording: root `packages/` in `luna-os`. |
+
+### Intentional leftovers
+
+| Hit | Why left |
+|-----|----------|
+| PI-016 title / question / option B “Luna OS” | Answered rename record. Do not rewrite history. |
+| Catalog `id: luna-os`, Dewey `LO`, path fallback `apps/luna-os` | Machine alias / leftover folder. Not display. |
+| GitHub URLs `SubTerraCo/luna-os/pull/1`, PI-013 heading id | Real slug and real PR until Settings-rename. |
+| `packages/luna`, Dewey `LU`, prose “Luna” / “Luna 7” | Personal agent. |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` earlier pass tables | That day’s audit. |
+| GV-0001 create/transfer tables `subterra-governance` | What actually happened. |
+| `.github/workflows/*.yml` comment `uses:` `subterra-governance` | Parallel [PR #20](https://github.com/SubTerraCo/grounded-rules/pull/20). |
+| `collect-versions.ts` folder fallback `subterra-governance` | Older meta-workspace checkouts. |
+
+---
+
 ## Grok bot Anytype — GV-0007 (merged onto PI-019 master)
 
 Powerline 2026-09-30. **Grok bot Anytype** classification **integration** only. **Central owns** the Local API client and credentials; **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Aligns with merged PI-019 (#19) hub+social + bridge OB+BI+OT+AT + packages-under-Central. No secrets.
@@ -26,7 +66,7 @@ Powerline lock 2026-09-30 voice. Docs/governance only. Ready for review (not dra
 1. **Central** = personal AI hub and suite of all tools. Hosts extensions, packages, and integrations. Catalog `audience` `member` still mounts here.
 2. **Metro** = social media app that consumes Central-hosted packages. Catalog `audience` `admin` still mounts here.
 3. **Anytype as a Central integration is the intended shape** (`role: integration` only — not plugin/extension). Leftover PKM workspace is not required as a monorepo package; Central hosts the integration. Prior “packaging Anytype / Grok bot Anytype for Central violates Grounded Rules” conflict is rewritten (GV-0004 C15).
-4. **Conflict 4 rewritten (live rule, not an override note):** old cut “forcing a packages path under Central invents a product shape Grounded Rules already cut” → **new rule:** Central-hosted packages and integrations are sanctioned. A packages-under-Central path (`apps/subterra-central/packages/` or equivalent) is legitimate (GV-0004 C16). Root `luna` `packages/` remains valid.
+4. **Conflict 4 rewritten (live rule, not an override note):** old cut “forcing a packages path under Central invents a product shape Grounded Rules already cut” → **new rule:** Central-hosted packages and integrations are sanctioned. A packages-under-Central path (`apps/subterra-central/packages/` or equivalent) is legitimate (GV-0004 C16). Root `packages/` in `luna-os` remains valid.
 5. **Metro↔Central data bridge allowlist** (owner-marked, off by default): Open Books (`OB`) + Open Bill (`BI`) + Open Time (`OT`) + **Anytype (`AT`)**.
 
 ### File-by-file (this lock)

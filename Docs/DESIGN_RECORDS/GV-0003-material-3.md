@@ -41,6 +41,6 @@ Locks Material Design 3 as the only UI framework for the SubTerra shell and for 
 
 | Work | Repo |
 |------|------|
-| Theme `packages/open-ui` with Material 3 color roles from the locked palette (purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`), interim Material 3 type scale, and 4dp spacing (Tailwind + `@material/material-color-utilities`). Font families wait on Powerline. `@subterra/shell-ui` / Material Web is leftover until the monorepo lands. Token *code* is sibling product work | `SubTerraCo/luna` (not created) and leftover `subterra-shell`. Do not restyle leftover shell as if it were the product |
+| Theme `packages/open-ui` with Material 3 color roles from the locked palette (purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`), interim Material 3 type scale, and 4dp spacing (Tailwind + `@material/material-color-utilities`). Font families wait on Powerline. `@subterra/shell-ui` / Material Web is leftover until the monorepo lands. Token *code* is sibling product work | `SubTerraCo/luna-os` and leftover `subterra-shell`. Do not restyle leftover shell as if it were the product |
 | Migrate Blocks, Mailbot, and Festy Blocks screens as they are edited | each app repo |
-| Register the Actual / Open Books (`OB`) vendor-fork exemption in the manifest when `OB` is no longer reserved | Grounded Rules (`subterra-governance`) |
+| Register the Actual / Open Books (`OB`) vendor-fork exemption in the manifest when `OB` is no longer reserved | Grounded Rules (`grounded-rules`) |

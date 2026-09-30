@@ -36,8 +36,8 @@ apps:
     name: Grounded Rules
     role: governance
     localPath: governance
-    repo: SubTerraCo/subterra-governance
-    note: "Display name Grounded Rules. Live GitHub slug remains SubTerraCo/subterra-governance until Powerline Settings-renames to grounded-rules. localPath governance is the meta-workspace folder. Dewey code GV unchanged."
+    repo: SubTerraCo/grounded-rules
+    note: "Display name Grounded Rules. Live GitHub slug is SubTerraCo/grounded-rules. localPath governance is the meta-workspace folder. Dewey code GV unchanged."
   - code: AT
     name: Anytype
     role: integration
@@ -79,7 +79,7 @@ apps:
     status: reserved
     platforms: [DT, AD, IO, AP]
     audience: [admin]
-    note: "Social media app (Powerline lock 2026-09-30). Consumes extensions and packages hosted in SubTerra Central. Tauri v2 for Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST. Former code LO is an address alias. Catalog audience admin still mounts here. The Omarchy machine is the local AI host. Personal agent Luna (LU) is unchanged."
+    note: "Social media app (Powerline lock 2026-09-30). Consumes extensions and packages hosted in SubTerra Central. Tauri v2 for Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST. Former code LO is an address alias. Catalog audience admin still mounts here. The Omarchy machine is the local AI host. Personal agent Luna (LU) is unchanged. Product monorepo GitHub slug is SubTerraCo/luna-os until Powerline Settings-renames; proposed slug subterra-metro."
   - code: LU
     name: Luna
     role: app

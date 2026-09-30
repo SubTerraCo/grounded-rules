@@ -5,7 +5,7 @@
 //
 // Scope split (CI_OPS_CONSTITUTION §12):
 //   product repo tests/  → one app's own UI and flows
-//   Grounded Rules tests/ → contracts BETWEEN repos (until luna tests/contract)
+//   Grounded Rules tests/ → contracts BETWEEN repos (until luna-os tests/contract)
 //
 // Coverage is deferred (GV-0001 D5) until a shell host is running.
 // Contract projects need no browser; only `marketplace` does.

@@ -4,7 +4,7 @@ Resolved ingestion of the PoweredUp / SubTerra architecture. Conflicts with olde
 
 Readable current-state summary of this Grounded Rules repo: [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md).
 
-Copy this file to the monorepo root at Phase 1. Until that repo exists, this copy is the source of truth.
+Copy this file to the monorepo root (`SubTerraCo/luna-os`) at Phase 1 if that copy is not already the one people edit. This Grounded Rules copy remains the source of truth until then. Live GitHub slug is `luna-os` (display **SubTerra Metro**). Powerline Settings-rename to `subterra-metro` is proposed, not performed. Personal agent Luna is `packages/luna` (`LU`).
 
 ## Shell roles (Powerline lock 2026-09-30)
 
@@ -62,7 +62,7 @@ Luna's provider list is `local-ollama`, `local-vllm`, `cloud-anthropic`, `cloud-
 
 The monorepo pipeline runs on `master` and `dev`, and on pull requests into `master`. Node 22. pnpm 9. Fail the job on lint, typecheck, token check, unit tests, then build. Playwright covers visual regression, offline Yjs convergence, the finance path (receipt to ledger to Open Bill to a simulated bank match), tenant isolation, and mocked NFC plus a local Solana validator.
 
-Create `SubTerraCo/luna` with `master` as the default branch. Do not use `main`.
+Live GitHub slug for the product monorepo is `SubTerraCo/luna-os` (display **SubTerra Metro**). Default branch is `master`. Do not use `main`. Powerline Settings-rename to `subterra-metro` is proposed, not performed. Personal agent Luna (`LU`, `packages/luna`) is not this GitHub slug.
 
 ## Upstream cores
 
@@ -102,7 +102,7 @@ Leftover PKM stays in a dedicated Anytype workspace and is not required as a pac
 
 The same package can be installed in SubTerra Metro, in the SubTerra Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other. Metro as the social app consumes extensions and packages hosted in Central.
 
-Catalog registration for these packages uses `audience` as the mount gate. Do not write leftover twin fields (`role: app|integration`, `marketplace: apps|integrations`, twin SDKs) on new Luna items. Leftover Anytype keeps Dewey `role: integration`.
+Catalog registration for these packages uses `audience` as the mount gate. Do not write leftover twin fields (`role: app|integration`, `marketplace: apps|integrations`, twin SDKs) on new monorepo packages. Leftover Anytype keeps Dewey `role: integration`.
 
 A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only **Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`)** records that the person marks (Powerline lock 2026-09-30). Mail, banking, and home automation stay off the bridge. Metro's social surface never receives the unbridged personal hub.
 
@@ -144,7 +144,7 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for SubTerra Metro, t
 
 1. Workspace skeleton matching this layout, strict TypeScript, ESLint 9 flat config, pnpm workspace, Turborepo.
 2. Shell hub on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs. `packages/open-books` around `@actual-app/api`. `packages/open-bill` stays a separate invoicing package. Anytype is a Central-hosted integration (leftover PKM workspace is not required as a monorepo package; packages-under-Central is sanctioned). The owner-marked Metro↔Central bridge allowlist is Open Books, Open Bill, Open Time, and Anytype.
-3. `luna` with the provider interface and a tool registry for Open Books, Open Time, and Media. Default the local provider at the Omarchy host.
+3. `packages/luna` (`LU`) with the provider interface and a tool registry for Open Books, Open Time, and Media. Default the local provider at the Omarchy host.
 4. `packages/open-ui` Material 3 tokens (palette, type scale, 4dp spacing) and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
 5. Bundle `subterra-metro` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked SubTerra Metro hub cannot read SubTerra Central data. Confirm a linked bridge copies only Open Books, Open Bill, Open Time, and Anytype records the owner marked.
 6. Playwright suites listed under CI.

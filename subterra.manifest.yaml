@@ -1,9 +1,8 @@
 schemaVersion: 1
 # Top-level key `governance:` is the catalog schema (not the product display name).
-# Display product/repo name: Grounded Rules. Live GitHub slug remains SubTerraCo/subterra-governance
-# until Powerline Settings-renames to grounded-rules.
+# Display product/repo name: Grounded Rules. Live GitHub slug is SubTerraCo/grounded-rules.
 governance:
-  repo: SubTerraCo/subterra-governance
+  repo: SubTerraCo/grounded-rules
   ciOpsVersion: "26.8.4"
   addressScheme: "APP.PP.PR.AA.SSS.FFF"
 
@@ -28,7 +27,7 @@ governance:
     legacyOwner: PoweredUpLabs  # still holds unrelated repos; nothing SubTerra should live there
 
 # Canonical catalog. GV-0004 product shape: SubTerra Metro + SubTerra Central + standalone packages.
-# Leftover standalone-repo items stay as address aliases until folded into SubTerraCo/luna.
+# Leftover standalone-repo items stay as address aliases until folded into SubTerraCo/luna-os.
 #
 # audience (GV-0002 D4): list of catalog audiences that may mount the item.
 # Locked machine values: admin | member only. Do not rename these strings.
@@ -126,6 +125,9 @@ items:
     note: "Not a required monorepo package. Leftover PKM lives in a dedicated Anytype workspace. Central hosts the Anytype integration (Powerline lock 2026-09-30; Dewey role: integration only — not plugin/extension). Intended shape: Anytype / Grok bot Anytype as a Central integration. Central owns the Local API client and credentials; Cara only runs Anytype desktop on 127.0.0.1:31009 (GV-0007). Packages-under-Central is sanctioned (GV-0004 C16). Metro↔Central data bridge allowlist includes owner-marked AT records (with OB, BI, OT). any-sync ASAL limits still apply. Open Axiom is cut. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
 
   # GV-0004 monorepo items. No twin role / marketplace: apps|integrations / twin SDK.
+  # id luna-os is the LO address-alias catalog row (not a second shell).
+  # GitHub slug SubTerraCo/luna-os is the product monorepo (display SubTerra Metro;
+  # Settings-rename to subterra-metro is proposed). Those two strings coincide on purpose.
   - id: luna-os
     appCode: LO
     name: SubTerra Metro (address alias)
@@ -138,7 +140,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "Former live Dewey code for SM. Address alias only. Path to build is apps/subterra-metro. Existing LO addresses stay valid."
+    note: "Former live Dewey code for SM. Address alias only. Path to build is apps/subterra-metro. Existing LO addresses stay valid. Not the GitHub identity of the product monorepo (that slug is also luna-os until Settings-rename)."
 
   - id: subterra-metro
     appCode: SM
@@ -152,7 +154,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "Powerline lock 2026-09-30. Social media app (Tauri), including Arch Linux for Omarchy. Consumes extensions and packages hosted in Central. Catalog audience admin still mounts here. Live gate is audience, not twin marketplace fields. Former code LO is an address alias. Personal agent Luna (LU) is unchanged."
+    note: "Powerline lock 2026-09-30. Social media app (Tauri), including Arch Linux for Omarchy. Consumes extensions and packages hosted in Central. Catalog audience admin still mounts here. Live gate is audience, not twin marketplace fields. Former code LO is an address alias. Personal agent Luna (LU) is unchanged. Product monorepo GitHub slug is SubTerraCo/luna-os until Powerline Settings-renames; proposed slug subterra-metro."
 
   - id: subterra-central
     appCode: SC
