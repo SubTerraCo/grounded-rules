@@ -1,5 +1,7 @@
 # R0 STUB — authored but not yet wired to a consumer.
-# Intended consumer: BK (Blocks apps/mobile via Expo EAS).
+# Leftover intended consumer: BK (Blocks apps/mobile via Expo EAS).
+# Luna OS Android is Tauri, not Expo (GV-0004). Do not treat this as the
+# Luna OS mobile pipeline.
 # Generalized from Blocks .github/workflows/build-android.yml.
 #
 # Wire it by replacing the product repo's inline EAS job with:

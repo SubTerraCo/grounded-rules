@@ -4,7 +4,7 @@
 |--|--|
 | **Address** | `GV.CX.DV.01.030.010` |
 | **Release** | `v26.09.29` |
-| **Status** | Design locked. GV-0004 replaces D2 and the `@subterra/shell-ui` owner: tokens live in `packages/ui` via Tailwind and `@material/material-color-utilities`. Material 3 itself still stands |
+| **Status** | Design locked. **GV-0004 replaces D2 and D3:** tokens live in `packages/open-ui` via Tailwind and `@material/material-color-utilities`, not Material Web and not `@subterra/shell-ui`. Material 3 itself, seed `#e8a54b`, and the vendor-fork exemption still stand |
 | **Owner** | Governance agent (GV) |
 
 Locks Material Design 3 as the only UI framework for the SubTerra shell and for SubTerra-owned apps. One theme. Vendor-fork screens and non-UI tools stay exempt.
@@ -28,11 +28,11 @@ Locks Material Design 3 as the only UI framework for the SubTerra shell and for 
 | Ref | Decision |
 |-----|----------|
 | **D1** | Material Design 3 is the UI framework for the shell and every SubTerra-owned app. |
-| **D2** | Web and desktop use Material Web (`@material/web`). Do not add MUI, shadcn, or a new hand-rolled control set. |
-| **D3** | One theme, owned by `@subterra/shell-ui`. Apps import it. They do not copy token files into the product repo. |
+| **D2** | Web and desktop use Material Web (`@material/web`). Do not add MUI, shadcn, or a new hand-rolled control set. **Superseded by GV-0004 C6:** Tailwind + `@material/material-color-utilities` in `packages/open-ui`. |
+| **D3** | One theme, owned by `@subterra/shell-ui`. Apps import it. They do not copy token files into the product repo. **Superseded by GV-0004:** owner is `packages/open-ui`. `@subterra/shell-ui` is the legacy package until the monorepo lands. |
 | **D4** | The theme seed is shell amber `#e8a54b`. Blocks magenta stays inside Blocks until that screen is migrated. It is not the shell seed. Material's default purple is not the seed. |
 | **D5** | New UI uses Material 3 components (app bars, navigation, buttons, text fields, lists, sheets). Existing screens move to Material 3 when they are edited. This record does not schedule a rewrite. |
-| **D6** | Exempt: vendor-fork UI (Actual / `FN` while those screens track upstream), and tools with no UI (`tag-writer`). New SubTerra screens inside an exempt repo still follow D1–D5. |
+| **D6** | Exempt: vendor-fork UI (Actual screens while they track upstream; Open Books `OB` uses `@actual-app/api` and our Material 3 wrapper — the code `FN` is withdrawn), and tools with no UI (`tag-writer`). New SubTerra screens inside an exempt repo still follow D1–D5. |
 | **D7** | Governance encodes D1–D6 now (this record, constitution §15, governance Cursor rule, product-repo template). Shell and app restyles are follow-on work in those repos. |
 
 ---
@@ -41,6 +41,6 @@ Locks Material Design 3 as the only UI framework for the SubTerra shell and for 
 
 | Work | Repo |
 |------|------|
-| Theme `@subterra/shell-ui` with Material 3 color roles from seed `#e8a54b`, and rebuild shell chrome on Material Web | `subterra-shell` |
+| Theme `packages/open-ui` with Material 3 color roles from seed `#e8a54b` (Tailwind + `@material/material-color-utilities`). `@subterra/shell-ui` / Material Web is leftover until the monorepo lands | `SubTerraCo/luna` (not created). Do not restyle leftover shell as if it were the product |
 | Migrate Blocks, Mailbot, and Festy Blocks screens as they are edited | each app repo |
-| Register the Actual / `FN` vendor-fork exemption in the manifest when `FN` is added | `subterra-governance` |
+| Register the Actual / Open Books (`OB`) vendor-fork exemption in the manifest when `OB` is no longer reserved | `subterra-governance` |

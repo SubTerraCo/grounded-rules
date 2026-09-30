@@ -2,6 +2,8 @@
 
 Resolved ingestion of the PoweredUp / SubTerra architecture. Conflicts with older governance are settled in [GV-0004](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md). Where this file and an older ruling disagree, this file wins. Where this file is silent, `CI_OPS_CONSTITUTION.md` still applies.
 
+Readable current-state summary of this governance repo: [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md).
+
 Copy this file to the monorepo root at Phase 1. Until that repo exists, this copy is the source of truth.
 
 ## Stack

@@ -1,5 +1,5 @@
 # R0 STUB — authored but not yet wired to a consumer.
-# Intended consumer: BK (Blocks scripts/daily-dev-push.mjs), later ST.
+# Leftover intended consumer: BK (Blocks scripts/daily-dev-push.mjs).
 # Seals the active batch and pushes the release branch onto `dev` (CI_OPS §4.1).
 #
 # Wire it with:

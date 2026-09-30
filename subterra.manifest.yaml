@@ -24,12 +24,13 @@ governance:
       non_fast_forward, required_status_checks) with org admins as bypass actors.
     legacyOwner: PoweredUpLabs  # still holds unrelated repos; nothing SubTerra should live there
 
-# Canonical catalog for SubTerra Shell dual marketplaces (Apps + Integrations).
-# Same schema for both roles — Apps ↔ Integrations parity.
+# Canonical catalog. GV-0004 product shape: Luna OS + SubTerra Central + standalone packages.
+# Existing polyrepo items stay as address aliases until folded into SubTerraCo/luna.
 #
 # audience (GV-0002 D4): list of shell audiences that may mount the item.
 # Values: admin | member. Default when omitted: [admin] (fail-closed).
-# Never reuse the word `role` for this — role is app vs integration.
+# Typical shells: Luna OS (admin), SubTerra Central (member).
+# Never reuse the word `role` for this — role is app vs integration (legacy shell) or catalog kind.
 items:
   - id: shell
     appCode: ST
@@ -43,7 +44,7 @@ items:
     defaultOpen: false
     sdk: null
     status: linked  # first consumer of the reusable ci-node workflow
-    note: "Admin shell target — apps/admin over packages/shell-core (GV-0002 D1)"
+    note: "Address alias for LO Luna OS. Leftover SubTerraCo/subterra-shell until Phase 1. Do not build apps/admin or packages/shell-core."
     provides:
       # Twin SDKs scaffolded and parity-verified (GV-0001 D10).
       - "@subterra/sdk-contract"   # internal single source of truth
@@ -62,7 +63,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved  # shell code deferred (GV-0002 D8)
-    note: "Customer shell — social, events, tickets; apps/nexus over shell-core (GV-0002 D2)"
+    note: "Address alias for SC SubTerra Central. Leftover Nexus name. Do not build apps/nexus."
 
   - id: blocks
     appCode: BK
@@ -77,6 +78,7 @@ items:
     sdk: "@subterra/app-sdk"
     mcp: "@blocks/mcp-server"
     status: linked
+    note: "Address alias for OD Open Day at packages/open-day. Existing Blocks repo remains the screen spec until fold-in."
 
   - id: mailbot
     appCode: MB
@@ -93,6 +95,7 @@ items:
     # HEAD verified identical (dd1ddaa) before the org transfer.
     status: linked
     defaultBranch: master
+    note: "Address alias for OS Open Sort at packages/open-sort."
 
   - id: billbot
     appCode: BB
@@ -106,12 +109,13 @@ items:
     defaultOpen: false
     sdk: "@subterra/app-sdk"
     status: reserved
+    note: "Address alias for BI Open Bill at packages/open-bill."
 
   - id: subtoken
     appCode: TK
     name: Subtoken
     repo: SubTerraCo/subtoken
-    localPath: apps/subtoken
+    localPath: packages/subtoken
     platforms: [DT, WB, AD, IO]
     role: app
     marketplace: apps
@@ -196,6 +200,9 @@ items:
     defaultOpen: false
     sdk: "@subterra/app-sdk"
     status: reserved
+    note: >-
+      WITHDRAWN — Open Axiom is cut (GV-0004). Catalog row kept until Powerline
+      approves archive. PKM is a dedicated Anytype workspace, not a monorepo package.
 
   - id: community-hub
     appCode: CH
@@ -237,3 +244,101 @@ items:
     sdk: "@subterra/app-sdk"
     status: reserved
     note: "Home automation. Client only. Upstream Home Assistant server is Apache 2.0 and can run on Omarchy."
+
+  - id: luna
+    appCode: LU
+    name: Luna
+    repo: null
+    localPath: packages/luna
+    platforms: [DT]
+    role: app
+    marketplace: apps
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "Agent router inside Luna OS. Ollama / Gemma 4 12B default on Omarchy. Not a Central package."
+
+  - id: open-day
+    appCode: OD
+    name: Open Day
+    repo: null
+    localPath: packages/open-day
+    platforms: [DT, WB]
+    role: app
+    marketplace: apps
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "Tasks, timeline, Quick Blocks, Festy crew tools. Replaces BK as the package to build."
+
+  - id: open-sort
+    appCode: OS
+    name: Open Sort
+    repo: null
+    localPath: packages/open-sort
+    platforms: [DT, WB]
+    role: app
+    marketplace: apps
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "Gmail and IMAP labels and archive. Replaces MB as the package to build. Not installed on Central."
+
+  - id: open-bill
+    appCode: BI
+    name: Open Bill
+    repo: null
+    localPath: packages/open-bill
+    platforms: [DT, WB]
+    role: app
+    marketplace: apps
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "Invoicing and 1099 exports. Replaces BB as the package to build."
+
+  - id: forum
+    appCode: FM
+    name: Forum
+    repo: null
+    localPath: packages/forum
+    platforms: [WB]
+    role: app
+    marketplace: apps
+    audience: [admin, member]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "Optional Flarum backend for Community. Community still runs without it."
+
+  - id: media
+    appCode: MA
+    name: Media
+    repo: null
+    localPath: packages/media
+    platforms: [DT]
+    role: app
+    marketplace: apps
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/app-sdk"
+    status: reserved
+    note: "DaVinci, OBS, Loupedeck. Luna OS only. Rust only at the Tauri socket boundary."
+
+  - id: banking
+    appCode: BS
+    name: Banking
+    repo: null
+    localPath: packages/banking
+    platforms: [DT, WB]
+    role: integration
+    marketplace: integrations
+    audience: [admin]
+    defaultOpen: false
+    sdk: "@subterra/integration-sdk"
+    status: reserved
+    note: "SimpleFIN and GoCardless. Teller and Plaid optional. Role copied from APP_REGISTRY; monorepo path is packages/banking."

@@ -18,6 +18,7 @@
 ## Notes
 
 - **Display** is `vYY.MM.DDbX` from package display field or ROADMAP batch log.
-- **npm** is `package.json` `version` (Electron / npm semver form).
+- **npm** is `package.json` `version` (npm semver form `YY.M.D` / `YY.M.D-bX`).
 - Rows with Display/npm `—` usually mean the local checkout is missing or not yet on the SubTerra stamp.
-- Refresh: `pnpm versions:fleet` from `governance/`.
+- Refresh: `pnpm versions:fleet` from this repo root (or `governance/` in a meta-workspace checkout).
+- ST / NX / BK / MB / BB are address aliases. The packages to build are LO / SC / OD / OS / BI (GV-0004). This snapshot was not regenerated in the 2026-09-30 cleanup (sibling checkouts are not on this runner).

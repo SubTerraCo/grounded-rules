@@ -9,6 +9,10 @@
 
 Locks a dual-shell model over one shared core: an admin SubTerra OS shell (ST) and a customer-facing **Nexus** shell (NX). Marketplace items gain an `audience` gate. NFC login must be challenge-response, never UID-only.
 
+**Still stands:** `audience` (`admin` / `member`, fail-closed default `["admin"]`); NFC challenge-response (no UID-only auth); Dewey areas `SO` and `EV`; Subtoken `TK` absorbs the 2022 NFC repos; `role` is never used for permissions.
+
+**Superseded by GV-0004:** `apps/admin`, `apps/nexus`, `packages/shell-core`, the product names SubTerra OS / Nexus as the shells to build, and polyrepo as the product shape. Build `apps/luna-os` (`LO`, alias `ST`) and `apps/subterra-central` / `apps/web-shell` (`SC`, alias `NX`).
+
 ---
 
 ## 1. Conflict audit findings

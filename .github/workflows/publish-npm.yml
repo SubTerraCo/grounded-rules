@@ -1,7 +1,8 @@
 # R0 STUB — authored but not yet wired to a consumer.
 # BLOCKED: requires real @subterra/* package code (see GV-0001 conflict C4).
-# Intended consumer: ST (subterra-shell) publishing @subterra/app-sdk,
-# @subterra/integration-sdk, @subterra/ui.
+# Leftover intended consumer: subterra-shell publishing @subterra/app-sdk and
+# @subterra/integration-sdk. Monorepo tokens live in packages/open-ui, not
+# @subterra/ui. Luna OS packages are not published from this stub.
 #
 # Wire it once the SDK packages have a build + publishable surface:
 #   jobs:

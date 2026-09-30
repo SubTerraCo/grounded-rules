@@ -21,7 +21,7 @@ The enterprise blueprint wins wherever it disagrees with GV-0001, GV-0002, or GV
 | C3 | Electron + Next shell | Vite, React 19, Tauri v2 | Tauri + Vite. `subterra-shell` stays until Phase 1 copies what is still useful |
 | C4 | Every repo defaults to `master` (§4.1) | The first blueprint draft used `main` and `staging` | Withdrawn. The monorepo uses `master` and `dev`, same as every other SubTerraCo repo |
 | C5 | pnpm 11.14, reusable `ci-node.yml@v1` | pnpm 9, Node 22, Turbo pipeline in-repo | Monorepo CI is the blueprint pipeline (pnpm 9, Node 22). This governance repo keeps its own workflow |
-| C6 | Material Web and `@subterra/shell-ui` (GV-0003 D2–D3) | Tailwind + `@material/material-color-utilities`, `packages/ui` | Material 3 stays. Tokens move to `packages/ui`. Arbitrary Tailwind values and hardcoded colors fail CI. Seed stays amber `#e8a54b` |
+| C6 | Material Web and `@subterra/shell-ui` (GV-0003 D2–D3) | Tailwind + `@material/material-color-utilities`, `packages/open-ui` | Material 3 stays. Tokens live in `packages/open-ui`. Arbitrary Tailwind values and hardcoded colors fail CI. Seed stays amber `#e8a54b`. (`packages/ui` was a draft folder name; the locked path is `open-ui`.) |
 | C7 | New Rust is forbidden (§14) | Rust for Tauri bindings only | Rust is allowed only in those bindings. App logic stays TypeScript |
 | C8 | Public repos are MIT | BSL 1.1, Apache 2.0 after 36 months, commercial key for 5+ seats | BSL applies to new original monorepo code. See §3. MIT files already published stay MIT |
 | C9 | Actual UI is a vendor-fork exemption | Import `@actual-app/api` into the budgeting package | Package is `packages/open-books`, code `OB`. Open Bill stays `packages/open-bill`, code `BI`. Use the headless API. Actual's SQLite CRDT stays inside Open Books. SQLCipher is the hub store |
@@ -72,7 +72,7 @@ Open stays on names that would collide with a published app. The others use the 
 
 | Layer | License |
 |-------|---------|
-| New original packages (`anytype` glue, `ui`, `budget` wrapper, shells, Luna, Billbot) | BSL 1.1. Additional grant: under 5 seats and under $100,000 gross, plus solos, artists, contributors, nonprofits. Each commit becomes Apache 2.0 after 36 months. Commercial keys are Ed25519 signatures from PoweredUpLabs |
+| New original packages (`packages/open-ui`, `packages/open-books` wrapper, `packages/open-bill`, shells, Luna, remaining original packages) | BSL 1.1. Additional grant: under 5 seats and under $100,000 gross, plus solos, artists, contributors, nonprofits. Each commit becomes Apache 2.0 after 36 months. Commercial keys are Ed25519 signatures from PoweredUpLabs |
 | MIT upstream (Actual, Super Productivity, ephios, Flarum) | Stays MIT, notices included |
 | Already published SubTerraCo `LICENSE` files | Stay MIT |
 | InvoiceShelf | AGPL-3.0. Not vendored into a BSL package and not part of the multi-tenant host |

@@ -1,10 +1,12 @@
 # Dewey APP segment — every app and integration reserves its own code.
 # Schema: APP.PP.PR.AA.SSS.FFF
 # All repos live under the SubTerraCo GitHub organization.
+# GV-0004 current codes: LO, LU, SC, OD, OS, OB, BI, TK, OG, CH, FM, HA, MA, BS, GV, WL.
+# Address aliases (not folders to build): ST, NX, BK, MB, BB. AX is cut (Open Axiom).
 schemaVersion: 1
 apps:
   - code: ST
-    name: SubTerra Shell (admin)
+    name: SubTerra Shell (address alias)
     role: shell
     localPath: shell
     repo: SubTerraCo/subterra-shell
@@ -15,7 +17,7 @@ apps:
     localPath: shell
     repo: SubTerraCo/subterra-shell
     status: reserved
-    note: "Legacy Nexus. GV-0004 replaces this with SC / apps/subterra-central. Keep NX as the address alias."
+    note: "Legacy Nexus. GV-0004 replaces this with SC / apps/subterra-central. Keep NX as the address alias. Do not build apps/nexus."
   - code: BK
     name: Blocks
     role: app
@@ -31,7 +33,7 @@ apps:
   - code: BB
     name: Billbot
     role: app
-    localPath: packages/billbot
+    localPath: apps/billbot
     status: reserved
     note: "Address alias for BI Open Bill at packages/open-bill."
   - code: GV
@@ -50,8 +52,8 @@ apps:
   - code: TK
     name: Subtoken
     role: app
-    localPath: apps/subtoken
-    repo: SubTerraCo/subtoken  # target monorepo; revival deferred (GV-0002 D6)
+    localPath: packages/subtoken
+    repo: SubTerraCo/subtoken  # leftover NFC repo; revival deferred (GV-0002 D6)
     status: reserved
     audience: [admin]
     note: >-
@@ -145,4 +147,9 @@ apps:
     role: integration
     localPath: packages/banking
     status: reserved
-    note: "SimpleFIN and GoCardless. Teller and Plaid are optional adapters."
+    note: "SimpleFIN and GoCardless. Teller and Plaid are optional adapters. Catalog role stays integration until Powerline says otherwise; the monorepo path is packages/banking."
+  - code: AX
+    name: Axiom (withdrawn)
+    role: app
+    status: reserved
+    note: "Open Axiom is cut (GV-0004). Catalog row kept until Powerline approves archive. PKM is Anytype (AT), not a monorepo package."

@@ -1,13 +1,13 @@
 // ============================================================================
-// SubTerra OS — Workspace QA (governance layer)
-// Cross-repo contract tests: manifest ↔ registry ↔ filesystem parity,
-// twin-SDK API identity, design-token parity, Shell marketplace handoff.
+// SubTerra — Workspace QA (governance layer)
+// Cross-repo contract tests: manifest ↔ registry parity,
+// twin-SDK API identity (legacy shell), design-token parity, catalog handoff.
 //
 // Scope split (CI_OPS_CONSTITUTION §12):
 //   product repo tests/  → one app's own UI and flows
-//   governance tests/    → contracts BETWEEN repos
+//   governance tests/    → contracts BETWEEN repos (until luna tests/contract)
 //
-// Coverage is deferred (GV-0001 D5) until the Shell host is running.
+// Coverage is deferred (GV-0001 D5) until a shell host is running.
 // Contract projects need no browser; only `marketplace` does.
 // ============================================================================
 
@@ -44,7 +44,7 @@ export default defineConfig({
       use: {},
     },
     {
-      // Cross-app browser journeys. Blocked until the Shell host runs.
+      // Cross-app browser journeys. Blocked until Luna OS / web-shell run.
       name: "marketplace",
       testDir: "./marketplace",
       use: {

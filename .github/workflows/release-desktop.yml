@@ -1,5 +1,6 @@
 # R0 STUB — authored but not yet wired to a consumer.
-# Intended consumers: BK (Blocks desktop), later ST (Shell desktop).
+# Leftover intended consumers: BK (Blocks desktop). Do not treat this as the
+# Luna OS pipeline — Luna OS ships with Tauri v2 (GV-0004), not Electron.
 # Generalized from Blocks .github/workflows/build-release.yml build-windows job.
 #
 # Wire it by replacing the product repo's inline installer job with:

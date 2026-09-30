@@ -2,7 +2,7 @@
   "name": "subterra-governance",
   "version": "26.8.4",
   "private": true,
-  "description": "SubTerra OS governance — CI Ops constitution, Dewey codes, manifest, reusable workflows",
+  "description": "SubTerra governance — CI Ops constitution, Dewey codes, manifest, reusable workflows",
   "type": "module",
   "packageManager": "pnpm@11.14.0",
   "engines": {

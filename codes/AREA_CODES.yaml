@@ -10,7 +10,8 @@ areas:
   - code: AU
     name: Auth / device identity
   - code: MK
-    name: Marketplace (Apps and Integrations grids)
+    name: Marketplace
+    note: "Marketplace chrome. GV-0004 dropped separate Apps and Integrations tabs; packages install into a shell. Code MK still names that surface."
   - code: DV
     name: DevOps / CI / release
   - code: MC
@@ -20,10 +21,10 @@ areas:
     name: NFC / crypto tags
   - code: SO
     name: Social / feed
-    note: "Nexus customer shell social surface (GV-0002 D7)"
+    note: "Member-shell social surface (GV-0002 D7). Shell to build is SubTerra Central (SC), not Nexus folders."
   - code: EV
     name: Events / ticketing
-    note: "Nexus events + Subtoken admin ticketing (GV-0002 D7)"
+    note: "Events + Subtoken ticketing (GV-0002 D7). Member surface is SubTerra Central (SC)."
   - code: IN
     name: Invoicing / billing
   - code: CM
