@@ -30,6 +30,8 @@ The enterprise blueprint wins wherever it disagrees with GV-0001, GV-0002, or GV
 | C12 | Flarum or Discourse | Community engine | Flarum (MIT). Discourse (GPL) fights the commercial gate |
 | C13 | Teller, Plaid, SimpleFIN, GoCardless | Bank feeds without vendor lock-in | SimpleFIN and GoCardless are the default connectors. Teller and Plaid are optional adapters |
 | C14 | "Open Day / Open Sort / Open Shift" rename draft | Named apps in the blueprint | That draft was never locked. Blueprint names win. See §2 |
+| C15 | Packaging Anytype / Grok bot Anytype for Central violated Grounded Rules (Anytype was an optional Metro mirror only; PKM not a package) | Central is the personal AI hub; Anytype as a Central integration is the intended shape | **Rewritten 2026-09-30.** Intended shape = Central integration (`role: integration` only — not plugin/extension). Leftover PKM workspace is not required as a monorepo package. Central **hosts the integration**. Metro↔Central bridge allowlist is Open Books, Open Bill, Open Time, **and Anytype** (owner-marked) |
+| C16 | Conflict 4: forcing a packages path under Central invents a product shape Grounded Rules already cut | Central hosts packages and integrations as the personal AI hub and tool suite | **Rewritten 2026-09-30 (this is the live rule, not an override note).** A packages-under-Central path (`apps/subterra-central/packages/` or equivalent, plus Central-hosted integrations) is a **legitimate, sanctioned** shape. Root `packages/` in `luna` remains valid. Leftover Anytype PKM workspace is still not required as a monorepo package |
 
 External licenses are not overruled: InvoiceShelf stays AGPL and out of the paid host; any-sync stays under the Any Source Available License.
 
@@ -45,9 +47,9 @@ Open stays on names that would collide with a published app. The others use the 
 
 | Code | Name | Path | What it is |
 |------|------|------|------------|
-| SM | SubTerra Metro | `apps/subterra-metro` | Tauri command center, including Arch / Omarchy. Replaces ST. Former code `LO` is an address alias |
+| SM | SubTerra Metro | `apps/subterra-metro` | Social media app (Tauri), including Arch / Omarchy. Consumes extensions and packages hosted in Central. Replaces ST. Former code `LO` is an address alias. Powerline lock 2026-09-30 |
 | LU | Luna | `packages/luna` | Agent router. Gemma 4 12B through Ollama |
-| SC | SubTerra Central | `apps/subterra-central` | Gigs and events. Member PWA (not a second runtime folder) |
+| SC | SubTerra Central | `apps/subterra-central` | Personal AI hub and suite of all tools. Offline-first PWA (not a second runtime folder). Hosts extensions, packages, and integrations. Powerline lock 2026-09-30 |
 | OT | Open Time | `packages/open-time` | Tasks, timeline, Quick Blocks, Festy crew tools. Replaces BK. Former code `OD` is an address alias |
 | OS | Open Sort | `packages/open-sort` | Mail labels and archive. Replaces MB |
 | OB | Open Books | `packages/open-books` | Budgeting via `@actual-app/api`. Not named Open Budget |
@@ -59,7 +61,7 @@ Open stays on names that would collide with a published app. The others use the 
 | HA | Home Assistant | `packages/home-assistant` | Home automation client |
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
 | BS | Banking | `packages/banking` | SimpleFIN and GoCardless |
-| AT | Anytype | — | Dedicated workspace. Not a package. Open Axiom is cut |
+| AT | Anytype | Central-hosted integration (leftover dedicated workspace until folded) | Central hosts the integration (`role: integration` only — not plugin/extension). Leftover PKM workspace is not required as a monorepo package. Packages-under-Central is sanctioned (C16). Open Axiom is cut. Owner-marked Metro↔Central bridge includes AT |
 | GV | Grounded Rules | `SubTerraCo/subterra-governance` | This rules repo. Display name Grounded Rules; GitHub slug rename to `grounded-rules` is a Powerline Settings click |
 | WL | White-label | — | Commercial gate on SubTerra Metro. Not a package |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
@@ -78,9 +80,9 @@ Open stays on names that would collide with a published app. The others use the 
 | InvoiceShelf | AGPL-3.0. Not vendored into a BSL package and not part of the multi-tenant host |
 | any-sync | Any Source Available License |
 
-SubTerra Metro and SubTerra Central keep separate hubs. The same owner may link a bridge that copies only Open Books, Open Bill, and Open Time records they mark. The bridge is off by default. Central anonymous access is an NFC challenge-response to an event page, with a one-time upgrade for Artist, Venue, or Vendor profile tools. Friend-show visibility is off by default. Open Gig is free for a solo freelancer and billed for a crew manager of 5 or more.
+SubTerra Metro and SubTerra Central keep separate hubs. The same owner may link a bridge that copies only Open Books, Open Bill, Open Time, and Anytype records they mark (Powerline lock 2026-09-30). The bridge is off by default. Central is the personal AI hub; Metro is the social media app that consumes Central-hosted packages. NFC event-page access remains a challenge-response, with a one-time upgrade for Artist, Venue, or Vendor profile tools. Friend-show visibility is off by default. Open Gig is free for a solo freelancer and billed for a crew manager of 5 or more.
 
-Packages do not import each other. Each shell ships a SQLite hub, and every package runs against an empty hub. Anytype is an optional mirror for a personal SubTerra Metro install, not a dependency. Forum is an optional richer backend for Community. The deployment matrix is in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md).
+Packages do not import each other. Each shell ships a SQLite hub, and every package runs against an empty hub. Central hosts packages and integrations; a packages-under-Central path is sanctioned (C16). Anytype is a Central-hosted integration and not a hub dependency. Leftover PKM remains a dedicated Anytype workspace unless folded. Forum is an optional richer backend for Community. The deployment matrix is in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md).
 
 ---
 

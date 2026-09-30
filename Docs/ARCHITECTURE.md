@@ -6,27 +6,38 @@ Readable current-state summary of this Grounded Rules repo: [GOVERNANCE_OVERVIEW
 
 Copy this file to the monorepo root at Phase 1. Until that repo exists, this copy is the source of truth.
 
+## Shell roles (Powerline lock 2026-09-30)
+
+- **SubTerra Central** (`apps/subterra-central`, `SC`) is the **personal AI hub and suite of all tools**. It hosts extensions, packages, and integrations. Catalog `audience` `member` still mounts here (machine value unchanged).
+- **SubTerra Metro** (`apps/subterra-metro`, `SM`) is converting to the **social media app**. It has access to all extensions and packages hosted in Central. Catalog `audience` `admin` still mounts here (machine value unchanged).
+- This framing **overrides** the earlier characterization of Central as a public/member shell and Metro as the personal command center.
+- **Anytype as a Central integration is the intended shape.** Classification is Dewey `role: integration` only — not plugin/extension. Leftover PKM still lives in a dedicated Anytype workspace and is not required to be a monorepo package; Central **hosts the integration**.
+- **Conflict 4 rewritten (Powerline lock 2026-09-30).** Old cut: forcing a packages path under Central invents a product shape Grounded Rules already cut. **New rule:** Central hosts packages and integrations as the personal AI hub and tool suite. A packages-under-Central path (`apps/subterra-central/packages/` or equivalent host layout, plus Central-hosted integrations) is a **legitimate, sanctioned** shape.
+- **Metro↔Central data bridge allowlist** (owner-marked, off by default): Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`).
+
 ## Stack
 
 - TypeScript strict mode for UI, domain logic, and shared types. React 19. Vite.
-- Two shells only: `apps/subterra-metro` (Tauri v2 for Windows, macOS, Android, iOS, and Arch Linux) and `apps/subterra-central` (offline-first PWA).
+- Two shells only: `apps/subterra-metro` (Tauri v2 social app for Windows, macOS, Android, iOS, and Arch Linux; consumes Central-hosted packages) and `apps/subterra-central` (offline-first PWA; personal AI hub and suite of all tools).
 - Arch builds install on Omarchy. That machine is the dedicated local AI host: Ollama runs there, and `packages/luna` calls it on localhost. Ship an AppImage and a PKGBUILD.
 - Rust only inside Tauri bindings: filesystem, local IPC, NFC hardware, DaVinci socket.
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
 - Finance store: Actual's own SQLite CRDT inside `packages/open-books` (`OB`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
-- PKM lives in a dedicated Anytype workspace. It is not a package in this monorepo. The shell hub does not require it.
+- Leftover PKM lives in a dedicated Anytype workspace. It is not required as a monorepo package, and the shell hub does not require it. Central **hosts** the Anytype integration (and may host other packages). A packages-under-Central path is sanctioned (conflict 4 rewritten, 2026-09-30). The Metro↔Central bridge may copy owner-marked Anytype (`AT`) records.
 - Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. `packages/open-ui` owns palette, type, and spacing. Locked palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Type: interim Material 3 type scale (display, headline, title, body, label); font families are not locked. Spacing: 4dp baseline grid. The single amber seed `#e8a54b` is withdrawn. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx` (docs may cite these palette hexes; product screens use tokens). Token *code* is not in this Grounded Rules repo.
 
 ## Apps and packages
 
 ```
 apps/
-  subterra-metro/               # SM — Tauri command center, including Arch / Omarchy (former code LO)
-  subterra-central/      # SC — PWA; gigs, events, NFC event page
+  subterra-metro/               # SM — social media app (Tauri); consumes Central-hosted packages (former code LO)
+  subterra-central/      # SC — personal AI hub PWA; suite of all tools
+    packages/            # SANCTIONED — Central-hosted packages (conflict 4 rewritten 2026-09-30)
+    integrations/        # SANCTIONED — Central-hosted integrations (Anytype / Grok bot Anytype)
 
   open-gig/              # OG — profile, listing, rate, date request
   community/             # CH — voting and discussion UI
-packages/
+packages/                       # shared monorepo packages remain valid; Central-hosted copies/paths are also allowed
   open-time/             # OT — tasks, timeline, Quick Blocks, Festy crew tools (former code OD)
   open-sort/             # OS — Gmail and IMAP labels and archive
   open-books/            # OB — @actual-app/api budgeting
@@ -71,7 +82,7 @@ Use these projects for the engine and the patches. Write the Material 3 screen a
 | Hub | Yjs and SQLCipher | A CRDT written here |
 | UI | `@material/material-color-utilities` | A second design system |
 | Booking `BO` | No maintained open marketplace matches a profile, a rate, and a date request | Team@Once and Mercur. They are staffing or product commerce, not this listing |
-| Anytype `AT` | any-sync, optional | Making it required |
+| Anytype `AT` | any-sync; Central hosts the integration. Leftover PKM workspace is not required as a monorepo package. Metro↔Central bridge allowlist includes owner-marked AT | Treating it as a plugin or extension. Forbidding a packages-under-Central path |
 
 Existing SubTerraCo repos stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
@@ -87,17 +98,17 @@ Every installable package stands alone. It may not import another package. The s
 
 Optional facts another package might have written are read from the hub only after the user grants that read. If the other package is not installed, those fields stay empty and the installed package still runs.
 
-PKM stays in a dedicated Anytype workspace. It is not a package here, and Open Axiom is cut. The shell hub is the store for installed packages. Other people are not required to run Anytype.
+Leftover PKM stays in a dedicated Anytype workspace and is not required as a package in this monorepo. Open Axiom is cut. The shell hub is the store for installed packages. Other people are not required to run Anytype. Central hosts packages and integrations, including Anytype / Grok bot Anytype (Dewey `role: integration` only — not plugin/extension). A packages-under-Central path is sanctioned (conflict 4 rewritten, Powerline lock 2026-09-30).
 
-The same package can be installed in SubTerra Metro, in the SubTerra Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other.
+The same package can be installed in SubTerra Metro, in the SubTerra Central PWA, or in both. Each shell has its own hub. Installing it in one shell does not install it in the other. Metro as the social app consumes extensions and packages hosted in Central.
 
-Catalog registration for these packages uses `audience` as the mount gate. Do not write leftover twin fields (`role: app|integration`, `marketplace: apps|integrations`, twin SDKs) on new Luna items.
+Catalog registration for these packages uses `audience` as the mount gate. Do not write leftover twin fields (`role: app|integration`, `marketplace: apps|integrations`, twin SDKs) on new Luna items. Leftover Anytype keeps Dewey `role: integration`.
 
-A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only Open Books, Open Bill, and Open Time records that the person marks. Mail, banking, and home automation stay on SubTerra Metro. Central's public pages never receive the unbridged SubTerra Metro hub.
+A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only **Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`)** records that the person marks (Powerline lock 2026-09-30). Mail, banking, and home automation stay off the bridge. Metro's social surface never receives the unbridged personal hub.
 
 ## SubTerra Central access
 
-A tag opens an event page after NTAG424 challenge-response. A UID alone does not sign anyone in.
+Central is the personal AI hub (Powerline lock 2026-09-30). NFC still opens an event page after NTAG424 challenge-response when that flow is used. A UID alone does not sign anyone in. Metro, as the social media app, consumes Central-hosted packages for social / feed surfaces.
 
 The tag holder is an anonymous member. They can buy tickets, keep a log of shows, hold digital goods, and follow artists on a limited profile. They may set an alias. Seeing which shows friends attend is off until they turn that permission on, and each person controls their own visibility.
 
@@ -105,11 +116,14 @@ A one-time charge upgrades that profile to Artist, Venue, or Vendor. The charge 
 
 Booking listings are free for a single freelancer. A crew manager with 5 or more members pays the booking fee. The fee is for managing that crew, not for looking for work alone.
 
-| Package | SubTerra Metro (personal and white-label) | SubTerra Central (public events) | Sells as |
+Column labels use the 2026-09-30 shell roles (Metro = social, consuming Central-hosted packages; Central = personal AI hub). Per-package Yes/No cells for existing packages stay the GV-0004 mount table except the named lock: Anytype `AT` is a Central integration (not a monorepo package) and is on the owner-marked bridge allowlist with OB, BI, and OT.
+
+| Package | SubTerra Metro (social; consumes Central-hosted packages) | SubTerra Central (personal AI hub; hosts tools) | Sells as |
 |---------|--------------------------------------|----------------------------------|----------|
-| Open Books `OB` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
-| Open Bill `BI` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
-| Open Time `OT` | Yes. Personal tasks, plus Festy crew drafting | Public schedule only, when granted | Seat. Drafting stays on SubTerra Metro |
+| Open Books `OB` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional. Allowlist: OB + BI + OT + AT |
+| Open Bill `BI` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional. Allowlist: OB + BI + OT + AT |
+| Open Time `OT` | Yes. Personal tasks, plus Festy crew drafting | Public schedule only, when granted | Seat. Drafting stays on SubTerra Metro. Allowlist: OB + BI + OT + AT |
+| Anytype `AT` | Only through the owner's bridge (Powerline lock 2026-09-30) | Hosts the integration. PKM is a dedicated Anytype workspace — not a monorepo package | Integration (`role: integration` only). Not plugin/extension |
 | Open Sort `OS` | Yes | No | Back-office seat |
 | Banking `BS` | Yes | No | Back-office seat |
 | Home Assistant `HA` | Yes | No | Back-office seat |
@@ -127,10 +141,10 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for SubTerra Metro, t
 ## Phases
 
 1. Workspace skeleton matching this layout, strict TypeScript, ESLint 9 flat config, pnpm workspace, Turborepo.
-2. Shell hub on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs. `packages/open-books` around `@actual-app/api`. `packages/open-bill` stays a separate invoicing package. `anytype` is an optional mirror of the hub, not the store packages require.
+2. Shell hub on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs. `packages/open-books` around `@actual-app/api`. `packages/open-bill` stays a separate invoicing package. Anytype is a Central-hosted integration (leftover PKM workspace is not required as a monorepo package; packages-under-Central is sanctioned). The owner-marked Metro↔Central bridge allowlist is Open Books, Open Bill, Open Time, and Anytype.
 3. `luna` with the provider interface and a tool registry for Open Books, Open Time, and Media. Default the local provider at the Omarchy host.
 4. `packages/open-ui` Material 3 tokens (palette, type scale, 4dp spacing) and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
-5. Bundle `subterra-metro` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked SubTerra Metro hub cannot read SubTerra Central data. Confirm a linked bridge copies only Open Books, Open Bill, and Open Time records the owner marked.
+5. Bundle `subterra-metro` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked SubTerra Metro hub cannot read SubTerra Central data. Confirm a linked bridge copies only Open Books, Open Bill, Open Time, and Anytype records the owner marked.
 6. Playwright suites listed under CI.
 
 ## Festy Blocks
