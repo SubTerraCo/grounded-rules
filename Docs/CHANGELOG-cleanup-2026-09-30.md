@@ -60,7 +60,7 @@ No merge blockers. Stay draft. No deletes/archives. Q11 (WL catalog row) and Q12
 
 ## Powerline input queue added
 
-Living clickable queue: [POWERLINE_INPUT.md](POWERLINE_INPUT.md) (`PI-001`–`PI-015`). Rook maintains it whenever a new blocker-for-Powerline appears. **Q11–Q15 (and other still-open changelog questions) are not resolved** — they are indexed there as open/watching items. PI-003 **answered** 2026-09-30 MT: **replace** amber entirely (four-color lock; `#e8a54b` withdrawn). PI-014 **answered** 2026-09-30 MT: accept residual nits; shell#3 merged to `master` (`c0e4f699` / merge `50a540c5`). Removed from Open index. PI-015 **answered** 2026-09-30 MT: Preferred (WL-FR-001) — no new Dewey APP code; WL gate only; wizard on LO; brand pack in `packages/open-ui`; no BR / fourth shell.
+Living clickable queue: [POWERLINE_INPUT.md](POWERLINE_INPUT.md) (`PI-001`–`PI-015`). Rook maintains it whenever a new blocker-for-Powerline appears. Changelog questions Q11–Q15 remain open *as PI items where those PIs are still open* (PI-001=Q11, PI-002=Q12, PI-004=Q15, PI-011=Q13, PI-012=Q14). PI-003 (palette replace) and PI-015 (WL-FR-001 path) are **answered** and are not Q11–Q15. Open index = 12 (11 `open` decisions + 1 `watching`). Answered: PI-003, PI-014, PI-015. PI-003 **answered** 2026-09-30 MT: **replace** amber entirely (four-color lock; `#e8a54b` withdrawn). PI-014 **answered** 2026-09-30 MT: accept residual nits; shell#3 merged to `master` (`c0e4f699` / merge `50a540c5`). PI-015 **answered** 2026-09-30 MT: Preferred (WL-FR-001) — no new Dewey APP code; WL gate only; wizard on LO; brand pack in `packages/open-ui`; no BR / fourth shell.
 
 | Path | What changed |
 |------|----------------|
