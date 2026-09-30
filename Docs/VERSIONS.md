@@ -6,7 +6,7 @@
 
 | APP | Name | Display | npm | Branch | Status | Repo |
 |-----|------|---------|-----|--------|--------|------|
-| GV | Governance | v26.08.04 | 26.8.4 | master | linked | SubTerraCo/subterra-governance |
+| GV | Grounded Rules | v26.08.04 | 26.8.4 | master | linked | SubTerraCo/subterra-governance |
 | ST | SubTerra Shell | v26.08.04b1 | 26.8.4-b1 | master | linked | SubTerraCo/subterra-shell |
 | BK | Blocks | v26.07.17b3 | 26.7.17 | v26.07.17 | linked | SubTerraCo/Blocks |
 | MB | Mailbot | v00.01.00 | 0.1.0 | master | linked | SubTerraCo/mailbot |

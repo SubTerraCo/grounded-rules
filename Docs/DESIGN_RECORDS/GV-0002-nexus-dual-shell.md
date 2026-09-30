@@ -7,7 +7,7 @@
 | **Address** | `GV.CX.DV.01.020.010` |
 | **Release** | `v26.08.04` |
 | **Status** | Historical folder sketch superseded by GV-0004 (SubTerra Metro and SubTerra Central). Audience and NFC challenge-response still stand |
-| **Owner** | Governance agent (GV) |
+| **Owner** | Grounded Rules agent (GV) |
 
 Locks a dual-shell model: an admin shell and a member-facing public shell. Marketplace items gain an `audience` gate. NFC login must be challenge-response, never UID-only.
 

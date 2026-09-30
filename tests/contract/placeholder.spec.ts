@@ -28,6 +28,6 @@ test.describe("@contract twin-SDK parity", () => {
 });
 
 test.describe("@contract pipeline adoption", () => {
-  test.fixme("each product repo CI references governance reusable workflows", pending);
+  test.fixme("each product repo CI references Grounded Rules reusable workflows", pending);
   test.fixme("no product repo has drifted from the product-repo template docs", pending);
 });
