@@ -101,6 +101,17 @@ Powerline approved 2026-09-30 MT. Display **Luna OS** → **SubTerra Metro**. Pa
 
 ---
 
+## Lattice nits on `9906dec` (soft; stay draft)
+
+Lattice PASS / `nits_only` on [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7) @ `9906dec`. Two queue syncs. No Grounded Rules work. No deletes/archives.
+
+| Path | What changed |
+|------|----------------|
+| `Docs/POWERLINE_INPUT.md` | PI-013 watched luna-os#1 tip `39bb566` → `0cdf88b` (Metro rename landed). Patron PASS SHA left at `39bb566`. PI-011 question + option B: new-work Dewey `SM` (`LO` alias only). |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | Still-open #13 wording matches PI-011 (`SM`, not `LO`). This nit-pass. |
+
+---
+
 ## Follow-up (Powerline, same day) — terminology
 
 Mandatory: (1) product-facing PWA is **SubTerra Central** at `apps/subterra-central`, not a separate web-runtime product; (2) remove leftover member-shell product naming from live prose and catalog; (3) describe topology as this rules repo + the Luna OS monorepo (plus leftover product repos until fold-in), without leftover multi-repo product-shape labels.
@@ -283,7 +294,7 @@ No other deletions proposed. R0 workflow stubs stay (constitution §11: do not d
 10. Banking (`BS`) Dewey `role: integration` in APP_REGISTRY vs other packages `role: app`. Catalog now treats BS as a Luna package (`marketplace: null`, not a twin integration). Dewey role left as-is until Powerline reclassifies it.
 11. White-label (`WL`) is in APP_REGISTRY, not in the manifest. Should it get a `marketplace: null` catalog row?
 12. `Docs/VERSIONS.md` / `versions/fleet.json` were not fully regenerated. The withdrawn member-shell fleet row was removed by hand. Should the next meta-workspace `pnpm versions:fleet` add reserved LO/SC/OD/… rows (mostly `—`) to the dashboard?
-13. Should existing Dewey addresses on Blocks (`BK/N-####`) be rewritten to `OD/N-####`, or only **new** work use OD/OS/BI/LO?
+13. Should existing Dewey addresses on Blocks (`BK/N-####`) be rewritten to `OD/N-####`, or only **new** work use OD/OS/BI/SM? (`LO` is an address alias for `SM`; new shell work uses `SM`.)
 14. GV-0002 on-disk filename: rename after archive approval (and leave a stub), or keep forever as history?
 15. Font **families** for `packages/open-ui` — interim Material 3 type scale and 4dp spacing are locked; typeface names wait on Powerline.
 

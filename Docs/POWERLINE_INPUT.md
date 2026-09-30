@@ -36,7 +36,7 @@ Decisions (`open`) and watches (`watching`). 12 items.
 - [PI-010](#pi-010-banking-dewey-role) — Q10 Banking (BS) Dewey role
 - [PI-011](#pi-011-dewey-bk-to-od-rewrite) — Q13 Dewey BK→OD rewrite
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
-- [PI-013](#pi-013-luna-os-open-ui-token-pr) — SubTerra Metro open-ui token PR *(watching)* — luna-os#1 draft @ `39bb566`; Patron chrome PASS 7/7; PI-003 replace answered — merge when Powerline says
+- [PI-013](#pi-013-luna-os-open-ui-token-pr) — SubTerra Metro open-ui token PR *(watching)* — luna-os#1 draft @ `0cdf88b` (Metro rename landed); Patron chrome PASS 7/7 @ `39bb566`; PI-003 replace answered — merge when Powerline says
 
 ## Answered
 
@@ -192,10 +192,10 @@ Decisions (`open`) and watches (`watching`). 12 items.
 
 - **Status:** `open`
 - **Needed:** decision
-- **Question:** Should existing Dewey addresses on Blocks (`BK/N-####`) be rewritten to `OD/N-####`, or only **new** work use OD/OS/BI/LO?
+- **Question:** Should existing Dewey addresses on Blocks (`BK/N-####`) be rewritten to `OD/N-####`, or only **new** work use OD/OS/BI/SM? (`LO` is an address alias for `SM` per [PI-016](#pi-016-subterra-metro-rename); new shell work uses `SM`.)
 - **Options:**
   - [ ] A) Rewrite existing BK→OD
-  - [ ] B) Only new work uses OD/…
+  - [ ] B) Only new work uses OD/OS/BI/SM (`LO` address alias only)
   - [ ] C) Other (text)
 - **Text:**
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #13. [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
@@ -222,8 +222,8 @@ Decisions (`open`) and watches (`watching`). 12 items.
 - **Needed:** status
 - **Question:** Track until Powerline merge decision (this agent does not merge).
 - **Options:** N/A — Rook updates until Powerline merge. Do not mark answered until that decision.
-- **Text:** Lattice 2026-09-30: `nits_only`, blockers none. Patron 2026-09-30 chrome validation PASS (7/7) on luna-os#1 @ `39bb566`. [PI-003](#pi-003-palette-replace-vs-supplement) answered replace — luna-os#1 may merge when Powerline says (this agent does not merge).
-- **Current:** draft PR [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `39bb566` — branch `cursor/powerline-open-ui-tokens-2bbb`. Agent [bc-ceeeb171-7643-5354-9303-55a529182bbb](https://cursor.com/agents/bc-ceeeb171-7643-5354-9303-55a529182bbb).
+- **Text:** Lattice 2026-09-30: `nits_only`, blockers none. Patron 2026-09-30 chrome validation PASS (7/7) on luna-os#1 @ `39bb566`. Tip now `0cdf88b` (Metro rename landed on that PR). [PI-003](#pi-003-palette-replace-vs-supplement) answered replace — luna-os#1 may merge when Powerline says (this agent does not merge).
+- **Current:** draft PR [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `0cdf88b` — branch `cursor/powerline-open-ui-tokens-2bbb`. Agent [bc-ceeeb171-7643-5354-9303-55a529182bbb](https://cursor.com/agents/bc-ceeeb171-7643-5354-9303-55a529182bbb). Metro rename landed on this PR.
 - **Lattice (2026-09-30):** `nits_only`, blockers none.
 - **Patron (2026-09-30):** chrome validation PASS (7/7) on [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `39bb566`.
 - **More context:** Sibling of [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3). Governance palette docs already on [governance PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). PI-003 replace answered; luna-os#1 merge waits on Powerline (not this agent).
