@@ -4,7 +4,7 @@ Living clickable queue of every item that needs **Powerline’s input** before R
 
 Display name for this repo: **Grounded Rules**. GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames it to `grounded-rules`.
 
-PR #7 squash-merged to `master` @ `c6b9aba` (Metro / GV-0004 cleanup). Grounded Rules rename is **draft [PR #8](https://github.com/SubTerraCo/subterra-governance/pull/8)** off that tip — not a reopen of #7. Stay draft. No deletes or archives from this queue.
+PR #7 squash-merged to `master` @ `c6b9aba` (Metro / GV-0004 cleanup). [PR #8](https://github.com/SubTerraCo/subterra-governance/pull/8) squash-merged to `master` @ `9b7d901` (Grounded Rules display identity). GitHub slug rename to `grounded-rules` still pending Powerline Settings. No deletes or archives from this queue.
 
 ## Format
 
@@ -25,7 +25,7 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`) and watches (`watching`). 12 items.
+Decisions (`open`). 10 items.
 
 - [PI-001](#pi-001-white-label-catalog-row) — Q11 White-label catalog row
 - [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OD rows
@@ -34,11 +34,9 @@ Decisions (`open`) and watches (`watching`). 12 items.
 - [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / SubTerra Metro release workflow timing
 - [PI-007](#pi-007-pnpm-11-14-vs-9) — Q7 pnpm 11.14 vs 9
 - [PI-008](#pi-008-arch-omarchy-platform-code) — Q8 Arch / Omarchy platform code
-- [PI-009](#pi-009-open-ui-c6-confirm) — Q9 open-ui C6 confirm
 - [PI-010](#pi-010-banking-dewey-role) — Q10 Banking (BS) Dewey role
 - [PI-011](#pi-011-dewey-bk-to-od-rewrite) — Q13 Dewey BK→OD rewrite
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
-- [PI-013](#pi-013-luna-os-open-ui-token-pr) — SubTerra Metro open-ui token PR *(watching)* — luna-os#1 draft @ `0cdf88b` (Metro rename landed); Patron chrome PASS 7/7 @ `39bb566`; PI-003 replace answered — merge when Powerline says
 
 ## Answered
 
@@ -47,6 +45,8 @@ Decisions (`open`) and watches (`watching`). 12 items.
 - [PI-015](#pi-015-white-label-first-run-dewey-path) — A) Preferred WL-FR-001 / 2026-09-30 MT
 - [PI-016](#pi-016-subterra-metro-rename) — A) Luna OS → SubTerra Metro / LO → SM / 2026-09-30 MT
 - [PI-017](#pi-017-grounded-rules-rename) — A) SubTerra Governance → Grounded Rules / 2026-09-30 MT
+- [PI-009](#pi-009-open-ui-c6-confirm) — A) Confirm open-ui / 2026-09-30 MT
+- [PI-013](#pi-013-luna-os-open-ui-token-pr) — luna-os#1 squash-merged @ `edd17c3` / 2026-09-30 MT
 
 ---
 
@@ -165,14 +165,14 @@ Decisions (`open`) and watches (`watching`). 12 items.
 
 <h2 id="pi-009-open-ui-c6-confirm">PI-009 — Q9 open-ui C6 confirm</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
 - **Question:** GV-0004 C6 originally said `packages/ui`; names table + ARCHITECTURE say `packages/open-ui`. This PR aligned C6 to **open-ui**. Confirm.
 - **Options:**
-  - [ ] A) Confirm open-ui
+  - [x] A) Confirm open-ui
   - [ ] B) Prefer packages/ui
   - [ ] C) Other (text)
-- **Text:**
+- **Text:** Confirm packages/open-ui (GV-0004 C6 aligned); not packages/ui.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #9. [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md) C6. [ARCHITECTURE.md](ARCHITECTURE.md). [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
@@ -221,15 +221,16 @@ Decisions (`open`) and watches (`watching`). 12 items.
 
 <h2 id="pi-013-luna-os-open-ui-token-pr">PI-013 — SubTerra Metro open-ui token PR</h2>
 
-- **Status:** `watching`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** status
 - **Question:** Track until Powerline merge decision (this agent does not merge).
 - **Options:** N/A — Rook updates until Powerline merge. Do not mark answered until that decision.
-- **Text:** Lattice 2026-09-30: `nits_only`, blockers none. Patron 2026-09-30 chrome validation PASS (7/7) on luna-os#1 @ `39bb566`. Tip now `0cdf88b` (Metro rename landed on that PR). [PI-003](#pi-003-palette-replace-vs-supplement) answered replace — luna-os#1 may merge when Powerline says (this agent does not merge).
-- **Current:** draft PR [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `0cdf88b` — branch `cursor/powerline-open-ui-tokens-2bbb`. Agent [bc-ceeeb171-7643-5354-9303-55a529182bbb](https://cursor.com/agents/bc-ceeeb171-7643-5354-9303-55a529182bbb). Metro rename landed on this PR.
+- **Text:** Lattice 2026-09-30: `nits_only`, blockers none. Patron 2026-09-30 chrome validation PASS (7/7) on luna-os#1 @ `39bb566`. Tip was `0cdf88b` (Metro rename landed on that PR). [PI-003](#pi-003-palette-replace-vs-supplement) answered replace. luna-os#1 squash-merged @ `edd17c3` (2026-09-30 MT).
+- **Current:** squash-merged [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) into `master` @ `edd17c3` (2026-09-30 MT). Former tip `0cdf88b` — branch `cursor/powerline-open-ui-tokens-2bbb`. Agent [bc-ceeeb171-7643-5354-9303-55a529182bbb](https://cursor.com/agents/bc-ceeeb171-7643-5354-9303-55a529182bbb). Metro rename landed on this PR.
+- **Merged:** [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) squash-merged into `master` @ `edd17c3` (2026-09-30 MT). Merge commit `edd17c308ca835db50bb3d4455116ed1972df471`.
 - **Lattice (2026-09-30):** `nits_only`, blockers none.
 - **Patron (2026-09-30):** chrome validation PASS (7/7) on [luna-os#1](https://github.com/SubTerraCo/luna-os/pull/1) @ `39bb566`.
-- **More context:** Sibling of [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3). Palette docs already on [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). PI-003 replace answered; luna-os#1 merge waits on Powerline (not this agent).
+- **More context:** Sibling of [subterra-shell PR #3](https://github.com/SubTerraCo/subterra-shell/pull/3). Palette docs already on [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). PI-003 replace answered; luna-os#1 squash-merged @ `edd17c3`.
 
 ---
 
