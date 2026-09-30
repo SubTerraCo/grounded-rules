@@ -19,6 +19,7 @@ There is no third audience. “Powerline” is an owner/approver of archive deci
 | Conflict resolutions | [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md) |
 | Dewey, versioning, NFC, Material 3, license (when the blueprint is silent) | [../CI_OPS_CONSTITUTION.md](../CI_OPS_CONSTITUTION.md) |
 | File-by-file cleanup of this pass | [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) |
+| Powerline input queue | [POWERLINE_INPUT.md](POWERLINE_INPUT.md) |
 
 Nothing in this 2026-09-30 pass was deleted or archived. Deletes and archive moves wait for Powerline approval.
 

@@ -58,6 +58,18 @@ No merge blockers. Stay draft. No deletes/archives. Q11 (WL catalog row) and Q12
 
 ---
 
+## Powerline input queue added
+
+Living clickable queue: [POWERLINE_INPUT.md](POWERLINE_INPUT.md) (`PI-001`–`PI-014`). Rook maintains it whenever a new blocker-for-Powerline appears. **Q11–Q15 (and other still-open changelog questions) are not resolved** — they are indexed there as open/watching items.
+
+| Path | What changed |
+|------|----------------|
+| `Docs/POWERLINE_INPUT.md` | **Added.** Open index + 14 items (13 `open` decisions, 1 `watching`). |
+| `Docs/GOVERNANCE_OVERVIEW.md` | Source-of-truth table: Powerline input queue → `POWERLINE_INPUT.md`. |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | This note. Still-open list unchanged. |
+
+---
+
 ## Follow-up (Powerline, same day) — terminology
 
 Mandatory: (1) product-facing PWA is **SubTerra Central** at `apps/subterra-central`, not a separate web-runtime product; (2) remove leftover member-shell product naming from live prose and catalog; (3) describe topology as this rules repo + the Luna OS monorepo (plus leftover product repos until fold-in), without leftover multi-repo product-shape labels.
@@ -231,7 +243,7 @@ No other deletions proposed. R0 workflow stubs stay (constitution §11: do not d
 3. ~~Twin SDKs and `role` / `marketplace: apps|integrations`: keep on every new catalog item until fold-in, or stop adding them on reserved monorepo packages?~~ — **Stop on new Luna packages.** Leftover filled twin fields stay deprecated until fold-in. Validator needles remain on those leftover rows.
 4. ~~Rename audience values (`admin` / `member`) to Luna OS / Central~~ — **Keep `admin` and `member` exactly.** Mapping: `admin` → Luna OS; `member` → SubTerra Central. No third audience.
 
-**Still open**
+**Still open** (clickable queue: [POWERLINE_INPUT.md](POWERLINE_INPUT.md); none of these are marked resolved)
 5. Archive Axiom (`AX`) after this review, or drop the catalog rows in a follow-up (still via archive, not delete)?
 6. When should a **Tauri / Luna OS** release workflow be authored? This PR only labeled the Electron stub; it did not invent a replacement.
 7. Confirm governance stays on **pnpm 11.14** while `luna` uses **pnpm 9** (GV-0004 C5). Left as-is.
