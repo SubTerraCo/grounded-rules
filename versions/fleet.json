@@ -80,7 +80,7 @@
       "name": "Subtoken",
       "role": "app",
       "repo": "SubTerraCo/subtoken",
-      "localPath": "apps/subtoken",
+      "localPath": "packages/subtoken",
       "status": "reserved",
       "display": null,
       "npm": null,

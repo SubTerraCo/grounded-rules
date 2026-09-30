@@ -29,8 +29,8 @@ Exactly two executable runtimes. Product packages install into them. Luna OS per
 
 | Shell | Path | Runtime | Hosts |
 |-------|------|---------|-------|
-| Desktop and mobile | `apps/luna-os` | Tauri v2 + React 19 + Vite | Luna OS on Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
-| Web | `apps/subterra-central` | Offline-first PWA | SubTerra Central (gigs, events; Open Gig and Community install here) |
+| Luna OS | `apps/luna-os` | Tauri v2 + React 19 + Vite | Windows, macOS, Android, iOS, and Arch Linux (Omarchy) |
+| SubTerra Central | `apps/subterra-central` | Offline-first PWA | Gigs, events; Open Gig and Community install here |
 
 Shared UI is `packages/open-ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
 

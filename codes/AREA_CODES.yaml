@@ -21,7 +21,7 @@ areas:
     name: NFC / crypto tags
   - code: SO
     name: Social / feed
-    note: "Member-shell social (GV-0002 D7; catalog audience member). Shell is SubTerra Central (SC). Community (CH) also mounts crew discussion on Luna OS (admin) per the ARCHITECTURE install matrix."
+    note: "Social / feed (GV-0002 D7; catalog audience member). Shell is SubTerra Central (SC). Community (CH) also mounts crew discussion on Luna OS (admin) per the ARCHITECTURE install matrix."
   - code: EV
     name: Events / ticketing
     note: "Events + Subtoken ticketing (GV-0002 D7). Subtoken (TK) audience is [admin, member]: organizer tools on Luna OS; event page, tickets, show log, and digital goods on SubTerra Central (SC)."

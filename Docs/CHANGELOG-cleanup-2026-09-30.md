@@ -44,6 +44,20 @@ Sibling agents own luna-os / leftover-shell token *code*. This repo has no `pack
 
 ---
 
+## Lattice QA nit-pass (draft PR #7)
+
+No merge blockers. Stay draft. No deletes/archives. Q11 (WL catalog row) and Q12 (fleet LO/SC/OD rows) left open.
+
+| Path | What changed |
+|------|----------------|
+| `codes/AREA_CODES.yaml` | SO note: dropped leftover “Member-shell”; names SubTerra Central (SC). |
+| `Docs/ARCHITECTURE.md` | CI finance path: Open Bill, not Billbot. Phases 2–3: `packages/open-books` / `packages/open-bill` / Open Day / Media (not `budget` / `billbot` / blocks). Prior-plans table left as historical quotes. |
+| `versions/fleet.json` | TK `localPath` `packages/subtoken` (matches catalog). Did not add reserved LO/SC/OD rows (Q12 open). |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | Pass 1 playwright.config “What changed”: Luna OS / SubTerra Central (was web-shell). This nit-pass section. |
+| `CI_OPS_CONSTITUTION.md` | §1.1 first column: Luna OS / SubTerra Central. Paths unchanged. |
+
+---
+
 ## Follow-up (Powerline, same day) — terminology
 
 Mandatory: (1) product-facing PWA is **SubTerra Central** at `apps/subterra-central`, not a separate web-runtime product; (2) remove leftover member-shell product naming from live prose and catalog; (3) describe topology as this rules repo + the Luna OS monorepo (plus leftover product repos until fold-in), without leftover multi-repo product-shape labels.
@@ -153,7 +167,7 @@ Hypothesis confirmed: leftover wording was in `CI_OPS_CONSTITUTION.md`, README, 
 | `templates/product-repo/Docs/Working Docs-Features-Incidents/INCIDENTS.md` | Generic seed. | **Left alone**. |
 | `templates/product-repo/.cursor/skills/new-feature/SKILL.md` | Points at constitution. | **Left alone** — still correct. |
 | `tests/README.md` | “SubTerra OS polyrepo”; marketplace = two grids. localPath-must-exist would fail reserved monorepo paths. | Governance QA until `luna` tests/contract. Marketplace = audience-filtered catalog + empty hub + hub isolation. Reserved paths allowed absent. |
-| `tests/playwright.config.ts` | “SubTerra OS”; “Shell host”. | Comments: Luna OS / web-shell; until `luna` tests/contract. |
+| `tests/playwright.config.ts` | “SubTerra OS”; “Shell host”. | Comments: Luna OS / SubTerra Central; until `luna` tests/contract. |
 | `tests/contract/placeholder.spec.ts` | “every item localPath exists”. | Fixme title allows reserved monorepo paths to be absent. Other fixmes left (still owed). |
 | `tests/marketplace/placeholder.spec.ts` | Four fixmes for Apps/Integrations grids and twin mount. | Three fixmes matching GV-0004 marketplace (audience, empty hub, bridge isolation). No silent delete of coverage — titles replaced in place. |
 | `package.json` | Description “SubTerra OS governance”. | “SubTerra governance”. Version **left** `26.8.4` (no release stamp this pass). |
