@@ -20,4 +20,4 @@
 - **npm** is `package.json` `version` (npm semver form `YY.M.D` / `YY.M.D-bX`).
 - Rows with Display/npm `—` usually mean the local checkout is missing or not yet on the SubTerra stamp.
 - Refresh: `pnpm versions:fleet` from this repo root (or `governance/` in a meta-workspace checkout).
-- ST / LO / BK / MB / BB are address aliases. The packages to build are SM / SC / OD / OS / BI (GV-0004). LO is the former live code for SubTerra Metro. This snapshot was not regenerated in the 2026-09-30 cleanup (sibling checkouts are not on this runner).
+- ST / LO / OD / MB / BB are address aliases. Existing BK/N-#### were rewritten to OT/N-#### (PI-011 A); BK stays an alias catalog row. The packages to build are SM / SC / OT / OS / BI (GV-0004). LO is the former live code for SubTerra Metro. OD is the former live code for Open Time. This snapshot was not regenerated in the 2026-09-30 cleanup (sibling checkouts are not on this runner).

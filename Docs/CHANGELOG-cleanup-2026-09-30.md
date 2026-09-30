@@ -6,6 +6,67 @@ Companion readable summary (not a diff list): [GOVERNANCE_OVERVIEW.md](GOVERNANC
 
 ---
 
+## PI-011 answered — rewrite existing BK→OT
+
+Powerline answered 2026-09-30 MT. **Option A:** rewrite **all existing** Dewey addresses on Blocks (`BK/N-####`) to **`OT/N-####`** (Open Time). Documented address examples now use OT. `BK` remains an address-alias catalog row pointing at OT / `packages/open-time`. **Unchanged:** Open Books `OB`; leftover Blocks repo / workflow consumer comments; fleet snapshot BK row.
+
+Stay draft (PR #9). No deletes/archives. No package path invent beyond `packages/open-time`.
+
+| Path | What changed |
+|------|----------------|
+| `Docs/POWERLINE_INPUT.md` | PI-011 Status answered; option A checked; Text 2026-09-30 MT; moved to Answered index; body left. Open index 8 items. |
+| `CI_OPS_CONSTITUTION.md` | Cross-ref example is `OT/N-0026` (rewritten from `BK/N-0026`). Dropped live `BK/N-0026` / `BK.DT.MC…` examples. PI-011 A noted. |
+| `Docs/GOVERNANCE_OVERVIEW.md` | Dewey: existing `BK/N-####` rewritten to `OT/N-####`; BK stays alias catalog row. |
+| `README.md` | Same rewrite note. |
+| `codes/APP_REGISTRY.yaml` / `subterra.manifest.yaml` | BK alias notes record PI-011 A rewrite. |
+| `Docs/VERSIONS.md` / `packages/ci-ops/src/collect-versions.ts` | Alias notes: BK/N- rewritten; BK row remains. |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | This section. Still-open #13 marked resolved. |
+
+---
+
+## Open Day → Open Time rename (PI-018)
+
+Powerline approved 2026-09-30 MT. Display **Open Day** → **Open Time**. Path `packages/open-day` → `packages/open-time`. Live Dewey package code **OD** → **OT**. `OD` remains an address alias (like `LO` for `SM`). Reason: “OD” sounds like overdose; `OB` is taken by Open Books. Scope unchanged: tasks, timeline, Quick Blocks, Festy crew. **BK** (Blocks) retargets to **OT** / `packages/open-time`. Existing `OD/N-####` addresses stay valid; new work uses `OT`. **Unchanged:** Open Books `OB`, Open Bill `BI`, Open Sort `OS`, SubTerra Metro `SM`, SubTerra Central `SC`, and other codes.
+
+**Deletes still held.** Catalog `id: open-day` kept as the OD alias row (not a second package).
+
+Stay draft (PR #9). No deletes/archives.
+
+### File-by-file (this rename)
+
+| Path | What changed |
+|------|----------------|
+| `codes/APP_REGISTRY.yaml` | Live package `OT` / Open Time / `packages/open-time`. `OD` is address alias. `BK` note retargets to OT. Header aliases include OD. |
+| `subterra.manifest.yaml` | Live item `open-time` `appCode: OT`. Alias item `open-day` `appCode: OD`. Path `packages/open-time`. BK alias note retargets to OT. |
+| `CI_OPS_CONSTITUTION.md` | Cross-refs prefer `OT` with aliases `OD` / `BK`. New work uses OT. Product agents include OT. |
+| `Docs/ARCHITECTURE.md` | Tree `open-time/`; matrix and Festy home Open Time (`OT`). Bridge copies Open Time records. |
+| `Docs/GOVERNANCE_OVERVIEW.md` | Codes table OT live; OD listed as alias. |
+| `Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md` | Names table OT; OD alias note. C14 historical quote left. |
+| `Docs/POWERLINE_INPUT.md` | PI-018 answered. PI-011 question/options retargeted BK→OT (status still open). PI-002 live wording uses OT. |
+| `Docs/VERSIONS.md` | Alias note includes OD; live codes SM / SC / OT / OS / BI. |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | This section. Prior pass tables left as historical audit (they said Open Day / OD then). Still-open #13 wording matches PI-011 (`OT`, not `OD`). |
+| `.cursor/rules/governance-agent.mdc` | Out-of-scope product UI names Open Time. |
+| `README.md` | Packages Open Time; aliases include OD. |
+| `tests/README.md` | Product e2e later Open Time; reserved path `packages/open-time`. |
+| `packages/ci-ops/src/validate-manifest.ts` | Requires `appCode: OT` and still `appCode: OD`. |
+| `packages/ci-ops/src/collect-versions.ts` | preferredOrder includes OT before OD; PATH_FALLBACKS for `packages/open-time` (and leftover `packages/open-day`). |
+
+---
+
+## PI-001 answered — no WL catalog row
+
+Powerline answered 2026-09-30 MT. **Option B:** no `marketplace: null` catalog row for white-label. Keep **APP_REGISTRY-only** (commercial gate on SubTerra Metro, not a package). Manifest is unchanged for WL. Overview §4 WL row restated as registry-only.
+
+Stay draft (PR #9). No deletes/archives.
+
+| Path | What changed |
+|------|----------------|
+| `Docs/POWERLINE_INPUT.md` | PI-001 Status answered; option B checked; moved to Answered index; body left. |
+| `Docs/GOVERNANCE_OVERVIEW.md` | §4 WL row: PI-001 registry-only; no catalog row. |
+| `Docs/CHANGELOG-cleanup-2026-09-30.md` | This section. Still-open #11 marked resolved in the live queue. Historical still-open list below left as audit except #11–#13 live wording. |
+
+---
+
 ## Grounded Rules rename (PI-017)
 
 Powerline approved 2026-09-30 MT. Display **SubTerra Governance** → **Grounded Rules** (electrical grounding safety + grounded rules). Dewey code **GV** unchanged. GitHub slug **left** `SubTerraCo/subterra-governance` — Settings rename to `grounded-rules` is a Powerline click after merge. **Unchanged:** SubTerra Metro / SM / Central / SC / LO aliases; personal Luna / LU / `packages/luna`; machine keys `role: governance`, catalog `governance:`, `localPath: governance`; on-disk filenames (`GOVERNANCE_OVERVIEW.md`, `governance-ci.yml`, `governance-agent.mdc`).
@@ -328,9 +389,9 @@ No other deletions proposed. R0 workflow stubs stay (constitution §11: do not d
 8. **`PP.AP` = macOS.** Is Arch Linux / Omarchy `DT` (Desktop), or do we need a Linux/Arch platform code?
 9. GV-0004 C6 originally said `packages/ui`; names table + ARCHITECTURE say `packages/open-ui`. This PR aligned C6 to **open-ui**. Confirm.
 10. Banking (`BS`) Dewey `role: integration` in APP_REGISTRY vs other packages `role: app`. Catalog now treats BS as a Luna package (`marketplace: null`, not a twin integration). Dewey role left as-is until Powerline reclassifies it.
-11. White-label (`WL`) is in APP_REGISTRY, not in the manifest. Should it get a `marketplace: null` catalog row?
-12. `Docs/VERSIONS.md` / `versions/fleet.json` were not fully regenerated. The withdrawn member-shell fleet row was removed by hand. Should the next meta-workspace `pnpm versions:fleet` add reserved LO/SC/OD/… rows (mostly `—`) to the dashboard?
-13. Should existing Dewey addresses on Blocks (`BK/N-####`) be rewritten to `OD/N-####`, or only **new** work use OD/OS/BI/SM? (`LO` is an address alias for `SM`; new shell work uses `SM`.)
+11. ~~White-label (`WL`) is in APP_REGISTRY, not in the manifest. Should it get a `marketplace: null` catalog row?~~ — **No catalog row (PI-001 B).** Registry-only commercial gate on SubTerra Metro.
+12. `Docs/VERSIONS.md` / `versions/fleet.json` were not fully regenerated. The withdrawn member-shell fleet row was removed by hand. Should the next meta-workspace `pnpm versions:fleet` add reserved LO/SC/OT/… rows (mostly `—`) to the dashboard?
+13. ~~Should existing Dewey addresses on Blocks (`BK/N-####`) be rewritten to `OT/N-####`, or only **new** work use OT/OS/BI/SM?~~ — **Rewrite existing BK→OT (PI-011 A).** Documented addresses use `OT/N-####`. `BK` stays an alias catalog row.
 14. GV-0002 on-disk filename: rename after archive approval (and leave a stub), or keep forever as history?
 15. Font **families** for `packages/open-ui` — interim Material 3 type scale and 4dp spacing are locked; typeface names wait on Powerline.
 

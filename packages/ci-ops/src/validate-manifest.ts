@@ -21,6 +21,8 @@ const required = [
   "appCode: LO",
   "appCode: SM",
   "appCode: SC",
+  "appCode: OT",
+  "appCode: OD",
   "appCode: BK",
   "role: app",
   "role: integration",

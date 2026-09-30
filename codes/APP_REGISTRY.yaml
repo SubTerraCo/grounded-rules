@@ -1,9 +1,11 @@
 # Dewey APP segment — every app and integration reserves its own code.
 # Schema: APP.PP.PR.AA.SSS.FFF
 # All repos live under the SubTerraCo GitHub organization.
-# GV-0004 current codes: SM, LU, SC, OD, OS, OB, BI, TK, OG, CH, FM, HA, MA, BS, GV, WL.
-# Address aliases (not folders to build): ST, LO, BK, MB, BB. AX is cut (Open Axiom).
+# GV-0004 current codes: SM, LU, SC, OT, OS, OB, BI, TK, OG, CH, FM, HA, MA, BS, GV, WL.
+# Address aliases (not folders to build): ST, LO, OD, BK, MB, BB. AX is cut (Open Axiom).
 # LO = former live code for SM SubTerra Metro. New work uses SM.
+# OD = former live code for OT Open Time (Open Day). New work uses OT.
+# Existing BK/N-#### were rewritten to OT/N-#### (PI-011 A). BK stays an alias catalog row.
 schemaVersion: 1
 apps:
   - code: ST
@@ -17,7 +19,7 @@ apps:
     role: app
     localPath: apps/blocks
     repo: SubTerraCo/Blocks
-    note: "Address alias for OD Open Day at packages/open-day."
+    note: "Address alias for OT Open Time at packages/open-time. Existing BK/N-#### Dewey addresses were rewritten to OT/N-#### (PI-011 A)."
   - code: MB
     name: Mailbot
     role: app
@@ -90,13 +92,19 @@ apps:
     localPath: apps/subterra-central
     status: reserved
     audience: [member]
-    note: "Gig and event hub. Member PWA at apps/subterra-central. Anonymous NFC event page. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. A granted Open Day schedule is public here. Wishlists and the draft stay in Open Day."
+    note: "Gig and event hub. Member PWA at apps/subterra-central. Anonymous NFC event page. One-time upgrade to Artist, Venue, or Vendor. Friend-show visibility is off by default. A granted Open Time schedule is public here. Wishlists and the draft stay in Open Time."
   - code: OD
-    name: Open Day
+    name: Open Time (address alias)
     role: app
-    localPath: packages/open-day
+    localPath: packages/open-time
     status: reserved
-    note: "Tasks, timeline, Quick Blocks, and Festy crew tools. Replaces BK as the package to build. The existing Blocks repo remains the screen spec."
+    note: "Former live Dewey code for Open Time (Open Day). Address alias for OT. New work uses OT. Existing OD/N-#### addresses stay valid."
+  - code: OT
+    name: Open Time
+    role: app
+    localPath: packages/open-time
+    status: reserved
+    note: "Tasks, timeline, Quick Blocks, and Festy crew tools. Replaces BK as the package to build. Former code OD is an address alias. The existing Blocks repo remains the screen spec."
   - code: OS
     name: Open Sort
     role: app

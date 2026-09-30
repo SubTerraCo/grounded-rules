@@ -36,13 +36,13 @@ Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANC
 
 - Two runtimes: `apps/subterra-metro` (Tauri v2, including Arch / Omarchy) and `apps/subterra-central` (PWA).
 - Catalog `audience` values stay `admin` and `member` (GV-0002 D4). Mapping: `admin` → SubTerra Metro; `member` → SubTerra Central. Default `["admin"]` fail-closed. No third audience.
-- Packages: Open Day, Open Sort, Open Books, Open Bill, Subtoken, Luna, Banking, Forum, Home Assistant, Media, Open UI.
+- Packages: Open Time, Open Sort, Open Books, Open Bill, Subtoken, Luna, Banking, Forum, Home Assistant, Media, Open UI.
 - Twin `role` / `marketplace` / SDK fields are **deprecated leftover** on standalone-repo rows. New monorepo packages: `marketplace: null`, `sdk: null`.
 - Material 3 in `packages/open-ui`: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`; interim M3 type scale; 4dp spacing.
 - New original monorepo code is BSL 1.1. Already published MIT stays MIT.
 - Default branch is **`master`** on every SubTerraCo repo, including `luna`.
 
-Address aliases (`ST`, `LO`, `BK`, `MB`, `BB`) remain valid on existing Dewey addresses. They are not the folders to build. Live shell code is `SM`.
+Address aliases (`ST`, `LO`, `OD`, `MB`, `BB`) remain valid on existing Dewey addresses. They are not the folders to build. Existing `BK/N-####` were rewritten to `OT/N-####` (PI-011 A); `BK` stays an alias catalog row. Live shell code is `SM`. Live Open Time code is `OT`.
 
 ## Local
 

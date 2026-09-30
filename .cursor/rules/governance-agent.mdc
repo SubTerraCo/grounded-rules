@@ -60,4 +60,4 @@ Product repos **consume** Grounded Rules; they must not fork conflicting Dewey, 
 
 ## Out of scope unless explicitly asked
 
-Implementing feature UI inside SubTerra Metro, Open Day, Open Sort, Open Bill, SubTerra Central, or Anytype handlers — route those to the owning APP code agent. Leftover Blocks / Mailbot / Shell screens stay with those product repos until fold-in.
+Implementing feature UI inside SubTerra Metro, Open Time, Open Sort, Open Bill, SubTerra Central, or Anytype handlers — route those to the owning APP code agent. Leftover Blocks / Mailbot / Shell screens stay with those product repos until fold-in.

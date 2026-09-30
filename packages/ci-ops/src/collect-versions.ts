@@ -46,7 +46,8 @@ const PATH_FALLBACKS: Record<string, readonly string[]> = {
     "Packages/Integrations/Anytype",
   ],
   "packages/subtoken": ["packages/subtoken", "apps/subtoken", "Packages/Subtoken"],
-  "packages/open-day": ["packages/open-day", "apps/blocks", "Packages/Blocks"],
+  "packages/open-time": ["packages/open-time", "packages/open-day", "apps/blocks", "Packages/Blocks"],
+  "packages/open-day": ["packages/open-day", "packages/open-time", "apps/blocks", "Packages/Blocks"],
   "packages/open-sort": ["packages/open-sort", "apps/mailbot", "Packages/Mail Bot"],
   "packages/open-bill": ["packages/open-bill", "apps/billbot", "Packages/Bill Bot"],
   "apps/subterra-metro": ["apps/subterra-metro", "apps/luna-os"],
@@ -357,6 +358,7 @@ export function buildFleet(): FleetSnapshot {
     "LO",
     "ST",
     "SC",
+    "OT",
     "OD",
     "BK",
     "OS",
@@ -421,7 +423,7 @@ export function renderVersionsMarkdown(fleet: FleetSnapshot): string {
     "- **npm** is `package.json` `version` (npm semver form `YY.M.D` / `YY.M.D-bX`).",
     "- Rows with Display/npm `—` usually mean the local checkout is missing or not yet on the SubTerra stamp.",
     "- Refresh: `pnpm versions:fleet` from this repo root (or `governance/` in a meta-workspace checkout).",
-    "- ST / LO / BK / MB / BB are address aliases. The packages to build are SM / SC / OD / OS / BI (GV-0004). LO is the former live code for SubTerra Metro.",
+    "- ST / LO / OD / MB / BB are address aliases. Existing BK/N-#### were rewritten to OT/N-#### (PI-011 A); BK stays an alias catalog row. The packages to build are SM / SC / OT / OS / BI (GV-0004). LO is the former live code for SubTerra Metro. OD is the former live code for Open Time.",
     "",
   );
   return `${lines.join("\n")}`;

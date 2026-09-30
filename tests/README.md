@@ -6,7 +6,7 @@ Cross-repo contract tests for SubTerra. Owned by the Grounded Rules agent (GV) p
 
 | Layer | Owner | Covers |
 |-------|-------|--------|
-| Product e2e | Product repo (leftover Blocks `tests/e2e`; later Open Day in `luna`) | One app's own UI and flows |
+| Product e2e | Product repo (leftover Blocks `tests/e2e`; later Open Time in `luna`) | One app's own UI and flows |
 | **Workspace QA** | **Grounded Rules** | Contracts *between* repos / packages |
 
 This suite never duplicates a product's own e2e. It asserts the things no single repo can check alone.
@@ -34,7 +34,7 @@ So `contract` tests against the leftover SDK surface are unblocked in principle,
 `contract`:
 
 1. Every `subterra.manifest.yaml` item has a matching `codes/APP_REGISTRY.yaml` entry, and vice versa (withdrawn rows such as AX Axiom stay in both until Powerline approves archive).
-2. Every leftover linked item's `localPath` exists in the meta workspace. Reserved monorepo paths (`apps/subterra-metro`, `packages/open-day`, …) are allowed to be absent until `luna` exists.
+2. Every leftover linked item's `localPath` exists in the meta workspace. Reserved monorepo paths (`apps/subterra-metro`, `packages/open-time`, …) are allowed to be absent until `luna` exists.
 3. Leftover standalone-repo items keep deprecated twin `role` / `marketplace` (`app`→`apps`, `integration`→`integrations`). New monorepo packages must not declare those twin fields (`marketplace: null`, `sdk: null`).
 4. Every item declares platform codes that exist in `PLATFORM_CODES.yaml`.
 5. While `subterra-shell` remains, `@subterra/app-sdk` and `@subterra/integration-sdk` export identical symbol names, equal to `SDK_SURFACE`, differing only in `SDK_ROLE`.

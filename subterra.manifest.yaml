@@ -73,7 +73,7 @@ items:
     sdk: "@subterra/app-sdk"  # DEPRECATED leftover twin field
     mcp: "@blocks/mcp-server"
     status: linked
-    note: "Address alias for OD Open Day at packages/open-day. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
+    note: "Address alias for OT Open Time at packages/open-time. Existing BK/N-#### Dewey addresses were rewritten to OT/N-#### (PI-011 A). Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
 
   - id: mailbot
     appCode: MB
@@ -250,16 +250,29 @@ items:
 
   - id: open-day
     appCode: OD
-    name: Open Day
+    name: Open Time (address alias)
     repo: null
-    localPath: packages/open-day
+    localPath: packages/open-time
     platforms: [DT, WB]
     marketplace: null
     audience: [admin]
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro (tasks + Festy draft); Central gets a public schedule only when granted."
+    note: "Former live Dewey code for OT. Address alias only. Path to build is packages/open-time. Existing OD addresses stay valid."
+
+  - id: open-time
+    appCode: OT
+    name: Open Time
+    repo: null
+    localPath: packages/open-time
+    platforms: [DT, WB]
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "ARCHITECTURE matrix: SubTerra Metro (tasks + Festy draft); Central gets a public schedule only when granted. Former code OD is an address alias."
 
   - id: open-sort
     appCode: OS

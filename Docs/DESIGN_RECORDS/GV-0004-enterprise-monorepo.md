@@ -48,7 +48,7 @@ Open stays on names that would collide with a published app. The others use the 
 | SM | SubTerra Metro | `apps/subterra-metro` | Tauri command center, including Arch / Omarchy. Replaces ST. Former code `LO` is an address alias |
 | LU | Luna | `packages/luna` | Agent router. Gemma 4 12B through Ollama |
 | SC | SubTerra Central | `apps/subterra-central` | Gigs and events. Member PWA (not a second runtime folder) |
-| OD | Open Day | `packages/open-day` | Tasks, timeline, Quick Blocks, Festy crew tools. Replaces BK |
+| OT | Open Time | `packages/open-time` | Tasks, timeline, Quick Blocks, Festy crew tools. Replaces BK. Former code `OD` is an address alias |
 | OS | Open Sort | `packages/open-sort` | Mail labels and archive. Replaces MB |
 | OB | Open Books | `packages/open-books` | Budgeting via `@actual-app/api`. Not named Open Budget |
 | BI | Open Bill | `packages/open-bill` | Invoicing. Replaces BB |
@@ -64,7 +64,7 @@ Open stays on names that would collide with a published app. The others use the 
 | WL | White-label | — | Commercial gate on SubTerra Metro. Not a package |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
 
-`ST` and `LO` are address aliases (`LO` = former live code for SM). `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity, InvoiceShelf, and gmailctl are not adopted. Blocks, Billbot, and Mailbot are built here.
+`ST` and `LO` are address aliases (`LO` = former live code for SM). `OD` is an address alias (`OD` = former live code for OT / Open Day). Existing `BK/N-####` were rewritten to `OT/N-####` (PI-011 A); `BK` stays an alias catalog row. `LF`, `TE`, `MT`, `PK`, `SN`, and `CE` are not codes. `actual-budget-master-fork` stays the Actual upstream fork. Super Productivity, InvoiceShelf, and gmailctl are not adopted. Blocks, Billbot, and Mailbot are built here.
 
 ---
 
@@ -78,7 +78,7 @@ Open stays on names that would collide with a published app. The others use the 
 | InvoiceShelf | AGPL-3.0. Not vendored into a BSL package and not part of the multi-tenant host |
 | any-sync | Any Source Available License |
 
-SubTerra Metro and SubTerra Central keep separate hubs. The same owner may link a bridge that copies only Open Books, Open Bill, and Open Day records they mark. The bridge is off by default. Central anonymous access is an NFC challenge-response to an event page, with a one-time upgrade for Artist, Venue, or Vendor profile tools. Friend-show visibility is off by default. Open Gig is free for a solo freelancer and billed for a crew manager of 5 or more.
+SubTerra Metro and SubTerra Central keep separate hubs. The same owner may link a bridge that copies only Open Books, Open Bill, and Open Time records they mark. The bridge is off by default. Central anonymous access is an NFC challenge-response to an event page, with a one-time upgrade for Artist, Venue, or Vendor profile tools. Friend-show visibility is off by default. Open Gig is free for a solo freelancer and billed for a crew manager of 5 or more.
 
 Packages do not import each other. Each shell ships a SQLite hub, and every package runs against an empty hub. Anytype is an optional mirror for a personal SubTerra Metro install, not a dependency. Forum is an optional richer backend for Community. The deployment matrix is in [Docs/ARCHITECTURE.md](../ARCHITECTURE.md).
 

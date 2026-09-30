@@ -27,7 +27,7 @@ apps/
   open-gig/              # OG — profile, listing, rate, date request
   community/             # CH — voting and discussion UI
 packages/
-  open-day/              # OD — tasks, timeline, Quick Blocks, Festy crew tools
+  open-time/             # OT — tasks, timeline, Quick Blocks, Festy crew tools (former code OD)
   open-sort/             # OS — Gmail and IMAP labels and archive
   open-books/            # OB — @actual-app/api budgeting
   open-bill/             # BI — invoicing and 1099 exports
@@ -60,7 +60,7 @@ Use these projects for the engine and the patches. Write the Material 3 screen a
 | Package | Use | Leave out |
 |---------|-----|-----------|
 | Open Books `OB` | `@actual-app/api` (MIT). Actual already syncs SimpleFIN and GoCardless | A second ledger. The name Open Budget is already published |
-| Open Day `OD` | The existing Blocks app, plus Festy crew screens | Super Productivity. It has no Quick Blocks, and forking it would throw away the kanban that already works |
+| Open Time `OT` | The existing Blocks app, plus Festy crew screens | Super Productivity. It has no Quick Blocks, and forking it would throw away the kanban that already works |
 | Open Bill `BI` | Our invoicing package | InvoiceShelf. We will outbuild it. Do not vendor the AGPL app |
 | Open Sort `OS` | Our label-and-archive package | gmailctl and hosted inbox products. We will outbuild them |
 | Subtoken `TK` | NXP's public SDM spec for NTAG424. Our ticket record and event page | pretix and Hi.Events. Both are AGPL with extra terms that block a white-label ticket platform |
@@ -93,7 +93,7 @@ The same package can be installed in SubTerra Metro, in the SubTerra Central PWA
 
 Catalog registration for these packages uses `audience` as the mount gate. Do not write leftover twin fields (`role: app|integration`, `marketplace: apps|integrations`, twin SDKs) on new Luna items.
 
-A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only Open Books, Open Bill, and Open Day records that the person marks. Mail, banking, and home automation stay on SubTerra Metro. Central's public pages never receive the unbridged SubTerra Metro hub.
+A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only Open Books, Open Bill, and Open Time records that the person marks. Mail, banking, and home automation stay on SubTerra Metro. Central's public pages never receive the unbridged SubTerra Metro hub.
 
 ## SubTerra Central access
 
@@ -109,7 +109,7 @@ Booking listings are free for a single freelancer. A crew manager with 5 or more
 |---------|--------------------------------------|----------------------------------|----------|
 | Open Books `OB` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
 | Open Bill `BI` | Yes | Only through the owner's bridge | Back-office seat. Bridge is optional |
-| Open Day `OD` | Yes. Personal tasks, plus Festy crew drafting | Public schedule only, when granted | Seat. Drafting stays on SubTerra Metro |
+| Open Time `OT` | Yes. Personal tasks, plus Festy crew drafting | Public schedule only, when granted | Seat. Drafting stays on SubTerra Metro |
 | Open Sort `OS` | Yes | No | Back-office seat |
 | Banking `BS` | Yes | No | Back-office seat |
 | Home Assistant `HA` | Yes | No | Back-office seat |
@@ -128,9 +128,9 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for SubTerra Metro, t
 
 1. Workspace skeleton matching this layout, strict TypeScript, ESLint 9 flat config, pnpm workspace, Turborepo.
 2. Shell hub on SQLite (`better-sqlite3` in Tauri, SQL.js or WASM on the web) and Yjs. `packages/open-books` around `@actual-app/api`. `packages/open-bill` stays a separate invoicing package. `anytype` is an optional mirror of the hub, not the store packages require.
-3. `luna` with the provider interface and a tool registry for Open Books, Open Day, and Media. Default the local provider at the Omarchy host.
+3. `luna` with the provider interface and a tool registry for Open Books, Open Time, and Media. Default the local provider at the Omarchy host.
 4. `packages/open-ui` Material 3 tokens (palette, type scale, 4dp spacing) and domain widgets: schedule kanban, receipt inspector, invoice preview, topic voting.
-5. Bundle `subterra-metro` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked SubTerra Metro hub cannot read SubTerra Central data. Confirm a linked bridge copies only Open Books, Open Bill, and Open Day records the owner marked.
+5. Bundle `subterra-metro` in Tauri, including the Arch Linux / Omarchy target, and `subterra-central` as the PWA. Confirm an unlinked SubTerra Metro hub cannot read SubTerra Central data. Confirm a linked bridge copies only Open Books, Open Bill, and Open Time records the owner marked.
 6. Playwright suites listed under CI.
 
 ## Festy Blocks
@@ -139,7 +139,7 @@ Monetization is the BSL seat key and PoweredUpLabs hosting for SubTerra Metro, t
 
 | Screen | Home |
 |--------|------|
-| Team setup, lobby, shift wishlist, conflict resolver, draft board, coverage, time clock | Open Day (`OD`), inside SubTerra Metro |
+| Team setup, lobby, shift wishlist, conflict resolver, draft board, coverage, time clock | Open Time (`OT`), inside SubTerra Metro |
 | The finished schedule | SubTerra Central, read-only, and only when the owner grants it |
 
 Wishlists and the draft are crew-private. They do not appear on the public event page. Booking (`BO`) is still a hire for a date, not this draft.
