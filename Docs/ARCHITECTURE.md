@@ -14,7 +14,7 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 - Rust only inside Tauri bindings: filesystem, local IPC, NFC hardware, DaVinci socket.
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
 - Finance store: Actual's own SQLite CRDT inside `packages/open-books` (`OB`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
-- PKM lives in a dedicated Anytype workspace. **Grok bot Anytype** is a **Central integration** (classification **integration** only, Dewey `AT`) — [GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md). Central hosts **packages and integrations** (packages-under-Central sanctioned, GV-0007 conflict four). PKM is still not a dedicated Anytype monorepo `packages/*` product. Metro may access Central-hosted packages and integrations.
+- PKM lives in a dedicated Anytype workspace. **Grok bot Anytype** is a **Central integration** (classification **integration** only, Dewey `AT`) — [GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md). **Central owns** the Local API client and credentials. **Cara only** runs Anytype desktop on `127.0.0.1:31009`. PKM is still not a dedicated Anytype monorepo `packages/*` product. Metro may access Central-hosted extensions/packages.
 - Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. `packages/open-ui` owns palette, type, and spacing. Locked palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Type: interim Material 3 type scale (display, headline, title, body, label); font families are not locked. Spacing: 4dp baseline grid. The single amber seed `#e8a54b` is withdrawn. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx` (docs may cite these palette hexes; product screens use tokens). Token *code* is not in this Grounded Rules repo.
 
 ## Apps and packages
@@ -122,7 +122,7 @@ Booking listings are free for a single freelancer. A crew manager with 5 or more
 
 UI is not a marketplace item. It ships inside both shells.
 
-**Grok bot Anytype (Central integration).** Classification **integration** only ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)). Central is the personal AI hub and hosts **packages and integrations** (packages-under-Central **sanctioned**, conflict four rewrite). Grok bot Anytype itself stays Dewey `AT` / `integrations/anytype`, not a PKM `packages/*` row. Metro (social) may access Central-hosted packages and integrations. Data-bridge allowlist is **OB + BI + OT + AT** (marked records only; conflict three resolved).
+**Grok bot Anytype (Central integration).** Classification **integration** only ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)). **Central owns** the Local API client, credentials, first-pull, and tag/view. **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Dewey `AT` / `integrations/anytype`. Metro (social) may access Central-hosted extensions/packages. Data-bridge allowlist is **OB + BI + OT + AT** (marked records).
 
 Monetization is the BSL seat key and PoweredUpLabs hosting for SubTerra Metro, ticket prices on SubTerra Central, a one-time Artist, Venue, or Vendor profile upgrade, and the Open Gig fee for crew managers of 5 or more. A solo freelancer does not pay that fee. A package that is not installed is not billed and is not loaded.
 

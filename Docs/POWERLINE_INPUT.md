@@ -313,14 +313,14 @@ Decisions (`open`). 8 items.
 
 - **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
-- **Question:** Where does **Grok bot Anytype** live? Powerline intent is SubTerra Central (`SC`) as a package **or** third-party integration. Classification is already locked **integration** (2026-09-30). Grounded Rules conflict report ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) §6) says a Central *marketplace package* conflicts with AT-not-a-package, empty-hub, and the tip Metro-only matrix for personal/local clients. Pick a destination that GR permits, or explicitly override.
+- **Question:** Where does **Grok bot Anytype** live, and who owns the Local API client?
 - **Options:**
-  - [ ] A) AT leftover integration — `SubTerraCo/subterra-anytype`, `integrations/anytype` (GR-compliant preferred)
-  - [ ] B) Optional Metro-side consumer / Luna tool on `SM` (not a marketplace package; still AT integration for the Cara process)
-  - [ ] C) Central is a LAN *client* only (same hop as Rook / Powerline); package home stays AT
-  - [ ] D) Central marketplace package anyway (overrides X1–X5 — say so in Text)
+  - [ ] A) AT leftover integration on Cara
+  - [ ] B) Metro-side consumer / Luna tool on `SM`
+  - [ ] C) Central is a LAN client only
+  - [ ] D) Other host
   - [ ] Need More Context
   - [ ] Open discussion
   - [x] OTHER (text)
-- **Text:** Powerline 2026-09-30 voice. Destination = **Central integration**. Classification **integration** only. Conflict three **resolved:** Metro↔Central data bridge allowlist is **OB + BI + OT + AT** (marked records). Conflict four **resolved by rewrite:** Central hosts packages and integrations; packages-under-Central is **sanctioned** (not a cut product shape). Grok bot Anytype itself stays Dewey AT / `integrations/anytype` (not a PKM `packages/*` row). Metro (social) accesses Central-hosted packages and integrations.
-- **More context:** [DESIGN_RECORDS/GV-0007-grok-bot-anytype.md](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) §6.2–§6.3. [ARCHITECTURE.md](ARCHITECTURE.md). Sibling hub/social PR owns the canonical Central/Metro role clause. Classification not reopened.
+- **Text:** Powerline 2026-09-30. Destination = **Central integration**. **Central owns** the Local API client, credentials (`ANYTYPE_API_KEY` in Central/runtime env), first-pull, and tag/view. **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Classification **integration** only. Bridge allowlist **OB + BI + OT + AT**. Packages/integrations hosted on Central; Metro accesses Central-hosted extensions/packages. Prior Central-placement conflict reading **superseded**.
+- **More context:** [DESIGN_RECORDS/GV-0007-grok-bot-anytype.md](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) §3–§4, §6. Sibling `bc-f5beba97` owns canonical Central/Metro role docs.

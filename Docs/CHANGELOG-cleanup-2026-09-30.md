@@ -8,17 +8,17 @@ Companion readable summary (not a diff list): [GOVERNANCE_OVERVIEW.md](GOVERNANC
 
 ## Grok bot Anytype — GV-0007 (conflicts three + four resolved)
 
-Powerline 2026-09-30: display **Grok bot Anytype**; classification **integration** only. Cara Local API bridge topology documented. Destination **Central integration**. Merge authority granted once #18 is ready. No runtime. No secrets.
+Powerline 2026-09-30: display **Grok bot Anytype**; classification **integration** only. **Central owns** the Local API client and credentials; **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Destination **Central integration**. No runtime. No secrets.
 
-**Conflict three — resolved:** Metro↔Central data bridge allowlist is **OB + BI + OT + AT** (marked records; same pattern as Open Books / Open Bill / Open Time). Not override-only.
+**Conflict three — resolved:** Metro↔Central data bridge allowlist **OB + BI + OT + AT**.
 
-**Conflict four — resolved by rewrite:** old “packages path under Central invents a cut product shape” → new “Central hosts packages and integrations as the personal AI hub / tool suite; packages-under-Central is **sanctioned**.” Grok bot Anytype itself stays AT integration (not a PKM `packages/*` row).
+**Conflict four — resolved by rewrite:** Central hosts packages and integrations. Old X1–X5 conflict table **removed**. Topology: Central client → LAN/tunnel → Cara Anytype desktop `:31009`.
 
 [PI-020](POWERLINE_INPUT.md#pi-020-grok-bot-anytype-destination) answered. Numbering: GV-0005 is PR #12; GV-0006 is PR #15; this record is GV-0007.
 
 | Path | What changed |
 |------|----------------|
-| `Docs/DESIGN_RECORDS/GV-0007-grok-bot-anytype.md` | Cara topology; §6.2 conflict three resolved; §6.3 conflict four resolved by rewrite. |
+| `Docs/DESIGN_RECORDS/GV-0007-grok-bot-anytype.md` | Central-owned client topology §3–§4; §6 superseded / intended Central integration (no X1–X5 table); AT on bridge allowlist. |
 | `Docs/ARCHITECTURE.md` | PKM bullet; allowlist OB+BI+OT+AT; packages-under-Central sanctioned; Central integration note. |
 | `Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md` | Bridge allowlist +AT; Central hosts packages and integrations. |
 | `codes/APP_REGISTRY.yaml` / `subterra.manifest.yaml` | AT notes. |
