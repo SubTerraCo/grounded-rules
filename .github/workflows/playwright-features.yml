@@ -1,0 +1,174 @@
+# Thin reusable Playwright feature-tag runner (Grounded Rules playwright-kit).
+# Products opt in by calling this workflow. Grounded Rules does not invent
+# product coverage and does not attach publish-npm / deploy-web / tester-deploy
+# gates here — those stay deferred until the kit is stable and one package is wired.
+#
+# Consumers:
+#   jobs:
+#     playwright-features:
+#       uses: SubTerraCo/grounded-rules/.github/workflows/playwright-features.yml@v1
+#       with:
+#         test-path: tests/e2e
+#         playwright-config: tests/playwright.config.ts
+#         project: chromium
+#
+# Tag contract: playwright-kit/TAG_CONTRACT.md
+# Helpers: playwright-kit/scripts/
+#
+# No product path filters (ROADMAP / FEATURE_REGISTRY / apps/*). Path filters
+# belong in the caller if a product wants them.
+name: Playwright Features (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: Product repo subdirectory if needed
+        type: string
+        default: "."
+      test-path:
+        description: Playwright test path relative to working-directory
+        type: string
+        default: "tests/e2e"
+      playwright-config:
+        description: Playwright config path relative to working-directory
+        type: string
+        default: "tests/playwright.config.ts"
+      project:
+        description: Playwright project name (empty = all projects)
+        type: string
+        default: "chromium"
+      grep:
+        description: Playwright grep override. Empty uses tags helper or fallback.
+        type: string
+        default: ""
+      grep-fallback:
+        description: Grep used when no ROADMAP tags resolve
+        type: string
+        default: "@N-|@core"
+      roadmap-path:
+        description: Optional ROADMAP.md path for the tags helper
+        type: string
+        default: ""
+      node-version:
+        type: string
+        default: "22"
+      pnpm-version:
+        description: Leave empty so pnpm/action-setup reads packageManager
+        type: string
+        default: ""
+      run-build:
+        description: Run pnpm build when the product has a build script
+        type: boolean
+        default: false
+      playwright-install-args:
+        description: Arguments after playwright install
+        type: string
+        default: "--with-deps chromium"
+
+env:
+  CI: "true"
+
+jobs:
+  feature-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ inputs.pnpm-version }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: pnpm
+          cache-dependency-path: ${{ inputs.working-directory }}/pnpm-lock.yaml
+
+      - name: Install
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            pnpm install --frozen-lockfile
+          else
+            pnpm install --no-frozen-lockfile
+          fi
+
+      - name: Build
+        if: inputs.run-build
+        run: |
+          if node -e "const p=require('./package.json');process.exit(p.scripts?.build?0:1)"; then
+            pnpm build
+          else
+            echo "::notice::no build script — skipped"
+          fi
+
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install ${{ inputs.playwright-install-args }}
+
+      - name: Resolve feature grep pattern
+        id: grep
+        env:
+          INPUT_GREP: ${{ inputs.grep }}
+          PLAYWRIGHT_GREP_FALLBACK: ${{ inputs.grep-fallback }}
+          PLAYWRIGHT_ROADMAP: ${{ inputs.roadmap-path }}
+        run: |
+          pattern=""
+          if [ -n "$INPUT_GREP" ]; then
+            pattern="$INPUT_GREP"
+          elif [ -f scripts/playwright-feature-tags.mjs ]; then
+            pattern="$(node scripts/playwright-feature-tags.mjs)"
+          elif [ -f playwright-kit/scripts/playwright-feature-tags.mjs ]; then
+            pattern="$(node playwright-kit/scripts/playwright-feature-tags.mjs)"
+          else
+            pattern="${PLAYWRIGHT_GREP_FALLBACK:-@N-|@core}"
+          fi
+          {
+            echo "pattern<<EOF"
+            echo "$pattern"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          echo "Resolved PLAYWRIGHT_GREP=$pattern"
+
+      - name: Run feature Playwright suite
+        env:
+          PLAYWRIGHT_FEATURES: "1"
+          PLAYWRIGHT_GREP: ${{ steps.grep.outputs.pattern }}
+          PLAYWRIGHT_TEST_PATH: ${{ inputs.test-path }}
+          PLAYWRIGHT_CONFIG: ${{ inputs.playwright-config }}
+          PLAYWRIGHT_PROJECT: ${{ inputs.project }}
+        run: |
+          args=(exec playwright test "$PLAYWRIGHT_TEST_PATH" --config="$PLAYWRIGHT_CONFIG")
+          if [ -n "$PLAYWRIGHT_PROJECT" ]; then
+            args+=(--project="$PLAYWRIGHT_PROJECT")
+          fi
+          pnpm "${args[@]}"
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-feature-report
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload videos and traces
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-feature-artifacts
+          path: test-results/
+          retention-days: 30
+
+      - name: Local headed follow-along
+        if: always()
+        run: |
+          echo "GitHub runners cannot show a live headed browser."
+          echo "Follow along locally with Grounded Rules playwright-kit:"
+          echo "  node playwright-kit/scripts/run-feature-tests.mjs headed"
+          echo "  node playwright-kit/scripts/run-feature-tests.mjs ui"
+          echo "  node playwright-kit/scripts/run-feature-tests.mjs tags-headed"
+          echo "Review CI recordings: download playwright-feature-artifacts, then:"
+          echo "  pnpm exec playwright show-report playwright-report"

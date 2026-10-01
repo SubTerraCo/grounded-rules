@@ -16,8 +16,7 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   testDir: "./",
 
-  // Batch / suite scoping — mirrors the Blocks convention (avoids shell pipe
-  // quoting problems on Windows).
+  // Batch / suite scoping — playwright-kit tag contract (PLAYWRIGHT_GREP).
   grep: process.env.PLAYWRIGHT_GREP
     ? new RegExp(process.env.PLAYWRIGHT_GREP)
     : undefined,

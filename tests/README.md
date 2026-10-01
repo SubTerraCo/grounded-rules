@@ -11,6 +11,8 @@ Cross-repo contract tests for SubTerra. Owned by the Grounded Rules agent (GV) p
 
 This suite never duplicates a product's own e2e. It asserts the things no single repo can check alone.
 
+Shared product-e2e scaffolding (grep/tags helpers, reusable `playwright-features.yml`, tag contract) lives in [`playwright-kit/`](../playwright-kit/README.md). Products opt in; this `tests/` tree stays the only Grounded Rules–owned suites (`contract` + `marketplace`). Constitution §12: product e2e stays with the product.
+
 ## Projects
 
 | Project | Browser? | Purpose |
