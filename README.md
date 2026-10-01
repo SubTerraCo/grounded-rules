@@ -2,9 +2,9 @@
 
 **Grounded Rules agent (GV)** home — rules, Dewey codes, catalog, reusable CI, and templates for SubTerra.
 
-Display name **Grounded Rules** (electrical grounding safety + grounded rules). GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames it to `grounded-rules`. Dewey code **GV** is unchanged.
+Display name **Grounded Rules** (electrical grounding safety + grounded rules). GitHub slug is `grounded-rules`. Dewey code **GV** is unchanged.
 
-The **product** is the SubTerra Metro enterprise monorepo (`SubTerraCo/luna`, not created yet). This repo stays the constitution and pipeline source. It is not the product monorepo.
+The **product** is the Metro enterprise monorepo (`SubTerraCo/luna`, not created yet). This repo stays the constitution and pipeline source. It is not the product monorepo.
 
 Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANCE_OVERVIEW.md)**. File-by-file cleanup log: **[Docs/CHANGELOG-cleanup-2026-09-30.md](./Docs/CHANGELOG-cleanup-2026-09-30.md)**.
 
@@ -34,9 +34,9 @@ Readable current-state summary: **[Docs/GOVERNANCE_OVERVIEW.md](./Docs/GOVERNANC
 
 ## Current product shape (GV-0004 + Powerline lock 2026-09-30)
 
-- Two runtimes: `apps/subterra-metro` (Tauri v2 social media app, including Arch / Omarchy; consumes Central-hosted packages) and `apps/subterra-central` (PWA personal AI hub and suite of all tools; hosts packages and integrations).
-- **Packages-under-Central is sanctioned** (`apps/subterra-central/packages/` or equivalent). Old cut that this invented a forbidden product shape is rewritten (GV-0004 C16).
-- Catalog `audience` values stay `admin` and `member` (GV-0002 D4). Mapping: `admin` → SubTerra Metro; `member` → SubTerra Central. Default `["admin"]` fail-closed. No third audience. Audience strings are mount gates, not product-role labels.
+- Two runtimes: `apps/metro` (Tauri v2 social media app, including Arch / Omarchy; consumes Central-hosted packages) and `apps/central` (PWA personal AI hub and suite of all tools; hosts packages and integrations).
+- **Packages-under-Central is sanctioned** (`apps/central/packages/` or equivalent). Old cut that this invented a forbidden product shape is rewritten (GV-0004 C16).
+- Catalog `audience` values stay `admin` and `member` (GV-0002 D4). Mapping: `admin` → Metro; `member` → Central. Default `["admin"]` fail-closed. No third audience. Audience strings are mount gates, not product-role labels.
 - Metro↔Central data bridge (off by default, owner-marked): Open Books, Open Bill, Open Time, **and Anytype (`AT`)**.
 - Packages: Open Time, Open Sort, Open Books, Open Bill, Subtoken, Luna, Banking, Forum, Home Assistant, Media, Open UI. Anytype is a Central-hosted integration (leftover PKM workspace is not required as a monorepo package).
 - Twin `role` / `marketplace` / SDK fields are **deprecated leftover** on standalone-repo rows. New monorepo packages: `marketplace: null`, `sdk: null`.
@@ -65,9 +65,9 @@ pnpm test:workspace              # all QA projects
 |----------|--------|
 | `ci-node.yml` | Live |
 | `deploy-web.yml` | Live |
-| `release-desktop.yml` | R0 stub (Electron / leftover Blocks — not the SubTerra Metro Tauri pipeline) |
+| `release-desktop.yml` | R0 stub (Electron / leftover Blocks — not the Metro Tauri pipeline) |
 | `publish-npm.yml` | R0 stub |
-| `build-android.yml` | R0 stub (Expo / leftover Blocks mobile — SubTerra Metro Android is Tauri) |
+| `build-android.yml` | R0 stub (Expo / leftover Blocks mobile — Metro Android is Tauri) |
 | `nightly-dev-push.yml` | R0 stub |
 
 Production branch is **`master`** across all repos (§4.1) — not `main`.
@@ -75,7 +75,7 @@ Production branch is **`master`** across all repos (§4.1) — not `main`.
 ```yaml
 jobs:
   ci:
-    uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
+    uses: SubTerraCo/grounded-rules/.github/workflows/ci-node.yml@v1
 ```
 
 Powerline may Settings-rename this GitHub repo to `grounded-rules` later; until that click, keep the live slug above.

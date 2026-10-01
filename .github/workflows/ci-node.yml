@@ -2,7 +2,7 @@
 # Consumers:
 #   jobs:
 #     ci:
-#       uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
+#       uses: SubTerraCo/grounded-rules/.github/workflows/ci-node.yml@v1
 #
 # Cross-repo callers need BOTH: the org on a paid plan (private-repo reusable
 # workflows do not run on Free) and this repo's Actions access set to

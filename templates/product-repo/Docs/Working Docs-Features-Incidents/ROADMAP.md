@@ -4,7 +4,7 @@
 > **Last Updated:** 2026-08-03  
 > **Status:** Sprint 0 — bootstrap  
 > **APP code:** {{APPCODE}}  
-> **Grounded Rules:** SubTerraCo/subterra-governance  
+> **Grounded Rules:** SubTerraCo/grounded-rules  
 
 ## Batch log
 

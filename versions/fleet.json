@@ -9,7 +9,7 @@
       "id": "governance",
       "name": "Grounded Rules",
       "role": "governance",
-      "repo": "SubTerraCo/subterra-governance",
+      "repo": "SubTerraCo/grounded-rules",
       "localPath": "governance",
       "status": "linked",
       "display": "v26.08.04",

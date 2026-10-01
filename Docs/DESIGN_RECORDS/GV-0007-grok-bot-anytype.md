@@ -23,8 +23,8 @@ Joshua uses Anytype desktop on **Cara**. The Local API listens on `127.0.0.1:310
 
 PKM stays in a dedicated Anytype workspace. It is **not** a monorepo product package. The unfinished sentence was: align with Grounded Rules and “add as a package to our —”. Powerline then named Central, and on 2026-09-30 voice locked the host split:
 
-- **SubTerra Central (`SC`)** — personal AI hub and suite of all tools. **Hosts integrations.**
-- **SubTerra Metro (`SM`)** — social app, with access to Central-hosted extensions/packages.
+- **Central (`SC`)** — personal AI hub and suite of all tools. **Hosts integrations.**
+- **Metro (`SM`)** — social app, with access to Central-hosted extensions/packages.
 
 **Grok bot Anytype as a Central integration is the intended shape, not a Grounded Rules violation.**
 
@@ -52,7 +52,7 @@ Historical audit (not options): “plugin” and “extension” were considered
 Cara does **not** host the Grok bot Anytype process.
 
 ```
-SubTerra Central
+Central
   Grok bot Anytype  (AT integration — Local API client, credentials, first-pull, tag/view)
   reusable adapter (Hermes later)
         |
@@ -113,8 +113,8 @@ Powerline 2026-09-30 **supersedes** the earlier draft reading that placing Grok 
 
 | Host | Dewey | Role |
 |------|-------|------|
-| SubTerra Central | `SC` | **Personal AI hub** and suite of all tools. **Hosts integrations** (and packages). |
-| SubTerra Metro | `SM` | **Social** app. Access to Central-hosted extensions/packages. |
+| Central | `SC` | **Personal AI hub** and suite of all tools. **Hosts integrations** (and packages). |
+| Metro | `SM` | **Social** app. Access to Central-hosted extensions/packages. |
 
 **Grok bot Anytype as a Central integration is intended — not a violation.** Classification = **integration** only.
 

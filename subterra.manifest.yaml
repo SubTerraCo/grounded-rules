@@ -1,9 +1,9 @@
 schemaVersion: 1
 # Top-level key `governance:` is the catalog schema (not the product display name).
-# Display product/repo name: Grounded Rules. Live GitHub slug remains SubTerraCo/subterra-governance
+# Display product/repo name: Grounded Rules. Live GitHub slug remains SubTerraCo/grounded-rules
 # until Powerline Settings-renames to grounded-rules.
 governance:
-  repo: SubTerraCo/subterra-governance
+  repo: SubTerraCo/grounded-rules
   ciOpsVersion: "26.8.4"
   addressScheme: "APP.PP.PR.AA.SSS.FFF"
 
@@ -27,14 +27,14 @@ governance:
       non_fast_forward, required_status_checks) with org admins as bypass actors.
     legacyOwner: PoweredUpLabs  # still holds unrelated repos; nothing SubTerra should live there
 
-# Canonical catalog. GV-0004 product shape: SubTerra Metro + SubTerra Central + standalone packages.
+# Canonical catalog. GV-0004 product shape: Metro + Central + standalone packages.
 # Leftover standalone-repo items stay as address aliases until folded into SubTerraCo/luna.
 #
 # audience (GV-0002 D4): list of catalog audiences that may mount the item.
 # Locked machine values: admin | member only. Do not rename these strings.
 # Default when omitted: [admin] (fail-closed).
-# Mapping: admin → SubTerra Metro (SM, apps/subterra-metro; aliases LO, ST);
-#          member → SubTerra Central (SC, apps/subterra-central).
+# Mapping: admin → Metro (SM, apps/metro; aliases LO, ST);
+#          member → Central (SC, apps/central).
 # No third audience. Never reuse the word `role` for this — leftover twin role is deprecated.
 #
 # Twin fields (role: app|integration, marketplace: apps|integrations, @subterra/*-sdk):
@@ -53,7 +53,7 @@ items:
     defaultOpen: false
     sdk: null
     status: linked  # first consumer of the reusable ci-node workflow
-    note: "Address alias for SM SubTerra Metro (former live code LO). Leftover SubTerraCo/subterra-shell until Phase 1. Twin SDK packages below are deprecated leftover until fold-in."
+    note: "Address alias for SM Metro (former live code LO). Leftover SubTerraCo/subterra-shell until Phase 1. Twin SDK packages below are deprecated leftover until fold-in."
     provides:
       # Twin SDKs scaffolded and parity-verified (GV-0001 D10). Deprecated leftover surface.
       - "@subterra/sdk-contract"   # internal single source of truth
@@ -128,9 +128,9 @@ items:
   # GV-0004 monorepo items. No twin role / marketplace: apps|integrations / twin SDK.
   - id: luna-os
     appCode: LO
-    name: SubTerra Metro (address alias)
+    name: Central (address alias)
     repo: null
-    localPath: apps/subterra-metro
+    localPath: apps/central
     platforms: [DT, AD, IO, AP]
     role: shell
     marketplace: null
@@ -138,27 +138,13 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "Former live Dewey code for SM. Address alias only. Path to build is apps/subterra-metro. Existing LO addresses stay valid."
+    note: "Former live Dewey code for the local shell. Address alias for CT. Path to build is apps/central. Existing LO addresses stay valid."
 
-  - id: subterra-metro
-    appCode: SM
-    name: SubTerra Metro
+  - id: metro
+    appCode: MT
+    name: Metro
     repo: null
-    localPath: apps/subterra-metro
-    platforms: [DT, AD, IO, AP]
-    role: shell
-    marketplace: null
-    audience: [admin]
-    defaultOpen: false
-    sdk: null
-    status: reserved
-    note: "Powerline lock 2026-09-30. Social media app (Tauri), including Arch Linux for Omarchy. Consumes extensions and packages hosted in Central. Catalog audience admin still mounts here. Live gate is audience, not twin marketplace fields. Former code LO is an address alias. Personal agent Luna (LU) is unchanged."
-
-  - id: subterra-central
-    appCode: SC
-    name: SubTerra Central
-    repo: null
-    localPath: apps/subterra-central
+    localPath: apps/metro
     platforms: [WB]
     role: shell
     marketplace: null
@@ -166,7 +152,47 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "Powerline lock 2026-09-30. Personal AI hub and suite of all tools. Hosts packages and integrations; a packages-under-Central path is sanctioned (GV-0004 C16). Catalog audience member still mounts here. NFC event page remains challenge-response. Live gate is audience, not twin marketplace fields."
+    note: "Public PWA. Social media and ticketing. Catalog audience member mounts here. Former code SM is an address alias."
+
+  - id: central
+    appCode: CT
+    name: Central
+    repo: null
+    localPath: apps/central
+    platforms: [DT, AD, IO, AP]
+    role: shell
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "Local Tauri app and package host, including Arch Linux for Omarchy. Catalog audience admin mounts here. Former codes LO and SC are address aliases."
+
+  - id: subterra-metro
+    appCode: SM
+    name: Metro (address alias)
+    repo: null
+    localPath: apps/metro
+    role: shell
+    marketplace: null
+    audience: [member]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "Former live code for Metro. Address alias for MT. New work uses MT."
+
+  - id: subterra-central
+    appCode: SC
+    name: Central (address alias)
+    repo: null
+    localPath: apps/central
+    role: shell
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "Former live code for Central. Address alias for CT. New work uses CT."
 
   - id: open-gig
     appCode: OG
@@ -179,7 +205,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro and SubTerra Central. Free for a solo freelancer. Fee for a crew manager of 5 or more."
+    note: "ARCHITECTURE matrix: Metro and Central. Free for a solo freelancer. Fee for a crew manager of 5 or more."
 
   - id: axiom-wiki
     appCode: AX
@@ -207,7 +233,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: crew discussion on SubTerra Metro and public discussion on SubTerra Central."
+    note: "ARCHITECTURE matrix: crew discussion on Central and public discussion on Metro."
 
   - id: open-books
     appCode: OB
@@ -220,7 +246,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro; Central only through the owner's bridge (allowlist OB + BI + OT + AT). Wraps @actual-app/api. Not Open Bill."
+    note: "ARCHITECTURE matrix: Central; Metro only through the owner's bridge (allowlist OB + BI + OT + AT). Wraps @actual-app/api. Not Open Bill."
 
   - id: home-assistant
     appCode: HA
@@ -233,20 +259,33 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro only. Client only. Upstream Home Assistant server is Apache 2.0."
+    note: "ARCHITECTURE matrix: Central only. Client only. Upstream Home Assistant server is Apache 2.0."
 
-  - id: luna
-    appCode: LU
-    name: Luna
+  - id: pepper
+    appCode: PR
+    name: Pepper
     repo: null
-    localPath: packages/luna
+    localPath: packages/pepper
     platforms: [DT]
     marketplace: null
     audience: [admin]
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro only. Agent router. Ollama / Gemma 4 12B default on Omarchy."
+    note: "ARCHITECTURE matrix: Central only. Agent router. Hermes is the runtime. Former code LU is an address alias. Ollama / Gemma 4 12B default on Omarchy."
+
+  - id: luna
+    appCode: LU
+    name: Pepper (address alias)
+    repo: null
+    localPath: packages/pepper
+    platforms: [DT]
+    marketplace: null
+    audience: [admin]
+    defaultOpen: false
+    sdk: null
+    status: reserved
+    note: "Former live code for Pepper. Address alias for PR. New work uses PR."
 
   - id: open-day
     appCode: OD
@@ -272,7 +311,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro (tasks + Festy draft); Central gets a public schedule only when granted. Former code OD is an address alias. Owner-marked Metro↔Central bridge allowlist includes OT (with OB, BI, AT)."
+    note: "ARCHITECTURE matrix: Metro (tasks + Festy draft); Central gets a public schedule only when granted. Former code OD is an address alias. Owner-marked Metro↔Central bridge allowlist includes OT (with OB, BI, AT)."
 
   - id: open-sort
     appCode: OS
@@ -285,7 +324,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro only. Gmail and IMAP labels and archive."
+    note: "ARCHITECTURE matrix: Metro only. Gmail and IMAP labels and archive."
 
   - id: open-bill
     appCode: BI
@@ -298,7 +337,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro; Central only through the owner's bridge (allowlist OB + BI + OT + AT). Invoicing and 1099 exports."
+    note: "ARCHITECTURE matrix: Metro; Central only through the owner's bridge (allowlist OB + BI + OT + AT). Invoicing and 1099 exports."
 
   - id: forum
     appCode: FM
@@ -311,7 +350,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: optional on SubTerra Metro and SubTerra Central. Flarum. Community still runs without it."
+    note: "ARCHITECTURE matrix: optional on Metro and Central. Flarum. Community still runs without it."
 
   - id: media
     appCode: MA
@@ -324,7 +363,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro only. DaVinci, OBS, Loupedeck."
+    note: "ARCHITECTURE matrix: Metro only. DaVinci, OBS, Loupedeck."
 
   - id: banking
     appCode: BS
@@ -337,7 +376,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: SubTerra Metro only. SimpleFIN and GoCardless. Treated as a monorepo package, not a twin integration."
+    note: "ARCHITECTURE matrix: Metro only. SimpleFIN and GoCardless. Treated as a monorepo package, not a twin integration."
 
   - id: subtoken
     appCode: TK
@@ -351,6 +390,6 @@ items:
     sdk: null
     status: reserved
     note: >-
-      ARCHITECTURE matrix: organizer tools on SubTerra Metro; event page, tickets, show
-      log, and digital goods on SubTerra Central. Absorbs leftover
+      ARCHITECTURE matrix: organizer tools on Metro; event page, tickets, show
+      log, and digital goods on Central. Absorbs leftover
       SubTerraCo/subtoken, tag-writer, and validation. UID-only auth is forbidden.

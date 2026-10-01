@@ -8,7 +8,7 @@
 #       paths: ["apps/web/**", "packages/**", "pnpm-lock.yaml"]
 #   jobs:
 #     deploy:
-#       uses: SubTerraCo/subterra-governance/.github/workflows/deploy-web.yml@v1
+#       uses: SubTerraCo/grounded-rules/.github/workflows/deploy-web.yml@v1
 #       secrets: inherit
 name: Deploy Web (reusable)
 
