@@ -46,6 +46,7 @@ Decisions (`open`). 1 item.
 - [PI-021](#pi-021-shell-swap-metro-central-pepper) — Central local Tauri `CT`; Metro public PWA `MT`; Pepper `PR` / 2026-09-30 MT
 - [PI-008](#pi-008-arch-omarchy-platform-code) — B) `PP.LX` Linux for Arch/Omarchy on Central Tauri / 2026-09-30 MT
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — B) Keep filename forever (landmark) / 2026-09-30 MT
+- [PI-022](#pi-022-hybrid-architecture-lock) — Hybrid lock on the PI-021 shells / 2026-09-30 MT
 - [PI-004](#pi-004-font-families-for-open-ui) — A) Roboto + Roboto Flex as typeface lock / 2026-09-30 MT
 - [PI-010](#pi-010-banking-dewey-role) — C) Stay `integration`; plugin is a third-party docs label / 2026-09-30 MT
 - [PI-005](#pi-005-archive-axiom) — D) Remove Axiom entirely / 2026-09-30 MT
@@ -354,3 +355,16 @@ Decisions (`open`). 1 item.
   - [ ] C) Other (text)
 - **Text:** Powerline 2026-09-30. Drop the SubTerra prefix. Metro is the public PWA (social and tickets). Central is the local Tauri app and holds the packages. Luna the agent is Pepper, in honor of Pepper Potts. Hermes is the runtime. Repo slug to follow: `SubTerraCo/central`.
 - **More context:** [ARCHITECTURE.md](ARCHITECTURE.md) Shell roles. [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
+
+---
+
+<h2 id="pi-022-hybrid-architecture-lock">PI-022 — Hybrid architecture lock (GV-0005)</h2>
+
+- **Status:** `answered` (2026-09-30 MT)
+- **Needed:** decision
+- **Question:** Keep the hybrid shape (one monorepo, two hosts, standalone packages) on the PI-021 shells?
+- **Options:**
+  - [x] A) Yes. One monorepo. Central (`CT`) is Tauri and hosts packages. Metro (`MT`) is the PWA for social and ticketing. Pepper (`PR`) is the agent. Not polyrepo. Do not write “omni-repo”.
+  - [ ] B) Other (text)
+- **Text:** Hybrid locked (team Yes 6–0). This id is PI-022 because PI-020 is Grok bot Anytype and PI-021 is the shell swap. Former draft called this PI-020.
+- **More context:** [DESIGN_RECORDS/GV-0005-hybrid-architecture-lock.md](DESIGN_RECORDS/GV-0005-hybrid-architecture-lock.md).
