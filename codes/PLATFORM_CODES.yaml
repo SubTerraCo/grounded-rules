@@ -11,12 +11,17 @@ platforms:
     name: macOS
   - code: IO
     name: iOS
+  - code: LX
+    name: Linux
+    note: "Arch Linux / Omarchy is the install flavor under LX (AppImage + PKGBUILD). Native Tauri on Central. PP.AP remains macOS. Windows stays DT. Omarchy is the local AI host. PI-008 B."
   - code: SH
     name: Shared UI
+    note: "Withdrawn for new work. The monorepo has no shared-UI platform. Material 3 lives in packages/open-ui."
   - code: SB
     name: Shared backend
+    note: "Withdrawn for new work. Each shell has its own hub. There is no shared-backend platform."
   - code: MC
     name: MCP (platform surface)
-    note: "PP.MC = MCP as a delivery surface. PR.MC = MCP feature area. Prefer APP.DT.MC… for MCP tools on desktop, or APP.MC.UI… only when the MCP server itself is the platform."
+    note: "PP.MC = MCP as a delivery platform. Agent-tool features use area AG, not this platform code."
   - code: CX
     name: CI / build

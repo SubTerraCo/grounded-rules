@@ -50,17 +50,17 @@ Open stays on names that would collide with a published app. The others use the 
 | MT | Metro | `apps/metro` | Public PWA. Social media and ticketing. Former live code `SM` is an address alias |
 | CT | Central | `apps/central` | Local Tauri app and package host, including Arch / Omarchy. Former live codes `SC` and `LO` are address aliases. Replaces ST |
 | PR | Pepper | `packages/pepper` | Agent router. Hermes is the runtime. Former live code `LU` is an address alias. Gemma 4 12B through Ollama. Installs on Central |
-| OT | Open Time | `packages/open-time` | Tasks, timeline, Quick Blocks, Festy crew tools. Replaces BK. Former code `OD` is an address alias |
+| OT | Open Time | `packages/open-time` | Tasks, timeline, Quick Blocks, Festy crew tools. Former code `OD` is an address alias. Blocks has no Dewey code |
 | OS | Open Sort | `packages/open-sort` | Mail labels and archive. Replaces MB |
 | OB | Open Books | `packages/open-books` | Budgeting via `@actual-app/api`. Not named Open Budget |
-| BI | Open Bill | `packages/open-bill` | Invoicing. Replaces BB |
+| OL | Open Bill | `packages/open-bill` | Invoicing. Replaces BB. Former code `BI` |
 | TK | Subtoken | `packages/subtoken` | NFC and tickets |
-| OG | Open Gig | `apps/open-gig` | Profile, listing, rate, date request |
-| CH | Community | `apps/community` | Discussion UI |
+| OG | Open Gig | `packages/open-gig` | Profile, listing, rate, date request. A package, not a host app |
+| CM | Community | `packages/community` | Discussion UI. A package, not a host app. Former code `CH` |
 | FM | Forum | `packages/forum` | Flarum |
 | HA | Home Assistant | `packages/home-assistant` | Home automation client |
-| MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
-| BS | Banking | `packages/banking` | SimpleFIN and GoCardless |
+| MD | Media | `packages/media` | DaVinci, OBS, Loupedeck. Former code `MA` |
+| BK | Banking | `packages/banking` | SimpleFIN and GoCardless. Former code `BS`. Not Blocks |
 | AT | Anytype | Central-hosted integration (leftover dedicated workspace until folded) | Central hosts the integration (`role: integration` only — not plugin/extension). Leftover PKM workspace is not required as a monorepo package. Packages-under-Central is sanctioned (C16). Open Axiom is cut. Owner-marked Metro↔Central bridge includes AT |
 | GV | Grounded Rules | `SubTerraCo/grounded-rules` | This rules repo. Display name Grounded Rules; GitHub slug is `grounded-rules` |
 | WL | White-label | — | Commercial gate on Central, the local app. Not a package |

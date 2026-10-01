@@ -5,12 +5,12 @@
 
 | Catalog `audience` | Mounts in |
 |--------------------|-----------|
-| `admin` (default when omitted; fail-closed) | Metro (`SM`, `apps/metro`; aliases `LO`, `ST`) |
-| `member` | Central (`SC`, `apps/central`) |
+| `admin` (default when omitted; fail-closed) | Central (`CT`, `apps/central`; aliases `LO`, `SC`, `ST`) |
+| `member` | Metro (`MT`, `apps/metro`; alias `SM`) |
 
 There is no third audience. “Powerline” is an owner/approver of archive decisions, not an `audience` value. “Collective” is not an `audience` value.
 
-**Date:** 2026-09-30 (Powerline lock: Central = personal AI hub; Metro = social; packages-under-Central sanctioned; bridge allowlist OB+BI+OT+AT)  
+**Date:** 2026-09-30 (Powerline lock: Central = personal AI hub; Metro = social; packages-under-Central sanctioned; bridge allowlist OB+OL+OT+AT)  
 **This document** is a readable merge of the locked rulings in this repo. It does not replace them.
 
 | If you need | Read |
@@ -30,7 +30,7 @@ Nothing in this 2026-09-30 pass was deleted or archived. Deletes and archive mov
 
 **Grounded Rules** (`SubTerraCo/grounded-rules`) is the **rules, Dewey, catalog, reusable CI, and templates** repo. GitHub slug is `grounded-rules`.
 
-It is **not** the product. The product is one pnpm + Turborepo enterprise monorepo, `SubTerraCo/luna`, which **has not been created yet** (GV-0004 §4). Until it exists, this copy of [ARCHITECTURE.md](ARCHITECTURE.md) is the product blueprint.
+It is **not** the product. The product is one pnpm + Turborepo enterprise monorepo. The local checkout is `central`. GitHub slug follows `SubTerraCo/central` (PI-021). This copy of [ARCHITECTURE.md](ARCHITECTURE.md) is the product blueprint.
 
 Existing SubTerraCo product repos (`subterra-shell`, `Blocks`, `mailbot`, `subterra-anytype`, reserved `billbot` / `subtoken`) stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
@@ -43,7 +43,7 @@ Existing SubTerraCo product repos (`subterra-shell`, `Blocks`, `mailbot`, `subte
 3. **[CI_OPS_CONSTITUTION.md](../CI_OPS_CONSTITUTION.md)** — applies where the blueprint is silent (Dewey format, `master`, audience, NFC crypto, design gates, reusable workflows for leftover repos).
 4. Older design records — historical locks. What still stands is called out on each record:
    - GV-0001: GitHub org, Team plan, reusable pipelines, vendor `upstream`, workspace QA location.
-   - GV-0002: `audience`, NFC challenge-response, Dewey `SO` / `EV`, Subtoken absorbs 2022 NFC repos. Live TK / CH lists follow the ARCHITECTURE install matrix (`[admin, member]`). **Not** leftover `apps/admin` / `shell-core` folders.
+   - GV-0002: `audience`, NFC challenge-response, Dewey `SO` / `EV`, Subtoken absorbs 2022 NFC repos. Live TK / CM lists follow the ARCHITECTURE install matrix (`[admin, member]`). **Not** leftover `apps/admin` / `shell-core` folders.
    - GV-0003: Material 3. Palette purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`; interim M3 type scale; 4dp spacing. **Not** Material Web, `@subterra/shell-ui`, or amber `#e8a54b`.
 
 ---
@@ -52,12 +52,12 @@ Existing SubTerraCo product repos (`subterra-shell`, `Blocks`, `mailbot`, `subte
 
 Two runtimes only:
 
-| Shell | Path | Runtime | Audience | Product role (Powerline lock 2026-09-30) |
-|-------|------|---------|----------|------------------------------------------|
-| Metro | `apps/metro` (`SM`) | Tauri v2 + React 19 + Vite — Windows, macOS, Android, iOS, Arch Linux / Omarchy | `admin` | Social media app. Consumes Central-hosted packages |
-| Central | `apps/central` (`SC`) | Offline-first PWA | `member` | Personal AI hub and suite of all tools. Hosts packages and integrations |
+| Shell | Path | Runtime | Audience | Product role (Powerline lock 2026-09-30, PI-021) |
+|-------|------|---------|----------|--------------------------------------------------|
+| Central | `apps/central` (`CT`) | Tauri v2 + React 19 + Vite — Windows, macOS, Android, iOS, Arch Linux / Omarchy | `admin` | Local app and package host. Hosts packages and integrations |
+| Metro | `apps/metro` (`MT`) | Offline-first PWA | `member` | Social media and ticketing. Consumes Central-hosted packages |
 
-The PWA **is** Central. There is no second web runtime folder. The path to build is `apps/central`. Central-hosted packages (`apps/central/packages/` or equivalent) and Central-hosted integrations are a **sanctioned** shape (conflict 4 rewritten; GV-0004 C16).
+The PWA **is** Metro. There is no second web runtime folder. The path to build is `apps/metro`. Central-hosted packages (`apps/central/packages/` or equivalent) and Central-hosted integrations are a **sanctioned** shape (conflict 4 rewritten; GV-0004 C16).
 
 Do **not** build leftover `apps/admin` folders, `packages/shell-core`, Electron, or Next shells. `subterra-shell` remains until Phase 1 copies what is still useful.
 
@@ -73,26 +73,26 @@ One product, one code, one folder. The folder is the name people say.
 
 | Code | Name | Path | Status |
 |------|------|------|--------|
-| SM | Metro | `apps/metro` | to build — social media app (replaces ST; former code LO). Consumes Central-hosted packages |
-| LU | Luna | `packages/pepper` | agent router (Ollama, Gemma 4 12B default). Not Metro. |
-| SC | Central | `apps/central` | to build — personal AI hub PWA. Hosts packages and integrations; packages-under-Central is sanctioned |
-| OG | Open Gig | `apps/open-gig` | profile, listing, rate, date request |
-| CH | Community | `apps/community` | voting / discussion UI. Audience `[admin, member]`: crew on Metro; public on Central |
-| OT | Open Time | `packages/open-time` | tasks, timeline, Quick Blocks, Festy crew (replaces BK; former code OD) |
+| CT | Central | `apps/central` | to build — local Tauri app and package host (aliases `LO`, `SC`, `ST`) |
+| MT | Metro | `apps/metro` | to build — public PWA for social and ticketing (alias `SM`) |
+| PR | Pepper | `packages/pepper` | agent router (Ollama, Gemma 4 12B default). Hermes is the runtime. Installs on Central. Former code `LU` |
+| OG | Open Gig | `packages/open-gig` | profile, listing, rate, date request |
+| CM | Community | `packages/community` | voting / discussion UI. Audience `[admin, member]`: crew on Central; public on Metro. Former code `CH` |
+| OT | Open Time | `packages/open-time` | tasks, timeline, Quick Blocks, Festy crew (former code OD). Blocks has no Dewey code |
 | OS | Open Sort | `packages/open-sort` | Gmail/IMAP labels and archive (replaces MB) |
 | OB | Open Books | `packages/open-books` | `@actual-app/api` budgeting (not “Open Budget”) |
-| BI | Open Bill | `packages/open-bill` | invoicing / 1099 (replaces BB) |
+| OL | Open Bill | `packages/open-bill` | invoicing / 1099 (replaces BB; former code BI) |
 | TK | Subtoken | `packages/subtoken` | NTAG424 + tickets. Audience `[admin, member]`: organizer tools on Metro; event page / tickets / show log / digital goods on Central |
 | FM | Forum | `packages/forum` | Flarum (optional) |
 | HA | Home Assistant | `packages/home-assistant` | client only |
-| MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
-| BS | Banking | `packages/banking` | SimpleFIN + GoCardless. Monorepo package, not a twin integration |
+| MD | Media | `packages/media` | DaVinci, OBS, Loupedeck (former code MA) |
+| BK | Banking | `packages/banking` | SimpleFIN + GoCardless. Monorepo package, not a twin integration. Former code BS. Not Blocks |
 | AT | Anytype | Central-hosted integration | leftover PKM workspace is not required as a monorepo package; Central hosts the integration (`role: integration`). **Grok bot Anytype** ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)): Central-owned Local API client; Cara desktop-only on `:31009` |
-| GV | Grounded Rules | this repo | rules / CI / templates |
+| GR | Grounded Rules | this repo | rules / CI / templates. Former code GV. Design record filenames GV-000x stay |
 | WL | White-label | — | commercial gate on Metro, not a package (PI-001: registry-only; no catalog row) |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
 
-**Address aliases** (keep on existing Dewey addresses; not folders to build): `ST` (leftover Shell), `LO` (former Metro live code), `OD` (former Open Time live code / Open Day), `MB` (Mailbot), `BB` (Billbot). `BK` (Blocks) is an alias catalog row; existing `BK/N-####` were rewritten to `OT/N-####` (PI-011 A).
+**Address aliases** (keep on existing Dewey addresses; not folders to build): `ST` (leftover Shell), `LO` (former Central live code), `OD` (former Open Time live code / Open Day), `MB` (Mailbot), `BB` (Billbot), `BI` (former Open Bill), `CH` (former Community), `MA` (former Media), `BS` (former Banking), `GV` (former Grounded Rules). Blocks has no code. Existing Blocks `BK/N-####` were rewritten to `OT/N-####` (PI-011 A) before `BK` was reclaimed for Banking.
 
 **Cut:** Open Axiom (`AX` catalog row kept until archive approval). Withdrawn product codes are not used. `ST` is an alias only. `FN` and `BO` are not current names.
 
@@ -118,12 +118,12 @@ The same package can be installed in Metro, in Central, or in both. Each shell h
 
 | Catalog value | Shell that may mount the item |
 |---------------|-------------------------------|
-| `admin` | Metro (`SM`, `apps/metro`; aliases `LO`, `ST`) |
-| `member` | Central (`SC`, `apps/central`) |
+| `admin` | Central (`CT`, `apps/central`; aliases `LO`, `SC`, `ST`) |
+| `member` | Metro (`MT`, `apps/metro`; alias `SM`) |
 
 An item is never visible on Central unless its list includes `member`. Never overload SDK `role` for permissions. Do not invent a third audience (including “Powerline”, “Collective”, or “operator”).
 
-What sells where is in [ARCHITECTURE.md](ARCHITECTURE.md) (Open Books/Bill/Time/Sort, Banking, HA, Media, Luna, Subtoken, Open Gig, Community, Forum). UI is not a marketplace item.
+What sells where is in [ARCHITECTURE.md](ARCHITECTURE.md) (Open Books/Bill/Time/Sort, Banking, HA, Media, Pepper, Subtoken, Open Gig, Community, Forum). UI is not a marketplace item.
 
 ---
 
@@ -139,7 +139,7 @@ Open Gig listings are free for a single freelancer. A crew manager with 5 or mor
 
 Subtoken (`TK`) absorbs `SubTerraCo/subtoken`, `tag-writer`, and `validation`. Revival is still deferred. Catalog `audience` is `[admin, member]` per the ARCHITECTURE install matrix (organizer tools on Metro; event page, tickets, show log, and digital goods on Central).
 
-Community (`CH`) is also `[admin, member]`: crew discussion on Metro; public discussion on Central.
+Community (`CM`) is also `[admin, member]`: crew discussion on Central; public discussion on Metro.
 
 ---
 
@@ -188,7 +188,7 @@ Leftover reusable workflows here:
 |----------|--------|
 | `ci-node.yml` | Live |
 | `deploy-web.yml` | Live (Vercel, `master`) |
-| `release-desktop.yml` | R0 stub — Electron / leftover Blocks, **not** Metro Tauri |
+| `release-desktop.yml` | R0 stub — Electron / leftover Blocks, **not** Central Tauri |
 | `publish-npm.yml` | R0 stub |
 | `build-android.yml` | R0 stub — Expo / leftover Blocks mobile, **not** Metro Android |
 | `nightly-dev-push.yml` | R0 stub |
@@ -205,7 +205,7 @@ Linked today: `subterra-governance` (Grounded Rules; slug is `grounded-rules`), 
 
 Reserved / leftover: `billbot`, `subtoken`, `tag-writer`, `validation`.
 
-Not created: `SubTerraCo/luna`.
+Product checkout: `central` (GitHub slug `SubTerraCo/central`, PI-021). `SubTerraCo/luna` is not the product repo.
 
 Workspace QA lives in `tests/` here (`contract` + `marketplace`) until `luna` `tests/contract` replaces it. Coverage is still deferred (no shell host).
 
@@ -216,24 +216,26 @@ Product-repo template under `templates/product-repo/` is only for leftover stand
 ## 11. Phases (from the blueprint)
 
 1. Workspace skeleton: layout, strict TypeScript, ESLint 9 flat, pnpm workspace, Turborepo.
-2. Shell hub on SQLite + Yjs. Open Books around `@actual-app/api`. Open Bill separate. Anytype as a Central-hosted integration (leftover PKM workspace not required as a monorepo package). Owner-marked bridge allowlist: OB, BI, OT, AT.
+2. Shell hub on SQLite + Yjs. Open Books around `@actual-app/api`. Open Bill separate. Anytype as a Central-hosted integration (leftover PKM workspace not required as a monorepo package). Owner-marked bridge allowlist: OB, OL, OT, AT.
 3. `luna` provider interface + tool registry. Default local provider at the Omarchy host.
 4. `packages/open-ui` tokens (palette, type, 4dp spacing) and domain widgets.
-5. Bundle Metro in Tauri (including Arch / Omarchy) and Central as the PWA. Confirm hub isolation and the marked-record bridge (OB + BI + OT + AT).
+5. Bundle Central in Tauri (including Arch / Omarchy) and Metro as the PWA. Confirm hub isolation and the marked-record bridge (OB + OL + OT + AT).
 6. Playwright suites listed under CI.
 
 ---
 
-## 12. Dewey (unchanged format)
+## 12. Dewey
 
 ```
-APP.PP.PR.AA.SSS.FFF[-III]
+APP.PP.AA.SSS.FFF[-III]
 N-####    B-####    vYY.MM.DD[bX]
 ```
 
+APP is the owner. PP is the platform (`LX` is Linux; `SH` and `SB` are withdrawn for new work). AA is the area (this slot was called PR; `PR` is now only Pepper). SSS is the section. FFF is the feature. Both numbers seed at `001`. A bootstrap address is `GR.CX.DV.001.001`. Records from before 2026-10-01 keep the old six-part form.
+
 Tables: `codes/APP_REGISTRY.yaml`, `codes/PLATFORM_CODES.yaml`, `codes/AREA_CODES.yaml`. Catalog: `subterra.manifest.yaml`.
 
-New work uses current codes (SM, OT, OS, BI, …). Existing `BK/N-####` were rewritten to `OT/N-####` (PI-011 A). Alias codes (ST, LO, OD, MB, BB) remain valid on existing addresses. `BK` stays an alias catalog row for leftover Blocks.
+New work uses current codes (MT, CT, PR, OT, OS, OL, CM, MD, BK, GR, …). Existing Blocks `BK/N-####` were rewritten to `OT/N-####` (PI-011 A). Alias codes (ST, LO, OD, MB, BB, BI, CH, MA, BS, GV) remain valid on existing addresses. `BK` is Banking.
 
 `/NF` `/NB` `/RD` still require Round 1 + Round 2 with conflict audits. Use AskQuestion when available.
 
@@ -244,7 +246,7 @@ New work uses current codes (SM, OT, OS, BI, …). Existing `BK/N-####` were rew
 1. Change rules here first; leftover product repos consume via workflow ref / template / `@subterra/ci-ops`.
 2. Register new items in APP_REGISTRY **and** the manifest before GitHub scaffolding.
 3. Do not invent product features in Grounded Rules.
-4. Do not create leftover `apps/admin` folders or a second PWA besides Central.
+4. Do not create leftover `apps/admin` folders or a second PWA besides Metro.
 5. Material 3 / four-color palette / `packages/open-ui` only. No amber `#e8a54b`.
 
-Implementation of Metro, Open Time, Open Sort, Open Bill, Central, and Anytype handlers belongs to those product agents — not GV — unless explicitly asked.
+Implementation of Metro, Open Time, Open Sort, Open Bill, Central, and Anytype handlers belongs to those product agents — not GR — unless explicitly asked.

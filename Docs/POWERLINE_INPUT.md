@@ -190,7 +190,7 @@ Decisions (`open`). 5 items.
   - [ ] A) Change Dewey role to `app`
   - [ ] B) Leave `integration` until fold-in
   - [x] C) Other (text)
-- **Text:** Option 3 locked (tally 5–2). Keep Dewey role `integration`. Package-shaped docs: `marketplace: null`, no twin SDK. Do not flip the role field. `plugin` is a docs label for third-party connectors only, not a new Dewey role.
+- **Text:** Option 3 locked (tally 5–2). Keep Dewey role `integration`. Package-shaped docs: `marketplace: null`, no twin SDK. Do not flip the role field. `plugin` is a docs label for third-party connectors only, not a new Dewey role. Live code is `BK` (Banking). `BS` is the former code.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #10. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 BS row. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---

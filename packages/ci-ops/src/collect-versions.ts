@@ -330,13 +330,14 @@ export function buildFleet(): FleetSnapshot {
 
   const byCode = new Map<string, FleetApp>();
 
-  // Grounded Rules (GV) is not a marketplace item — always first.
+  // Grounded Rules (GR) is not a marketplace item — always first.
   // id/localPath/role stay machine keys (`governance`); display name is Grounded Rules.
+  // Former code GV is an address alias and is not a fleet row.
   byCode.set(
-    "GV",
+    "GR",
     collectRow({
       id: "governance",
-      appCode: "GV",
+      appCode: "GR",
       name: "Grounded Rules",
       repo: "SubTerraCo/grounded-rules",
       localPath: "governance",
@@ -353,27 +354,33 @@ export function buildFleet(): FleetSnapshot {
   }
 
   const preferredOrder = [
-    "GV",
+    "GR",
+    "CT",
+    "MT",
+    "PR",
     "SM",
     "LO",
     "ST",
     "SC",
     "OT",
     "OD",
-    "BK",
     "OS",
     "MB",
+    "OL",
     "BI",
     "BB",
     "OB",
     "TK",
     "AT",
     "OG",
+    "CM",
     "CH",
     "LU",
     "FM",
     "HA",
+    "MD",
     "MA",
+    "BK",
     "BS",
     "WL",
     "AX",
@@ -423,7 +430,7 @@ export function renderVersionsMarkdown(fleet: FleetSnapshot): string {
     "- **npm** is `package.json` `version` (npm semver form `YY.M.D` / `YY.M.D-bX`).",
     "- Rows with Display/npm `—` usually mean the local checkout is missing or not yet on the SubTerra stamp.",
     "- Refresh: `pnpm versions:fleet` from this repo root (or `governance/` in a meta-workspace checkout).",
-    "- ST / LO / OD / MB / BB are address aliases. Existing BK/N-#### were rewritten to OT/N-#### (PI-011 A); BK stays an alias catalog row. The packages to build are SM / SC / OT / OS / BI (GV-0004). LO is the former live code for SubTerra Metro. OD is the former live code for Open Time.",
+    "- Address aliases: ST, LO, SM, SC, LU, OD, BI, CH, MA, BS, GV, MB, BB. Live hosts are CT (Central) and MT (Metro). BK is Banking. Blocks has no Dewey code. Existing Blocks BK/N-#### were rewritten to OT/N-#### (PI-011 A) before BK was reclaimed.",
     "",
   );
   return `${lines.join("\n")}`;
@@ -457,9 +464,9 @@ function validateFleetFile(path: string): void {
       }
     }
   }
-  const gv = fleet.apps.find((a) => a.appCode === "GV");
-  if (!gv) {
-    console.error("fleet.json must include APP GV");
+  const grounded = fleet.apps.find((a) => a.appCode === "GR");
+  if (!grounded) {
+    console.error("fleet.json must include APP GR");
     process.exit(1);
   }
   console.log(`versions/fleet.json OK (${fleet.apps.length} apps)`);

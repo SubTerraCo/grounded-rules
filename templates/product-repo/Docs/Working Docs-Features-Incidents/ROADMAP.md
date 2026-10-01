@@ -15,4 +15,4 @@
 ## Active sprint 0 (v26.08.03)
 
 - [ ] Register in `subterra.manifest.yaml` and `codes/APP_REGISTRY.yaml`
-- [ ] Leftover standalone repos: wire `@subterra/app-sdk` or `@subterra/integration-sdk`. New product work belongs in `SubTerraCo/luna` once that repo exists.
+- [ ] New product work belongs in the monorepo `SubTerraCo/central` (`apps/` and `packages/`). Do not start a new twin SDK pair. Leftover standalone repos keep `@subterra/app-sdk` or `@subterra/integration-sdk` until fold-in.

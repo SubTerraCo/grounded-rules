@@ -14,18 +14,18 @@ areas:
     note: "Marketplace chrome. GV-0004 dropped separate Apps and Integrations tabs; packages install into a shell. Code MK still names that surface."
   - code: DV
     name: DevOps / CI / release
-  - code: MC
-    name: MCP / agent tools (feature area)
-    note: "Distinct from PP.MC platform code — see PLATFORM_CODES.yaml"
+  - code: AG
+    name: Agent tools
+    note: "MCP and other agent tools as a feature area. Former area code MC. Platform delivery stays PP.MC."
   - code: NF
     name: NFC / crypto tags
   - code: SO
     name: Social / feed
-    note: "Social / feed (GV-0002 D7; catalog audience member still mounts on Central). Powerline lock 2026-09-30: Metro is the social media app; Central is the personal AI hub and hosts packages/integrations. Community (CH) also lists both audiences per the ARCHITECTURE install matrix."
+    note: "Social / feed (GV-0002 D7). Metro is the social media app (audience member). Central is the personal AI hub (audience admin). Community (CM) lists both audiences. CRM / Anytype object mapping is area CR."
   - code: EV
     name: Events / ticketing
-    note: "Events + Subtoken ticketing (GV-0002 D7). Subtoken (TK) audience is [admin, member]: organizer tools on Metro; event page, tickets, show log, and digital goods on Central (SC)."
+    note: "Events and Subtoken ticketing (GV-0002 D7). Organizer tools are on Central. The event page, tickets, show log, and digital goods are on Metro."
   - code: IN
     name: Invoicing / billing
-  - code: CM
+  - code: CR
     name: CRM / Anytype object mapping
