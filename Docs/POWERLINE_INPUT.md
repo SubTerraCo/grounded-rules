@@ -25,9 +25,8 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`). 3 items.
+Decisions (`open`). 2 items.
 
-- [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OT rows
 - [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / SubTerra Metro release workflow timing
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
 
@@ -50,6 +49,7 @@ Decisions (`open`). 3 items.
 - [PI-004](#pi-004-font-families-for-open-ui) — A) Roboto + Roboto Flex as typeface lock / 2026-09-30 MT
 - [PI-010](#pi-010-banking-dewey-role) — C) Stay `integration`; plugin is a third-party docs label / 2026-09-30 MT
 - [PI-005](#pi-005-archive-axiom) — D) Remove Axiom entirely / 2026-09-30 MT
+- [PI-002](#pi-002-fleet-reserved-rows) — A) Reserved MT/CT/OT rows on the next fleet regen / 2026-09-30 MT
 - [PI-007](#pi-007-pnpm-11-14-vs-9) — B) Align both to pnpm 11.x (Powerline override) / 2026-09-30 MT
 
 ---
@@ -70,14 +70,14 @@ Decisions (`open`). 3 items.
 
 <h2 id="pi-002-fleet-reserved-rows">PI-002 — Q12 Fleet reserved LO/SC/OT rows</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
-- **Question:** `Docs/VERSIONS.md` / `versions/fleet.json` were not fully regenerated. The withdrawn member-shell fleet row was removed by hand. Should the next meta-workspace `pnpm versions:fleet` add reserved LO/SC/OT/… rows (mostly `—`) to the dashboard?
+- **Question:** `Docs/VERSIONS.md` / `versions/fleet.json` were not fully regenerated. Should the next meta-workspace `pnpm versions:fleet` add reserved shell rows (mostly `—`) to the dashboard?
 - **Options:**
-  - [ ] A) Yes — add reserved LO/SC/OT/… rows on next fleet regen
+  - [x] A) Yes — add reserved rows on the next fleet regen
   - [ ] B) No — leave fleet as leftover snapshot until monorepo exists
   - [ ] C) Other (text)
-- **Text:**
+- **Text:** Option 1 locked (team 4–1). Next regen adds reserved `MT`, `CT`, and `OT` rows. Do not invent the rows in this draft. `SM` and `SC` are aliases, not the rows to add.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #12. Lattice left Q12 open on [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7). Live Open Time code is `OT` ([PI-018](#pi-018-open-day-to-open-time)); `OD` is an address alias.
 
 ---
