@@ -25,11 +25,10 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`). 4 items.
+Decisions (`open`). 3 items.
 
 - [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OT rows
 - [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / SubTerra Metro release workflow timing
-- [PI-008](#pi-008-arch-omarchy-platform-code) — Q8 Arch / Omarchy platform code
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
 
 ## Answered
@@ -47,6 +46,7 @@ Decisions (`open`). 4 items.
 - [PI-011](#pi-011-dewey-bk-to-ot-rewrite) — A) Rewrite existing BK→OT / 2026-09-30 MT
 - [PI-020](#pi-020-grok-bot-anytype-destination) — Central integration; conflict three+four resolved / 2026-09-30 MT
 - [PI-021](#pi-021-shell-swap-metro-central-pepper) — Central local Tauri `CT`; Metro public PWA `MT`; Pepper `PR` / 2026-09-30 MT
+- [PI-008](#pi-008-arch-omarchy-platform-code) — B) `PP.LX` Linux for Arch/Omarchy on Central Tauri / 2026-09-30 MT
 - [PI-004](#pi-004-font-families-for-open-ui) — A) Roboto + Roboto Flex as typeface lock / 2026-09-30 MT
 - [PI-010](#pi-010-banking-dewey-role) — C) Stay `integration`; plugin is a third-party docs label / 2026-09-30 MT
 - [PI-005](#pi-005-archive-axiom) — D) Remove Axiom entirely / 2026-09-30 MT
@@ -155,14 +155,14 @@ Decisions (`open`). 4 items.
 
 <h2 id="pi-008-arch-omarchy-platform-code">PI-008 — Q8 Arch / Omarchy platform code</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
 - **Question:** `PP.AP` = macOS. Is Arch Linux / Omarchy `DT` (Desktop), or do we need a Linux/Arch platform code?
 - **Options:**
   - [ ] A) Use `DT`
-  - [ ] B) Add Linux/Arch platform code (name in Text)
+  - [x] B) Add Linux/Arch platform code (name in Text)
   - [ ] C) Other (text)
-- **Text:**
+- **Text:** `PP.LX` = Linux. Arch/Omarchy is the flavor. Native Tauri on Central.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #8. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
