@@ -25,10 +25,9 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`). 5 items.
+Decisions (`open`). 4 items.
 
 - [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OT rows
-- [PI-005](#pi-005-archive-axiom) — Q5 Archive Axiom (AX)
 - [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / SubTerra Metro release workflow timing
 - [PI-008](#pi-008-arch-omarchy-platform-code) — Q8 Arch / Omarchy platform code
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
@@ -50,6 +49,7 @@ Decisions (`open`). 5 items.
 - [PI-021](#pi-021-shell-swap-metro-central-pepper) — Central local Tauri `CT`; Metro public PWA `MT`; Pepper `PR` / 2026-09-30 MT
 - [PI-004](#pi-004-font-families-for-open-ui) — A) Roboto + Roboto Flex as typeface lock / 2026-09-30 MT
 - [PI-010](#pi-010-banking-dewey-role) — C) Stay `integration`; plugin is a third-party docs label / 2026-09-30 MT
+- [PI-005](#pi-005-archive-axiom) — D) Remove Axiom entirely / 2026-09-30 MT
 - [PI-007](#pi-007-pnpm-11-14-vs-9) — B) Align both to pnpm 11.x (Powerline override) / 2026-09-30 MT
 
 ---
@@ -112,15 +112,15 @@ Decisions (`open`). 5 items.
 
 <h2 id="pi-005-archive-axiom">PI-005 — Q5 Archive Axiom (AX)</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
 - **Question:** Archive Axiom (`AX`) after this review, or drop the catalog rows in a follow-up (still via archive, not delete)?
 - **Options:**
   - [ ] A) Archive now (after merge approval of this PR’s archive batch)
   - [ ] B) Follow-up PR later
   - [ ] C) Keep rows indefinitely
-  - [ ] D) Other (text)
-- **Text:**
+  - [x] D) Other (text)
+- **Text:** Remove Axiom entirely. Do not archive it. The catalog row stays marked withdrawn until a delete pass.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #5. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 Cut. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
