@@ -25,13 +25,12 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`). 6 items.
+Decisions (`open`). 5 items.
 
 - [PI-002](#pi-002-fleet-reserved-rows) — Q12 Fleet reserved LO/SC/OT rows
 - [PI-005](#pi-005-archive-axiom) — Q5 Archive Axiom (AX)
 - [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / SubTerra Metro release workflow timing
 - [PI-008](#pi-008-arch-omarchy-platform-code) — Q8 Arch / Omarchy platform code
-- [PI-010](#pi-010-banking-dewey-role) — Q10 Banking (BS) Dewey role
 - [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
 
 ## Answered
@@ -50,6 +49,7 @@ Decisions (`open`). 6 items.
 - [PI-020](#pi-020-grok-bot-anytype-destination) — Central integration; conflict three+four resolved / 2026-09-30 MT
 - [PI-021](#pi-021-shell-swap-metro-central-pepper) — Central local Tauri `CT`; Metro public PWA `MT`; Pepper `PR` / 2026-09-30 MT
 - [PI-004](#pi-004-font-families-for-open-ui) — A) Roboto + Roboto Flex as typeface lock / 2026-09-30 MT
+- [PI-010](#pi-010-banking-dewey-role) — C) Stay `integration`; plugin is a third-party docs label / 2026-09-30 MT
 - [PI-007](#pi-007-pnpm-11-14-vs-9) — B) Align both to pnpm 11.x (Powerline override) / 2026-09-30 MT
 
 ---
@@ -183,14 +183,14 @@ Decisions (`open`). 6 items.
 
 <h2 id="pi-010-banking-dewey-role">PI-010 — Q10 Banking (BS) Dewey role</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
-- **Question:** Banking (`BS`) Dewey `role: integration` in APP_REGISTRY vs other packages `role: app`. Catalog treats BS as Luna package. Reclassify Dewey role?
+- **Question:** Banking (`BS`) Dewey `role: integration` in APP_REGISTRY vs other packages `role: app`. Catalog treats BS as a package. Reclassify Dewey role?
 - **Options:**
   - [ ] A) Change Dewey role to `app`
   - [ ] B) Leave `integration` until fold-in
-  - [ ] C) Other (text)
-- **Text:**
+  - [x] C) Other (text)
+- **Text:** Option 3 locked (tally 5–2). Keep Dewey role `integration`. Package-shaped docs: `marketplace: null`, no twin SDK. Do not flip the role field. `plugin` is a docs label for third-party connectors only, not a new Dewey role.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #10. [GOVERNANCE_OVERVIEW.md](GOVERNANCE_OVERVIEW.md) §4 BS row. [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
