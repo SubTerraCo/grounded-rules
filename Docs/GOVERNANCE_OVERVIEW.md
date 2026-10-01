@@ -5,8 +5,8 @@
 
 | Catalog `audience` | Mounts in |
 |--------------------|-----------|
-| `admin` (default when omitted; fail-closed) | SubTerra Metro (`SM`, `apps/subterra-metro`; aliases `LO`, `ST`) |
-| `member` | SubTerra Central (`SC`, `apps/subterra-central`) |
+| `admin` (default when omitted; fail-closed) | Metro (`SM`, `apps/metro`; aliases `LO`, `ST`) |
+| `member` | Central (`SC`, `apps/central`) |
 
 There is no third audience. “Powerline” is an owner/approver of archive decisions, not an `audience` value. “Collective” is not an `audience` value.
 
@@ -54,10 +54,10 @@ Two runtimes only:
 
 | Shell | Path | Runtime | Audience | Product role (Powerline lock 2026-09-30) |
 |-------|------|---------|----------|------------------------------------------|
-| SubTerra Metro | `apps/subterra-metro` (`SM`) | Tauri v2 + React 19 + Vite — Windows, macOS, Android, iOS, Arch Linux / Omarchy | `admin` | Social media app. Consumes Central-hosted packages |
-| SubTerra Central | `apps/subterra-central` (`SC`) | Offline-first PWA | `member` | Personal AI hub and suite of all tools. Hosts packages and integrations |
+| Metro | `apps/metro` (`SM`) | Tauri v2 + React 19 + Vite — Windows, macOS, Android, iOS, Arch Linux / Omarchy | `admin` | Social media app. Consumes Central-hosted packages |
+| Central | `apps/central` (`SC`) | Offline-first PWA | `member` | Personal AI hub and suite of all tools. Hosts packages and integrations |
 
-The PWA **is** SubTerra Central. There is no second web runtime folder. The path to build is `apps/subterra-central`. Central-hosted packages (`apps/subterra-central/packages/` or equivalent) and Central-hosted integrations are a **sanctioned** shape (conflict 4 rewritten; GV-0004 C16).
+The PWA **is** Central. There is no second web runtime folder. The path to build is `apps/central`. Central-hosted packages (`apps/central/packages/` or equivalent) and Central-hosted integrations are a **sanctioned** shape (conflict 4 rewritten; GV-0004 C16).
 
 Do **not** build leftover `apps/admin` folders, `packages/shell-core`, Electron, or Next shells. `subterra-shell` remains until Phase 1 copies what is still useful.
 
@@ -73,30 +73,30 @@ One product, one code, one folder. The folder is the name people say.
 
 | Code | Name | Path | Status |
 |------|------|------|--------|
-| SM | SubTerra Metro | `apps/subterra-metro` | to build — social media app (replaces ST; former code LO). Consumes Central-hosted packages |
-| LU | Luna | `packages/luna` | agent router (Ollama, Gemma 4 12B default). Not Metro. |
-| SC | SubTerra Central | `apps/subterra-central` | to build — personal AI hub PWA. Hosts packages and integrations; packages-under-Central is sanctioned |
+| SM | Metro | `apps/metro` | to build — social media app (replaces ST; former code LO). Consumes Central-hosted packages |
+| LU | Luna | `packages/pepper` | agent router (Ollama, Gemma 4 12B default). Not Metro. |
+| SC | Central | `apps/central` | to build — personal AI hub PWA. Hosts packages and integrations; packages-under-Central is sanctioned |
 | OG | Open Gig | `apps/open-gig` | profile, listing, rate, date request |
-| CH | Community | `apps/community` | voting / discussion UI. Audience `[admin, member]`: crew on SubTerra Metro; public on Central |
+| CH | Community | `apps/community` | voting / discussion UI. Audience `[admin, member]`: crew on Metro; public on Central |
 | OT | Open Time | `packages/open-time` | tasks, timeline, Quick Blocks, Festy crew (replaces BK; former code OD) |
 | OS | Open Sort | `packages/open-sort` | Gmail/IMAP labels and archive (replaces MB) |
 | OB | Open Books | `packages/open-books` | `@actual-app/api` budgeting (not “Open Budget”) |
 | BI | Open Bill | `packages/open-bill` | invoicing / 1099 (replaces BB) |
-| TK | Subtoken | `packages/subtoken` | NTAG424 + tickets. Audience `[admin, member]`: organizer tools on SubTerra Metro; event page / tickets / show log / digital goods on Central |
+| TK | Subtoken | `packages/subtoken` | NTAG424 + tickets. Audience `[admin, member]`: organizer tools on Metro; event page / tickets / show log / digital goods on Central |
 | FM | Forum | `packages/forum` | Flarum (optional) |
 | HA | Home Assistant | `packages/home-assistant` | client only |
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
 | BS | Banking | `packages/banking` | SimpleFIN + GoCardless. Monorepo package, not a twin integration |
 | AT | Anytype | Central-hosted integration | leftover PKM workspace is not required as a monorepo package; Central hosts the integration (`role: integration`). **Grok bot Anytype** ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)): Central-owned Local API client; Cara desktop-only on `:31009` |
 | GV | Grounded Rules | this repo | rules / CI / templates |
-| WL | White-label | — | commercial gate on SubTerra Metro, not a package (PI-001: registry-only; no catalog row) |
+| WL | White-label | — | commercial gate on Metro, not a package (PI-001: registry-only; no catalog row) |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
 
-**Address aliases** (keep on existing Dewey addresses; not folders to build): `ST` (leftover Shell), `LO` (former SubTerra Metro live code), `OD` (former Open Time live code / Open Day), `MB` (Mailbot), `BB` (Billbot). `BK` (Blocks) is an alias catalog row; existing `BK/N-####` were rewritten to `OT/N-####` (PI-011 A).
+**Address aliases** (keep on existing Dewey addresses; not folders to build): `ST` (leftover Shell), `LO` (former Metro live code), `OD` (former Open Time live code / Open Day), `MB` (Mailbot), `BB` (Billbot). `BK` (Blocks) is an alias catalog row; existing `BK/N-####` were rewritten to `OT/N-####` (PI-011 A).
 
 **Cut:** Open Axiom (`AX` catalog row kept until archive approval). Withdrawn product codes are not used. `ST` is an alias only. `FN` and `BO` are not current names.
 
-Festy Blocks (`SubTerraCo/festy-blocks`) does not get its own code. Crew tools live in Open Time inside SubTerra Metro; the finished schedule can appear read-only on Central when granted.
+Festy Blocks (`SubTerraCo/festy-blocks`) does not get its own code. Crew tools live in Open Time inside Metro; the finished schedule can appear read-only on Central when granted.
 
 ---
 
@@ -106,7 +106,7 @@ Every installable package stands alone. It may not import another package. The s
 
 Optional facts another package might have written are read from the hub only after the user grants that read.
 
-The same package can be installed in SubTerra Metro, in SubTerra Central, or in both. Each shell has its own hub. Central hosts packages and integrations; Metro as the social app consumes them. A person who uses both may turn on a **data bridge** (off by default). The bridge copies only Open Books, Open Bill, Open Time, and Anytype records that the person marks (Powerline lock 2026-09-30). Mail, banking, and home automation stay off the bridge.
+The same package can be installed in Metro, in Central, or in both. Each shell has its own hub. Central hosts packages and integrations; Metro as the social app consumes them. A person who uses both may turn on a **data bridge** (off by default). The bridge copies only Open Books, Open Bill, Open Time, and Anytype records that the person marks (Powerline lock 2026-09-30). Mail, banking, and home automation stay off the bridge.
 
 **Dropped:** separate Apps and Integrations tabs; separate GitHub repos as the product shape.
 
@@ -118,16 +118,16 @@ The same package can be installed in SubTerra Metro, in SubTerra Central, or in 
 
 | Catalog value | Shell that may mount the item |
 |---------------|-------------------------------|
-| `admin` | SubTerra Metro (`SM`, `apps/subterra-metro`; aliases `LO`, `ST`) |
-| `member` | SubTerra Central (`SC`, `apps/subterra-central`) |
+| `admin` | Metro (`SM`, `apps/metro`; aliases `LO`, `ST`) |
+| `member` | Central (`SC`, `apps/central`) |
 
-An item is never visible on SubTerra Central unless its list includes `member`. Never overload SDK `role` for permissions. Do not invent a third audience (including “Powerline”, “Collective”, or “operator”).
+An item is never visible on Central unless its list includes `member`. Never overload SDK `role` for permissions. Do not invent a third audience (including “Powerline”, “Collective”, or “operator”).
 
 What sells where is in [ARCHITECTURE.md](ARCHITECTURE.md) (Open Books/Bill/Time/Sort, Banking, HA, Media, Luna, Subtoken, Open Gig, Community, Forum). UI is not a marketplace item.
 
 ---
 
-## 6. SubTerra Central access and NFC
+## 6. Central access and NFC
 
 A tag opens an event page after **NTAG424 challenge-response**. A UID alone does not sign anyone in. UID-only auth is forbidden.
 
@@ -137,9 +137,9 @@ A one-time charge upgrades that profile to Artist, Venue, or Vendor.
 
 Open Gig listings are free for a single freelancer. A crew manager with 5 or more members pays the booking fee.
 
-Subtoken (`TK`) absorbs `SubTerraCo/subtoken`, `tag-writer`, and `validation`. Revival is still deferred. Catalog `audience` is `[admin, member]` per the ARCHITECTURE install matrix (organizer tools on SubTerra Metro; event page, tickets, show log, and digital goods on Central).
+Subtoken (`TK`) absorbs `SubTerraCo/subtoken`, `tag-writer`, and `validation`. Revival is still deferred. Catalog `audience` is `[admin, member]` per the ARCHITECTURE install matrix (organizer tools on Metro; event page, tickets, show log, and digital goods on Central).
 
-Community (`CH`) is also `[admin, member]`: crew discussion on SubTerra Metro; public discussion on SubTerra Central.
+Community (`CH`) is also `[admin, member]`: crew discussion on Metro; public discussion on Central.
 
 ---
 
@@ -188,9 +188,9 @@ Leftover reusable workflows here:
 |----------|--------|
 | `ci-node.yml` | Live |
 | `deploy-web.yml` | Live (Vercel, `master`) |
-| `release-desktop.yml` | R0 stub — Electron / leftover Blocks, **not** SubTerra Metro Tauri |
+| `release-desktop.yml` | R0 stub — Electron / leftover Blocks, **not** Metro Tauri |
 | `publish-npm.yml` | R0 stub |
-| `build-android.yml` | R0 stub — Expo / leftover Blocks mobile, **not** SubTerra Metro Android |
+| `build-android.yml` | R0 stub — Expo / leftover Blocks mobile, **not** Metro Android |
 | `nightly-dev-push.yml` | R0 stub |
 
 `SubTerraCo` is on GitHub Team (required for private reusable workflows). Org secrets, `master protection` rulesets, Actions access `organization` on this repo.
@@ -219,7 +219,7 @@ Product-repo template under `templates/product-repo/` is only for leftover stand
 2. Shell hub on SQLite + Yjs. Open Books around `@actual-app/api`. Open Bill separate. Anytype as a Central-hosted integration (leftover PKM workspace not required as a monorepo package). Owner-marked bridge allowlist: OB, BI, OT, AT.
 3. `luna` provider interface + tool registry. Default local provider at the Omarchy host.
 4. `packages/open-ui` tokens (palette, type, 4dp spacing) and domain widgets.
-5. Bundle SubTerra Metro in Tauri (including Arch / Omarchy) and SubTerra Central as the PWA. Confirm hub isolation and the marked-record bridge (OB + BI + OT + AT).
+5. Bundle Metro in Tauri (including Arch / Omarchy) and Central as the PWA. Confirm hub isolation and the marked-record bridge (OB + BI + OT + AT).
 6. Playwright suites listed under CI.
 
 ---
@@ -244,7 +244,7 @@ New work uses current codes (SM, OT, OS, BI, …). Existing `BK/N-####` were rew
 1. Change rules here first; leftover product repos consume via workflow ref / template / `@subterra/ci-ops`.
 2. Register new items in APP_REGISTRY **and** the manifest before GitHub scaffolding.
 3. Do not invent product features in Grounded Rules.
-4. Do not create leftover `apps/admin` folders or a second PWA besides SubTerra Central.
+4. Do not create leftover `apps/admin` folders or a second PWA besides Central.
 5. Material 3 / four-color palette / `packages/open-ui` only. No amber `#e8a54b`.
 
-Implementation of SubTerra Metro, Open Time, Open Sort, Open Bill, Central, and Anytype handlers belongs to those product agents — not GV — unless explicitly asked.
+Implementation of Metro, Open Time, Open Sort, Open Bill, Central, and Anytype handlers belongs to those product agents — not GV — unless explicitly asked.

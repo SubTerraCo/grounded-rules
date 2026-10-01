@@ -16,7 +16,7 @@ One-stop shop for:
 1. **Rulesets** — `CI_OPS_CONSTITUTION.md`, Dewey codes, `subterra.manifest.yaml`
 2. **GitHub repo management** — configure SubTerraCo repos (this Grounded Rules repo, leftover product repos, later `luna`)
 3. **Deployment pipelines & templates** — reusable Actions + `templates/product-repo/` (leftover standalone repos)
-4. **Design language & catalog** — Material Design 3 (GV-0003 / GV-0004, constitution §15); standalone installable packages; catalog `audience` `admin` mounts on SubTerra Metro (social app), `member` mounts on SubTerra Central (personal AI hub; hosts packages and integrations). Twin `role` / `marketplace` / SDK fields are deprecated leftover on standalone-repo rows; do not write them on new monorepo packages. Packages-under-Central is sanctioned (GV-0004 C16).
+4. **Design language & catalog** — Material Design 3 (GV-0003 / GV-0004, constitution §15); standalone installable packages; catalog `audience` `admin` mounts on Metro (social app), `member` mounts on Central (personal AI hub; hosts packages and integrations). Twin `role` / `marketplace` / SDK fields are deprecated leftover on standalone-repo rows; do not write them on new monorepo packages. Packages-under-Central is sanctioned (GV-0004 C16).
 5. **Workspace Playwright QA** — cross-package e2e at the Grounded Rules layer until monorepo `tests/contract` replaces it
 
 ## Source of truth
@@ -45,7 +45,7 @@ Product repos **consume** Grounded Rules; they must not fork conflicting Dewey, 
 - All SubTerra repos live under **`SubTerraCo`** (Team plan required for private-repo reusable workflows).
 - Twin SDKs (`@subterra/app-sdk`, `@subterra/integration-sdk`) must export identical symbol names equal to `SDK_SURFACE`, differing only in `SDK_ROLE`, for as long as the leftover `subterra-shell` surface exists. Change the surface in `sdk-contract` and mirror into both twins. Do **not** declare those twin fields on new monorepo catalog items (`marketplace: null`, `sdk: null`, `audience` is the gate).
 - Vendor upstreams are a separate `upstream` remote — `origin` is always our own repo.
-- Manifest **`audience`** machine values stay exactly `admin` and `member` (GV-0002 D4). Do not rename them. Mapping: `admin` → SubTerra Metro (`SM`, `apps/subterra-metro`; aliases `LO`, `ST`); `member` → SubTerra Central (`apps/subterra-central`). Default `["admin"]` fail-closed. Never overload leftover SDK `role` for permissions. Do not invent a third audience (including Powerline or Collective as `audience` labels).
+- Manifest **`audience`** machine values stay exactly `admin` and `member` (GV-0002 D4). Do not rename them. Mapping: `admin` → Central (`CT`, `apps/central`; aliases `LO`, `SC`, `ST`); `member` → Metro (`MT`, `apps/metro`; alias `SM`). Default `["admin"]` fail-closed. Never overload leftover SDK `role` for permissions. Do not invent a third audience (including Powerline or Collective as `audience` labels).
 - NFC login must be **challenge-response** (ECDSA); UID-only auth is forbidden (constitution §13).
 - SubTerra-owned UI uses **Material Design 3** tokens from `packages/open-ui` (palette purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`; interim M3 type scale; 4dp spacing). Tailwind carries those tokens. Do not add a second component library (constitution §15, GV-0004). Token *code* is product-repo work.
 - The enterprise monorepo uses `master`, the same as every other SubTerraCo repo. New original monorepo code is BSL 1.1. MIT upstream and already published MIT grants stay MIT (constitution §16).
@@ -60,4 +60,4 @@ Product repos **consume** Grounded Rules; they must not fork conflicting Dewey, 
 
 ## Out of scope unless explicitly asked
 
-Implementing feature UI inside SubTerra Metro, Open Time, Open Sort, Open Bill, SubTerra Central, or Anytype handlers — route those to the owning APP code agent. Leftover Blocks / Mailbot / Shell screens stay with those product repos until fold-in.
+Implementing feature UI inside Metro, Open Time, Open Sort, Open Bill, Central, or Anytype handlers — route those to the owning APP code agent. Leftover Blocks / Mailbot / Shell screens stay with those product repos until fold-in.

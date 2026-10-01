@@ -3,7 +3,7 @@
 > Source of truth for Grounded Rules and for every repo that consumes it.
 > Product repos **consume** this document; they do not fork conflicting rules.
 >
-> **GV-0004 and [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) supersede this constitution wherever they disagree.** The enterprise monorepo (SubTerra Metro + packages, two runtimes, BSL for new original code, Tailwind Material 3 tokens, Rust only inside Tauri) is the current product shape. Readable summary: [Docs/GOVERNANCE_OVERVIEW.md](Docs/GOVERNANCE_OVERVIEW.md). Rules below still apply when GV-0004 is silent.
+> **GV-0004 and [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) supersede this constitution wherever they disagree.** The enterprise monorepo (Metro + packages, two runtimes, BSL for new original code, Tailwind Material 3 tokens, Rust only inside Tauri) is the current product shape. Readable summary: [Docs/GOVERNANCE_OVERVIEW.md](Docs/GOVERNANCE_OVERVIEW.md). Rules below still apply when GV-0004 is silent.
 
 **ciOpsVersion:** aligns with this repo's `package.json` version (`YY.M.D`).
 
@@ -11,26 +11,26 @@
 
 ## 1. Topology (GV-0004)
 
-The **product** is one pnpm + Turborepo enterprise monorepo (`SubTerraCo/luna`, not created yet). This repository (**Grounded Rules**, GitHub slug `SubTerraCo/subterra-governance`) stays the rules, Dewey, manifest, reusable Actions, and `@subterra/ci-ops` repo. It is not the product monorepo. Powerline may Settings-rename the GitHub slug to `grounded-rules` after this identity lands; until then consumers keep the live slug.
+The **product** is one pnpm + Turborepo enterprise monorepo (`SubTerraCo/luna-os`, Settings-rename to `SubTerraCo/central`). This repository (**Grounded Rules**, GitHub slug `SubTerraCo/subterra-governance`) stays the rules, Dewey, manifest, reusable Actions, and `@subterra/ci-ops` repo. It is not the product monorepo. Powerline may Settings-rename the GitHub slug to `grounded-rules` after this identity lands; until then consumers keep the live slug.
 
 Existing SubTerraCo product repos stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
 | Path | Repo | Role |
 |------|------|------|
 | this repo | `SubTerraCo/subterra-governance` | Grounded Rules — constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
-| (future) `apps/` `packages/` `tooling/` | `SubTerraCo/luna` | Enterprise monorepo — SubTerra Metro, SubTerra Central, and packages. Central hosts packages and integrations; a packages-under-Central path is sanctioned (Powerline lock 2026-09-30 / GV-0004 C16). Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) |
+| (product) `apps/` `packages/` `tooling/` | `SubTerraCo/luna-os` (rename to `SubTerraCo/central`) | Enterprise monorepo. Central (`CT`) is the local Tauri app and package host. Metro (`MT`) is the public PWA for social and ticketing. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) |
 | `shell/` | `SubTerraCo/subterra-shell` | Leftover shell repo until Phase 1 copies what is still useful. Do not build leftover `apps/admin` folders or `packages/shell-core` |
-| existing `apps/<name>/` | per product (Blocks, Mailbot, …) | Leftover standalone app repos until folded into `packages/` / `apps/` in `luna` |
+| existing `apps/<name>/` | per product (Blocks, Mailbot, …) | Leftover standalone app repos until folded into `packages/` / `apps/` in `central` |
 | existing `integrations/<name>/` | per integration (Anytype) | Leftover standalone integration repos until folded. Central may host the folded integration. Leftover PKM stays a dedicated Anytype workspace unless folded; it is not required as a monorepo package |
 
 ### 1.1 Shell targets (GV-0004; supersedes GV-0002 D1–D2)
 
-Exactly two executable runtimes. Central hosts packages and integrations as the personal AI hub and tool suite. A packages-under-Central path is a legitimate, sanctioned shape (conflict 4 rewritten, Powerline lock 2026-09-30). Metro is the social media app and consumes Central-hosted packages. SubTerra Metro and SubTerra Central data do not share a read or write path unless the owner turns on the optional data bridge. The owner-marked bridge allowlist is Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`).
+Exactly two executable runtimes. Central (`CT`, `apps/central`) is the local Tauri app. It hosts packages and integrations. A packages-under-Central path is a legitimate, sanctioned shape (conflict 4 rewritten, Powerline lock 2026-09-30). Metro (`MT`, `apps/metro`) is the public offline-first PWA for social media and ticketing. Metro and Central data do not share a read or write path unless the owner turns on the optional data bridge. The owner-marked bridge allowlist is Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`).
 
 | Shell | Path | Runtime | Hosts |
 |-------|------|---------|-------|
-| SubTerra Metro | `apps/subterra-metro` | Tauri v2 + React 19 + Vite | Social media app. Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Consumes Central-hosted packages |
-| SubTerra Central | `apps/subterra-central` | Offline-first PWA | Personal AI hub and suite of all tools. Hosts packages and integrations (`apps/subterra-central/packages/` and Central-hosted integrations are sanctioned) |
+| Central | `apps/central` | Tauri v2 + React 19 + Vite | Local app and package host. Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Code `CT` |
+| Metro | `apps/metro` | Offline-first PWA | Social media and ticketing (event page, tickets, show log). Code `MT` |
 
 Shared UI is `packages/open-ui` (Material 3). Shared local facts go through the hub. Upstream cores stay dependencies or forks: Actual's API for the ledger, any-sync at the PKM boundary, Flarum for community. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md). Record: [GV-0004](Docs/DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
 
@@ -40,7 +40,7 @@ Leftover `apps/admin` folders and `packages/shell-core` from GV-0002 are not the
 
 ## 2. Marketplace and remaining twin-SDK contract
 
-**Current product marketplace (GV-0004).** Every installable package stands alone. It may not import another package. The shell is the only dependency: Material 3, the marketplace, and a small SQLite hub. A package opens and works when the hub is empty. Separate Apps and Integrations tabs are **dropped**. The same package can be installed in SubTerra Metro, in SubTerra Central, or in both; each shell has its own hub. The live mount gate is catalog **`audience`**, not twin marketplace fields.
+**Current product marketplace (GV-0004).** Every installable package stands alone. It may not import another package. The shell is the only dependency: Material 3, the marketplace, and a small SQLite hub. A package opens and works when the hub is empty. Separate Apps and Integrations tabs are **dropped**. The same package can be installed in Metro, in Central, or in both; each shell has its own hub. The live mount gate is catalog **`audience`**, not twin marketplace fields.
 
 **Stop on new monorepo packages.** Do not write `role: app` / `role: integration`, `marketplace: apps` / `marketplace: integrations`, or a twin SDK (`@subterra/app-sdk` / `@subterra/integration-sdk`) on reserved monorepo items. Those rows use `marketplace: null`, `sdk: null`, and `audience`.
 
@@ -72,7 +72,7 @@ vYY.MM.DDbX              Batch within that day
 | **AA.SSS.FFF** | Per-repo `FEATURE_REGISTRY.md` | Section tree |
 | **III** | Incident suffix on address | `-001`, `-002`, … |
 
-**Cross-repo references:** `OT/N-0026` (rewritten from `BK/N-0026`, PI-011 A) or the former-code alias `OD/N-0026`; `SM/N-0001` or the aliases `LO/N-0001` / `ST/N-0001` (APP + local N/B). New work uses the current codes (SM, OT, OS, BI, …). Existing `BK/N-####` addresses were rewritten to `OT/N-####`. Alias codes (ST, LO, OD, MB, BB) remain valid on existing addresses. `BK` stays an address-alias catalog row for leftover Blocks. `LO` is the former live shell code for SubTerra Metro. `OD` is the former live code for Open Time.
+**Cross-repo references:** `OT/N-0026` (rewritten from `BK/N-0026`, PI-011 A) or the former-code alias `OD/N-0026`; `SM/N-0001` or the aliases `LO/N-0001` / `ST/N-0001` (APP + local N/B). New work uses the current codes (SM, OT, OS, BI, …). Existing `BK/N-####` addresses were rewritten to `OT/N-####`. Alias codes (ST, LO, OD, MB, BB) remain valid on existing addresses. `BK` stays an address-alias catalog row for leftover Blocks. `LO` is the former live shell code for Metro. `OD` is the former live code for Open Time.
 
 **PP.MC vs PR.MC:** `PP.MC` = MCP as a delivery platform; `PR.MC` = MCP feature area. Prefer unambiguous combinations (e.g. `OT.DT.MC.01.010.010`, or the former-code alias `OD.DT.MC.01.010.010`). `BK.DT.MC.01.010.010` was rewritten to `OT.DT.MC.01.010.010` (PI-011 A).
 
@@ -143,7 +143,7 @@ Collection is **local checkouts only** (manifest `localPath` + Package junctions
 
 Canonical catalog: [`subterra.manifest.yaml`](subterra.manifest.yaml).
 
-Each shell (SubTerra Metro or SubTerra Central) vendors or generates JSON at build time from the catalog, then **filters by `audience`** for the active shell session (§13). New monorepo packages stand alone (GV-0004) and do not declare a twin marketplace tab.
+Each shell (Metro or Central) vendors or generates JSON at build time from the catalog, then **filters by `audience`** for the active shell session (§13). New monorepo packages stand alone (GV-0004) and do not declare a twin marketplace tab.
 
 ### 6.1 Item fields (audience — GV-0002 D4)
 
@@ -154,9 +154,9 @@ Each shell (SubTerra Metro or SubTerra Central) vendors or generates JSON at bui
 | `sdk` | Leftover twin package (`@subterra/app-sdk` or `@subterra/integration-sdk`), or `null` on Luna items |
 | `audience` | Live mount gate. List of catalog audiences that may mount the item. **Locked values: `admin` and/or `member` only** (GV-0002 D4). Do not rename these strings. |
 
-**Mapping (locked):** `admin` → SubTerra Metro (`SM`, `apps/subterra-metro`; address aliases `LO`, `ST`); `member` → SubTerra Central (`SC`, `apps/subterra-central`).
+**Mapping (locked):** `admin` → Central (`CT`, `apps/central`; address aliases `LO`, `SC`, `ST`); `member` → Metro (`MT`, `apps/metro`; address alias `SM`).
 
-**Default when `audience` is omitted: `["admin"]` (fail-closed).** An item is never visible on SubTerra Central unless it explicitly includes `member`. There is no third audience.
+**Default when `audience` is omitted: `["admin"]` (fail-closed).** An item is never visible on Metro unless it explicitly includes `member`. There is no third audience.
 
 Do **not** overload leftover twin `role` for permissions — `SubterraRole` in `@subterra/sdk-contract` already means app vs integration on the leftover shell.
 
@@ -289,9 +289,9 @@ Grounded Rules owns six reusable workflows in `.github/workflows/`. Product repo
 |----------|---------|--------|
 | `ci-node.yml` | Install · type-check · lint · build · manifest validate | **Live** |
 | `deploy-web.yml` | Vercel deploy from `master` | **Live** |
-| `release-desktop.yml` | Desktop installer (authored against Electron / Blocks) | R0 stub — leftover consumer: BK. SubTerra Metro ships with Tauri; do not treat this stub as the SubTerra Metro pipeline |
+| `release-desktop.yml` | Desktop installer (authored against Electron / Blocks) | R0 stub — leftover consumer: BK. Metro ships with Tauri; do not treat this stub as the Metro pipeline |
 | `publish-npm.yml` | Publish `@subterra/*` packages | R0 stub — blocked on SDK code. Tokens move to `packages/open-ui` in the monorepo |
-| `build-android.yml` | Expo EAS Android build | R0 stub — leftover consumer: BK mobile. SubTerra Metro Android is Tauri, not Expo |
+| `build-android.yml` | Expo EAS Android build | R0 stub — leftover consumer: BK mobile. Metro Android is Tauri, not Expo |
 | `nightly-dev-push.yml` | Nightly batch seal onto `dev` | R0 stub — leftover consumer: BK |
 
 `R0 stub` means the workflow is authored and syntactically valid but not yet wired to a consumer. Do not delete stubs; wire them when a consumer appears.
@@ -340,7 +340,7 @@ Home: **`tests/`** in this repo — its own Playwright project, run via `pnpm te
 
 ### Status
 
-Coverage is **deferred** (GV-0001 D5) until a shell host and real SDK surface exist to assert against. Twin SDK scaffolds live in `subterra-shell`; SubTerra Metro / SubTerra Central do not exist yet. The suite's config, docs, and location are locked; tests land once a shell host is real.
+Coverage is **deferred** (GV-0001 D5) until a shell host and real SDK surface exist to assert against. Twin SDK scaffolds live in `subterra-shell`; Metro / Central do not exist yet. The suite's config, docs, and location are locked; tests land once a shell host is real.
 
 Workspace QA is a release gate for marketplace + SDK parity. It never substitutes for a product's own `/testrelease`.
 
@@ -356,10 +356,10 @@ Catalog field `audience` is a list. **Machine values stay exactly `admin` and `m
 
 | Catalog `audience` | Shell | Sees |
 |--------------------|-------|------|
-| `admin` | SubTerra Metro (`apps/subterra-metro`, code `SM`; address aliases `LO`, `ST`) | Items whose `audience` list contains `admin` (this is the default when the field is omitted) |
-| `member` | SubTerra Central (`apps/subterra-central`, code `SC`) | Only items whose `audience` list contains `member` |
+| `admin` | Central (`apps/central`, code `CT`; address aliases `LO`, `SC`, `ST`) | Items whose `audience` list contains `admin` (this is the default when the field is omitted) |
+| `member` | Metro (`apps/metro`, code `MT`; address alias `SM`) | Only items whose `audience` list contains `member` |
 
-Prefer shell names (SubTerra Metro / SubTerra Central) in prose. Do not invent a third audience. “Powerline” and “Collective” are not `audience` values. Leftover `apps/admin` folders are not an audience value and are not the paths to build.
+Prefer shell names (Metro / Central) in prose. Do not invent a third audience. “Powerline” and “Collective” are not `audience` values. Leftover `apps/admin` folders are not an audience value and are not the paths to build.
 
 Session identity is separate from leftover twin `role`. Host context must expose audience without reusing the `role` field name.
 
@@ -380,8 +380,8 @@ Product implementations that shortcut this invariant are constitution violations
 |--|--|
 | APP | `TK` — **Subtoken** |
 | Audience | `[admin, member]` — ARCHITECTURE install matrix |
-| SubTerra Metro (`admin`) | Organizer tools |
-| SubTerra Central (`member`) | Event page, tickets, show log, digital goods |
+| Metro (`admin`) | Organizer tools |
+| Central (`member`) | Event page, tickets, show log, digital goods |
 | Absorbs | `SubTerraCo/subtoken`, `tag-writer`, `validation` |
 | Status | Reserved — consolidation and revival deferred (GV-0002 D6 / D8) |
 
@@ -389,7 +389,7 @@ GV-0002 D3/D6 historically listed TK as `audience: [admin]` only. The live catal
 
 ### 13.4 Dewey areas added for catalog `member`
 
-Reserved in GV-0002 D7. Catalog `member` still mounts on SubTerra Central. Product role (Powerline lock 2026-09-30): Central is the personal AI hub; Metro is the social media app.
+Reserved in GV-0002 D7. Catalog `member` still mounts on Central. Product role (Powerline lock 2026-09-30): Central is the personal AI hub; Metro is the social media app.
 
 | Code | Area |
 |------|------|
@@ -404,8 +404,8 @@ Existing `AU` (Auth / device identity) and `NF` (NFC / crypto tags) cover challe
 |--|--|
 | APP | `CH` — **Community** |
 | Audience | `[admin, member]` — ARCHITECTURE install matrix |
-| SubTerra Metro (`admin`) | Crew discussion |
-| SubTerra Central (`member`) | Public discussion |
+| Metro (`admin`) | Crew discussion |
+| Central (`member`) | Public discussion |
 | Engine | Flarum (`FM`, optional). Community still runs without Forum |
 
 ---

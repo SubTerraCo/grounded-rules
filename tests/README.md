@@ -16,7 +16,7 @@ This suite never duplicates a product's own e2e. It asserts the things no single
 | Project | Browser? | Purpose |
 |---------|----------|---------|
 | `contract` | No | Manifest ↔ `APP_REGISTRY` parity, twin-SDK API identity (legacy `subterra-shell`), workflow adoption, template drift, design-token parity |
-| `marketplace` | Yes | Shell catalog handoff and install/open journeys (SubTerra Metro / SubTerra Central once those hosts exist) |
+| `marketplace` | Yes | Shell catalog handoff and install/open journeys (Metro / Central once those hosts exist) |
 
 ## Status — coverage deferred
 
@@ -25,7 +25,7 @@ Locked in [GV-0001](../Docs/DESIGN_RECORDS/GV-0001-github-pipelines-qa.md) D5: t
 | Precondition | State |
 |--------------|-------|
 | Twin SDKs are real code | **Met** for the leftover shell — scaffolded under `shell/packages/` (D10). Exports are identical and match `SDK_SURFACE` |
-| Shell host is running | **Not met** — SubTerra Metro and SubTerra Central do not exist yet, so `marketplace` has nothing to drive |
+| Shell host is running | **Not met** — Metro and Central do not exist yet, so `marketplace` has nothing to drive |
 
 So `contract` tests against the leftover SDK surface are unblocked in principle, while `marketplace` remains genuinely blocked. GV-0004 dropped separate Apps and Integrations tabs; when marketplace tests land they should drive package install into a shell, not two grids.
 
@@ -34,7 +34,7 @@ So `contract` tests against the leftover SDK surface are unblocked in principle,
 `contract`:
 
 1. Every `subterra.manifest.yaml` item has a matching `codes/APP_REGISTRY.yaml` entry, and vice versa (withdrawn rows such as AX Axiom stay in both until Powerline approves archive).
-2. Every leftover linked item's `localPath` exists in the meta workspace. Reserved monorepo paths (`apps/subterra-metro`, `packages/open-time`, …) are allowed to be absent until `luna` exists.
+2. Every leftover linked item's `localPath` exists in the meta workspace. Reserved monorepo paths (`apps/metro`, `packages/open-time`, …) are allowed to be absent until `luna` exists.
 3. Leftover standalone-repo items keep deprecated twin `role` / `marketplace` (`app`→`apps`, `integration`→`integrations`). New monorepo packages must not declare those twin fields (`marketplace: null`, `sdk: null`).
 4. Every item declares platform codes that exist in `PLATFORM_CODES.yaml`.
 5. While `subterra-shell` remains, `@subterra/app-sdk` and `@subterra/integration-sdk` export identical symbol names, equal to `SDK_SURFACE`, differing only in `SDK_ROLE`.
@@ -45,7 +45,7 @@ So `contract` tests against the leftover SDK surface are unblocked in principle,
 
 1. Catalog items render in the active shell, filtered by `audience`.
 2. An installed package opens against an empty hub.
-3. SubTerra Metro and SubTerra Central do not share hub data unless the owner-marked bridge is on. Allowlist: Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`).
+3. Metro and Central do not share hub data unless the owner-marked bridge is on. Allowlist: Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`).
 
 ## Running
 

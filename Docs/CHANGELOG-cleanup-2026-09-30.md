@@ -6,6 +6,12 @@ Companion readable summary (not a diff list): [GOVERNANCE_OVERVIEW.md](GOVERNANC
 
 ---
 
+## PI-021 — Shell swap
+
+Central (`CT`) is the local Tauri app and package host at `apps/central`. Metro (`MT`) is the public PWA for social and ticketing at `apps/metro`. The agent is Pepper (`PR`) at `packages/pepper`. Hermes is the runtime. `SM`, `SC`, and `LU` stay aliases. `LO` aliases `CT`. `MT` is reclaimed from the GV-0004 not-a-code list. No SubTerra prefix on Metro or Central. Product repo slug to follow: `SubTerraCo/central`.
+
+---
+
 ## Grok bot Anytype — GV-0007 (merged onto PI-019 master)
 
 Powerline 2026-09-30. **Grok bot Anytype** classification **integration** only. **Central owns** the Local API client and credentials; **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Aligns with merged PI-019 (#19) hub+social + bridge OB+BI+OT+AT + packages-under-Central. No secrets.

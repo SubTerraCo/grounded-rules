@@ -24,7 +24,7 @@ areas:
     note: "Social / feed (GV-0002 D7; catalog audience member still mounts on Central). Powerline lock 2026-09-30: Metro is the social media app; Central is the personal AI hub and hosts packages/integrations. Community (CH) also lists both audiences per the ARCHITECTURE install matrix."
   - code: EV
     name: Events / ticketing
-    note: "Events + Subtoken ticketing (GV-0002 D7). Subtoken (TK) audience is [admin, member]: organizer tools on SubTerra Metro; event page, tickets, show log, and digital goods on SubTerra Central (SC)."
+    note: "Events + Subtoken ticketing (GV-0002 D7). Subtoken (TK) audience is [admin, member]: organizer tools on Metro; event page, tickets, show log, and digital goods on Central (SC)."
   - code: IN
     name: Invoicing / billing
   - code: CM

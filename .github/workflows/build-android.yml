@@ -1,7 +1,7 @@
 # R0 STUB — authored but not yet wired to a consumer.
 # Leftover intended consumer: BK (Blocks apps/mobile via Expo EAS).
-# SubTerra Metro Android is Tauri, not Expo (GV-0004). Do not treat this as the
-# SubTerra Metro mobile pipeline.
+# Metro Android is Tauri, not Expo (GV-0004). Do not treat this as the
+# Metro mobile pipeline.
 # Generalized from Blocks .github/workflows/build-android.yml.
 #
 # Wire it by replacing the product repo's inline EAS job with:

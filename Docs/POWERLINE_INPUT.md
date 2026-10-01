@@ -48,6 +48,7 @@ Decisions (`open`). 6 items.
 - [PI-018](#pi-018-open-day-to-open-time) — A) Open Day → Open Time / OD → OT / 2026-09-30 MT
 - [PI-011](#pi-011-dewey-bk-to-ot-rewrite) — A) Rewrite existing BK→OT / 2026-09-30 MT
 - [PI-020](#pi-020-grok-bot-anytype-destination) — Central integration; conflict three+four resolved / 2026-09-30 MT
+- [PI-021](#pi-021-shell-swap-metro-central-pepper) — Central local Tauri `CT`; Metro public PWA `MT`; Pepper `PR` / 2026-09-30 MT
 - [PI-004](#pi-004-font-families-for-open-ui) — A) Roboto + Roboto Flex as typeface lock / 2026-09-30 MT
 - [PI-007](#pi-007-pnpm-11-14-vs-9) — B) Align both to pnpm 11.x (Powerline override) / 2026-09-30 MT
 
@@ -339,3 +340,17 @@ Decisions (`open`). 6 items.
   - [x] OTHER (text)
 - **Text:** Powerline 2026-09-30. Destination = **Central integration**. **Central owns** the Local API client, credentials (`ANYTYPE_API_KEY` in Central/runtime env), first-pull, and tag/view. **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Classification **integration** only. Aligns with [PI-019](#pi-019-central-hub-metro-social-anytype). Bridge allowlist **OB + BI + OT + AT**.
 - **More context:** [DESIGN_RECORDS/GV-0007-grok-bot-anytype.md](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md) §3–§4, §6. [PI-019](#pi-019-central-hub-metro-social-anytype).
+
+---
+
+<h2 id="pi-021-shell-swap-metro-central-pepper">PI-021 — Shell swap: Central local, Metro public, Pepper</h2>
+
+- **Status:** `answered` (2026-09-30 MT)
+- **Needed:** decision
+- **Question:** Swap the shells and rename the agent?
+- **Options:**
+  - [x] A) Central (`CT`) is the local Tauri app and package host. Metro (`MT`) is the public PWA for social and ticketing. The agent is Pepper (`PR`). No SubTerra prefix on those names. `SM`, `SC`, `LU`, and `LO` stay aliases (`LO` and `SC` alias `CT`).
+  - [ ] B) Keep Metro on Tauri and Central on the PWA
+  - [ ] C) Other (text)
+- **Text:** Powerline 2026-09-30. Drop the SubTerra prefix. Metro is the public PWA (social and tickets). Central is the local Tauri app and holds the packages. Luna the agent is Pepper, in honor of Pepper Potts. Hermes is the runtime. Repo slug to follow: `SubTerraCo/central`.
+- **More context:** [ARCHITECTURE.md](ARCHITECTURE.md) Shell roles. [DESIGN_RECORDS/GV-0004-enterprise-monorepo.md](DESIGN_RECORDS/GV-0004-enterprise-monorepo.md).
