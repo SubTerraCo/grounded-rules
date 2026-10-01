@@ -2,9 +2,9 @@
 
 Living clickable queue of every item that needs **Powerline’s input** before Rook can continue. Rook maintains this file whenever a new blocker-for-Powerline appears.
 
-Display name for this repo: **Grounded Rules**. GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames it to `grounded-rules`.
+Display name for this repo: **Grounded Rules**. GitHub slug is `grounded-rules`.
 
-PR #7 squash-merged to `master` @ `c6b9aba` (Metro / GV-0004 cleanup). [PR #8](https://github.com/SubTerraCo/subterra-governance/pull/8) squash-merged to `master` @ `9b7d901` (Grounded Rules display identity). GitHub slug rename to `grounded-rules` still pending Powerline Settings. No deletes or archives from this queue.
+PR #7 squash-merged to `master` @ `c6b9aba` (Metro / GV-0004 cleanup). [PR #8](https://github.com/SubTerraCo/subterra-governance/pull/8) squash-merged to `master` @ `9b7d901` (Grounded Rules display identity). GitHub slug is `grounded-rules`. No deletes or archives from this queue.
 
 ## Format
 
@@ -25,10 +25,9 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 ## Open
 
-Decisions (`open`). 2 items.
+Decisions (`open`). 1 item.
 
 - [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / SubTerra Metro release workflow timing
-- [PI-012](#pi-012-gv-0002-on-disk-filename) — Q14 GV-0002 on-disk filename
 
 ## Answered
 
@@ -46,6 +45,7 @@ Decisions (`open`). 2 items.
 - [PI-020](#pi-020-grok-bot-anytype-destination) — Central integration; conflict three+four resolved / 2026-09-30 MT
 - [PI-021](#pi-021-shell-swap-metro-central-pepper) — Central local Tauri `CT`; Metro public PWA `MT`; Pepper `PR` / 2026-09-30 MT
 - [PI-008](#pi-008-arch-omarchy-platform-code) — B) `PP.LX` Linux for Arch/Omarchy on Central Tauri / 2026-09-30 MT
+- [PI-012](#pi-012-gv-0002-on-disk-filename) — B) Keep filename forever (landmark) / 2026-09-30 MT
 - [PI-004](#pi-004-font-families-for-open-ui) — A) Roboto + Roboto Flex as typeface lock / 2026-09-30 MT
 - [PI-010](#pi-010-banking-dewey-role) — C) Stay `integration`; plugin is a third-party docs label / 2026-09-30 MT
 - [PI-005](#pi-005-archive-axiom) — D) Remove Axiom entirely / 2026-09-30 MT
@@ -212,14 +212,14 @@ Decisions (`open`). 2 items.
 
 <h2 id="pi-012-gv-0002-on-disk-filename">PI-012 — Q14 GV-0002 on-disk filename</h2>
 
-- **Status:** `open`
+- **Status:** `answered` (2026-09-30 MT)
 - **Needed:** decision
 - **Question:** GV-0002 on-disk filename: rename after archive approval (and leave a stub), or keep forever as history?
 - **Options:**
   - [ ] A) Rename after archive approval + stub
-  - [ ] B) Keep filename forever
+  - [x] B) Keep filename forever
   - [ ] C) Other (text)
-- **Text:**
+- **Text:** Keep `GV-0002-nexus-dual-shell.md` forever as a landmark. Do not rename it.
 - **More context:** [CHANGELOG-cleanup-2026-09-30.md](CHANGELOG-cleanup-2026-09-30.md) Still open #14. [DESIGN_RECORDS/GV-0002-nexus-dual-shell.md](DESIGN_RECORDS/GV-0002-nexus-dual-shell.md). [merged PR #7](https://github.com/SubTerraCo/subterra-governance/pull/7).
 
 ---
