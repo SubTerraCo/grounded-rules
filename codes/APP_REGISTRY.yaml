@@ -1,11 +1,12 @@
 # Dewey APP segment — every app and integration reserves its own code.
-# Schema: APP.PP.PR.AA.SSS.FFF
+# Schema: APP.PP.AA.SSS.FFF
+# APP app, PP platform, AA area, SSS section, FFF feature. Seed numbers are 001.001.
 # All repos live under the SubTerraCo GitHub organization.
-# GV-0004 current codes: MT, CT, PR, OT, OS, OB, BI, TK, OG, CH, FM, HA, MA, BS, GV, WL.
-# Address aliases (not folders to build): ST, LO, SM, SC, LU, OD, BK, MB, BB. AX is cut (Open Axiom).
+# Current codes: MT, CT, PR, OT, OS, OB, OL, TK, OG, CM, FM, HA, MD, BK, GR, WL.
+# Address aliases (not folders to build): ST, LO, SM, SC, LU, OD, BI, CH, MA, BS, GV, MB, BB. AX is cut (Open Axiom).
 # LO and SC alias CT Central. SM aliases MT Metro. LU aliases PR Pepper. New work uses MT, CT, and PR.
-# OD = former live code for OT Open Time (Open Day). New work uses OT.
-# Existing BK/N-#### were rewritten to OT/N-#### (PI-011 A). BK stays an alias catalog row.
+# OD aliases OT. BI aliases OL. CH aliases CM. MA aliases MD. BS aliases BK. GV aliases GR.
+# BK is Banking. Blocks has no Dewey code. Its screens live in Open Time (OT). Existing BK/N-#### Blocks addresses were rewritten to OT/N-#### (PI-011 A) before this code was reclaimed.
 schemaVersion: 1
 apps:
   - code: ST
@@ -14,12 +15,6 @@ apps:
     localPath: shell
     repo: SubTerraCo/subterra-shell
     note: "Leftover shell. The local shell to build is CT Central at apps/central. ST is an address alias for CT."
-  - code: BK
-    name: Blocks
-    role: app
-    localPath: apps/blocks
-    repo: SubTerraCo/Blocks
-    note: "Address alias for OT Open Time at packages/open-time. Existing BK/N-#### Dewey addresses were rewritten to OT/N-#### (PI-011 A)."
   - code: MB
     name: Mailbot
     role: app
@@ -31,13 +26,19 @@ apps:
     role: app
     localPath: apps/billbot
     status: reserved
-    note: "Address alias for BI Open Bill at packages/open-bill."
-  - code: GV
+    note: "Address alias for OL Open Bill at packages/open-bill."
+  - code: GR
     name: Grounded Rules
     role: governance
     localPath: governance
     repo: SubTerraCo/grounded-rules
-    note: "Display name Grounded Rules. Live GitHub slug is SubTerraCo/grounded-rules. localPath governance is the meta-workspace folder. Dewey code GV unchanged."
+    note: "Display name Grounded Rules. Live GitHub slug is SubTerraCo/grounded-rules. localPath governance is the meta-workspace folder. Live Dewey code GR. Former code GV is an address alias. Design record filenames GV-000x stay as document names."
+  - code: GV
+    name: Grounded Rules (address alias)
+    role: governance
+    localPath: governance
+    repo: SubTerraCo/grounded-rules
+    note: "Former live code for Grounded Rules. Address alias for GR. New work uses GR."
   - code: AT
     name: Anytype
     role: integration
@@ -102,7 +103,7 @@ apps:
     role: shell
     localPath: apps/central
     status: reserved
-    platforms: [DT, AD, IO, AP]
+    platforms: [DT, LX, AD, IO, AP]
     audience: [admin]
     note: "Local Tauri app and package host. Windows, macOS, Android, iOS, and Arch Linux (Omarchy). Replaces ST. Former codes LO and SC are address aliases. Catalog audience admin mounts here. The Omarchy machine is the local AI host."
   - code: PR
@@ -123,7 +124,7 @@ apps:
     role: app
     localPath: packages/open-time
     status: reserved
-    note: "Tasks, timeline, Quick Blocks, and Festy crew tools. Replaces BK as the package to build. Former code OD is an address alias. The existing Blocks repo remains the screen spec."
+    note: "Tasks, timeline, Quick Blocks, and Festy crew tools. Former code OD is an address alias. The leftover Blocks repo has no Dewey code; it remains the screen spec."
   - code: OS
     name: Open Sort
     role: app
@@ -136,28 +137,40 @@ apps:
     localPath: packages/open-books
     status: reserved
     note: "Budgeting only. @actual-app/api. Replaces FN. Separate from Open Bill. Not named Open Budget."
-  - code: BI
+  - code: OL
     name: Open Bill
     role: app
     localPath: packages/open-bill
     status: reserved
-    note: "Invoicing and 1099 exports. Replaces BB as the package to build. Not Open Books."
+    note: "Invoicing and 1099 exports. Replaces BB as the package to build. Former code BI is an address alias. Not Open Books."
+  - code: BI
+    name: Open Bill (address alias)
+    role: app
+    localPath: packages/open-bill
+    status: reserved
+    note: "Former live code for Open Bill. Address alias for OL. New work uses OL."
   - code: OG
     name: Open Gig
     role: app
-    localPath: apps/open-gig
+    localPath: packages/open-gig
     status: reserved
     note: "Profile, listing, rate, and a date request. Replaces BO. Free for a solo freelancer. A crew manager of 5 or more pays."
-  - code: CH
+  - code: CM
     name: Community
     role: app
-    localPath: apps/community
+    localPath: packages/community
     status: reserved
     audience: [admin, member]
     note: >-
-      ARCHITECTURE matrix: crew discussion on Metro (admin); public discussion
-      on Central (member). Voting and discussion UI over Forum. Flarum,
-      not Discourse.
+      Crew discussion on Central. Public discussion on Metro. Voting and
+      discussion UI over Forum. Flarum, not Discourse. Former code CH is an
+      address alias. CRM / Anytype object mapping is area code CR.
+  - code: CH
+    name: Community (address alias)
+    role: app
+    localPath: packages/community
+    status: reserved
+    note: "Former live code for Community. Address alias for CM. New work uses CM."
   - code: FM
     name: Forum
     role: app
@@ -171,22 +184,35 @@ apps:
     status: reserved
     audience: [admin]
     note: "Home automation client. The Home Assistant server stays upstream (Apache 2.0)."
-  - code: MA
+  - code: MD
     name: Media
     role: app
     localPath: packages/media
     status: reserved
-    note: "DaVinci Resolve, OBS, and Loupedeck. Rust only at the Tauri socket boundary."
-  - code: BS
+    note: "DaVinci Resolve, OBS, and Loupedeck. Rust only at the Tauri socket boundary. Former code MA is an address alias. Installs on Central."
+  - code: MA
+    name: Media (address alias)
+    role: app
+    localPath: packages/media
+    status: reserved
+    note: "Former live code for Media. Address alias for MD. New work uses MD."
+  - code: BK
     name: Banking
     role: integration
     localPath: packages/banking
     status: reserved
     note: >-
-      ARCHITECTURE matrix: Metro only. SimpleFIN and GoCardless. Teller and
-      Plaid are optional adapters. Treated as a monorepo package (marketplace: null),
-      not a twin integration. Dewey `role: integration` on this registry row is
-      leftover vocabulary until Powerline reclassifies it.
+      Installs on Central. SimpleFIN and GoCardless. Teller and Plaid are
+      optional adapters. Treated as a monorepo package (marketplace: null),
+      not a twin integration. Dewey role integration on this row is leftover
+      vocabulary until Powerline reclassifies it. Former code BS is an address
+      alias. BK is not Blocks.
+  - code: BS
+    name: Banking (address alias)
+    role: integration
+    localPath: packages/banking
+    status: reserved
+    note: "Former live code for Banking. Address alias for BK. New work uses BK."
   - code: AX
     name: Axiom (withdrawn)
     role: app

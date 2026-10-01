@@ -13,7 +13,7 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 - This framing overrides the earlier Tauri-social / PWA-hub assignment. Social and tickets stay with Metro and move onto the PWA. The local build and the packages stay with Central and move onto Tauri.
 - **Anytype as a Central integration is the intended shape.** Classification is Dewey `role: integration` only — not plugin/extension. Leftover PKM still lives in a dedicated Anytype workspace and is not required to be a monorepo package; Central **hosts the integration**.
 - **Conflict 4 rewritten (Powerline lock 2026-09-30).** Old cut: forcing a packages path under Central invents a product shape Grounded Rules already cut. **New rule:** Central hosts packages and integrations as the personal AI hub and tool suite. A packages-under-Central path (`apps/central/packages/` or equivalent host layout, plus Central-hosted integrations) is a **legitimate, sanctioned** shape.
-- **Metro↔Central data bridge allowlist** (owner-marked, off by default): Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`).
+- **Metro↔Central data bridge allowlist** (owner-marked, off by default): Open Books (`OB`), Open Bill (`OL`), Open Time (`OT`), and Anytype (`AT`).
 
 ## Stack
 
@@ -22,7 +22,7 @@ Copy this file to the monorepo root at Phase 1. Until that repo exists, this cop
 - Arch builds install on Omarchy. That machine is the dedicated local AI host: Ollama runs there, and `packages/pepper` calls it on localhost. Ship an AppImage and a PKGBUILD.
 - Rust only inside Tauri bindings: filesystem, local IPC, NFC hardware, DaVinci socket.
 - Local hub store: SQLite via SQLCipher, hub documents synced with Yjs.
-- Finance store: Actual's own SQLite CRDT inside `packages/open-books` (`OB`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`BI`).
+- Finance store: Actual's own SQLite CRDT inside `packages/open-books` (`OB`), via `@actual-app/api`. Do not wrap Actual's file in a second CRDT. Invoicing is `packages/open-bill` (`OL`).
 - Leftover PKM lives in a dedicated Anytype workspace. It is not required as a monorepo package, and the shell hub does not require it. Central **hosts** the Anytype integration (and may host other packages). A packages-under-Central path is sanctioned (conflict 4 rewritten, 2026-09-30). The Metro↔Central bridge may copy owner-marked Anytype (`AT`) records. **Grok bot Anytype** ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)): Central owns the Local API client and credentials; Cara only runs Anytype desktop on `127.0.0.1:31009`.
 - Material 3 tokens in `packages/open-ui`, generated with `@material/material-color-utilities`, applied through the Tailwind preset in `tooling/config-tailwind`. `packages/open-ui` owns palette, type, and spacing. Locked palette: purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`. Type: interim Material 3 type scale (display, headline, title, body, label); font families are not locked. Spacing: 4dp baseline grid. The single amber seed `#e8a54b` is withdrawn. No arbitrary Tailwind values. No hardcoded hex or RGB in `.tsx` (docs may cite these palette hexes; product screens use tokens). Token *code* is not in this Grounded Rules repo.
 
@@ -34,19 +34,19 @@ apps/
     packages/            # SANCTIONED — Central-hosted packages
     integrations/        # SANCTIONED — Central-hosted integrations (Anytype / Grok bot Anytype)
   metro/                 # MT — public PWA; social and ticketing (alias SM)
-  open-gig/              # OG — profile, listing, rate, date request
-  community/             # CH — voting and discussion UI
 packages/
   open-time/             # OT — tasks, timeline, Quick Blocks, Festy crew tools (former code OD)
+  open-gig/              # OG — profile, listing, rate, date request
+  community/             # CM — voting and discussion UI
   open-sort/             # OS — Gmail and IMAP labels and archive
   open-books/            # OB — @actual-app/api budgeting
-  open-bill/             # BI — invoicing and 1099 exports
+  open-bill/             # OL — invoicing and 1099 exports
   subtoken/              # TK — NTAG424 challenge-response and tickets
   pepper/                # PR — agent router; Hermes is the runtime (former code LU)
-  banking/               # BS — SimpleFIN and GoCardless
+  banking/               # BK — SimpleFIN and GoCardless. Not Blocks.
   forum/                 # FM — Flarum
   home-assistant/        # HA — Home Assistant client
-  media/                 # MA — DaVinci, OBS, Loupedeck
+  media/                 # MD — DaVinci, OBS, Loupedeck
   open-ui/               # Material 3 tokens. No app code
 tooling/
   config-eslint/
@@ -71,12 +71,12 @@ Use these projects for the engine and the patches. Write the Material 3 screen a
 |---------|-----|-----------|
 | Open Books `OB` | `@actual-app/api` (MIT). Actual already syncs SimpleFIN and GoCardless | A second ledger. The name Open Budget is already published |
 | Open Time `OT` | The existing Blocks app, plus Festy crew screens | Super Productivity. It has no Quick Blocks, and forking it would throw away the kanban that already works |
-| Open Bill `BI` | Our invoicing package | InvoiceShelf. We will outbuild it. Do not vendor the AGPL app |
+| Open Bill `OL` | Our invoicing package | InvoiceShelf. We will outbuild it. Do not vendor the AGPL app |
 | Open Sort `OS` | Our label-and-archive package | gmailctl and hosted inbox products. We will outbuild them |
 | Subtoken `TK` | NXP's public SDM spec for NTAG424. Our ticket record and event page | pretix and Hi.Events. Both are AGPL with extra terms that block a white-label ticket platform |
-| Community `CH` / Forum `FM` | Flarum (MIT) | Discourse (GPL) |
+| Community `CM` / Forum `FM` | Flarum (MIT) | Discourse (GPL) |
 | Home Assistant `HA` | `home-assistant-js-websocket` against a local Home Assistant server (Apache 2.0) | Forking Home Assistant |
-| Media `MA` | `obs-websocket-js` (MIT). DaVinci's scripting API ships with Resolve | A video editor |
+| Media `MD` | `obs-websocket-js` (MIT). DaVinci's scripting API ships with Resolve | A video editor |
 | Pepper `PR` | Ollama as the local runtime. Gemma 4 12B as the default weights on a 16GB GPU. Cloud Gemini stays available. Installs on Central | Hermes as the model name. The runtime Pepper runs on is Hermes Agent. Gemma 4 31B and the 26B MoE at Q4_K_M as the daily default |
 | Hub | Yjs and SQLCipher | A CRDT written here |
 | UI | `@material/material-color-utilities` | A second design system |
@@ -103,7 +103,7 @@ The same package can be installed in Metro, in the Central PWA, or in both. Each
 
 Catalog registration for these packages uses `audience` as the mount gate. Do not write leftover twin fields (`role: app|integration`, `marketplace: apps|integrations`, twin SDKs) on new Pepper items. Leftover Anytype keeps Dewey `role: integration`.
 
-A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only **Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`)** records that the person marks (Powerline lock 2026-09-30). Mail, banking, and home automation stay off the bridge. Metro's social surface never receives the unbridged personal hub.
+A person who uses both shells may turn on a data bridge. It is off by default. The bridge copies only **Open Books (`OB`), Open Bill (`OL`), Open Time (`OT`), and Anytype (`AT`)** records that the person marks (Powerline lock 2026-09-30). Mail, banking, and home automation stay off the bridge. Metro's social surface never receives the unbridged personal hub.
 
 ## Metro access
 
@@ -115,27 +115,27 @@ A one-time charge upgrades that profile to Artist, Venue, or Vendor. The charge 
 
 Booking listings are free for a single freelancer. A crew manager with 5 or more members pays the booking fee. The fee is for managing that crew, not for looking for work alone.
 
-Column labels use the 2026-09-30 shell roles (Metro = social, consuming Central-hosted packages; Central = personal AI hub). Per-package Yes/No cells for existing packages stay the GV-0004 mount table except the named lock: Anytype `AT` is a Central integration (not a monorepo package) and is on the owner-marked bridge allowlist with OB, BI, and OT.
+Column labels use the 2026-09-30 shell roles (Metro = social, consuming Central-hosted packages; Central = personal AI hub). Per-package Yes/No cells for existing packages stay the GV-0004 mount table except the named lock: Anytype `AT` is a Central integration (not a monorepo package) and is on the owner-marked bridge allowlist with OB, OL, and OT.
 
 | Package | Metro (social; consumes Central-hosted packages) | Central (personal AI hub; hosts tools) | Sells as |
 |---------|--------------------------------------|----------------------------------|----------|
-| Open Books `OB` | Only through the owner's bridge | Yes | Back-office seat on Central. Bridge is optional. Allowlist: OB + BI + OT + AT |
-| Open Bill `BI` | Only through the owner's bridge | Yes | Back-office seat on Central. Bridge is optional. Allowlist: OB + BI + OT + AT |
-| Open Time `OT` | Public schedule only, when granted | Yes. Personal tasks, plus Festy crew drafting | Seat. Drafting stays on Central. Allowlist: OB + BI + OT + AT |
+| Open Books `OB` | Only through the owner's bridge | Yes | Back-office seat on Central. Bridge is optional. Allowlist: OB + OL + OT + AT |
+| Open Bill `OL` | Only through the owner's bridge | Yes | Back-office seat on Central. Bridge is optional. Allowlist: OB + OL + OT + AT |
+| Open Time `OT` | Public schedule only, when granted | Yes. Personal tasks, plus Festy crew drafting | Seat. Drafting stays on Central. Allowlist: OB + OL + OT + AT |
 | Anytype `AT` | Only through the owner's bridge (Powerline lock 2026-09-30) | Hosts the integration. PKM is a dedicated Anytype workspace — not a monorepo package | Integration (`role: integration` only). Not plugin/extension |
 | Open Sort `OS` | No | Yes | Back-office seat on Central |
-| Banking `BS` | No | Yes | Back-office seat on Central |
+| Banking `BK` | No | Yes | Back-office seat on Central |
 | Home Assistant `HA` | No | Yes | Back-office seat on Central |
-| Media `MA` | No | Yes | Show-control seat on Central |
+| Media `MD` | No | Yes | Show-control seat on Central |
 | Pepper `PR` | No | Yes | Seat on Central. Tools exist only for packages that are installed. Former code `LU` |
 | Subtoken `TK` | Event page, tickets, show log, digital goods | Organizer tools | Ticket price. Anonymous tag access. One-time profile upgrade is separate |
 | Open Gig `OG` | Yes | Yes | Free for a solo freelancer. Fee for a crew manager of 5 or more |
-| Community `CH` | Public discussion | Crew discussion | Free under the BSL grant. Commercial key past 5 seats |
+| Community `CM` | Public discussion | Crew discussion | Free under the BSL grant. Commercial key past 5 seats |
 | Forum `FM` | Optional richer discussion | Optional richer discussion | Same grant. Community still runs without it |
 
 UI is not a marketplace item. It ships inside both shells.
 
-**Grok bot Anytype (Central integration).** Classification **integration** only ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)). **Central owns** the Local API client, credentials, first-pull, and tag/view. **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Dewey `AT` / `integrations/anytype`. Metro (social) may access Central-hosted extensions/packages. Data-bridge allowlist is **OB + BI + OT + AT** (marked records).
+**Grok bot Anytype (Central integration).** Classification **integration** only ([GV-0007](DESIGN_RECORDS/GV-0007-grok-bot-anytype.md)). **Central owns** the Local API client, credentials, first-pull, and tag/view. **Cara only** runs Anytype desktop on `127.0.0.1:31009`. Dewey `AT` / `integrations/anytype`. Metro (social) may access Central-hosted extensions/packages. Data-bridge allowlist is **OB + OL + OT + AT** (marked records).
 
 Monetization is the BSL seat key and PoweredUpLabs hosting for Central, ticket prices on Metro, a one-time Artist, Venue, or Vendor profile upgrade, and the Open Gig fee for crew managers of 5 or more. A solo freelancer does not pay that fee. A package that is not installed is not billed and is not loaded.
 
@@ -166,7 +166,7 @@ These files were searched before building. Vendor roadmaps inside `actual/` stay
 | Plan | Still used | Dropped |
 |------|------------|---------|
 | `subterra-shell` roadmap, August 2026 | Marketplace of optional packages | Electron and Next shells, leftover admin/member folder split, separate Apps and Integrations tabs, code `ST` as the thing to build |
-| `blocks` roadmap | Kanban, timeline, quick-add, and task fields are the Blocks (`BK`) screen spec | Windows-desktop-first order. Central Tauri is the local shell |
+| `blocks` roadmap | Kanban, timeline, quick-add, and task fields are the Open Time (`OT`) screen spec. Blocks has no Dewey code | Windows-desktop-first order. Central Tauri is the local shell |
 | `blocks/Docs/Integrations/HERMES_ECOSYSTEM_ARCHITECTURE.md` | A local agent with tools for Blocks, Billbot, Mailbot, and Anytype | Separate repos and MCP as the architecture. The agent is `packages/pepper`. Packages do not import each other |
 | `mailbot/cursor_gmail_api_auto_sorting_bot_strat.md` | A later Mailbot slice can pull a bill PDF and hand line items to Billbot if both are installed | Google Sheets as the system of record. The chat export is not a spec |
 | GV-0001, GV-0002 | Dewey codes, audience, NFC challenge-response, vendor `upstream` remotes | Leftover admin/member folder layout, Electron shell, separate GitHub repos as the product shape |

@@ -5,7 +5,7 @@
   "metaRoot": "C:\\Users\\parol\\Documents\\Dev\\SubTerra OS",
   "apps": [
     {
-      "appCode": "GV",
+      "appCode": "GR",
       "id": "governance",
       "name": "Grounded Rules",
       "role": "governance",
@@ -30,20 +30,6 @@
       "npm": "26.8.4-b1",
       "branch": "master",
       "checkout": "C:\\Users\\parol\\Documents\\Dev\\SubTerra OS\\shell",
-      "note": null
-    },
-    {
-      "appCode": "BK",
-      "id": "blocks",
-      "name": "Blocks",
-      "role": "app",
-      "repo": "SubTerraCo/Blocks",
-      "localPath": "apps/blocks",
-      "status": "linked",
-      "display": "v26.07.17b3",
-      "npm": "26.7.17",
-      "branch": "v26.07.17",
-      "checkout": "C:\\Users\\parol\\Documents\\Dev\\SubTerra OS\\apps\\blocks",
       "note": null
     },
     {

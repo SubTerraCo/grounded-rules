@@ -1,5 +1,5 @@
 # R0 STUB — authored but not yet wired to a consumer.
-# Leftover intended consumers: BK (Blocks desktop). Do not treat this as the
+# Leftover intended consumers: the Blocks repo desktop build (no Dewey code). Do not treat this as the
 # Metro pipeline — Metro ships with Tauri v2 (GV-0004), not Electron.
 # Generalized from Blocks .github/workflows/build-release.yml build-windows job.
 #

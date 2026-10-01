@@ -25,7 +25,7 @@ Existing SubTerraCo product repos stay on `master` and keep calling Grounded Rul
 
 ### 1.1 Shell targets (GV-0004; supersedes GV-0002 D1–D2)
 
-Exactly two executable runtimes. Central (`CT`, `apps/central`) is the local Tauri app. It hosts packages and integrations. A packages-under-Central path is a legitimate, sanctioned shape (conflict 4 rewritten, Powerline lock 2026-09-30). Metro (`MT`, `apps/metro`) is the public offline-first PWA for social media and ticketing. Metro and Central data do not share a read or write path unless the owner turns on the optional data bridge. The owner-marked bridge allowlist is Open Books (`OB`), Open Bill (`BI`), Open Time (`OT`), and Anytype (`AT`).
+Exactly two executable runtimes. Central (`CT`, `apps/central`) is the local Tauri app. It hosts packages and integrations. A packages-under-Central path is a legitimate, sanctioned shape (conflict 4 rewritten, Powerline lock 2026-09-30). Metro (`MT`, `apps/metro`) is the public offline-first PWA for social media and ticketing. Metro and Central data do not share a read or write path unless the owner turns on the optional data bridge. The owner-marked bridge allowlist is Open Books (`OB`), Open Bill (`OL`), Open Time (`OT`), and Anytype (`AT`).
 
 | Shell | Path | Runtime | Hosts |
 |-------|------|---------|-------|
@@ -57,7 +57,7 @@ Do **not** start new product work as a pair of separate app/integration GitHub r
 ## 3. Dewey address system
 
 ```
-APP.PP.PR.AA.SSS.FFF[-III]
+APP.PP.AA.SSS.FFF[-III]
 N-####                   New feature (per-repo counter)
 B-####                   Bug group (per-repo counter)
 vYY.MM.DD                Release (date-based)
@@ -66,15 +66,20 @@ vYY.MM.DDbX              Batch within that day
 
 | Segment | File | Notes |
 |---------|------|-------|
-| **APP** | [`codes/APP_REGISTRY.yaml`](codes/APP_REGISTRY.yaml) | Every app **and** integration gets its own code (`AT`, not a shared `IG`) |
-| **PP** | [`codes/PLATFORM_CODES.yaml`](codes/PLATFORM_CODES.yaml) | Blocks-compatible platforms |
-| **PR** | [`codes/AREA_CODES.yaml`](codes/AREA_CODES.yaml) | Feature areas |
-| **AA.SSS.FFF** | Per-repo `FEATURE_REGISTRY.md` | Section tree |
+| **APP** | [`codes/APP_REGISTRY.yaml`](codes/APP_REGISTRY.yaml) | The owner. Two hosts are apps (`CT`, `MT`). Installable tools are packages. `PR` in this slot is Pepper |
+| **PP** | [`codes/PLATFORM_CODES.yaml`](codes/PLATFORM_CODES.yaml) | Where it runs. `LX` is Linux. `SH` and `SB` are withdrawn for new work |
+| **AA** | [`codes/AREA_CODES.yaml`](codes/AREA_CODES.yaml) | Area. Two letters. This slot was called PR. `PR` is now only the Pepper app code |
+| **SSS** | Per-repo `FEATURE_REGISTRY.md` | Section. Three digits. Seed `001` |
+| **FFF** | Per-repo `FEATURE_REGISTRY.md` | Feature. Three digits. Seed `001` |
 | **III** | Incident suffix on address | `-001`, `-002`, … |
 
-**Cross-repo references:** `OT/N-0026` (rewritten from `BK/N-0026`, PI-011 A) or the former-code alias `OD/N-0026`; `SM/N-0001` or the aliases `LO/N-0001` / `ST/N-0001` (APP + local N/B). New work uses the current codes (SM, OT, OS, BI, …). Existing `BK/N-####` addresses were rewritten to `OT/N-####`. Alias codes (ST, LO, OD, MB, BB) remain valid on existing addresses. `BK` stays an address-alias catalog row for leftover Blocks. `LO` is the former live shell code for Metro. `OD` is the former live code for Open Time.
+`SSS` and `FFF` both seed at `001`. They do not collide: section is the fourth segment and feature is the fifth. A bootstrap address is `GR.CX.DV.001.001`.
 
-**PP.MC vs PR.MC:** `PP.MC` = MCP as a delivery platform; `PR.MC` = MCP feature area. Prefer unambiguous combinations (e.g. `OT.DT.MC.01.010.010`, or the former-code alias `OD.DT.MC.01.010.010`). `BK.DT.MC.01.010.010` was rewritten to `OT.DT.MC.01.010.010` (PI-011 A).
+Records written before 2026-10-01 use the old six-part form `APP.PP.PR.AA.SSS.FFF`, where the third segment was the area and the numbers were a two-digit section, a three-digit subsection, and a three-digit feature. Those addresses stay as written. New work uses the five-part form.
+
+**Cross-repo references:** `OT/N-0026` (rewritten from a former Blocks address, PI-011 A) or the former-code alias `OD/N-0026`; `MT/N-0001` or the alias `SM/N-0001` (APP + local N/B). New work uses the current codes (MT, CT, PR, OT, OS, OL, CM, MD, BK, GR, …). Alias codes (ST, LO, OD, MB, BB, BI, CH, MA, BS, GV) remain valid on existing addresses. `BK` is Banking. Blocks has no Dewey code. `LO` is a former shell code for Central. `OD` is the former live code for Open Time.
+
+**PP.MC vs AA.AG:** `PP.MC` = MCP as a delivery platform. `AA.AG` = agent tools as a feature area. Former area code `MC`. A new Open Time desktop agent-tool address is `OT.DT.AG.001.001`. The old example `OT.DT.MC.01.010.010` stays valid as a six-part address.
 
 ---
 
@@ -289,10 +294,10 @@ Grounded Rules owns six reusable workflows in `.github/workflows/`. Product repo
 |----------|---------|--------|
 | `ci-node.yml` | Install · type-check · lint · build · manifest validate | **Live** |
 | `deploy-web.yml` | Vercel deploy from `master` | **Live** |
-| `release-desktop.yml` | Desktop installer (authored against Electron / Blocks) | R0 stub — leftover consumer: BK. Metro ships with Tauri; do not treat this stub as the Metro pipeline |
+| `release-desktop.yml` | Desktop installer (authored against Electron / Blocks) | R0 stub — leftover Blocks repo, no Dewey code. Central ships with Tauri; do not treat this stub as the Central pipeline |
 | `publish-npm.yml` | Publish `@subterra/*` packages | R0 stub — blocked on SDK code. Tokens move to `packages/open-ui` in the monorepo |
-| `build-android.yml` | Expo EAS Android build | R0 stub — leftover consumer: BK mobile. Metro Android is Tauri, not Expo |
-| `nightly-dev-push.yml` | Nightly batch seal onto `dev` | R0 stub — leftover consumer: BK |
+| `build-android.yml` | Expo EAS Android build | R0 stub — leftover Blocks repo, no Dewey code. Central Android is Tauri, not Expo |
+| `nightly-dev-push.yml` | Nightly batch seal onto `dev` | R0 stub — leftover Blocks repo, no Dewey code |
 
 `R0 stub` means the workflow is authored and syntactically valid but not yet wired to a consumer. Do not delete stubs; wire them when a consumer appears.
 
@@ -380,8 +385,8 @@ Product implementations that shortcut this invariant are constitution violations
 |--|--|
 | APP | `TK` — **Subtoken** |
 | Audience | `[admin, member]` — ARCHITECTURE install matrix |
-| Metro (`admin`) | Organizer tools |
-| Central (`member`) | Event page, tickets, show log, digital goods |
+| Central (`admin`) | Organizer tools |
+| Metro (`member`) | Event page, tickets, show log, digital goods |
 | Absorbs | `SubTerraCo/subtoken`, `tag-writer`, `validation` |
 | Status | Reserved — consolidation and revival deferred (GV-0002 D6 / D8) |
 
@@ -389,7 +394,7 @@ GV-0002 D3/D6 historically listed TK as `audience: [admin]` only. The live catal
 
 ### 13.4 Dewey areas added for catalog `member`
 
-Reserved in GV-0002 D7. Catalog `member` still mounts on Central. Product role (Powerline lock 2026-09-30): Central is the personal AI hub; Metro is the social media app.
+Reserved in GV-0002 D7. Catalog `member` mounts on Metro. Catalog `admin` mounts on Central. Central is the local Tauri app. Metro is the public PWA for social and ticketing.
 
 | Code | Area |
 |------|------|
@@ -398,14 +403,14 @@ Reserved in GV-0002 D7. Catalog `member` still mounts on Central. Product role (
 
 Existing `AU` (Auth / device identity) and `NF` (NFC / crypto tags) cover challenge-response and tag crypto.
 
-### 13.5 Community (CH)
+### 13.5 Community (CM)
 
 | | |
 |--|--|
-| APP | `CH` — **Community** |
+| APP | `CM` — **Community** |
 | Audience | `[admin, member]` — ARCHITECTURE install matrix |
-| Metro (`admin`) | Crew discussion |
-| Central (`member`) | Public discussion |
+| Central (`admin`) | Crew discussion |
+| Metro (`member`) | Public discussion |
 | Engine | Flarum (`FM`, optional). Community still runs without Forum |
 
 ---
@@ -454,7 +459,7 @@ Design record: [GV-0003](Docs/DESIGN_RECORDS/GV-0003-material-3.md).
 
 A repo that claims an exemption says so in its `.cursor/rules/` and in the manifest when the vendor-fork flag exists. The exemption covers that repo's upstream UI only. New SubTerra screens inside an exempt repo still use Material 3.
 
-Headless use of `@actual-app/api` inside `packages/open-books` (`OB`) is the intended integration. That wrapper is ours and uses Material 3. Actual's own UI stays upstream. Open Bill (`BI`, `packages/open-bill`) is invoicing and is a separate package.
+Headless use of `@actual-app/api` inside `packages/open-books` (`OB`) is the intended integration. That wrapper is ours and uses Material 3. Actual's own UI stays upstream. Open Bill (`OL`, `packages/open-bill`) is invoicing and is a separate package. Former code `BI`.
 
 ---
 

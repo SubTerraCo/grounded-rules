@@ -5,7 +5,7 @@ schemaVersion: 1
 governance:
   repo: SubTerraCo/grounded-rules
   ciOpsVersion: "26.8.4"
-  addressScheme: "APP.PP.PR.AA.SSS.FFF"
+  addressScheme: "APP.PP.AA.SSS.FFF"
 
   owner: SubTerraCo
   ownerType: organization
@@ -33,8 +33,8 @@ governance:
 # audience (GV-0002 D4): list of catalog audiences that may mount the item.
 # Locked machine values: admin | member only. Do not rename these strings.
 # Default when omitted: [admin] (fail-closed).
-# Mapping: admin → Metro (SM, apps/metro; aliases LO, ST);
-#          member → Central (SC, apps/central).
+# Mapping: admin → Central (CT, apps/central; aliases LO, SC, ST);
+#          member → Metro (MT, apps/metro; alias SM).
 # No third audience. Never reuse the word `role` for this — leftover twin role is deprecated.
 #
 # Twin fields (role: app|integration, marketplace: apps|integrations, @subterra/*-sdk):
@@ -59,21 +59,6 @@ items:
       - "@subterra/sdk-contract"   # internal single source of truth
       - "@subterra/app-sdk"
       - "@subterra/integration-sdk"
-
-  - id: blocks
-    appCode: BK
-    name: Blocks
-    repo: SubTerraCo/Blocks
-    localPath: apps/blocks
-    platforms: [DT, WB, AD, IO]
-    role: app  # DEPRECATED leftover twin field
-    marketplace: apps  # DEPRECATED leftover twin field
-    audience: [admin]
-    defaultOpen: true
-    sdk: "@subterra/app-sdk"  # DEPRECATED leftover twin field
-    mcp: "@blocks/mcp-server"
-    status: linked
-    note: "Address alias for OT Open Time at packages/open-time. Existing BK/N-#### Dewey addresses were rewritten to OT/N-#### (PI-011 A). Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
 
   - id: mailbot
     appCode: MB
@@ -104,14 +89,14 @@ items:
     defaultOpen: false
     sdk: "@subterra/app-sdk"  # DEPRECATED leftover twin field
     status: reserved
-    note: "Address alias for BI Open Bill at packages/open-bill. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
+    note: "Address alias for OL Open Bill at packages/open-bill. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
 
   - id: anytype
     appCode: AT
     name: Anytype
     repo: SubTerraCo/subterra-anytype
     localPath: integrations/anytype
-    platforms: [SH, MC]
+    platforms: [DT, MC]
     role: integration  # DEPRECATED leftover twin field
     marketplace: integrations  # DEPRECATED leftover twin field
     audience: [admin]
@@ -123,7 +108,7 @@ items:
     upstream: anyproto/anytype-api
     legacyRepo: SubTerraCo/anytype-google-contact-integration  # superseded predecessor, kept for reference
     defaultBranch: master
-    note: "Not a required monorepo package. Leftover PKM lives in a dedicated Anytype workspace. Central hosts the Anytype integration (Powerline lock 2026-09-30; Dewey role: integration only — not plugin/extension). Intended shape: Anytype / Grok bot Anytype as a Central integration. Central owns the Local API client and credentials; Cara only runs Anytype desktop on 127.0.0.1:31009 (GV-0007). Packages-under-Central is sanctioned (GV-0004 C16). Metro↔Central data bridge allowlist includes owner-marked AT records (with OB, BI, OT). any-sync ASAL limits still apply. Open Axiom is cut. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
+    note: "Not a required monorepo package. Leftover PKM lives in a dedicated Anytype workspace. Central hosts the Anytype integration (Powerline lock 2026-09-30; Dewey role: integration only — not plugin/extension). Intended shape: Anytype / Grok bot Anytype as a Central integration. Central owns the Local API client and credentials; Cara only runs Anytype desktop on 127.0.0.1:31009 (GV-0007). Packages-under-Central is sanctioned (GV-0004 C16). Metro↔Central data bridge allowlist includes owner-marked AT records (with OB, OL, OT). any-sync ASAL limits still apply. Open Axiom is cut. Twin role/marketplace/sdk fields are deprecated leftover until fold-in."
 
   # GV-0004 monorepo items. No twin role / marketplace: apps|integrations / twin SDK.
   - id: luna-os
@@ -131,7 +116,7 @@ items:
     name: Central (address alias)
     repo: null
     localPath: apps/central
-    platforms: [DT, AD, IO, AP]
+    platforms: [DT, LX, AD, IO, AP]
     role: shell
     marketplace: null
     audience: [admin]
@@ -159,7 +144,7 @@ items:
     name: Central
     repo: null
     localPath: apps/central
-    platforms: [DT, AD, IO, AP]
+    platforms: [DT, LX, AD, IO, AP]
     role: shell
     marketplace: null
     audience: [admin]
@@ -198,7 +183,7 @@ items:
     appCode: OG
     name: Open Gig
     repo: null
-    localPath: apps/open-gig
+    localPath: packages/open-gig
     platforms: [WB]
     marketplace: null
     audience: [admin, member]
@@ -223,30 +208,30 @@ items:
       approves archive. PKM is a dedicated Anytype workspace, not a monorepo package.
 
   - id: community-hub
-    appCode: CH
+    appCode: CM
     name: Community
     repo: null
-    localPath: apps/community
+    localPath: packages/community
     platforms: [WB]
     marketplace: null
     audience: [admin, member]
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: crew discussion on Central and public discussion on Metro."
+    note: "Crew discussion on Central. Public discussion on Metro. Former code CH is an address alias. CRM / Anytype object mapping is area code CR."
 
   - id: open-books
     appCode: OB
     name: Open Books
     repo: null
     localPath: packages/open-books
-    platforms: [SB]
+    platforms: [DT]
     marketplace: null
     audience: [admin]
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Central; Metro only through the owner's bridge (allowlist OB + BI + OT + AT). Wraps @actual-app/api. Not Open Bill."
+    note: "Central, and Metro only through the owner's bridge (allowlist OB + OL + OT + AT). Wraps @actual-app/api. Not Open Bill. Platform DT. Former platform SB is withdrawn."
 
   - id: home-assistant
     appCode: HA
@@ -311,7 +296,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Metro (tasks + Festy draft); Central gets a public schedule only when granted. Former code OD is an address alias. Owner-marked Metro↔Central bridge allowlist includes OT (with OB, BI, AT)."
+    note: "ARCHITECTURE matrix: Central (tasks + Festy draft); Metro gets a public schedule only when granted. Former code OD is an address alias. Owner-marked Metro↔Central bridge allowlist includes OT (with OB, OL, AT)."
 
   - id: open-sort
     appCode: OS
@@ -327,7 +312,7 @@ items:
     note: "ARCHITECTURE matrix: Metro only. Gmail and IMAP labels and archive."
 
   - id: open-bill
-    appCode: BI
+    appCode: OL
     name: Open Bill
     repo: null
     localPath: packages/open-bill
@@ -337,7 +322,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Metro; Central only through the owner's bridge (allowlist OB + BI + OT + AT). Invoicing and 1099 exports."
+    note: "Central, and Metro only through the owner's bridge (allowlist OB + OL + OT + AT). Invoicing and 1099 exports. Former code BI is an address alias."
 
   - id: forum
     appCode: FM
@@ -353,7 +338,7 @@ items:
     note: "ARCHITECTURE matrix: optional on Metro and Central. Flarum. Community still runs without it."
 
   - id: media
-    appCode: MA
+    appCode: MD
     name: Media
     repo: null
     localPath: packages/media
@@ -363,10 +348,10 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Metro only. DaVinci, OBS, Loupedeck."
+    note: "Central only. DaVinci, OBS, Loupedeck. Former code MA is an address alias."
 
   - id: banking
-    appCode: BS
+    appCode: BK
     name: Banking
     repo: null
     localPath: packages/banking
@@ -376,7 +361,7 @@ items:
     defaultOpen: false
     sdk: null
     status: reserved
-    note: "ARCHITECTURE matrix: Metro only. SimpleFIN and GoCardless. Treated as a monorepo package, not a twin integration."
+    note: "Central only. SimpleFIN and GoCardless. Monorepo package, not a twin integration. Former code BS is an address alias. BK is Banking, not Blocks."
 
   - id: subtoken
     appCode: TK
