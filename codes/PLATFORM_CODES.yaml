@@ -13,7 +13,7 @@ platforms:
     name: iOS
   - code: LX
     name: Linux
-    note: "Arch Linux / Omarchy is the install flavor under LX (AppImage + PKGBUILD). Native Tauri on Central. PP.AP remains macOS. Windows stays DT. Omarchy is the local AI host. PI-008 B."
+    note: "Arch Linux / Omarchy is the install flavor under LX (AppImage + PKGBUILD). Native Tauri on Central (WebKitGTK). PP.AP remains macOS. Windows stays DT. Omarchy is the local AI host. PI-008 B."
   - code: SH
     name: Shared UI
     note: "Withdrawn for new work. The monorepo has no shared-UI platform. Material 3 lives in packages/open-ui."
