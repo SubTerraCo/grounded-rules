@@ -217,4 +217,4 @@ apps:
     name: Axiom (withdrawn)
     role: app
     status: reserved
-    note: "Open Axiom is cut (GV-0004). Catalog row kept until Powerline approves archive. PKM is Anytype (AT), not a monorepo package."
+    note: "Open Axiom is cut (GV-0004 / PI-005). Remove entirely. Do not archive. PKM is Anytype (AT), not a monorepo package."
