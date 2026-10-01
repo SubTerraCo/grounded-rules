@@ -169,7 +169,7 @@ export function resolveLocalCheckout(
   }
   const repoName = repo?.split("/").pop();
   if (repoName) candidates.push(repoName);
-  // Live GitHub slug is still subterra-governance until Powerline Settings rename.
+  // Older checkouts may still use the subterra-governance folder name.
   if (repoName === "grounded-rules") candidates.push("subterra-governance");
   for (const rel of candidates) {
     const abs = rel === "." ? govRoot : join(metaRoot, rel);
@@ -338,7 +338,7 @@ export function buildFleet(): FleetSnapshot {
       id: "governance",
       appCode: "GV",
       name: "Grounded Rules",
-      repo: "SubTerraCo/subterra-governance",
+      repo: "SubTerraCo/grounded-rules",
       localPath: "governance",
       role: "governance",
       status: "linked",

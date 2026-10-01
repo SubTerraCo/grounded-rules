@@ -8,7 +8,7 @@
 #     workflow_dispatch:
 #   jobs:
 #     nightly:
-#       uses: SubTerraCo/subterra-governance/.github/workflows/nightly-dev-push.yml@v1
+#       uses: SubTerraCo/grounded-rules/.github/workflows/nightly-dev-push.yml@v1
 #       with:
 #         push-script: release:nightly-push
 name: Nightly dev push (reusable)

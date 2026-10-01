@@ -36,8 +36,8 @@ apps:
     name: Grounded Rules
     role: governance
     localPath: governance
-    repo: SubTerraCo/subterra-governance
-    note: "Display name Grounded Rules. Live GitHub slug remains SubTerraCo/subterra-governance until Powerline Settings-renames to grounded-rules. localPath governance is the meta-workspace folder. Dewey code GV unchanged."
+    repo: SubTerraCo/grounded-rules
+    note: "Display name Grounded Rules. Live GitHub slug is SubTerraCo/grounded-rules. localPath governance is the meta-workspace folder. Dewey code GV unchanged."
   - code: AT
     name: Anytype
     role: integration

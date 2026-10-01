@@ -6,7 +6,7 @@
 # Wire it by replacing the product repo's inline installer job with:
 #   jobs:
 #     desktop:
-#       uses: SubTerraCo/subterra-governance/.github/workflows/release-desktop.yml@v1
+#       uses: SubTerraCo/grounded-rules/.github/workflows/release-desktop.yml@v1
 #       with:
 #         desktop-filter: blocks-desktop
 #         shared-filters: "--filter @blocks/core --filter @blocks/ui"

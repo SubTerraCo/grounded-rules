@@ -7,7 +7,7 @@
 # Wire it once the SDK packages have a build + publishable surface:
 #   jobs:
 #     publish:
-#       uses: SubTerraCo/subterra-governance/.github/workflows/publish-npm.yml@v1
+#       uses: SubTerraCo/grounded-rules/.github/workflows/publish-npm.yml@v1
 #       with:
 #         package-filter: "@subterra/app-sdk"
 #       secrets: inherit

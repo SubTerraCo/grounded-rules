@@ -28,7 +28,7 @@ Nothing in this 2026-09-30 pass was deleted or archived. Deletes and archive mov
 
 ## 1. What this repo is
 
-**Grounded Rules** (`SubTerraCo/subterra-governance`) is the **rules, Dewey, catalog, reusable CI, and templates** repo. GitHub slug stays `subterra-governance` until Powerline Settings-renames it to `grounded-rules`.
+**Grounded Rules** (`SubTerraCo/grounded-rules`) is the **rules, Dewey, catalog, reusable CI, and templates** repo. GitHub slug is `grounded-rules`.
 
 It is **not** the product. The product is one pnpm + Turborepo enterprise monorepo, `SubTerraCo/luna`, which **has not been created yet** (GV-0004 §4). Until it exists, this copy of [ARCHITECTURE.md](ARCHITECTURE.md) is the product blueprint.
 
@@ -201,7 +201,7 @@ Vendor remotes: `origin` is always ours; vendor is `upstream`.
 
 ## 10. Existing GitHub vs later `luna`
 
-Linked today: `subterra-governance` (Grounded Rules; slug rename to `grounded-rules` is a Powerline Settings click), `subterra-shell`, `Blocks`, `mailbot`, `subterra-anytype`.
+Linked today: `subterra-governance` (Grounded Rules; slug is `grounded-rules`), `subterra-shell`, `Blocks`, `mailbot`, `subterra-anytype`.
 
 Reserved / leftover: `billbot`, `subtoken`, `tag-writer`, `validation`.
 

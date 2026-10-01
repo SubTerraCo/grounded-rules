@@ -2,7 +2,7 @@
 
 **Grounded Rules agent (GV)** home — rules, Dewey codes, catalog, reusable CI, and templates for SubTerra.
 
-Display name **Grounded Rules** (electrical grounding safety + grounded rules). GitHub slug remains `SubTerraCo/subterra-governance` until Powerline Settings-renames it to `grounded-rules`. Dewey code **GV** is unchanged.
+Display name **Grounded Rules** (electrical grounding safety + grounded rules). GitHub slug is `grounded-rules`. Dewey code **GV** is unchanged.
 
 The **product** is the Metro enterprise monorepo (`SubTerraCo/luna`, not created yet). This repo stays the constitution and pipeline source. It is not the product monorepo.
 
@@ -75,7 +75,7 @@ Production branch is **`master`** across all repos (§4.1) — not `main`.
 ```yaml
 jobs:
   ci:
-    uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
+    uses: SubTerraCo/grounded-rules/.github/workflows/ci-node.yml@v1
 ```
 
 Powerline may Settings-rename this GitHub repo to `grounded-rules` later; until that click, keep the live slug above.

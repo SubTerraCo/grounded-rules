@@ -11,13 +11,13 @@
 
 ## 1. Topology (GV-0004)
 
-The **product** is one pnpm + Turborepo enterprise monorepo (`SubTerraCo/luna-os`, Settings-rename to `SubTerraCo/central`). This repository (**Grounded Rules**, GitHub slug `SubTerraCo/subterra-governance`) stays the rules, Dewey, manifest, reusable Actions, and `@subterra/ci-ops` repo. It is not the product monorepo. Powerline may Settings-rename the GitHub slug to `grounded-rules` after this identity lands; until then consumers keep the live slug.
+The **product** is one pnpm + Turborepo enterprise monorepo (`SubTerraCo/luna-os`, Settings-rename to `SubTerraCo/central`). This repository (**Grounded Rules**, GitHub slug `SubTerraCo/grounded-rules`) stays the rules, Dewey, manifest, reusable Actions, and `@subterra/ci-ops` repo. It is not the product monorepo. The live GitHub slug is `grounded-rules`.
 
 Existing SubTerraCo product repos stay on `master` and keep calling Grounded Rules workflows until they are folded in.
 
 | Path | Repo | Role |
 |------|------|------|
-| this repo | `SubTerraCo/subterra-governance` | Grounded Rules — constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
+| this repo | `SubTerraCo/grounded-rules` | Grounded Rules — constitution, Dewey tables, manifest, reusable Actions, `@subterra/ci-ops` |
 | (product) `apps/` `packages/` `tooling/` | `SubTerraCo/luna-os` (rename to `SubTerraCo/central`) | Enterprise monorepo. Central (`CT`) is the local Tauri app and package host. Metro (`MT`) is the public PWA for social and ticketing. Blueprint: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md) |
 | `shell/` | `SubTerraCo/subterra-shell` | Leftover shell repo until Phase 1 copies what is still useful. Do not build leftover `apps/admin` folders or `packages/shell-core` |
 | existing `apps/<name>/` | per product (Blocks, Mailbot, …) | Leftover standalone app repos until folded into `packages/` / `apps/` in `central` |
@@ -169,7 +169,7 @@ Product repos should call:
 ```yaml
 jobs:
   ci:
-    uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
+    uses: SubTerraCo/grounded-rules/.github/workflows/ci-node.yml@v1
 ```
 
 Powerline may Settings-rename this GitHub repo to `grounded-rules` later; until that click, keep the live slug above.
@@ -301,7 +301,7 @@ Grounded Rules owns six reusable workflows in `.github/workflows/`. Product repo
 ```yaml
 jobs:
   ci:
-    uses: SubTerraCo/subterra-governance/.github/workflows/ci-node.yml@v1
+    uses: SubTerraCo/grounded-rules/.github/workflows/ci-node.yml@v1
     secrets: inherit
 ```
 
@@ -317,7 +317,7 @@ Both are easy to break and both fail the same way — an instant run with **no j
 2. **Access policy.** Grounded Rules must keep Actions access set to `organization`:
 
 ```bash
-gh api repos/SubTerraCo/subterra-governance/actions/permissions/access
+gh api repos/SubTerraCo/grounded-rules/actions/permissions/access
 # expected: {"access_level":"organization"}
 ```
 

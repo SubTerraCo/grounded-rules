@@ -7,7 +7,7 @@
 # Wire it by replacing the product repo's inline EAS job with:
 #   jobs:
 #     android:
-#       uses: SubTerraCo/subterra-governance/.github/workflows/build-android.yml@v1
+#       uses: SubTerraCo/grounded-rules/.github/workflows/build-android.yml@v1
 #       with:
 #         mobile-directory: apps/mobile
 #         profile: preview

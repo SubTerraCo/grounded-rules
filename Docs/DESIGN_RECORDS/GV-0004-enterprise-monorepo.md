@@ -62,7 +62,7 @@ Open stays on names that would collide with a published app. The others use the 
 | MA | Media | `packages/media` | DaVinci, OBS, Loupedeck |
 | BS | Banking | `packages/banking` | SimpleFIN and GoCardless |
 | AT | Anytype | Central-hosted integration (leftover dedicated workspace until folded) | Central hosts the integration (`role: integration` only — not plugin/extension). Leftover PKM workspace is not required as a monorepo package. Packages-under-Central is sanctioned (C16). Open Axiom is cut. Owner-marked Metro↔Central bridge includes AT |
-| GV | Grounded Rules | `SubTerraCo/subterra-governance` | This rules repo. Display name Grounded Rules; GitHub slug rename to `grounded-rules` is a Powerline Settings click |
+| GV | Grounded Rules | `SubTerraCo/grounded-rules` | This rules repo. Display name Grounded Rules; GitHub slug is `grounded-rules` |
 | WL | White-label | — | Commercial gate on Central, the local app. Not a package |
 | — | Open UI | `packages/open-ui` | Material 3 palette, type, spacing. No app code |
 
