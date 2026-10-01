@@ -43,7 +43,7 @@ Existing SubTerraCo product repos (`subterra-shell`, `Blocks`, `mailbot`, `subte
 3. **[CI_OPS_CONSTITUTION.md](../CI_OPS_CONSTITUTION.md)** — applies where the blueprint is silent (Dewey format, `master`, audience, NFC crypto, design gates, reusable workflows for leftover repos).
 4. Older design records — historical locks. What still stands is called out on each record:
    - GV-0001: GitHub org, Team plan, reusable pipelines, vendor `upstream`, workspace QA location.
-   - GV-0002: `audience`, NFC challenge-response, Dewey `SO` / `EV`, Subtoken absorbs 2022 NFC repos. Live TK / CM lists follow the ARCHITECTURE install matrix (`[admin, member]`). **Not** leftover `apps/admin` / `shell-core` folders.
+   - GV-0002: `audience`, NFC challenge-response, Dewey `SO` / `EV`, Subtoken absorbs 2022 NFC repos. Live TK / CM lists follow the ARCHITECTURE install matrix (`[admin, member]`). **Not** leftover `apps/admin` / `shell-core` folders. On-disk filename `GV-0002-nexus-dual-shell.md` is kept **forever** as a landmark of a deprecated dual-shell prototype (PI-012 B, 2026-09-30 MT). Live product shape is one monorepo, shared packages, two entry apps.
    - GV-0003: Material 3. Palette purple `#400080`, pink `#ED1CAD`, light blue `#1CEDC5`, teal `#008080`; interim M3 type scale; 4dp spacing. **Not** Material Web, `@subterra/shell-ui`, or amber `#e8a54b`.
 
 ---

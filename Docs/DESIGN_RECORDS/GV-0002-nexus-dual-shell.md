@@ -1,21 +1,21 @@
 # GV-0002 — Audience, dual-shell, and NFC
 
-> On-disk filename `GV-0002-nexus-dual-shell.md` is historical. Rename awaits archive approval. This record is the audience + NFC lock.
+> **PI-012 B (2026-09-30 MT):** Keep on-disk filename `GV-0002-nexus-dual-shell.md` forever as a landmark of a deprecated dual-shell ideology. Do not rename it. It is not a path to return to.
 
 | | |
 |--|--|
 | **Address** | `GV.CX.DV.01.020.010` |
 | **Release** | `v26.08.04` |
-| **Status** | Historical folder sketch superseded by GV-0004 (Metro and Central). Audience and NFC challenge-response still stand |
+| **Status** | Historical landmark. Filename kept forever (PI-012 B). Audience and NFC challenge-response still stand |
 | **Owner** | Grounded Rules agent (GV) |
 
 Locks a dual-shell model: an admin shell and a member-facing public shell. Marketplace items gain an `audience` gate. NFC login must be challenge-response, never UID-only.
 
-**Still stands:** `audience` (`admin` / `member`, fail-closed default `["admin"]`); NFC challenge-response (no UID-only auth); Dewey areas `SO` and `EV`; Subtoken `TK` absorbs the 2022 NFC repos; `role` is never used for permissions. Live TK / CH `audience` lists follow the ARCHITECTURE install matrix (`[admin, member]`), not the historical admin-only D3/D6 rows.
+**Still stands:** `audience` (`admin` / `member`, fail-closed default `["admin"]`); NFC challenge-response (no UID-only auth); Dewey areas `SO` and `EV`; Subtoken `TK` absorbs the 2022 NFC repos; `role` is never used for permissions. Live TK / CM `audience` lists follow the ARCHITECTURE install matrix (`[admin, member]`), not the historical admin-only D3/D6 rows.
 
-**Superseded by GV-0004:** leftover `apps/admin` / shared `shell-core` folder sketch, SubTerra OS as the shell to build, and separate product repos as the product shape. Build `apps/metro` (`SM`, address aliases `LO` and `ST`) and `apps/central` (`SC`).
+**Superseded by GV-0004 and PI-021:** leftover `apps/admin` / shared `shell-core` folder sketch, and separate product repos as the product shape. Build `apps/central` (`CT`, aliases `LO`, `SC`, `ST`) and `apps/metro` (`MT`, alias `SM`).
 
-**Rewritten by Powerline lock 2026-09-30 (voice):** product-role prose that called Central a public/member shell and Metro the personal command center. Live roles: Central = personal AI hub + suite of all tools (hosts packages and integrations; packages-under-Central is sanctioned, GV-0004 C16); Metro = social media app that consumes Central-hosted packages. Catalog `audience` machine values and mapping are **not** renamed. Anytype as a Central integration is the intended shape (GV-0004 C15).
+**Live roles (PI-021):** Central is the local Tauri app and package host. Metro is the public PWA for social and ticketing. Catalog `audience` machine values stay `admin` and `member`. `admin` maps to Central. `member` maps to Metro.
 
 ---
 
