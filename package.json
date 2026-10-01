@@ -15,7 +15,8 @@
     "ci-ops:version": "node -e \"console.log(require('./package.json').version)\"",
     "type-check": "tsc -p tsconfig.json --noEmit && tsc -p packages/ci-ops/tsconfig.json --noEmit",
     "test:workspace": "playwright test --config=tests/playwright.config.ts",
-    "test:workspace:contract": "playwright test --config=tests/playwright.config.ts --project=contract"
+    "test:workspace:contract": "playwright test --config=tests/playwright.config.ts --project=contract",
+    "test:playwright-kit": "node --test playwright-kit/scripts/playwright-feature-tags.test.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
@@ -30,6 +31,7 @@
     "Docs/VERSIONS.md",
     "packages/ci-ops",
     "templates",
+    "playwright-kit",
     ".github/workflows"
   ]
 }

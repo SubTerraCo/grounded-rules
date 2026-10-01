@@ -9,7 +9,7 @@
 
 Expands the GV mandate (constitution §9) to cover GitHub repo management, reusable deployment pipelines, and a workspace-level Playwright QA suite.
 
-**Still stands:** SubTerraCo org, Team plan, `master` as production, six reusable workflows, vendor `upstream` remotes, workspace QA in `tests/`, twin-SDK contract in `sdk-contract`.
+**Still stands:** SubTerraCo org, Team plan, `master` as production, reusable workflows (original six plus opt-in `playwright-features.yml`), vendor `upstream` remotes, workspace QA in `tests/`, twin-SDK contract in `sdk-contract`.
 
 **Superseded by GV-0004:** separate GitHub repos as the product shape, Shell application owned only by ST, Electron/Next desktop as the thing to build. The product is `SubTerraCo/luna` (not created yet). This Grounded Rules repo still owns the reusable workflows consumed by leftover product repos.
 
@@ -151,6 +151,8 @@ All five repos were transferred out of the `PoweredUpLabs` personal account on 2
 | `mailbot` | `SubTerraCo/mailbot` |
 
 Local remotes, manifest `repo:` fields, `APP_REGISTRY`, workflow `uses:` comments, both READMEs, and Shell's live CI ref were all rewritten to `SubTerraCo`. GitHub keeps redirects from the old paths, but nothing depends on them.
+
+> **Current slug:** `SubTerraCo/grounded-rules`. The transfer table above is the 2026-08-04 event; GitHub redirects the former `subterra-governance` path.
 
 ### Plan — upgraded to Team (resolved)
 
