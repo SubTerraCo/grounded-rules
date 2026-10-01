@@ -27,7 +27,7 @@ How to answer: check one option, fill **Text** if needed (required for Other), a
 
 Decisions (`open`). 1 item.
 
-- [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Tauri / SubTerra Metro release workflow timing
+- [PI-006](#pi-006-tauri-luna-os-release-workflow) — Q6 Central Tauri release workflow timing
 
 ## Answered
 
@@ -126,11 +126,11 @@ Decisions (`open`). 1 item.
 
 ---
 
-<h2 id="pi-006-tauri-luna-os-release-workflow">PI-006 — Q6 Tauri / SubTerra Metro release workflow timing</h2>
+<h2 id="pi-006-tauri-luna-os-release-workflow">PI-006 — Q6 Central Tauri release workflow timing</h2>
 
 - **Status:** `open`
 - **Needed:** decision
-- **Question:** When should a Tauri / SubTerra Metro release workflow be authored?
+- **Question:** When should a Tauri release workflow for Central (`apps/central`) be authored? Metro is the PWA and does not get this Tauri stub.
 - **Options:**
   - [ ] A) After `luna` monorepo Phase 5 shell bundle
   - [ ] B) Author stub now on Grounded Rules
